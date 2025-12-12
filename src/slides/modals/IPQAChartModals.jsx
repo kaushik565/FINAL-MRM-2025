@@ -1,6 +1,7 @@
 ﻿// IPQA Chart Detail Modals - Department, Cartridge, Manufacturing, and Site Charts
 import { memo } from 'react';
 import { createPortal } from 'react-dom';
+import { FullscreenShell } from '../../utils/modalHelpers';
 
 /**
  * Department Chart Modal - Shows line clearance/closure/re-verification data
@@ -54,132 +55,78 @@ export const DeptChartModal = memo(function DeptChartModal({ selectedDeptChart, 
         </div>
 
         <div className="modal-table-wrapper">
-          <table className="modal-table">
-            <thead>
-              <tr style={{ background: `linear-gradient(135deg, ${selectedDeptChart.color}, ${selectedDeptChart.color}dd)`, color: 'white' }}>
-                <th className="modal-table-header text-left">Metric</th>
-                <th className="modal-table-header text-center">Jul</th>
-                <th className="modal-table-header text-center">Aug</th>
-                <th className="modal-table-header text-center">Sep</th>
-                <th className="modal-table-header text-center">Oct</th>
-                <th className="modal-table-header text-center">Nov</th>
-                <th className="modal-table-header text-center">Average</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="modal-table-row-alt">
-                <td className="modal-table-cell modal-highlight-cell">Clearance</td>
-                {selectedDeptChart.clearance.map((val, idx) => (
-                  <td key={idx} className="modal-table-cell text-center" style={{ color: selectedDeptChart.color }}>{val}</td>
+          <FullscreenShell onClose={onClose} title={details.title} accentColor="#2b55ff">
+            <div style={{ padding: '28px' }}>
+              <div style={{
+                background: '#f8fafc',
+                borderRadius: '12px',
+                padding: '20px',
+                border: '1.5px solid #e2e8f0',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '16px',
+                marginBottom: '20px'
+              }}>
+                {details.metrics.map((metric, index) => (
+                  <div key={index} style={{
+                    background: '#fff',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '10px',
+                    padding: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.04)'
+                  }}>
+                    <div style={{fontSize: '0.75em', fontWeight: '700', color: '#475569', textTransform: 'uppercase', marginBottom: '8px'}}>{metric.label}</div>
+                    <div style={{fontSize: '1.4em', fontWeight: '800', color: metric.color}}>{metric.value}</div>
+                    <div style={{fontSize: '0.9em', color: '#64748b', marginTop: '6px'}}>{metric.desc}</div>
+                  </div>
                 ))}
-                <td className="modal-table-cell text-center modal-highlight-cell" style={{ color: selectedDeptChart.color }}>
-                  {Math.round(selectedDeptChart.clearance.reduce((a, b) => a + b) / selectedDeptChart.clearance.length)}
-                </td>
-              </tr>
+              </div>
 
-              <tr className="table-data-row">
-                <td className="modal-table-cell modal-highlight-cell">Closure</td>
-                {selectedDeptChart.closure.map((val, idx) => (
-                  <td key={idx} className="modal-table-cell text-center opacity-75" style={{ color: selectedDeptChart.color }}>{val}</td>
-                ))}
-                <td className="modal-table-cell text-center modal-highlight-cell opacity-75" style={{ color: selectedDeptChart.color }}>
-                  {Math.round(selectedDeptChart.closure.reduce((a, b) => a + b) / selectedDeptChart.closure.length)}
-                </td>
-              </tr>
-
-              <tr className="modal-table-row-alt">
-                <td className="modal-table-cell modal-highlight-cell">Re-Verification</td>
-                {selectedDeptChart.reverif.map((val, idx) => (
-                  <td key={idx} className="modal-table-cell text-center opacity-50" style={{ color: selectedDeptChart.color }}>{val}</td>
-                ))}
-                <td className="modal-table-cell text-center modal-highlight-cell opacity-50" style={{ color: selectedDeptChart.color }}>
-                  {Math.round(selectedDeptChart.reverif.reduce((a, b) => a + b) / selectedDeptChart.reverif.length)}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="modal-stats-grid">
-          <div className="modal-stat-card" style={{ borderColor: selectedDeptChart.color }}>
-            <div className="modal-stat-label">Avg Clearance</div>
-            <div className="modal-stat-value" style={{ color: selectedDeptChart.color }}>
-              {Math.round(selectedDeptChart.clearance.reduce((a, b) => a + b) / selectedDeptChart.clearance.length)}
-            </div>
-          </div>
-          <div className="modal-stat-card modal-stat-card-muted" style={{ borderColor: selectedDeptChart.color }}>
-            <div className="modal-stat-label">Avg Closure</div>
-            <div className="modal-stat-value" style={{ color: selectedDeptChart.color }}>
-              {Math.round(selectedDeptChart.closure.reduce((a, b) => a + b) / selectedDeptChart.closure.length)}
-            </div>
-          </div>
-          <div className="modal-stat-card modal-stat-card-faint" style={{ borderColor: selectedDeptChart.color }}>
-            <div className="modal-stat-label">Avg Re-Verification</div>
-            <div className="modal-stat-value" style={{ color: selectedDeptChart.color }}>
-              {Math.round(selectedDeptChart.reverif.reduce((a, b) => a + b) / selectedDeptChart.reverif.length)}
-            </div>
-          </div>
-        </div>
-
-        <div className="modal-insights-card modal-insights-warning">
-          <div className="modal-section-title">📈 Performance Insights</div>
-          <div className="modal-section-text">
-            <div>• Clearance Average: <strong>{Math.round(selectedDeptChart.clearance.reduce((a, b) => a + b) / selectedDeptChart.clearance.length)}</strong> - Highest performer in line clearance efficiency</div>
-            <div>• Closure Average: <strong>{Math.round(selectedDeptChart.closure.reduce((a, b) => a + b) / selectedDeptChart.closure.length)}</strong> - Consistent closure performance</div>
-            <div>• Re-Verification Average: <strong>{Math.round(selectedDeptChart.reverif.reduce((a, b) => a + b) / selectedDeptChart.reverif.length)}</strong> - Quality assurance touchpoints</div>
-            <div className="modal-section-text-divider">
-              💡 <strong>Trend Analysis:</strong> Review monthly variations to identify peak efficiency periods and areas for operational optimization.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>,
-    document.body
-  );
-});
-
-/**
- * Cartridge Assembly Chart Modal - Shows performance data table
- */
-export const CartridgeChartModal = memo(function CartridgeChartModal({ selectedCartridgeChart, onClose }) {
-  if (!selectedCartridgeChart) return null;
-
-  return createPortal(
-    <div className="modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="modal-container">
-        <button className="modal-close-btn modal-close-success" onClick={onClose}>×</button>
-
-        <div className="modal-header" style={{ borderBottom: `3px solid ${selectedCartridgeChart.color}` }}>
-          <div className="modal-title">{selectedCartridgeChart.name}</div>
-          <div className="modal-subtitle">Monthly Performance Data (Jan-Aug Average, Sep, Oct, Nov)</div>
-        </div>
-
-        <div className="modal-table-wrapper">
-          <table className="modal-table">
-            <thead>
-              <tr style={{ background: `linear-gradient(135deg, ${selectedCartridgeChart.color}, ${selectedCartridgeChart.color}dd)`, color: 'white' }}>
-                <th className="modal-table-header text-left">Metric</th>
-                <th className="modal-table-header text-center">Jan-Aug</th>
-                <th className="modal-table-header text-center">September</th>
-                <th className="modal-table-header text-center">October</th>
-                <th className="modal-table-header text-center">November</th>
-                <th className="modal-table-header text-center">Average</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedCartridgeChart.data.clearance[0] > 0 && (
-                <tr className="modal-table-row-alt">
-                  <td className="modal-table-cell modal-highlight-cell-success">Clearance</td>
-                  {selectedCartridgeChart.data.clearance.map((val, idx) => (
-                    <td key={idx} className="modal-table-cell text-center" style={{ color: selectedCartridgeChart.color }}>{val.toFixed(2)}</td>
+              <div style={{
+                background: '#2b55ff',
+                borderRadius: '12px',
+                color: 'white',
+                padding: '16px',
+                marginBottom: '20px',
+                boxShadow: '0 10px 30px rgba(43, 85, 255, 0.25)'
+              }}>
+                <div style={{fontSize: '0.8em', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '8px'}}>Insights</div>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px'}}>
+                  {details.insights.map((insight, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255,255,255,0.1)',
+                      borderRadius: '10px',
+                      padding: '12px',
+                      border: '1px solid rgba(255,255,255,0.25)'
+                    }}>
+                      <div style={{fontSize: '1em', fontWeight: '700'}}>{insight.title}</div>
+                      <div style={{fontSize: '0.95em', opacity: 0.95}}>{insight.desc}</div>
+                    </div>
                   ))}
-                  <td className="modal-table-cell text-center modal-highlight-cell-success" style={{ color: selectedCartridgeChart.color }}>
-                    {(selectedCartridgeChart.data.clearance.reduce((a, b) => a + b) / selectedCartridgeChart.data.clearance.length).toFixed(2)}
-                  </td>
-                </tr>
-              )}
+                </div>
+              </div>
 
-              {selectedCartridgeChart.data.closure[0] > 0 && (
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px'}}>
+                {details.callsToAction.map((cta, idx) => (
+                  <div key={idx} style={{
+                    background: '#f8fafc',
+                    borderRadius: '12px',
+                    padding: '16px',
+                    border: '1px solid #e2e8f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.04)'
+                  }}>
+                    <div style={{width: '10px', height: '10px', background: '#2b55ff', borderRadius: '50%'}}></div>
+                    <div style={{fontSize: '0.95em', color: '#0f172a', fontWeight: '700'}}>{cta}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FullscreenShell>,
+          document.body
+        );
                 <tr className="table-data-row">
                   <td className="modal-table-cell modal-highlight-cell-success">Closure</td>
                   {selectedCartridgeChart.data.closure.map((val, idx) => (

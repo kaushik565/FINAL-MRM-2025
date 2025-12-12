@@ -119,6 +119,60 @@ export function ModalContent({
 }
 
 /**
+ * Fullscreen shell for page-style experiences (replaces modal overlays)
+ */
+export function FullscreenShell({
+  onClose,
+  title,
+  subtitle,
+  accentColor = '#0f172a',
+  children,
+  headerExtras
+}) {
+  return (
+    <div style={{position: 'fixed', inset: 0, zIndex: 99999, background: '#f8fafc', overflowY: 'auto'}}>
+      <div style={{position: 'sticky', top: 0, zIndex: 100000, background: '#0f172a', color: '#ffffff', padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 6px 18px rgba(0, 0, 0, 0.25)'}}>
+        <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+          <div style={{width: '32px', height: '32px', borderRadius: '10px', background: '#ffffff22', display: 'flex', alignItems: 'center', justifyContent: 'center', color: accentColor, fontWeight: '900'}}>✨</div>
+          <div>
+            <div style={{fontSize: '0.8em', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', opacity: 0.85}}>Full View</div>
+            <div style={{fontSize: '1em', fontWeight: '800'}}>{title}</div>
+            {subtitle && <div style={{fontSize: '0.85em', opacity: 0.8}}>{subtitle}</div>}
+          </div>
+        </div>
+        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+          {headerExtras}
+          <button
+            onClick={onClose}
+            style={{
+              background: '#ef4444',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '10px',
+              padding: '10px 14px',
+              fontWeight: '800',
+              cursor: 'pointer',
+              boxShadow: '0 6px 16px rgba(239,68,68,0.35)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(239,68,68,0.45)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(239,68,68,0.35)'; }}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div style={{minHeight: '100%', padding: '24px 20px 48px 20px'}}>
+        <div style={{maxWidth: '1240px', margin: '0 auto', background: '#ffffff', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 18px 48px rgba(15,23,42,0.12)'}}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
  * Modal header with title and decorative line
  */
 export function ModalHeader({ title, color, subtitles = [] }) {

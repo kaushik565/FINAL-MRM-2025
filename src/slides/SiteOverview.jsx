@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Chart, registerables } from 'chart.js'
+import { FullscreenShell } from '../utils/modalHelpers'
 Chart.register(...registerables)
 import SiteIIncidents from './site-details/SiteIIncidents'
 import SiteICorrectiveActions from './site-details/SiteICorrectiveActions'
@@ -208,37 +209,27 @@ function OverallPerformance({ onCompleteOverviewClick }) {
   const CategoryInfoModal = ({ category, onClose }) => {
     const details = categoryDetails[category];
     return createPortal(
-      <div onClick={onClose} style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99999, padding: '20px'}}>
-        <div onClick={(e) => e.stopPropagation()} style={{background: 'linear-gradient(135deg, #ffffff, #f9fafb)', borderRadius: '16px', padding: '32px', maxWidth: '700px', width: '100%', maxHeight: '85vh', overflow: 'auto', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)', border: `3px solid ${categoryColors[category]}`, position: 'relative'}}>
-          <button onClick={onClose} style={{position: 'absolute', top: '16px', right: '16px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '36px', height: '36px', fontSize: '1.2em', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s'}}
-          onMouseEnter={(e) => {e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.transform = 'scale(1.1)';}}
-          onMouseLeave={(e) => {e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.transform = 'scale(1)';}}>×</button>
-
-          <div style={{marginBottom: '24px'}}>
-            <h3 style={{fontSize: '1.5em', fontWeight: '800', color: categoryColors[category], marginBottom: '8px', marginTop: 0}}>{details.title}</h3>
-            <div style={{height: '3px', background: `linear-gradient(90deg, ${categoryColors[category]}, ${categoryColors[category]}dd)`, width: '100px', borderRadius: '2px'}}></div>
-            <p style={{fontSize: '0.9em', color: '#0f172a', marginTop: '12px', fontStyle: 'italic'}}>{details.description}</p>
-          </div>
-
-          <div style={{textAlign: 'center', padding: '20px', background: `${categoryColors[category]}10`, borderRadius: '12px', border: `2px solid ${categoryColors[category]}`, marginBottom: '24px'}}>
+      <FullscreenShell onClose={onClose} title={details.title} subtitle={details.description} accentColor={categoryColors[category]}>
+        <div style={{padding: '28px', background: '#f8fafc'}}>
+          <div style={{textAlign: 'center', padding: '24px', background: `${categoryColors[category]}10`, borderRadius: '12px', border: `2px solid ${categoryColors[category]}`, marginBottom: '24px', boxShadow: '0 10px 30px rgba(15,23,42,0.08)'}}>
             <div style={{fontSize: '0.8em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Average Improvement Across All Sites</div>
             <div style={{fontSize: '3em', fontWeight: '900', color: categoryColors[category]}}>{details.avgImprovement}%</div>
           </div>
 
-          <div style={{background: '#f0f9ff', borderLeft: `4px solid ${categoryColors[category]}`, padding: '16px', borderRadius: '8px', marginBottom: '20px'}}>
+          <div style={{background: '#f0f9ff', borderLeft: `4px solid ${categoryColors[category]}`, padding: '16px', borderRadius: '12px', marginBottom: '20px'}}>
             <div style={{fontSize: '0.75em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Calculation Formula</div>
-            <div style={{fontSize: '0.95em', fontFamily: 'monospace', color: '#1f2937', background: '#fff', padding: '12px', borderRadius: '6px', border: '1px solid #cbd5e1'}}>{details.calculation}</div>
+            <div style={{fontSize: '1em', fontFamily: 'monospace', color: '#0f172a', background: '#fff', padding: '12px', borderRadius: '8px', border: '1px solid #cbd5e1', fontWeight: '600'}}>{details.calculation}</div>
           </div>
 
-          <div style={{marginBottom: '16px'}}>
+          <div>
             <div style={{fontSize: '1em', fontWeight: '700', color: '#0f172a', marginBottom: '12px'}}>📊 Site-wise Breakdown:</div>
             {details.sites.map((site, idx) => (
-              <div key={idx} style={{marginBottom: '12px', padding: '14px', background: '#f8fafc', borderLeft: `4px solid ${siteColors[site.name]}`, borderRadius: '8px'}}>
+              <div key={idx} style={{marginBottom: '12px', padding: '16px', background: '#ffffff', borderLeft: `4px solid ${siteColors[site.name]}`, borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.04)'}}>
                 <div style={{display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px'}}>
                   <div style={{fontSize: '1.1em', fontWeight: '800', color: siteColors[site.name]}}>{site.name}</div>
-                  <div style={{fontSize: '1.4em', fontWeight: '900', color: siteColors[site.name]}}>{site.improvement}%</div>
+                  <div style={{fontSize: '1.6em', fontWeight: '900', color: siteColors[site.name]}}>{site.improvement}%</div>
                 </div>
-                <div style={{fontSize: '0.85em', color: '#475569', lineHeight: '1.5'}}>
+                <div style={{fontSize: '0.9em', color: '#475569', lineHeight: '1.5'}}>
                   <div>Before: {site.from} → After: {site.to}</div>
                   <div>Total Items: {site.total}</div>
                 </div>
@@ -246,7 +237,7 @@ function OverallPerformance({ onCompleteOverviewClick }) {
             ))}
           </div>
         </div>
-      </div>,
+      </FullscreenShell>,
       document.body
     );
   };
@@ -376,53 +367,44 @@ function SiteComparisonGrid({ onSiteClick }) {
     ];
 
     return createPortal(
-      <div onClick={onClose} style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99999, padding: '20px'}}>
-        <div onClick={(e) => e.stopPropagation()} style={{background: 'linear-gradient(135deg, #ffffff, #f9fafb)', borderRadius: '16px', padding: '32px', maxWidth: '750px', width: '100%', maxHeight: '85vh', overflow: 'auto', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)', border: `3px solid ${siteColors[site]}`, position: 'relative'}}>
-          <button onClick={onClose} style={{position: 'absolute', top: '16px', right: '16px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '36px', height: '36px', fontSize: '1.2em', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s'}}
-          onMouseEnter={(e) => {e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.transform = 'scale(1.1)';}}
-          onMouseLeave={(e) => {e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.transform = 'scale(1)';}}>×</button>
-
-          <div style={{marginBottom: '24px'}}>
-            <h3 style={{fontSize: '1.6em', fontWeight: '800', color: siteColors[site], marginBottom: '8px', marginTop: 0}}>{site} - Performance Breakdown</h3>
-            <div style={{height: '3px', background: `linear-gradient(90deg, ${siteColors[site]}, ${siteColors[site]}dd)`, width: '120px', borderRadius: '2px'}}></div>
-          </div>
-
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px'}}>
-            <div style={{textAlign: 'center', padding: '20px', background: `${siteColors[site]}10`, borderRadius: '12px', border: `2px solid ${siteColors[site]}`}}>
+      <FullscreenShell onClose={onClose} title={`${site} - Performance Breakdown`} accentColor={siteColors[site]}>
+        <div style={{padding: '28px', background: '#f8fafc'}}>
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '24px'}}>
+            <div style={{textAlign: 'center', padding: '24px', background: `${siteColors[site]}10`, borderRadius: '12px', border: `2px solid ${siteColors[site]}`, boxShadow: '0 10px 30px rgba(15,23,42,0.08)'}}>
               <div style={{fontSize: '0.8em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Average Improvement</div>
               <div style={{fontSize: '3em', fontWeight: '900', color: siteColors[site]}}>{avgImprovement}%</div>
             </div>
-            <div style={{textAlign: 'center', padding: '20px', background: '#f8fafc', borderRadius: '12px', border: '2px solid #cbd5e1'}}>
+            <div style={{textAlign: 'center', padding: '24px', background: '#ffffff', borderRadius: '12px', border: '2px solid #e2e8f0', boxShadow: '0 10px 30px rgba(15,23,42,0.08)'}}>
               <div style={{fontSize: '0.8em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Total Items</div>
-              <div style={{fontSize: '3em', fontWeight: '900', color: '#1e293b'}}>{totalItems.toLocaleString()}</div>
+              <div style={{fontSize: '3em', fontWeight: '900', color: '#0f172a'}}>{totalItems.toLocaleString()}</div>
             </div>
           </div>
 
-          <div style={{background: '#f0f9ff', borderLeft: `4px solid ${siteColors[site]}`, padding: '16px', borderRadius: '8px', marginBottom: '20px'}}>
+          <div style={{background: '#f0f9ff', borderLeft: `4px solid ${siteColors[site]}`, padding: '16px', borderRadius: '12px', marginBottom: '20px'}}>
             <div style={{fontSize: '0.75em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Average Improvement Calculation</div>
-            <div style={{fontSize: '0.9em', fontFamily: 'monospace', color: '#1f2937', background: '#fff', padding: '12px', borderRadius: '6px', border: '1px solid #cbd5e1', marginBottom: '8px'}}>
+            <div style={{fontSize: '1em', fontFamily: 'monospace', color: '#0f172a', background: '#fff', padding: '12px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '8px', fontWeight: '600'}}>
               ({metricsBreakdown.map(m => `${m.improvement}%`).join(' + ')}) ÷ 6 = {avgImprovement}%
             </div>
-            <div style={{fontSize: '0.7em', color: '#0f172a', fontStyle: 'italic'}}>Average of all 6 metrics (Incidents, CA, PA, OOS, CC, Investigation)</div>
+            <div style={{fontSize: '0.75em', color: '#0f172a', fontStyle: 'italic'}}>Average of all 6 metrics (Incidents, CA, PA, OOS, CC, Investigation)</div>
           </div>
 
-          <div style={{background: '#fef3c7', borderLeft: '4px solid #f59e0b', padding: '16px', borderRadius: '8px', marginBottom: '20px'}}>
+          <div style={{background: '#fefce8', borderLeft: '4px solid #f59e0b', padding: '16px', borderRadius: '12px', marginBottom: '20px'}}>
             <div style={{fontSize: '0.75em', fontWeight: '700', color: '#334155', textTransform: 'uppercase', marginBottom: '8px'}}>Total Items Calculation</div>
-            <div style={{fontSize: '0.9em', fontFamily: 'monospace', color: '#1f2937', background: '#fff', padding: '12px', borderRadius: '6px', border: '1px solid #cbd5e1', marginBottom: '8px'}}>
+            <div style={{fontSize: '1em', fontFamily: 'monospace', color: '#0f172a', background: '#fff', padding: '12px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '8px', fontWeight: '600'}}>
               {data.Incidents.total} + {data.CA.total} + {data.PA.total} + {data.OOS.total} + {data.CC.total} = {totalItems.toLocaleString()}
             </div>
-            <div style={{fontSize: '0.7em', color: '#92400e', fontStyle: 'italic'}}>Note: Investigation Time is NOT included in total count as it uses the same incident records already counted in "Incidents"</div>
+            <div style={{fontSize: '0.75em', color: '#92400e', fontStyle: 'italic'}}>Note: Investigation Time is NOT included in total count as it uses the same incident records already counted in "Incidents"</div>
           </div>
 
           <div>
             <div style={{fontSize: '1em', fontWeight: '700', color: '#0f172a', marginBottom: '12px'}}>📊 Metrics Breakdown:</div>
             {metricsBreakdown.map((metric, idx) => (
-              <div key={idx} style={{marginBottom: '12px', padding: '14px', background: '#f8fafc', borderLeft: `4px solid ${metric.color}`, borderRadius: '8px'}}>
-                <div style={{display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '6px'}}>
-                  <div style={{fontSize: '1em', fontWeight: '800', color: metric.color}}>{metric.name}</div>
-                  <div style={{fontSize: '1.4em', fontWeight: '900', color: metric.color}}>{metric.improvement}%</div>
+              <div key={idx} style={{marginBottom: '12px', padding: '16px', background: '#ffffff', borderLeft: `4px solid ${metric.color}`, borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.04)'}}>
+                <div style={{display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px'}}>
+                  <div style={{fontSize: '1.05em', fontWeight: '800', color: metric.color}}>{metric.name}</div>
+                  <div style={{fontSize: '1.6em', fontWeight: '900', color: metric.color}}>{metric.improvement}%</div>
                 </div>
-                <div style={{fontSize: '0.85em', color: '#475569', lineHeight: '1.5'}}>
+                <div style={{fontSize: '0.9em', color: '#475569', lineHeight: '1.5'}}>
                   {metric.from !== undefined ? (
                     <div>Before: {metric.from} days → After: {metric.to} days | Total: {metric.total}</div>
                   ) : (
@@ -433,7 +415,7 @@ function SiteComparisonGrid({ onSiteClick }) {
             ))}
           </div>
         </div>
-      </div>,
+      </FullscreenShell>,
       document.body
     );
   };
@@ -442,21 +424,16 @@ function SiteComparisonGrid({ onSiteClick }) {
     // Check if data is available for this site
     if (site !== 'SITE-III') {
       return createPortal(
-        <div onClick={onClose} style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99999, padding: '20px'}}>
-          <div onClick={(e) => e.stopPropagation()} style={{background: 'linear-gradient(135deg, #ffffff, #f9fafb)', borderRadius: '16px', padding: '32px', maxWidth: '500px', width: '100%', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)', border: `3px solid ${siteColors[site]}`, position: 'relative', textAlign: 'center'}}>
-            <button onClick={onClose} style={{position: 'absolute', top: '16px', right: '16px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '36px', height: '36px', fontSize: '1.2em', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s'}}
-            onMouseEnter={(e) => {e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.transform = 'scale(1.1)';}}
-            onMouseLeave={(e) => {e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.transform = 'scale(1)';}}>×</button>
-            
-            <div style={{fontSize: '4em', marginBottom: '16px'}}>📊</div>
-            <h3 style={{fontSize: '1.6em', fontWeight: '800', color: siteColors[site], marginBottom: '16px'}}>{site} - Key Improvements</h3>
-            <div style={{fontSize: '1.1em', color: '#0f172a', padding: '20px', background: '#f8fafc', borderRadius: '12px', border: '2px solid #e5e7eb'}}>
-              <div style={{fontSize: '1.5em', marginBottom: '8px'}}>⚠️</div>
-              <div style={{fontWeight: '600', color: '#475569'}}>Data Not Available</div>
-              <div style={{fontSize: '0.9em', marginTop: '8px'}}>Detailed improvement data will be added once available.</div>
+        <FullscreenShell onClose={onClose} title={`${site} - Key Improvements`} accentColor={siteColors[site]}>
+          <div style={{padding: '48px 28px', textAlign: 'center', background: '#f8fafc'}}>
+            <div style={{fontSize: '5em', marginBottom: '24px'}}>📊</div>
+            <div style={{fontSize: '1.2em', color: '#0f172a', padding: '32px', background: '#ffffff', borderRadius: '16px', border: '2px solid #e5e7eb', boxShadow: '0 10px 30px rgba(15,23,42,0.08)', maxWidth: '600px', margin: '0 auto'}}>
+              <div style={{fontSize: '2.5em', marginBottom: '16px'}}>⚠️</div>
+              <div style={{fontSize: '1.3em', fontWeight: '800', color: '#0f172a', marginBottom: '12px'}}>Data Not Available</div>
+              <div style={{fontSize: '1em', color: '#475569', lineHeight: '1.6'}}>Detailed improvement data will be added once available.</div>
             </div>
           </div>
-        </div>,
+        </FullscreenShell>,
         document.body
       );
     }
@@ -678,195 +655,221 @@ function SiteComparisonGrid({ onSiteClick }) {
     ];
 
     return createPortal(
-      <div onClick={onClose} style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99999, padding: '20px'}}>
-        <div onClick={(e) => e.stopPropagation()} style={{background: 'linear-gradient(135deg, #ffffff, #f9fafb)', borderRadius: '16px', padding: 0, maxWidth: '1000px', width: '100%', maxHeight: '90vh', overflow: 'auto', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)', border: `3px solid ${siteColors[site]}`, position: 'relative', display: 'flex', flexDirection: 'column'}}>
-          <button onClick={onClose} style={{position: 'absolute', top: '16px', right: '16px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '36px', height: '36px', fontSize: '1.2em', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', zIndex: 10}}
-          onMouseEnter={(e) => {e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.transform = 'scale(1.1)';}}
-          onMouseLeave={(e) => {e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.transform = 'scale(1)';}}>×</button>
-
-          {/* HERO SECTION - Main Message */}
-          <div style={{background: `linear-gradient(135deg, ${siteColors[site]}dd, ${siteColors[site]})`, padding: '40px 32px', textAlign: 'center', color: '#fff', position: 'relative', overflow: 'hidden'}}>
-            <div style={{position: 'absolute', top: '-40px', right: '-40px', fontSize: '200px', opacity: 0.1}}>🎯</div>
-            <div style={{position: 'relative', zIndex: 1}}>
-              <div style={{fontSize: '0.9em', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', opacity: 0.95, marginBottom: '16px'}}>How SITE-III Achieved</div>
-              <div style={{fontSize: '3.5em', fontWeight: '900', marginBottom: '16px'}}>{compositeImprovement}%</div>
-              <div style={{fontSize: '1.1em', fontWeight: '700', lineHeight: '1.5', opacity: 0.95, marginBottom: '0'}}>
-                Through <strong>{totalMeetings} QA-led collaboration sessions</strong> + <strong>visual dashboards</strong> + <strong>change control automation</strong> = <strong>Faster decisions, reduced investigation time</strong>
-              </div>
+      <div style={{position: 'fixed', inset: 0, zIndex: 99999, background: '#f8fafc', overflowY: 'auto'}}>
+        <div style={{position: 'sticky', top: 0, zIndex: 100000, background: '#0f172a', color: '#ffffff', padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 6px 18px rgba(0, 0, 0, 0.25)'}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+            <div style={{fontSize: '1.2em'}}>✨</div>
+            <div>
+              <div style={{fontSize: '0.8em', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', opacity: 0.85}}>Key Improvements – Full View</div>
+              <div style={{fontSize: '1em', fontWeight: '800'}}>{site}</div>
             </div>
           </div>
+          <button
+            onClick={onClose}
+            style={{
+              background: '#ef4444',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '10px',
+              padding: '10px 14px',
+              fontWeight: '800',
+              cursor: 'pointer',
+              boxShadow: '0 6px 16px rgba(239,68,68,0.35)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(239,68,68,0.45)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(239,68,68,0.35)'; }}
+          >
+            Close
+          </button>
+        </div>
 
-          {/* CONTENT SECTION */}
-          <div style={{padding: '32px', overflow: 'auto', flex: 1}}>
-            {/* Key Achievements Grid */}
-            <div style={{marginBottom: '32px'}}>
-              <div style={{fontSize: '0.9em', fontWeight: '700', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px'}}>🏆 Key Accomplishments</div>
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px'}}>
-                {achievements.map((ach, idx) => (
-                  <div key={idx} style={{padding: '16px', borderRadius: '12px', background: ach.bgColor, border: `2px solid ${ach.color}40`, textAlign: 'center', position: 'relative', overflow: 'hidden'}}>
-                    <div style={{position: 'absolute', top: '-10px', right: '-10px', fontSize: '80px', opacity: 0.05}}>{ach.icon}</div>
-                    <div style={{fontSize: '2.4em', marginBottom: '8px', position: 'relative', zIndex: 1}}>{ach.icon}</div>
-                    <div style={{fontSize: '0.85em', fontWeight: '700', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
-                      {ach.title}
-                    </div>
-                    <div style={{fontSize: '2em', fontWeight: '900', color: ach.color, marginBottom: '4px'}}>
-                      {ach.metric}
-                    </div>
-                    <div style={{fontSize: '0.85em', color: '#0f172a', fontWeight: '700', marginBottom: '8px'}}>
-                      {ach.unit}
-                    </div>
-                    <div style={{fontSize: '0.85em', color: '#0f172a', lineHeight: '1.3'}}>
-                      {ach.desc}
-                    </div>
-                  </div>
-                ))}
+        <div style={{minHeight: '100%', padding: '24px 20px 48px 20px'}}>
+          <div style={{maxWidth: '1240px', margin: '0 auto', background: '#ffffff', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 18px 48px rgba(15,23,42,0.12)'}}>
+            {/* HERO SECTION - Main Message */}
+            <div style={{background: `linear-gradient(135deg, ${siteColors[site]}dd, ${siteColors[site]})`, padding: '48px 40px', textAlign: 'center', color: '#fff', position: 'relative', overflow: 'hidden'}}>
+              <div style={{position: 'absolute', top: '-40px', right: '-40px', fontSize: '220px', opacity: 0.12}}>🎯</div>
+              <div style={{position: 'relative', zIndex: 1}}>
+                <div style={{fontSize: '0.95em', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', opacity: 0.95, marginBottom: '14px'}}>How SITE-III Achieved</div>
+                <div style={{fontSize: '3.6em', fontWeight: '900', marginBottom: '12px'}}>{compositeImprovement}%</div>
+                <div style={{fontSize: '1.1em', fontWeight: '700', lineHeight: '1.5', opacity: 0.95}}>
+                  Through <strong>{totalMeetings} QA-led collaboration sessions</strong> + <strong>visual dashboards</strong> + <strong>change control automation</strong> = <strong>Faster decisions, reduced investigation time</strong>
+                </div>
               </div>
             </div>
 
-            {/* Collaboration Meetings Deep Dive - THE STAR SECTION */}
-            <div style={{marginBottom: '28px', padding: '24px', borderRadius: '14px', background: '#ffffff', color: '#0f172a', border: '1px solid #e2e8f0', boxShadow: '0 14px 32px rgba(15, 23, 42, 0.08)'}}>
-              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', marginBottom: '16px'}}>
-                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-                  <div style={{fontSize: '1.8em'}}>🤝</div>
-                  <div>
-                    <div style={{fontSize: '1.05em', fontWeight: '800', letterSpacing: '-0.2px', color: '#0f172a'}}>Collaboration Meetings – The Driver</div>
-                    <div style={{fontSize: '0.85em', color: '#0f172a'}}>Foundation of all improvements across SITE-III</div>
-                  </div>
-                </div>
-                <div style={{display: 'flex', gap: '8px'}}>
-                  <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '6px 10px', borderRadius: '10px'}}>Jul–Nov</div>
-                  <div style={{fontSize: '0.75em', fontWeight: '800', color: '#15803d', background: '#dcfce7', border: '1px solid #bbf7d0', padding: '6px 10px', borderRadius: '10px'}}>Peak: Oct</div>
-                </div>
-              </div>
-
-              {/* Top strip */}
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px', marginBottom: '16px'}}>
-                {[ 
-                  { label: 'Total Sessions', value: totalMeetings, color: '#0284c7', bg: '#e0f2fe' },
-                  { label: 'Avg / Month', value: Math.round(totalMeetings / collaborationMeetings.length), color: '#7c3aed', bg: '#f3e8ff' },
-                  { label: 'Departments', value: totalDepartmentsInvolved, color: '#059669', bg: '#dcfce7' },
-                  { label: 'Topics', value: totalAgendaItems, color: '#d97706', bg: '#fef3c7' }
-                ].map((stat, idx) => (
-                  <div key={idx} style={{padding: '12px', borderRadius: '12px', background: stat.bg, border: `1px solid ${stat.color}30`, display: 'flex', flexDirection: 'column', gap: '6px'}}>
-                    <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', letterSpacing: '0.3px'}}>{stat.label}</div>
-                    <div style={{fontSize: '1.8em', fontWeight: '900', color: stat.color}}>{stat.value}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Mid row: growth + agenda mix */}
-              <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '12px', marginBottom: '16px'}}>
-                <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '12px'}}>
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px'}}>
-                    <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>📈 Growth Trend</div>
-                    <div style={{display: 'flex', gap: '6px'}}>
-                      <div style={{fontSize: '0.7em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', borderRadius: '8px', padding: '4px 8px'}}>Total {totalMeetings}</div>
-                      <div style={{fontSize: '0.7em', fontWeight: '800', color: '#15803d', background: '#dcfce7', borderRadius: '8px', padding: '4px 8px'}}>Peak {maxMeetings}</div>
-                    </div>
-                  </div>
-                  <div style={{position: 'relative', height: '190px', padding: '12px 12px 18px 12px', background: '#f8fafc', borderRadius: '10px', border: '1px dashed #cbd5e1', overflow: 'hidden'}}>
-                    <div style={{position: 'absolute', inset: '10px 12px 14px 12px', display: 'grid', gridTemplateColumns: `repeat(${collaborationMeetings.length}, 1fr)`, gap: '10px', alignItems: 'end'}}>
-                      {collaborationMeetings.map((m, idx) => {
-                        const heightPct = Math.round((m.meetings / maxMeetings) * 100);
-                        const delta = idx === 0 ? 0 : m.meetings - collaborationMeetings[idx - 1].meetings;
-                        const badgeColor = delta > 0 ? '#15803d' : delta < 0 ? '#dc2626' : '#475569';
-                        const badgeText = idx === 0 ? 'start' : delta > 0 ? `+${delta}` : delta < 0 ? `${delta}` : 'flat';
-                        return (
-                          <div key={m.month} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', height: '100%'}}>
-                            <div style={{fontSize: '0.62em', fontWeight: '800', color: badgeColor, background: '#ffffff', border: `1px solid ${badgeColor}33`, borderRadius: '8px', padding: '3px 8px', textTransform: 'uppercase'}}>
-                              {badgeText}
-                            </div>
-                            <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'flex-end'}}>
-                              <div style={{width: '100%', height: `${heightPct}%`, background: 'linear-gradient(180deg, #0ea5e9 0%, #0369a1 100%)', borderRadius: '10px', border: '1px solid #bae6fd', boxShadow: '0 10px 20px rgba(14, 165, 233, 0.2)', position: 'relative', overflow: 'hidden'}}>
-                                <div style={{position: 'absolute', inset: '6px', borderRadius: '8px', background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0))', opacity: 0.8}}></div>
-                                <div style={{position: 'absolute', bottom: '6px', left: '50%', transform: 'translateX(-50%)', fontSize: '0.8em', fontWeight: '900', color: '#ffffff'}}>{m.meetings}</div>
-                              </div>
-                            </div>
-                            <div style={{fontSize: '0.72em', fontWeight: '800', color: '#0f172a'}}>{m.month.slice(0, 3)}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div style={{position: 'absolute', left: '12px', right: '12px', bottom: `${Math.round((avgMeetings / maxMeetings) * 100)}%`, borderTop: '1px dashed #94a3b8', pointerEvents: 'none'}}>
-                      <div style={{position: 'absolute', right: '0', transform: 'translateY(-8px)', background: '#0f172a', color: '#fff', fontSize: '0.65em', fontWeight: '800', borderRadius: '6px', padding: '3px 8px', boxShadow: '0 4px 10px rgba(15, 23, 42, 0.2)'}}>Avg {avgMeetings}/mo</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                  <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>📋 Top Agendas</div>
-                  {topAgendaItems.map((item, idx) => (
-                    <div key={idx} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f8fafc', padding: '8px 10px', borderRadius: '10px', border: '1px solid #e2e8f0'}}>
-                      <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-                        <div style={{width: '8px', height: '8px', borderRadius: '50%', background: ['#0ea5e9','#7c3aed','#15803d','#d97706'][idx % 4]}}></div>
-                        <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>{item.title.length > 36 ? item.title.slice(0, 36) + '…' : item.title}</div>
+            {/* CONTENT SECTION */}
+            <div style={{padding: '36px 32px 40px 32px'}}>
+              {/* Key Achievements Grid */}
+              <div style={{marginBottom: '32px'}}>
+                <div style={{fontSize: '0.9em', fontWeight: '700', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px'}}>🏆 Key Accomplishments</div>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px'}}>
+                  {achievements.map((ach, idx) => (
+                    <div key={idx} style={{padding: '18px', borderRadius: '14px', background: ach.bgColor, border: `2px solid ${ach.color}40`, textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 24px rgba(15,23,42,0.08)'}}>
+                      <div style={{position: 'absolute', top: '-10px', right: '-10px', fontSize: '90px', opacity: 0.05}}>{ach.icon}</div>
+                      <div style={{fontSize: '2.6em', marginBottom: '8px', position: 'relative', zIndex: 1}}>{ach.icon}</div>
+                      <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
+                        {ach.title}
                       </div>
-                      <div style={{fontSize: '0.9em', fontWeight: '900', color: '#0f172a'}}>{item.count}</div>
+                      <div style={{fontSize: '2.1em', fontWeight: '900', color: ach.color, marginBottom: '4px'}}>
+                        {ach.metric}
+                      </div>
+                      <div style={{fontSize: '0.9em', color: '#0f172a', fontWeight: '700', marginBottom: '8px'}}>
+                        {ach.unit}
+                      </div>
+                      <div style={{fontSize: '0.9em', color: '#0f172a', lineHeight: '1.35'}}>
+                        {ach.desc}
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Agenda participation detail (topic x departments) */}
-              <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px'}}>
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                  <div>
-                    <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a'}}>Agenda Participation Details</div>
-                    <div style={{fontSize: '0.8em', color: '#475569', fontWeight: '600'}}>Which departments joined each topic</div>
+              {/* Collaboration Meetings Deep Dive - THE STAR SECTION */}
+              <div style={{marginBottom: '28px', padding: '24px', borderRadius: '14px', background: '#ffffff', color: '#0f172a', border: '1px solid #e2e8f0', boxShadow: '0 14px 32px rgba(15, 23, 42, 0.08)'}}>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', marginBottom: '16px'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                    <div style={{fontSize: '1.8em'}}>🤝</div>
+                    <div>
+                      <div style={{fontSize: '1.05em', fontWeight: '800', letterSpacing: '-0.2px', color: '#0f172a'}}>Collaboration Meetings – The Driver</div>
+                      <div style={{fontSize: '0.85em', color: '#0f172a'}}>Foundation of all improvements across SITE-III</div>
+                    </div>
                   </div>
-                  <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '6px 10px', borderRadius: '10px'}}>
-                    Topics: {agendaParticipationDetails.length}
+                  <div style={{display: 'flex', gap: '8px'}}>
+                    <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '6px 10px', borderRadius: '10px'}}>Jul–Nov</div>
+                    <div style={{fontSize: '0.75em', fontWeight: '800', color: '#15803d', background: '#dcfce7', border: '1px solid #bbf7d0', padding: '6px 10px', borderRadius: '10px'}}>Peak: Oct</div>
                   </div>
                 </div>
 
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px'}}>
-                  {agendaParticipationDetails.map((agenda, idx) => (
-                    <div key={idx} style={{background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '10px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px'}}>
-                        <div style={{fontSize: '0.85em', fontWeight: '800', color: '#0f172a', lineHeight: '1.3'}}>
-                          {agenda.title.length > 44 ? agenda.title.slice(0, 44) + '…' : agenda.title}
-                        </div>
-                        <div style={{fontSize: '0.75em', fontWeight: '900', color: '#0ea5e9', background: '#e0f2fe', padding: '3px 8px', borderRadius: '8px'}}>{agenda.totalSessions}</div>
+                {/* Top strip */}
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px', marginBottom: '16px'}}>
+                  {[ 
+                    { label: 'Total Sessions', value: totalMeetings, color: '#0284c7', bg: '#e0f2fe' },
+                    { label: 'Avg / Month', value: Math.round(totalMeetings / collaborationMeetings.length), color: '#7c3aed', bg: '#f3e8ff' },
+                    { label: 'Departments', value: totalDepartmentsInvolved, color: '#059669', bg: '#dcfce7' },
+                    { label: 'Topics', value: totalAgendaItems, color: '#d97706', bg: '#fef3c7' }
+                  ].map((stat, idx) => (
+                    <div key={idx} style={{padding: '12px', borderRadius: '12px', background: stat.bg, border: `1px solid ${stat.color}30`, display: 'flex', flexDirection: 'column', gap: '6px'}}>
+                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', letterSpacing: '0.3px'}}>{stat.label}</div>
+                      <div style={{fontSize: '1.8em', fontWeight: '900', color: stat.color}}>{stat.value}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mid row: growth + agenda mix */}
+                <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '12px', marginBottom: '16px'}}>
+                  <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '12px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px'}}>
+                      <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>📈 Growth Trend</div>
+                      <div style={{display: 'flex', gap: '6px'}}>
+                        <div style={{fontSize: '0.7em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', borderRadius: '8px', padding: '4px 8px'}}>Total {totalMeetings}</div>
+                        <div style={{fontSize: '0.7em', fontWeight: '800', color: '#15803d', background: '#dcfce7', borderRadius: '8px', padding: '4px 8px'}}>Peak {maxMeetings}</div>
                       </div>
-                      <div style={{display: 'flex', gap: '6px', flexWrap: 'wrap'}}>
-                        {agenda.months.map((m) => (
-                          <div key={m} style={{fontSize: '0.65em', fontWeight: '800', color: '#0f172a', background: '#fff', border: '1px solid #e2e8f0', padding: '3px 6px', borderRadius: '6px'}}>{m.slice(0,3)}</div>
-                        ))}
-                      </div>
-                      <div style={{display: 'flex', flexWrap: 'wrap', gap: '4px'}}>
-                        {departmentsList.map((dept) => {
-                          const active = agenda.departments.includes(dept);
+                    </div>
+                    <div style={{position: 'relative', height: '190px', padding: '12px 12px 18px 12px', background: '#f8fafc', borderRadius: '10px', border: '1px dashed #cbd5e1', overflow: 'hidden'}}>
+                      <div style={{position: 'absolute', inset: '10px 12px 14px 12px', display: 'grid', gridTemplateColumns: `repeat(${collaborationMeetings.length}, 1fr)`, gap: '10px', alignItems: 'end'}}>
+                        {collaborationMeetings.map((m, idx) => {
+                          const heightPct = Math.round((m.meetings / maxMeetings) * 100);
+                          const delta = idx === 0 ? 0 : m.meetings - collaborationMeetings[idx - 1].meetings;
+                          const badgeColor = delta > 0 ? '#15803d' : delta < 0 ? '#dc2626' : '#475569';
+                          const badgeText = idx === 0 ? 'start' : delta > 0 ? `+${delta}` : delta < 0 ? `${delta}` : 'flat';
                           return (
-                            <div key={dept} style={{
-                              fontSize: '0.65em',
-                              fontWeight: '800',
-                              padding: '3px 6px',
-                              borderRadius: '6px',
-                              border: active ? '1px solid #0ea5e9' : '1px solid #e2e8f0',
-                              background: active ? '#e0f2fe' : '#ffffff',
-                              color: active ? '#075985' : '#94a3b8'
-                            }}>
-                              {dept}
+                            <div key={m.month} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', height: '100%'}}>
+                              <div style={{fontSize: '0.62em', fontWeight: '800', color: badgeColor, background: '#ffffff', border: `1px solid ${badgeColor}33`, borderRadius: '8px', padding: '3px 8px', textTransform: 'uppercase'}}>
+                                {badgeText}
+                              </div>
+                              <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'flex-end'}}>
+                                <div style={{width: '100%', height: `${heightPct}%`, background: 'linear-gradient(180deg, #0ea5e9 0%, #0369a1 100%)', borderRadius: '10px', border: '1px solid #bae6fd', boxShadow: '0 10px 20px rgba(14, 165, 233, 0.2)', position: 'relative', overflow: 'hidden'}}>
+                                  <div style={{position: 'absolute', inset: '6px', borderRadius: '8px', background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0))', opacity: 0.8}}></div>
+                                  <div style={{position: 'absolute', bottom: '6px', left: '50%', transform: 'translateX(-50%)', fontSize: '0.8em', fontWeight: '900', color: '#ffffff'}}>{m.meetings}</div>
+                                </div>
+                              </div>
+                              <div style={{fontSize: '0.72em', fontWeight: '800', color: '#0f172a'}}>{m.month.slice(0, 3)}</div>
                             </div>
                           );
                         })}
                       </div>
+                      <div style={{position: 'absolute', left: '12px', right: '12px', bottom: `${Math.round((avgMeetings / maxMeetings) * 100)}%`, borderTop: '1px dashed #94a3b8', pointerEvents: 'none'}}>
+                        <div style={{position: 'absolute', right: '0', transform: 'translateY(-8px)', background: '#0f172a', color: '#fff', fontSize: '0.65em', fontWeight: '800', borderRadius: '6px', padding: '3px 8px', boxShadow: '0 4px 10px rgba(15, 23, 42, 0.2)'}}>Avg {avgMeetings}/mo</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                    <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>📋 Top Agendas</div>
+                    {topAgendaItems.map((item, idx) => (
+                      <div key={idx} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f8fafc', padding: '8px 10px', borderRadius: '10px', border: '1px solid #e2e8f0'}}>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                          <div style={{width: '8px', height: '8px', borderRadius: '50%', background: ['#0ea5e9','#7c3aed','#15803d','#d97706'][idx % 4]}}></div>
+                          <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0f172a'}}>{item.title.length > 36 ? item.title.slice(0, 36) + '…' : item.title}</div>
+                        </div>
+                        <div style={{fontSize: '0.9em', fontWeight: '900', color: '#0f172a'}}>{item.count}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Agenda participation detail (topic x departments) */}
+                <div style={{background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px'}}>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div>
+                      <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a'}}>Agenda Participation Details</div>
+                      <div style={{fontSize: '0.8em', color: '#475569', fontWeight: '600'}}>Which departments joined each topic</div>
+                    </div>
+                    <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '6px 10px', borderRadius: '10px'}}>
+                      Topics: {agendaParticipationDetails.length}
+                    </div>
+                  </div>
+
+                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px'}}>
+                    {agendaParticipationDetails.map((agenda, idx) => (
+                      <div key={idx} style={{background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '10px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px'}}>
+                          <div style={{fontSize: '0.85em', fontWeight: '800', color: '#0f172a', lineHeight: '1.3'}}>
+                            {agenda.title.length > 44 ? agenda.title.slice(0, 44) + '…' : agenda.title}
+                          </div>
+                          <div style={{fontSize: '0.75em', fontWeight: '900', color: '#0ea5e9', background: '#e0f2fe', padding: '3px 8px', borderRadius: '8px'}}>{agenda.totalSessions}</div>
+                        </div>
+                        <div style={{display: 'flex', gap: '6px', flexWrap: 'wrap'}}>
+                          {agenda.months.map((m) => (
+                            <div key={m} style={{fontSize: '0.65em', fontWeight: '800', color: '#0f172a', background: '#fff', border: '1px solid #e2e8f0', padding: '3px 6px', borderRadius: '6px'}}>{m.slice(0,3)}</div>
+                          ))}
+                        </div>
+                        <div style={{display: 'flex', flexWrap: 'wrap', gap: '4px'}}>
+                          {departmentsList.map((dept) => {
+                            const active = agenda.departments.includes(dept);
+                            return (
+                              <div key={dept} style={{
+                                fontSize: '0.65em',
+                                fontWeight: '800',
+                                padding: '3px 6px',
+                                borderRadius: '6px',
+                                border: active ? '1px solid #0ea5e9' : '1px solid #e2e8f0',
+                                background: active ? '#e0f2fe' : '#ffffff',
+                                color: active ? '#075985' : '#94a3b8'
+                              }}>
+                                {dept}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Supporting Metrics */}
+              <div>
+                <div style={{fontSize: '0.9em', fontWeight: '700', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px'}}>📊 Key Performance Improvements</div>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px'}}>
+                  {positiveGains.slice(0, 6).map((metric, idx) => (
+                    <div key={idx} style={{padding: '16px', borderRadius: '10px', background: `${siteColors[site]}08`, border: `1.5px solid ${siteColors[site]}40`, textAlign: 'center', boxShadow: '0 8px 20px rgba(15,23,42,0.06)'}}>
+                      <div style={{fontSize: '2.2em', fontWeight: '900', color: siteColors[site], marginBottom: '4px'}}>{metric.improvement}%</div>
+                      <div style={{fontSize: '0.78em', color: '#0f172a', fontWeight: '700', lineHeight: '1.3'}}>{metric.name}</div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Supporting Metrics */}
-            <div>
-              <div style={{fontSize: '0.9em', fontWeight: '700', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px'}}>📊 Key Performance Improvements</div>
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px'}}>
-                {positiveGains.slice(0, 6).map((metric, idx) => (
-                  <div key={idx} style={{padding: '14px', borderRadius: '10px', background: `${siteColors[site]}08`, border: `1.5px solid ${siteColors[site]}40`, textAlign: 'center'}}>
-                    <div style={{fontSize: '2em', fontWeight: '900', color: siteColors[site], marginBottom: '4px'}}>{metric.improvement}%</div>
-                    <div style={{fontSize: '0.75em', color: '#0f172a', fontWeight: '700', lineHeight: '1.3'}}>{metric.name}</div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -1636,101 +1639,63 @@ export default function SiteOverview() {
       )}
 
       {/* Category Details View */}
-      {selectedCategory && selectedSite && (
-        <div style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: '#ffffff',
-          zIndex: 9999,
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          padding: '40px'
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '30px',
-            paddingBottom: '20px',
-            borderBottom: '2px solid #e5e7eb'
-          }}>
-            <h3 style={{ fontSize: '1.8em', color: '#0f172a', fontWeight: '700', margin: '0' }}>
-              {selectedSite} - {selectedCategory}
-            </h3>
-            <button
-              onClick={handleClose}
-              style={{
-                padding: '10px 20px',
-                fontSize: '1em',
-                fontWeight: '600',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                backgroundColor: '#b91c1c',
-                color: '#ffffff',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(185, 28, 28, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = '#991b1b'
-                e.target.style.boxShadow = '0 6px 16px rgba(185, 28, 28, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = '#b91c1c'
-                e.target.style.boxShadow = '0 4px 12px rgba(185, 28, 28, 0.3)'
-              }}
-            >
-              ✕ Close
-            </button>
+      {selectedCategory && selectedSite && createPortal(
+        <FullscreenShell 
+          onClose={handleClose} 
+          title={`${selectedSite} - ${selectedCategory}`}
+          accentColor={siteColors[selectedSite]}
+        >
+          <div style={{ padding: '28px' }}>
+            {selectedSite === 'SITE-I' && selectedCategory === 'Incidents' && <SiteIIncidents />}
+            {selectedSite === 'SITE-I' && selectedCategory === 'CA' && <SiteICorrectiveActions />}
+            {selectedSite === 'SITE-I' && selectedCategory === 'PA' && <SiteIPreventiveActions />}
+            {selectedSite === 'SITE-I' && selectedCategory === 'Out of Specifications' && <SiteIOutOfSpecifications />}
+            {selectedSite === 'SITE-I' && selectedCategory === 'Change Controls' && <SiteIChangeControls />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'Incidents' && <SiteIIIIncidents />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'CA' && <SiteIIICorrectiveActions />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'PA' && <SiteIIIPreventiveActions />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'Out of Specifications' && <SiteIIIOutOfSpecifications />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'Change Controls' && <SiteIIIChangeControls />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'Incidents' && <SiteVIncidents />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'CA' && <SiteVCorrectiveActions />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'PA' && <SiteVPreventiveActions />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'Out of Specifications' && <SiteVOutOfSpecifications />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'Change Controls' && <SiteVChangeControls />}
+
+            {!(selectedSite === 'SITE-I' && (
+              selectedCategory === 'Incidents' ||
+              selectedCategory === 'CA' ||
+              selectedCategory === 'PA' ||
+              selectedCategory === 'Out of Specifications' ||
+              selectedCategory === 'Change Controls'
+            )) && !(
+              selectedSite === 'SITE-III' && (
+                selectedCategory === 'Incidents' ||
+                selectedCategory === 'CA' ||
+                selectedCategory === 'PA' ||
+                selectedCategory === 'Out of Specifications' ||
+                selectedCategory === 'Change Controls'
+              )
+            ) && !(
+              selectedSite === 'SITE-V' && (
+                selectedCategory === 'Incidents' ||
+                selectedCategory === 'CA' ||
+                selectedCategory === 'PA' ||
+                selectedCategory === 'Out of Specifications' ||
+                selectedCategory === 'Change Controls'
+              )
+            ) && (
+              <div style={{ padding: '48px 28px', textAlign: 'center' }}>
+                <div style={{ fontSize: '5em', marginBottom: '24px' }}>📊</div>
+                <div style={{ fontSize: '1.2em', color: '#0f172a', padding: '32px', background: '#f8fafc', borderRadius: '16px', border: '2px solid #e5e7eb', boxShadow: '0 10px 30px rgba(15,23,42,0.08)', maxWidth: '600px', margin: '0 auto' }}>
+                  <div style={{ fontSize: '1.3em', fontWeight: '800', color: '#0f172a', marginBottom: '12px' }}>Data Coming Soon</div>
+                  <div style={{ fontSize: '1em', color: '#475569', lineHeight: '1.6' }}>Data for {selectedSite} - {selectedCategory} will be added here.</div>
+                </div>
+              </div>
+            )}
           </div>
-
-          {selectedSite === 'SITE-I' && selectedCategory === 'Incidents' && <SiteIIncidents />}
-          {selectedSite === 'SITE-I' && selectedCategory === 'CA' && <SiteICorrectiveActions />}
-          {selectedSite === 'SITE-I' && selectedCategory === 'PA' && <SiteIPreventiveActions />}
-          {selectedSite === 'SITE-I' && selectedCategory === 'Out of Specifications' && <SiteIOutOfSpecifications />}
-          {selectedSite === 'SITE-I' && selectedCategory === 'Change Controls' && <SiteIChangeControls />}
-          {selectedSite === 'SITE-III' && selectedCategory === 'Incidents' && <SiteIIIIncidents />}
-          {selectedSite === 'SITE-III' && selectedCategory === 'CA' && <SiteIIICorrectiveActions />}
-          {selectedSite === 'SITE-III' && selectedCategory === 'PA' && <SiteIIIPreventiveActions />}
-          {selectedSite === 'SITE-III' && selectedCategory === 'Out of Specifications' && <SiteIIIOutOfSpecifications />}
-          {selectedSite === 'SITE-III' && selectedCategory === 'Change Controls' && <SiteIIIChangeControls />}
-          {selectedSite === 'SITE-V' && selectedCategory === 'Incidents' && <SiteVIncidents />}
-          {selectedSite === 'SITE-V' && selectedCategory === 'CA' && <SiteVCorrectiveActions />}
-          {selectedSite === 'SITE-V' && selectedCategory === 'PA' && <SiteVPreventiveActions />}
-          {selectedSite === 'SITE-V' && selectedCategory === 'Out of Specifications' && <SiteVOutOfSpecifications />}
-          {selectedSite === 'SITE-V' && selectedCategory === 'Change Controls' && <SiteVChangeControls />}
-
-          {!(selectedSite === 'SITE-I' && (
-            selectedCategory === 'Incidents' ||
-            selectedCategory === 'CA' ||
-            selectedCategory === 'PA' ||
-            selectedCategory === 'Out of Specifications' ||
-            selectedCategory === 'Change Controls'
-          )) && !(
-            selectedSite === 'SITE-III' && (
-              selectedCategory === 'Incidents' ||
-              selectedCategory === 'CA' ||
-              selectedCategory === 'PA' ||
-              selectedCategory === 'Out of Specifications' ||
-              selectedCategory === 'Change Controls'
-            )
-          ) && !(
-            selectedSite === 'SITE-V' && (
-              selectedCategory === 'Incidents' ||
-              selectedCategory === 'CA' ||
-              selectedCategory === 'PA' ||
-              selectedCategory === 'Out of Specifications' ||
-              selectedCategory === 'Change Controls'
-            )
-          ) && (
-            <p style={{ color: '#0f172a', fontSize: '0.95em', marginTop: '20px' }}>
-              Data for {selectedSite} - {selectedCategory} will be added here.
-            </p>
-          )}
-        </div>
+        </FullscreenShell>,
+        document.body
       )}
 
       {/* Scroll to Top Button */}

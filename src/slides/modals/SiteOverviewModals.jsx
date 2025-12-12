@@ -1,6 +1,6 @@
 ﻿import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useModalKeyboardHandler, ModalBackdrop, ModalContent, ModalHeader, ModalStat } from '../../utils/modalHelpers';
+import { useModalKeyboardHandler, FullscreenShell, ModalHeader, ModalStat } from '../../utils/modalHelpers';
 
 /**
  * Category Info Modal - Shows detailed metrics for a specific category
@@ -12,20 +12,8 @@ export function CategoryInfoModal({ category, categoryColors, siteColors, catego
   const borderColor = categoryColors[category];
 
   return createPortal(
-    <ModalBackdrop onClick={onClose}>
-      <ModalContent
-        onClose={onClose}
-        title={details.title}
-        titleId={`modal-title-${category}`}
-        descriptionId={`modal-description-${category}`}
-        borderColor={borderColor}
-      >
-        <ModalHeader
-          title={details.title}
-          color={borderColor}
-          subtitles={[details.description]}
-        />
-
+    <FullscreenShell onClose={onClose} title={details.title} subtitle={details.description} accentColor={borderColor}>
+      <div style={{ padding: '28px' }}>
         <ModalStat
           label="Average Improvement Across All Sites"
           value={`${details.avgImprovement}%`}
@@ -71,8 +59,8 @@ export function CategoryInfoModal({ category, categoryColors, siteColors, catego
             </div>
           ))}
         </div>
-      </ModalContent>
-    </ModalBackdrop>,
+      </div>
+    </FullscreenShell>,
     document.body
   );
 }
@@ -99,19 +87,8 @@ export function SiteInfoModal({ site, sitesData, categoryColors, siteColors, onC
   ];
 
   return createPortal(
-    <ModalBackdrop onClick={onClose}>
-      <ModalContent
-        onClose={onClose}
-        title={`${site} - Performance Breakdown`}
-        titleId={`site-modal-title-${site}`}
-        descriptionId={`site-modal-description-${site}`}
-        borderColor={siteColors[site]}
-      >
-        <ModalHeader
-          title={`${site} - Performance Breakdown`}
-          color={siteColors[site]}
-        />
-
+    <FullscreenShell onClose={onClose} title={`${site} - Performance Breakdown`} accentColor={siteColors[site]}>
+      <div style={{ padding: '28px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px' }}>
           <ModalStat
             label="Average Improvement"
@@ -153,8 +130,8 @@ export function SiteInfoModal({ site, sitesData, categoryColors, siteColors, onC
             ))}
           </div>
         </div>
-      </ModalContent>
-    </ModalBackdrop>,
+      </div>
+    </FullscreenShell>,
     document.body
   );
 }
