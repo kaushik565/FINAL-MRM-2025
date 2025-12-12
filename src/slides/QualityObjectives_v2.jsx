@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import FullScreenChartModal from '../../components/FullScreenChartModal';
+import { FullscreenShell } from '../utils/modalHelpers';
 
 const styles = `
   @keyframes slideIn {
@@ -4996,57 +4997,13 @@ const QualityObjectives_v2 = () => {
             Select an Objective to view detailed QI flow and site-wise metrics
           </div>
         </div>
-        {/* Full Screen Modal/Details Section */}
+        {/* Full Screen Modal/Details Section using FullscreenShell */}
         {activeModals.card && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: '#ffffff',
-            zIndex: 9999,
-            padding: '100px 60px 60px',
-            animation: 'slideIn 0.4s ease-out',
-            overflowY: 'auto',
-            overflowX: 'hidden'
-          }}>
-            {/* Close Button */}
-            <button
-              onClick={() => setActiveModals({ card: null, qi04: null, qi05: null, qi06: null, qi07: null })}
-              style={{
-                position: 'fixed',
-                top: '24px',
-                right: '24px',
-                background: '#ef4444',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '50%',
-                width: '50px',
-                height: '50px',
-                fontSize: '1.5em',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s',
-                boxShadow: '0 4px 12px rgba(239, 68, 68, 0.3)',
-                zIndex: 10000
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.1)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(239, 68, 68, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.3)';
-              }}
-            >
-              ×
-            </button>
-
-            {/* Content Container */}
+          <FullscreenShell
+            onClose={() => setActiveModals({ card: null, qi04: null, qi05: null, qi06: null, qi07: null })}
+            title={`Objective ${activeModals.card}`}
+          >
+            {/* Content Container (unchanged design) */}
             <div style={{
               maxWidth: '100%',
               width: '100%',
@@ -5190,7 +5147,7 @@ const QualityObjectives_v2 = () => {
 
 
             </div>
-          </div>
+          </FullscreenShell>
         )}
 
       </div>
