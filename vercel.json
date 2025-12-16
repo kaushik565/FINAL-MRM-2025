@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd FINAL-MRM-2025-main && npm install && npm run build",
+  "outputDirectory": "FINAL-MRM-2025-main/dist",
+  "installCommand": "cd FINAL-MRM-2025-main && npm install"
+}
