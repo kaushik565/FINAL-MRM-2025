@@ -1,6 +1,7 @@
-﻿import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import Reveal from 'reveal.js'
 import ErrorBoundary from './ErrorBoundary'
+import PresentationSelector from './components/PresentationSelector'
 import TitleSlide from './slides/TitleSlide'
 import QMSOverview from './slides/QMSOverview'
 import SiteOverview from './slides/SiteOverview'
@@ -11,14 +12,22 @@ import QualityObjectivesV2 from './slides/QualityObjectives_v2'
 import CustomerComplaintsOverview from './slides/CustomerComplaintsOverview'
 import ClosingSlide from './slides/ClosingSlide'
 import QualityWeekPlaceholder from './slides/QualityWeekPlaceholder'
+import RATitleSlide from './slides/RA/RATitleSlide'
+import RAContents from './slides/RA/RAContents'
+import RAProductLicense from './slides/RA/RAProductLicense'
+import RAClosingSlide from './slides/RA/RAClosingSlide'
 const primaryLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
 const fallbackLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
 
 export default function Presentation() {
   const deckRef = useRef(null)
   const timerRef = useRef(null)
+  const [selectedDepartment, setSelectedDepartment] = useState(null)
 
   useEffect(() => {
+    // Don't initialize Reveal.js if no department is selected yet
+    if (!selectedDepartment) return;
+    
     const handleSlideState = () => {
       const deck = deckRef.current
       const current = deck?.getCurrentSlide()
@@ -103,7 +112,13 @@ export default function Presentation() {
         deckRef.current = deck
 
         deck.initialize()
-        deck.on('ready', handleSlideState)
+        
+        // Always start from the first slide when department is selected
+        deck.on('ready', () => {
+          deck.slide(0, 0, 0);
+          handleSlideState();
+        })
+        
         deck.on('slidechanged', handleSlideState)
 
         document.addEventListener('keydown', handleKeydown)
@@ -127,27 +142,50 @@ export default function Presentation() {
         deckRef.current = null
       }
     }
-  }, [])
+  }, [selectedDepartment])
 
   return (
     <>
-      <div className="corner-logo" aria-hidden="true">
-        <img
-          src={primaryLogo}
-          alt="Molbio Diagnostics Limited"
-          onError={(e) => { e.currentTarget.src = fallbackLogo }}
-        />
-      </div>
-      {/* React mounts into #root inside the Reveal structure defined in index.html */}
-      <ErrorBoundary><TitleSlide /></ErrorBoundary>
-      <ErrorBoundary><SiteOverview /></ErrorBoundary>
-      <ErrorBoundary><IPQAOverview /></ErrorBoundary>
-      <ErrorBoundary><IPQALabQAHandoff /></ErrorBoundary>
-      <ErrorBoundary><CustomerComplaintsOverview /></ErrorBoundary>
-      <ErrorBoundary><LabQAOverview /></ErrorBoundary>
-      <ErrorBoundary><QualityObjectivesV2 /></ErrorBoundary>
-      <ErrorBoundary><QualityWeekPlaceholder /></ErrorBoundary>
-      <ErrorBoundary><ClosingSlide /></ErrorBoundary>
+      {/* Show selection screen if no department selected */}
+      {!selectedDepartment && (
+        <PresentationSelector onSelect={setSelectedDepartment} />
+      )}
+
+      {/* Show corner logo only when presentation is active */}
+      {selectedDepartment && (
+        <div className="corner-logo" aria-hidden="true">
+          <img
+            src={primaryLogo}
+            alt="Molbio Diagnostics Limited"
+            onError={(e) => { e.currentTarget.src = fallbackLogo }}
+          />
+        </div>
+      )}
+      
+      {/* QA Presentation */}
+      {selectedDepartment === 'QA' && (
+        <>
+          <ErrorBoundary><TitleSlide /></ErrorBoundary>
+          <ErrorBoundary><SiteOverview /></ErrorBoundary>
+          <ErrorBoundary><IPQAOverview /></ErrorBoundary>
+          <ErrorBoundary><IPQALabQAHandoff /></ErrorBoundary>
+          <ErrorBoundary><CustomerComplaintsOverview /></ErrorBoundary>
+          <ErrorBoundary><LabQAOverview /></ErrorBoundary>
+          <ErrorBoundary><QualityObjectivesV2 /></ErrorBoundary>
+          <ErrorBoundary><QualityWeekPlaceholder /></ErrorBoundary>
+          <ErrorBoundary><ClosingSlide onHomeClick={() => setSelectedDepartment(null)} /></ErrorBoundary>
+        </>
+      )}
+
+      {/* RA Presentation */}
+      {selectedDepartment === 'RA' && (
+        <>
+          <ErrorBoundary><RATitleSlide /></ErrorBoundary>
+          <ErrorBoundary><RAContents /></ErrorBoundary>
+            <ErrorBoundary><RAProductLicense /></ErrorBoundary>
+          <ErrorBoundary><RAClosingSlide onHomeClick={() => setSelectedDepartment(null)} /></ErrorBoundary>
+        </>
+      )}
     </>
   )
 }

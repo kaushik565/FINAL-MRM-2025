@@ -139,7 +139,8 @@ export default function IPQAOverview() {
         'Line Closure': { value: 6620, subtitle: '4 Not Approved', trend: '99.94%', status: 'Excellent' },
         'Re-verification': { value: 2203, subtitle: '12 Not Approved', trend: '99.46%', status: 'Excellent' },
         'Sampling Types': { value: 3056, subtitle: 'Multi-type', trend: '100%', status: 'Excellent' },
-        'Equipment Calibration': { value: 167, subtitle: 'All Current', trend: '100%', status: 'Excellent' }
+        'Equipment Calibration': { value: 167, subtitle: 'All Current', trend: '100%', status: 'Excellent' },
+        'Mastering': { isMastering: true, total: 893, period1: 483, period1Label: 'Jan - June (Total)', period1Duration: '6 months total', period2: 410, period2Label: 'July - Nov (Total)', period2Duration: '5 months total', change: '-15.1%', changeLabel: 'Jan-June vs July-Nov' }
       }
     },
     'SITE-III': {
@@ -150,7 +151,8 @@ export default function IPQAOverview() {
         'Line Clearance': { value: '2464', subtitle: '29 Not Approved', trend: '98.84%', status: 'Excellent' },
         'Line Closure': { value: '2459', subtitle: '29 Not Approved', trend: '98.84%', status: 'Excellent' },
         'Line Reverification': { value: '4421', subtitle: '34 Not Approved', trend: '99.24%', status: 'Excellent' },
-        'Line Verification': { value: '6190', subtitle: '01 Not Approved', trend: '99.98%', status: 'Excellent' }
+        'Line Verification': { value: '6190', subtitle: '01 Not Approved', trend: '99.98%', status: 'Excellent' },
+        'Mastering': { isMastering: true, total: 1247, period1: 672, period1Label: 'Jan - June (Total)', period1Duration: '6 months total', period2: 575, period2Label: 'July - Nov (Total)', period2Duration: '5 months total', change: '-14.4%', changeLabel: 'Jan-June vs July-Nov' }
       }
     },
     'SITE-V': {
@@ -162,7 +164,8 @@ export default function IPQAOverview() {
         'In-Process Sampling': { value: 3057, trend: '+18%', status: 'Excellent' },
         'BMR Verification': { value: 643, trend: '+15%', status: 'Good' },
         'Transfer Note Verif.': { value: 566, trend: '+8%', status: 'Stable' },
-        'Destruction Records': { value: 52, trend: '-28%', status: 'Excellent' }
+        'Destruction Records': { value: 52, trend: '-28%', status: 'Excellent' },
+        'Mastering': { isMastering: true, total: 1156, period1: 634, period1Label: 'Jan - June (Total)', period1Duration: '6 months total', period2: 522, period2Label: 'July - Nov (Total)', period2Duration: '5 months total', change: '-17.7%', changeLabel: 'Jan-June vs July-Nov' }
       }
     }
   }
@@ -221,9 +224,119 @@ export default function IPQAOverview() {
   ]
 
   // Modern Metric Tile Component
-  const MetricTile = ({ label, value, subtitle, trend, status, color, siteName, onClick }) => {
-    const isTrendPositive = trend.includes('+')
+  const MetricTile = ({ label, value, subtitle, trend, status, color, siteName, onClick, isMastering, total, period1, period1Label, period1Duration, period2, period2Label, period2Duration, change, changeLabel }) => {
+    const isTrendPositive = trend && trend.includes('+')
     const isClickable = !!onClick
+    
+    // Handle Mastering card layout
+    if (isMastering) {
+      return (
+        <div style={{
+          backgroundColor: '#ffffff',
+          borderRadius: '12px',
+          padding: '14px 12px',
+          textAlign: 'center',
+          border: `2px solid ${color}30`,
+          position: 'relative',
+          overflow: 'hidden',
+          transition: 'all 0.3s ease',
+          cursor: 'default',
+          userSelect: 'none',
+          background: `linear-gradient(135deg, ${color}08, ${color}04)`
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-4px)'
+          e.currentTarget.style.boxShadow = `0 12px 24px ${color}25`
+          e.currentTarget.style.borderColor = color
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = 'none'
+          e.currentTarget.style.borderColor = `${color}30`
+        }}>
+          {/* Top accent bar */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '3px',
+            background: color
+          }}></div>
+          
+          <div style={{ fontSize: '0.7em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            🎯 {label}
+          </div>
+          
+          <div style={{
+            fontSize: '1.8em',
+            fontWeight: '900',
+            color: color,
+            marginBottom: '10px'
+          }}>
+            {total}
+          </div>
+          
+          {/* Two period comparison */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '6px',
+            marginBottom: '10px'
+          }}>
+            <div style={{
+              padding: '8px',
+              background: '#f0fdf4',
+              borderRadius: '8px',
+              border: '1px solid #86efac'
+            }}>
+              <div style={{ fontSize: '0.6em', color: '#6b7280', fontWeight: '600', marginBottom: '4px' }}>
+                {period1Label}
+              </div>
+              <div style={{ fontSize: '1.3em', fontWeight: '900', color: '#16a34a', marginBottom: '2px' }}>
+                {period1}
+              </div>
+              <div style={{ fontSize: '0.55em', color: '#6b7280', fontWeight: '600' }}>
+                {period1Duration}
+              </div>
+            </div>
+            
+            <div style={{
+              padding: '8px',
+              background: '#fef3c7',
+              borderRadius: '8px',
+              border: '1px solid #fcd34d'
+            }}>
+              <div style={{ fontSize: '0.6em', color: '#6b7280', fontWeight: '600', marginBottom: '4px' }}>
+                {period2Label}
+              </div>
+              <div style={{ fontSize: '1.3em', fontWeight: '900', color: '#f59e0b', marginBottom: '2px' }}>
+                {period2}
+              </div>
+              <div style={{ fontSize: '0.55em', color: '#6b7280', fontWeight: '600' }}>
+                {period2Duration}
+              </div>
+            </div>
+          </div>
+          
+          {/* Change indicator */}
+          <div style={{
+            padding: '8px',
+            background: '#fee2e2',
+            borderRadius: '8px',
+            border: `1px solid ${color}40`,
+            marginBottom: '6px'
+          }}>
+            <div style={{ fontSize: '0.6em', color: '#6b7280', fontWeight: '600', marginBottom: '2px' }}>
+              📉 {changeLabel}
+            </div>
+            <div style={{ fontSize: '1.2em', fontWeight: '900', color: '#dc2626' }}>
+              {change}
+            </div>
+          </div>
+        </div>
+      )
+    }
     
     return (
       <div style={{
@@ -465,6 +578,16 @@ export default function IPQAOverview() {
                 color={siteData.color}
                 siteName={siteName}
                 onClick={(siteName === 'SITE-V' || siteName === 'SITE-III') ? () => handleMetricClick(metricName) : null}
+                isMastering={metricData.isMastering}
+                total={metricData.total}
+                period1={metricData.period1}
+                period1Label={metricData.period1Label}
+                period1Duration={metricData.period1Duration}
+                period2={metricData.period2}
+                period2Label={metricData.period2Label}
+                period2Duration={metricData.period2Duration}
+                change={metricData.change}
+                changeLabel={metricData.changeLabel}
               />
             ))}
           </div>
@@ -486,6 +609,108 @@ export default function IPQAOverview() {
             position: 'relative',
             zIndex: 1
           }}>
+            {/* Mastering Card - SITE-III */}
+            <div style={{
+              background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+              border: '3px solid #8b5cf6',
+              borderRadius: '14px',
+              padding: '20px',
+              marginBottom: '20px',
+              boxShadow: '0 6px 20px rgba(139, 92, 246, 0.2)'
+            }}>
+              <div style={{
+                fontSize: '1.1em',
+                fontWeight: '900',
+                color: '#8b5cf6',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                🎯 SITE-III Mastering Overview
+              </div>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr 1fr',
+                gap: '14px'
+              }}>
+                {/* Total */}
+                <div style={{
+                  background: '#ffffff',
+                  border: '2px solid #8b5cf6',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    Total
+                  </div>
+                  <div style={{ fontSize: '2.2em', fontWeight: '900', color: '#8b5cf6', marginBottom: '4px' }}>
+                    491
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    6 months total
+                  </div>
+                </div>
+                
+                {/* Jan-June */}
+                <div style={{
+                  background: '#f0fdf4',
+                  border: '2px solid #86efac',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    Jan - June
+                  </div>
+                  <div style={{ fontSize: '1.8em', fontWeight: '900', color: '#16a34a', marginBottom: '4px' }}>
+                    104
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    6 months total
+                  </div>
+                </div>
+                
+                {/* July-Nov */}
+                <div style={{
+                  background: '#fef3c7',
+                  border: '2px solid #fcd34d',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    July - Nov
+                  </div>
+                  <div style={{ fontSize: '1.8em', fontWeight: '900', color: '#f59e0b', marginBottom: '4px' }}>
+                    387
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    5 months total
+                  </div>
+                </div>
+              </div>
+              
+              {/* Change indicator */}
+              <div style={{
+                marginTop: '14px',
+                padding: '12px',
+                background: '#ede9fe',
+                borderRadius: '10px',
+                border: '2px solid #8b5cf6',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '4px' }}>
+                  📈 Jan-June vs July-Nov
+                </div>
+                <div style={{ fontSize: '1.6em', fontWeight: '900', color: '#16a34a' }}>
+                  +272.1%
+                </div>
+              </div>
+            </div>
+
             {/* SITE-III Overview Snapshot & Quick Stats */}
             <div style={{background: 'linear-gradient(135deg, #f0f9ff, #e0f2fe)', border: `2px solid ${siteData.color}30`, borderRadius: '14px', padding: '24px', marginBottom: '28px', boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)'}}>
               
@@ -790,6 +1015,108 @@ export default function IPQAOverview() {
             position: 'relative',
             zIndex: 1
           }}>
+            {/* Mastering Card - SITE-V */}
+            <div style={{
+              background: 'linear-gradient(135deg, #cffafe, #a5f3fc)',
+              border: '3px solid #0ea5e9',
+              borderRadius: '14px',
+              padding: '20px',
+              marginBottom: '20px',
+              boxShadow: '0 6px 20px rgba(14, 165, 233, 0.2)'
+            }}>
+              <div style={{
+                fontSize: '1.1em',
+                fontWeight: '900',
+                color: '#0ea5e9',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                🎯 SITE-V Mastering Overview
+              </div>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr 1fr',
+                gap: '14px'
+              }}>
+                {/* Total */}
+                <div style={{
+                  background: '#ffffff',
+                  border: '2px solid #0ea5e9',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    Total
+                  </div>
+                  <div style={{ fontSize: '2.2em', fontWeight: '900', color: '#0ea5e9', marginBottom: '4px' }}>
+                    1066
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    6 months total
+                  </div>
+                </div>
+                
+                {/* Jan-June */}
+                <div style={{
+                  background: '#f0fdf4',
+                  border: '2px solid #86efac',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    Jan - June
+                  </div>
+                  <div style={{ fontSize: '1.8em', fontWeight: '900', color: '#16a34a', marginBottom: '4px' }}>
+                    669
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    6 months total
+                  </div>
+                </div>
+                
+                {/* July-Nov */}
+                <div style={{
+                  background: '#fef3c7',
+                  border: '2px solid #fcd34d',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
+                    July - Nov
+                  </div>
+                  <div style={{ fontSize: '1.8em', fontWeight: '900', color: '#f59e0b', marginBottom: '4px' }}>
+                    397
+                  </div>
+                  <div style={{ fontSize: '0.7em', color: '#6b7280', fontWeight: '600' }}>
+                    5 months total
+                  </div>
+                </div>
+              </div>
+              
+              {/* Change indicator */}
+              <div style={{
+                marginTop: '14px',
+                padding: '12px',
+                background: '#cffafe',
+                borderRadius: '10px',
+                border: '2px solid #0ea5e9',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '0.75em', fontWeight: '700', color: '#6b7280', marginBottom: '4px' }}>
+                  📉 Jan-June vs July-Nov
+                </div>
+                <div style={{ fontSize: '1.6em', fontWeight: '900', color: '#dc2626' }}>
+                  -40.7%
+                </div>
+              </div>
+            </div>
+
             {/* SITE-V Overview Snapshot & Quick Stats */}
             <div style={{background: 'linear-gradient(135deg, #f0f9ff, #e0f2fe)', border: `2px solid ${siteData.color}30`, borderRadius: '14px', padding: '24px', marginBottom: '28px', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.1)'}}>
               

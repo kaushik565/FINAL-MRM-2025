@@ -9,6 +9,7 @@ import SiteICorrectiveActions from './site-details/SiteICorrectiveActions'
 import SiteIPreventiveActions from './site-details/SiteIPreventiveActions'
 import SiteIOutOfSpecifications from './site-details/SiteIOutOfSpecifications'
 import SiteIChangeControls from './site-details/SiteIChangeControls'
+import SiteIDeviations from './site-details/SiteIDeviations'
 import SiteIIIIncidents from './site-details/SiteIIIIncidents'
 import SiteIIICorrectiveActions from './site-details/SiteIIICorrectiveActions'
 import SiteIIIPreventiveActions from './site-details/SiteIIIPreventiveActions'
@@ -21,7 +22,12 @@ import SiteVPreventiveActions from './site-details/SiteVPreventiveActions'
 import SiteVOutOfSpecifications from './site-details/SiteVOutOfSpecifications'
 import SiteVChangeControls from './site-details/SiteVChangeControls'
 import SiteVDeviations from './site-details/SiteVDeviations'
+import SiteIVIncidents from './site-details/SiteIVIncidents'
+import SiteIVCorrectiveActions from './site-details/SiteIVCorrectiveActions'
+import SiteIVPreventiveActions from './site-details/SiteIVPreventiveActions'
+import SiteIVOutOfSpecifications from './site-details/SiteIVOutOfSpecifications'
 import SiteIVChangeControls from './site-details/SiteIVChangeControls'
+import SiteIVDeviations from './site-details/SiteIVDeviations'
 import SiteIIIPQAMilestones from './site-details/SiteIIIPQAMilestones'
 import QMSOverview from './QMSOverview'
 
@@ -65,7 +71,27 @@ const metricsData = {
     'PA': { total: 29, period: 'Jan-Nov 2025', improvement: '60%', from: 135, to: 54, label: 'Processing Time Reduced' },
     'Out of Specifications': { total: 259, period: 'Apr-Nov 2025', improvement: '49%', from: 21, to: 17, label: 'Improvement' },
     'Change Controls': { total: 492, period: 'Jan-Nov 2025', improvement: '13%', from: 46, to: 40, label: 'Closure Days Reduced' },
-    'Deviations': { total: 0, period: 'Jan-Nov 2025', improvement: '0%', from: 0, to: 0, label: 'Deviations' }
+    'Deviations': { 
+      total: 30, 
+      period: 'Jan-Nov 2025', 
+      improvement: '31%', 
+      from: 87, 
+      to: 60, 
+      label: 'Avg Closure Days Reduced', 
+      janJune: { count: 12, avgClosure: 87, open: 3 }, 
+      julyNov: { count: 18, avgClosure: 60, open: 6 } 
+    },
+    'Mastering': { 
+      total: 893, 
+      period: 'Jan-Nov 2025', 
+      improvement: '-15.1%', 
+      from: 483, 
+      to: 410, 
+      label: 'Change',
+      isSpecial: true,
+      janJune: { total: 483, label: '6 months total' },
+      julyNov: { total: 410, label: '5 months total' }
+    }
   },
   'SITE-III': {
     'Incidents': { total: 82, period: 'Jan-Nov 2025', improvement: '36%', from: 25, to: 16, label: 'Closure Days Reduced' },
@@ -73,7 +99,18 @@ const metricsData = {
     'PA': { total: 66, period: 'Jan-Nov 2025', improvement: '6%', from: 36, to: 34, label: 'Processing Time Reduced' },
     'Out of Specifications': { total: 159, period: 'Apr-Nov 2025', improvement: '49%', from: 14, to: 9, label: 'Improvement' },
     'Change Controls': { total: 261, period: 'Jan-Nov 2025', improvement: '61%', from: 41, to: 16, label: 'Closure Days Reduced' },
-    'Deviations': { total: 17, period: 'Jan-Nov 2025', improvement: '12%', from: 73, to: 64, label: 'Avg Closure Days Reduced', janJune: { count: 12, avgClosure: 73, open: 1 }, julyNov: { count: 5, avgClosure: 64, open: 4 } }
+    'Deviations': { total: 17, period: 'Jan-Nov 2025', improvement: '12%', from: 73, to: 64, label: 'Avg Closure Days Reduced', janJune: { count: 12, avgClosure: 73, open: 1 }, julyNov: { count: 5, avgClosure: 64, open: 4 } },
+    'Mastering': { 
+      total: 491, 
+      period: 'Jan-Nov 2025', 
+      improvement: '+272.1%', 
+      from: 104, 
+      to: 387, 
+      label: 'Change',
+      isSpecial: true,
+      janJune: { total: 104, label: '6 months total' },
+      julyNov: { total: 387, label: '5 months total' }
+    }
   },
   'SITE-V': {
     'Incidents': { total: 196, period: 'Jan-Nov 2025', improvement: '28%', from: 18, to: 13, label: 'Closure Days Reduced' },
@@ -90,15 +127,35 @@ const metricsData = {
       label: 'Avg Closure Days Reduced',
       janJune: { count: 7, avgClosure: 74, open: 0 },
       julyNov: { count: 5, avgClosure: 43, open: 0 }
+    },
+    'Mastering': { 
+      total: 1066, 
+      period: 'Jan-Nov 2025', 
+      improvement: '-40.7%', 
+      from: 669, 
+      to: 397, 
+      label: 'Change',
+      isSpecial: true,
+      janJune: { total: 669, label: '6 months total' },
+      julyNov: { total: 397, label: '5 months total' }
     }
   },
   'SITE-IV': {
-    'Incidents': { total: 0, period: 'Data not available', improvement: '0%', from: 0, to: 0, label: 'Closure Days Reduced' },
-    'CA': { total: 0, period: 'Data not available', improvement: '0%', from: 0, to: 0, label: 'Avg Days to Close Reduced' },
-    'PA': { total: 0, period: 'Data not available', improvement: '0%', from: 0, to: 0, label: 'Processing Time Reduced' },
-    'Out of Specifications': { total: 0, period: 'Data not available', improvement: '0%', from: 0, to: 0, label: 'Improvement' },
-    'Change Controls': { total: 30, period: 'Jan-Nov 2025', improvement: '20%', from: 23, to: 18, label: 'Avg Closure Days Reduced' },
-    'Deviations': { total: 0, period: 'Data not available', improvement: '0%', from: 0, to: 0, label: 'Deviations' }
+    'Incidents': { total: 10, period: 'Jan-Nov 2025', improvement: '26%', from: 27, to: 20, label: 'Closure Days Reduced' },
+    'CA': { total: 10, period: 'Jan-Nov 2025', improvement: '20%', from: 95, to: 76, label: 'Avg Days to Close Reduced' },
+    'PA': { total: 1, period: 'Jan-June 2025', improvement: '0%', from: 0, to: 0, label: 'Processing Time' },
+    'Out of Specifications': { total: 1, period: 'Apr-June 2025', improvement: '0%', from: 28, to: 0, label: 'Avg Closure Days' },
+    'Change Controls': { total: 30, period: 'Jan-Nov 2025', improvement: '17%', from: 23, to: 19, label: 'Avg Closure Days Reduced' },
+    'Deviations': { 
+      total: 3, 
+      period: 'Jan-Nov 2025', 
+      improvement: '67%', 
+      from: 180, 
+      to: 60, 
+      label: 'Avg Closure Days Reduced', 
+      janJune: { count: 1, avgClosure: 180, open: 0 }, 
+      julyNov: { count: 2, avgClosure: 60, open: 0 } 
+    }
   }
 }
 
@@ -111,7 +168,7 @@ const sitesData = {
     OOS: { total: 259, improvement: 49, avg: 21, latest: 17 },
     CC: { total: 492, improvement: 13, from: 46, to: 40 },
     Investigation: { total: 262, improvement: -8, from: 5.65, to: 6.1 },
-    Deviation: { total: 0, improvement: 0, from: 0, to: 0 }
+    Deviation: { total: 30, improvement: 31, from: 87, to: 60 }
   },
   'SITE-III': {
     Incidents: { total: 82, improvement: 36, from: 25, to: 16 },
@@ -132,13 +189,13 @@ const sitesData = {
     Deviation: { total: 12, improvement: 42, from: 74, to: 43 }
   },
   'SITE-IV': {
-    Incidents: { total: 0, improvement: 0, from: 0, to: 0 },
-    CA: { total: 0, improvement: 0, from: 0, to: 0 },
-    PA: { total: 0, improvement: 0, from: 0, to: 0 },
-    OOS: { total: 0, improvement: 0, avg: 0, latest: 0 },
-    CC: { total: 30, improvement: 20, from: 23, to: 18 },
-    Investigation: { total: 0, improvement: 0, from: 0, to: 0 },
-    Deviation: { total: 0, improvement: 0, from: 0, to: 0 }
+    Incidents: { total: 10, improvement: 26, from: 27, to: 20 },
+    CA: { total: 10, improvement: 20, from: 95, to: 76 },
+    PA: { total: 1, improvement: 0, from: 0, to: 0 },
+    OOS: { total: 1, improvement: 0, avg: 28, latest: 0 },
+    CC: { total: 30, improvement: 17, from: 23, to: 19 },
+    Investigation: { total: 10, improvement: 0, from: 7, to: 7 },
+    Deviation: { total: 3, improvement: 67, from: 180, to: 60 }
   }
 }
 
@@ -768,14 +825,11 @@ function SiteComparisonGrid({ onSiteClick }) {
         <div style={{minHeight: '100%', padding: '24px 20px 48px 20px'}}>
           <div style={{maxWidth: '1240px', margin: '0 auto', background: '#ffffff', borderRadius: '20px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 18px 48px rgba(15,23,42,0.12)'}}>
             {/* HERO SECTION - Main Message */}
-            <div style={{background: `linear-gradient(135deg, ${siteColors[site]}dd, ${siteColors[site]})`, padding: '48px 40px', textAlign: 'center', color: '#fff', position: 'relative', overflow: 'hidden'}}>
-              <div style={{position: 'absolute', top: '-40px', right: '-40px', fontSize: '220px', opacity: 0.12}}>🎯</div>
+            <div style={{background: `linear-gradient(135deg, ${siteColors[site]}dd, ${siteColors[site]})`, padding: '28px 32px', textAlign: 'center', color: '#fff', position: 'relative', overflow: 'hidden'}}>
+              <div style={{position: 'absolute', top: '-40px', right: '-40px', fontSize: '180px', opacity: 0.12}}>🎯</div>
               <div style={{position: 'relative', zIndex: 1}}>
-                <div style={{fontSize: '0.95em', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', opacity: 0.95, marginBottom: '14px'}}>How SITE-III Achieved</div>
-                <div style={{fontSize: '3.6em', fontWeight: '900', marginBottom: '12px'}}>{compositeImprovement}%</div>
-                <div style={{fontSize: '1.1em', fontWeight: '700', lineHeight: '1.5', opacity: 0.95}}>
-                  Through <strong>{totalMeetings} QA-led collaboration sessions</strong> + <strong>visual dashboards</strong> + <strong>change control automation</strong> = <strong>Faster decisions, reduced investigation time</strong>
-                </div>
+                <div style={{fontSize: '0.8em', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.95, marginBottom: '8px'}}>How SITE-III Achieved</div>
+                <div style={{fontSize: '2.8em', fontWeight: '900'}}>{compositeImprovement}%</div>
               </div>
             </div>
 
@@ -1263,8 +1317,375 @@ function SiteComparisonGrid({ onSiteClick }) {
   )
 }
 
+// Mastering Detail Component
+function MasteringDetail({ site, siteLabel }) {
+  const rows = masterDataOverview.sites[siteLabel];
+  const metrics = metricsData[site]['Mastering'];
+  
+  const siteColors = {
+    'Site I': { main: '#dc2626', bg: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)', header: '#7f1d1d', cell: '#ef4444' },
+    'Site III': { main: '#9333ea', bg: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)', header: '#581c87', cell: '#a855f7' },
+    'Site V': { main: '#0891b2', bg: 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)', header: '#164e63', cell: '#06b6d4' }
+  };
+  const colors = siteColors[siteLabel];
+  
+  return (
+    <div style={{ background: '#f8fafc', padding: '0' }}>
+      {/* Overview Cards */}
+      <div style={{
+        background: colors.bg,
+        padding: '20px',
+        borderRadius: '12px',
+        border: `2px solid ${colors.main}`,
+        marginBottom: '20px',
+        boxShadow: `0 4px 16px ${colors.main}25`
+      }}>
+        <div style={{ 
+          fontSize: '1.4rem', 
+          fontWeight: 900, 
+          color: colors.header,
+          marginBottom: '16px',
+          paddingBottom: '12px',
+          borderBottom: `2px solid ${colors.main}`
+        }}>
+          {siteLabel} ▶ TOTAL: {metrics.total}
+        </div>
+        
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '14px'
+        }}>
+          {/* Jan-June Card */}
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '10px',
+            padding: '16px',
+            border: `2px solid ${colors.main}30`,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+          }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>
+              Jan - June (Total)
+            </div>
+            <div style={{ fontSize: '2.2rem', fontWeight: 900, color: colors.main, marginBottom: '4px' }}>
+              {metrics.janJune.total}
+            </div>
+            <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+              {metrics.janJune.label}
+            </div>
+          </div>
+
+          {/* July-Nov Card */}
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '10px',
+            padding: '16px',
+            border: `2px solid ${colors.main}30`,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+          }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>
+              July - Nov (Total)
+            </div>
+            <div style={{ fontSize: '2.2rem', fontWeight: 900, color: colors.main, marginBottom: '4px' }}>
+              {metrics.julyNov.total}
+            </div>
+            <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+              {metrics.julyNov.label}
+            </div>
+          </div>
+
+          {/* Change Card */}
+          <div style={{
+            background: metrics.improvement.startsWith('+') ? '#dcfce7' : '#fee2e2',
+            borderRadius: '10px',
+            padding: '16px',
+            border: `2px solid ${metrics.improvement.startsWith('+') ? '#10b981' : '#ef4444'}`,
+            boxShadow: `0 2px 8px ${metrics.improvement.startsWith('+') ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'}`
+          }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>
+              {metrics.improvement.startsWith('+') ? '📈 Improvement' : '📉 Change'}
+            </div>
+            <div style={{ 
+              fontSize: '2.2rem', 
+              fontWeight: 900, 
+              color: metrics.improvement.startsWith('+') ? '#10b981' : '#ef4444',
+              marginBottom: '4px'
+            }}>
+              {metrics.improvement}
+            </div>
+            <div style={{ fontSize: '0.8rem', color: '#111827', fontWeight: 600 }}>
+              Jan-June vs July-Nov
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Monthly Data Table */}
+      <div style={{
+        background: '#ffffff',
+        borderRadius: '12px',
+        padding: '20px',
+        border: '2px solid #e5e7eb',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.06)'
+      }}>
+        <div style={{ 
+          fontSize: '1.3rem', 
+          fontWeight: 900, 
+          color: '#0f172a',
+          marginBottom: '16px',
+          paddingBottom: '12px',
+          borderBottom: '2px solid #e5e7eb'
+        }}>
+          📊 Monthly Performance Breakdown
+        </div>
+        
+        {/* Table Headers */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '130px repeat(6, 1fr)',
+          gap: '8px',
+          marginBottom: '10px',
+          padding: '10px',
+          background: colors.bg,
+          borderRadius: '8px',
+          border: `2px solid ${colors.main}30`
+        }}>
+          <div style={{ fontSize: '0.95rem', fontWeight: 900, color: colors.header }}>MONTH</div>
+          {masterDataOverview.categories.map(cat => (
+            <div key={cat} style={{
+              fontSize: '0.95rem',
+              fontWeight: 900,
+              color: colors.header,
+              textAlign: 'center'
+            }}>{cat}</div>
+          ))}
+        </div>
+
+        {/* Data Rows */}
+        {rows.map((row, idx) => (
+          <div key={idx} style={{
+            display: 'grid',
+            gridTemplateColumns: '130px repeat(6, 1fr)',
+            gap: '8px',
+            marginBottom: '8px',
+            padding: '10px',
+            background: '#ffffff',
+            borderRadius: '8px',
+            border: `1px solid ${colors.main}15`,
+            boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = colors.bg;
+            e.currentTarget.style.transform = 'translateX(4px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.transform = 'translateX(0)';
+          }}>
+            <div style={{
+              fontSize: '0.9rem',
+              fontWeight: 900,
+              color: colors.header,
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: '6px'
+            }}>
+              {row.month}
+            </div>
+            {masterDataOverview.categories.map(cat => (
+              <div key={cat} style={{
+                fontSize: '1.1rem',
+                fontWeight: 900,
+                color: '#ffffff',
+                background: `linear-gradient(135deg, ${colors.cell} 0%, ${colors.main} 100%)`,
+                padding: '10px 6px',
+                borderRadius: '6px',
+                textAlign: 'center',
+                boxShadow: `0 2px 8px ${colors.main}25`,
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+                {row[cat]}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Helper component to render category card with single highlighted metric
 function CategoryCard({ title, metrics, color, borderColor, onClick, textColor, isSpecial }) {
+  // Special handling for Mastering card
+  if (isSpecial && title === 'Mastering') {
+    return (
+      <div 
+        onClick={onClick}
+        style={{
+          background: `linear-gradient(135deg, #ffffff 0%, ${borderColor}08 100%)`,
+          border: `2px solid ${borderColor}40`,
+          borderRadius: '16px',
+          padding: '24px',
+          boxShadow: `0 8px 24px ${borderColor}12, 0 2px 8px rgba(0, 0, 0, 0.08)`,
+          cursor: 'pointer',
+          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+          minHeight: '240px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-12px) scale(1.03)'
+          e.currentTarget.style.boxShadow = `0 24px 48px ${borderColor}20, 0 8px 16px rgba(0, 0, 0, 0.15)`
+          e.currentTarget.style.borderColor = borderColor
+          e.currentTarget.style.background = `linear-gradient(135deg, #ffffff 0%, ${borderColor}12 100%)`
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0) scale(1)'
+          e.currentTarget.style.boxShadow = `0 8px 24px ${borderColor}12, 0 2px 8px rgba(0, 0, 0, 0.08)`
+          e.currentTarget.style.borderColor = `${borderColor}40`
+          e.currentTarget.style.background = `linear-gradient(135deg, #ffffff 0%, ${borderColor}08 100%)`
+        }}
+      >
+        {/* Decorative top accent */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '5px',
+          background: `linear-gradient(90deg, ${borderColor}, ${borderColor}40, transparent)`,
+          borderRadius: '16px 16px 0 0'
+        }}></div>
+
+        {/* Decorative corner accent */}
+        <div style={{
+          position: 'absolute',
+          top: '12px',
+          right: '12px',
+          width: '40px',
+          height: '40px',
+          background: `radial-gradient(circle, ${borderColor}15 0%, transparent 70%)`,
+          borderRadius: '50%',
+          pointerEvents: 'none'
+        }}></div>
+
+        {/* Title with Dropdown Arrow */}
+        <div style={{ marginBottom: '14px', marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h4 style={{ 
+            margin: '0', 
+            color: textColor, 
+            fontWeight: '800', 
+            fontSize: '1.05em',
+            letterSpacing: '0.4px',
+            textTransform: 'uppercase',
+            lineHeight: '1.3'
+          }}>
+            {title}
+          </h4>
+          <span style={{ fontSize: '1.2em', color: borderColor }}>▶</span>
+        </div>
+
+        {/* Total Section */}
+        <div style={{ marginBottom: '12px' }}>
+          <div style={{ fontSize: '0.7em', color: '#94a3b8', fontWeight: '700', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+            TOTAL
+          </div>
+          <div style={{ 
+            fontSize: '2.2em', 
+            fontWeight: '900', 
+            color: borderColor,
+            lineHeight: '1',
+            textShadow: `0 2px 4px ${borderColor}20`
+          }}>
+            {metrics?.total}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div style={{
+          height: '1px',
+          background: `linear-gradient(90deg, transparent, ${borderColor}30, transparent)`,
+          marginBottom: '16px'
+        }}></div>
+
+        {/* Period Breakdown Section */}
+        <div style={{ 
+          background: `linear-gradient(135deg, ${borderColor}15, ${borderColor}08)`,
+          border: `1.5px solid ${borderColor}30`,
+          padding: '16px 16px',
+          borderRadius: '12px',
+          fontSize: '0.8em',
+          color: '#475569',
+          transition: 'all 0.3s ease'
+        }}>
+          <div style={{ marginBottom: '12px' }}>
+            <div style={{ fontSize: '0.75em', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '4px' }}>
+              Jan - June (Total)
+            </div>
+            <div style={{ 
+              fontSize: '1.6em', 
+              fontWeight: '900', 
+              color: borderColor,
+              marginBottom: '2px'
+            }}>
+              {metrics?.janJune?.total}
+            </div>
+            <div style={{ fontSize: '0.7em', color: '#64748b', fontWeight: '600' }}>
+              {metrics?.janJune?.label}
+            </div>
+          </div>
+          
+          <div style={{ 
+            paddingTop: '12px',
+            borderTop: `1px solid ${borderColor}20`,
+            marginBottom: '12px'
+          }}>
+            <div style={{ fontSize: '0.75em', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '4px' }}>
+              July - Nov (Total)
+            </div>
+            <div style={{ 
+              fontSize: '1.6em', 
+              fontWeight: '900', 
+              color: borderColor,
+              marginBottom: '2px'
+            }}>
+              {metrics?.julyNov?.total}
+            </div>
+            <div style={{ fontSize: '0.7em', color: '#64748b', fontWeight: '600' }}>
+              {metrics?.julyNov?.label}
+            </div>
+          </div>
+
+          <div style={{
+            paddingTop: '12px',
+            borderTop: `1px solid ${borderColor}20`,
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '0.75em', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '4px' }}>
+              {metrics?.improvement?.startsWith('+') ? '📈' : '📉'} Change
+            </div>
+            <div style={{ 
+              fontSize: '1.8em', 
+              fontWeight: '900', 
+              color: metrics?.improvement?.startsWith('+') ? '#10b981' : '#dc2626'
+            }}>
+              {metrics?.improvement}
+            </div>
+            <div style={{ fontSize: '0.7em', color: '#64748b', fontWeight: '600', marginTop: '2px' }}>
+              Jan-June vs July-Nov
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div 
       onClick={onClick}
@@ -1340,7 +1761,7 @@ function CategoryCard({ title, metrics, color, borderColor, onClick, textColor, 
           Total Records
         </div>
         <div style={{ 
-          fontSize: '2.2em', 
+          fontSize: '1.8em', 
           fontWeight: '900', 
           color: borderColor,
           lineHeight: '1',
@@ -1369,7 +1790,7 @@ function CategoryCard({ title, metrics, color, borderColor, onClick, textColor, 
       {/* Improvement Percentage */}
       <div style={{ textAlign: 'center', marginBottom: '14px' }}>
         <div style={{ 
-          fontSize: parseInt(metrics?.improvement) < 0 ? '2.8em' : '3.2em', 
+          fontSize: parseInt(metrics?.improvement) < 0 ? '2.4em' : '2.6em', 
           fontWeight: '900', 
           color: borderColor,
           lineHeight: '1',
@@ -1528,246 +1949,7 @@ export default function SiteOverview() {
         <OverallPerformance onCompleteOverviewClick={() => setSelectedCategory('overview')} />
         <SiteComparisonGrid onSiteClick={handleSiteClick} />
 
-        {/* Master Data Overview - Clean & Professional Design */}
-          {/* Master Data Overview - Expandable with KPI Cards */}
-        <div id="master-data-overview-site" style={{
-          marginTop: '20px',
-          padding: '24px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%)',
-          border: '3px solid #0ea5e9',
-          boxShadow: '0 8px 24px rgba(14,165,233,0.2)'
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '24px',
-            paddingBottom: '16px',
-            borderBottom: '3px solid #0ea5e9'
-          }}>
-            <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0c4a6e', marginBottom: '6px' }}>
-              📊 MASTER DATA OVERVIEW
-            </div>
-            <div style={{ fontSize: '1.2rem', color: '#0369a1', fontWeight: 700 }}>
-              Monthly Performance • Jan - Nov 2025
-            </div>
-          </div>
 
-          {/* Ordered Sites: I, III, V */}
-          {['Site I', 'Site III', 'Site V'].map((siteName, siteIdx) => {
-            const rows = masterDataOverview.sites[siteName];
-            const siteColors = {
-              'Site I': { main: '#dc2626', bg: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)', header: '#7f1d1d', cell: '#ef4444', light: '#fee2e2' },
-              'Site III': { main: '#9333ea', bg: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)', header: '#581c87', cell: '#a855f7', light: '#f3e8ff' },
-              'Site V': { main: '#0891b2', bg: 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)', header: '#164e63', cell: '#06b6d4', light: '#ccfbf1' }
-            };
-            const colors = siteColors[siteName];
-            const totalSum = rows.reduce((sum, row) => sum + row.Total, 0);
-            
-            // Calculate Jan-June vs July-Nov totals (not averages)
-            const janJune = rows[0]; // First row is Jan-June (already total)
-            const julyNov = rows.slice(1); // Rest are July to Nov (5 months)
-            const janJuneTotal = janJune.Total; // Use provided total directly
-            const julyNovTotal = julyNov.reduce((sum, row) => sum + row.Total, 0); // 5 months total
-            const improvement = (((julyNovTotal) - janJuneTotal) / janJuneTotal * 100).toFixed(1);
-            const isExpanded = expandedSites[siteName];
-            
-            return (
-              <div key={siteName} style={{
-                marginBottom: siteIdx < 2 ? '20px' : '0',
-                background: colors.bg,
-                borderRadius: '16px',
-                border: `3px solid ${colors.main}`,
-                padding: '20px',
-                boxShadow: `0 6px 20px ${colors.main}30`
-              }}>
-                 {/* Site Header with Expand Button */}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '16px',
-                  paddingBottom: '12px',
-                    borderBottom: `3px solid ${colors.main}`,
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => toggleSiteExpansion(siteName)}>
-                  <div style={{ 
-                    fontSize: '2rem', 
-                    fontWeight: 900, 
-                    color: colors.header,
-                    textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px'
-                  }}>
-                    {siteName}
-                      <span style={{ fontSize: '1.4rem' }}>
-                        {isExpanded ? '▼' : '▶'}
-                      </span>
-                  </div>
-                  <div style={{
-                    fontSize: '1.6rem',
-                    fontWeight: 900,
-                    color: '#ffffff',
-                    background: colors.main,
-                    padding: '10px 24px',
-                    borderRadius: '10px',
-                    boxShadow: `0 4px 12px ${colors.main}40`
-                  }}>
-                    TOTAL: {totalSum}
-                  </div>
-                </div>
-
-                {/* KPI Cards - Always Visible */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '16px',
-                  marginBottom: isExpanded ? '20px' : '0'
-                }}>
-                  {/* Jan-June Total Card */}
-                  <div style={{
-                    background: '#ffffff',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: `2px solid ${colors.main}40`,
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.06)'
-                  }}>
-                    <div style={{ fontSize: '1rem', fontWeight: 700, color: '#111827', marginBottom: '8px' }}>
-                      Jan - June (Total)
-                    </div>
-                    <div style={{ fontSize: '3rem', fontWeight: 900, color: colors.main, marginBottom: '4px' }}>
-                      {janJuneTotal}
-                    </div>
-                    <div style={{ fontSize: '1rem', color: '#111827', fontWeight: 600 }}>
-                      6 months total
-                    </div>
-                  </div>
-
-                  {/* July-Nov Total Card */}
-                  <div style={{
-                    background: '#ffffff',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: `2px solid ${colors.main}40`,
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.06)'
-                  }}>
-                    <div style={{ fontSize: '1rem', fontWeight: 700, color: '#111827', marginBottom: '8px' }}>
-                      July - Nov (Total)
-                    </div>
-                    <div style={{ fontSize: '3rem', fontWeight: 900, color: colors.main, marginBottom: '4px' }}>
-                      {julyNovTotal}
-                    </div>
-                    <div style={{ fontSize: '1rem', color: '#111827', fontWeight: 600 }}>
-                      5 months total
-                    </div>
-                  </div>
-
-                  {/* Improvement Card */}
-                  <div style={{
-                    background: improvement >= 0 ? '#dcfce7' : '#fee2e2',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: `2px solid ${improvement >= 0 ? '#10b981' : '#ef4444'}`,
-                    boxShadow: `0 4px 12px ${improvement >= 0 ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'}`
-                  }}>
-                    <div style={{ fontSize: '1rem', fontWeight: 700, color: '#111827', marginBottom: '8px' }}>
-                      {improvement >= 0 ? '📈 Improvement' : '📉 Change'}
-                    </div>
-                    <div style={{ 
-                      fontSize: '3rem', 
-                      fontWeight: 900, 
-                      color: improvement >= 0 ? '#10b981' : '#ef4444',
-                      marginBottom: '4px'
-                    }}>
-                      {improvement >= 0 ? '+' : ''}{improvement}%
-                    </div>
-                    <div style={{ fontSize: '1rem', color: '#111827', fontWeight: 600 }}>
-                      Jan-June vs July-Nov
-                    </div>
-                  </div>
-                </div>
-
-                {/* Expandable Detailed Table */}
-                {isExpanded && (
-                  <div style={{
-                    marginTop: '20px',
-                    animation: 'slideDown 0.3s ease-out'
-                  }}>
-                    {/* Category Headers */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '160px repeat(6, 1fr)',
-                  gap: '12px',
-                  marginBottom: '14px',
-                  padding: '12px',
-                  background: '#ffffff',
-                  borderRadius: '10px',
-                  border: `2px solid ${colors.main}30`
-                }}>
-                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: colors.header }}>MONTH</div>
-                  {masterDataOverview.categories.map(cat => (
-                    <div key={cat} style={{
-                      fontSize: '1.3rem',
-                      fontWeight: 900,
-                      color: colors.header,
-                      textAlign: 'center'
-                    }}>{cat}</div>
-                  ))}
-                </div>
-
-                {/* Data Rows */}
-                {rows.map((row, rIdx) => (
-                  <div key={rIdx} style={{
-                    display: 'grid',
-                    gridTemplateColumns: '160px repeat(6, 1fr)',
-                    gap: '12px',
-                    marginBottom: '12px',
-                    padding: '14px',
-                    background: '#ffffff',
-                    borderRadius: '10px',
-                    border: `2px solid ${colors.main}20`,
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
-                  }}>
-                    <div style={{
-                      fontSize: '1.2rem',
-                      fontWeight: 900,
-                      color: colors.header,
-                      display: 'flex',
-                      alignItems: 'center',
-                      paddingLeft: '8px'
-                    }}>
-                      {row.month}
-                    </div>
-                    {masterDataOverview.categories.map(cat => {
-                      const val = row[cat];
-                      return (
-                        <div key={cat} style={{
-                          fontSize: '1.6rem',
-                          fontWeight: 900,
-                          color: '#ffffff',
-                          background: `linear-gradient(135deg, ${colors.cell} 0%, ${colors.main} 100%)`,
-                          padding: '14px 10px',
-                          borderRadius: '10px',
-                          textAlign: 'center',
-                          boxShadow: `0 4px 12px ${colors.main}30`,
-                          transition: 'transform 0.2s'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-                          {val}
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-                    </div>
-                  )}
-              </div>
-            );
-          })}
-        </div>
       </div>
 
       {/* Home Button - Show when any category is selected (except overview) */}
@@ -1867,17 +2049,31 @@ export default function SiteOverview() {
             }}>
               🏭 SITE-I
             </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '16px' }}>
               {[
                 { title: 'PA', key: 'PA', improvement: 60 },
                 { title: 'CA', key: 'CA', improvement: 54 },
                 { title: 'OOS', key: 'Out of Specifications', improvement: 49 },
+                { title: 'Deviation', key: 'Deviations', improvement: 31 },
                 { title: 'CC', key: 'Change Controls', improvement: 13 },
                 { title: 'IR', key: 'Incidents', improvement: 10 },
-                { title: 'Deviation', key: 'Deviations', improvement: 0 }
-              ].sort((a, b) => b.improvement - a.improvement).map(cat => {
+                { title: 'Mastering', key: 'Mastering', improvement: -15.1, isSpecial: true }
+              ].sort((a, b) => {
+                // Keep Mastering at the end
+                if (a.isSpecial) return 1;
+                if (b.isSpecial) return -1;
+                // Sort by improvement descending (highest first)
+                return b.improvement - a.improvement;
+              }).map(cat => {
                 let color, borderColor, textColor;
-                if (cat.improvement > 50) {
+                if (cat.isSpecial) {
+                  // Mastering card: green if positive, red if negative
+                  if (cat.improvement >= 0) {
+                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
+                  } else {
+                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
+                  }
+                } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
                   color = '#3b82f6'; borderColor = '#3b82f6'; textColor = '#1e40af';
@@ -1894,6 +2090,7 @@ export default function SiteOverview() {
                     color={color}
                     borderColor={borderColor}
                     textColor={textColor}
+                    isSpecial={cat.isSpecial}
                     onClick={() => handleCategoryClick(cat.key, 'SITE-I')}
                   />
                 );
@@ -1917,17 +2114,31 @@ export default function SiteOverview() {
             }}>
               🏭 SITE-III
             </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '16px' }}>
               {[
                 { title: 'CC', key: 'Change Controls', improvement: 61 },
                 { title: 'OOS', key: 'Out of Specifications', improvement: 49 },
                 { title: 'IR', key: 'Incidents', improvement: 36 },
                 { title: 'CA', key: 'CA', improvement: 16 },
+                { title: 'Deviation', key: 'Deviations', improvement: 12 },
                 { title: 'PA', key: 'PA', improvement: 6 },
-                { title: 'Deviation', key: 'Deviations', improvement: 12 }
-              ].sort((a, b) => b.improvement - a.improvement).map(cat => {
+                { title: 'Mastering', key: 'Mastering', improvement: 272.1, isSpecial: true }
+              ].sort((a, b) => {
+                // Keep Mastering at the end
+                if (a.isSpecial) return 1;
+                if (b.isSpecial) return -1;
+                // Sort by improvement descending (highest first)
+                return b.improvement - a.improvement;
+              }).map(cat => {
                 let color, borderColor, textColor;
-                if (cat.improvement > 50) {
+                if (cat.isSpecial) {
+                  // Mastering card: green if positive, red if negative
+                  if (cat.improvement >= 0) {
+                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
+                  } else {
+                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
+                  }
+                } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
                   color = '#3b82f6'; borderColor = '#3b82f6'; textColor = '#1e40af';
@@ -1944,6 +2155,7 @@ export default function SiteOverview() {
                     color={color}
                     borderColor={borderColor}
                     textColor={textColor}
+                    isSpecial={cat.isSpecial}
                     onClick={() => handleCategoryClick(cat.key, 'SITE-III')}
                   />
                 );
@@ -1969,15 +2181,15 @@ export default function SiteOverview() {
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
               {[
-                { title: 'IR', key: 'Incidents', improvement: 0 },
-                { title: 'CA', key: 'CA', improvement: 0 },
+                { title: 'CC', key: 'Change Controls', improvement: 17 },
+                { title: 'IR', key: 'Incidents', improvement: 26 },
+                { title: 'CA', key: 'CA', improvement: 20 },
                 { title: 'PA', key: 'PA', improvement: 0 },
                 { title: 'OOS', key: 'Out of Specifications', improvement: 0 },
-                { title: 'CC', key: 'Change Controls', improvement: 0 },
-                { title: 'Deviation', key: 'Deviations', improvement: 0 }
+                { title: 'Deviation', key: 'Deviations', improvement: 67 }
               ].sort((a, b) => b.improvement - a.improvement).map(cat => {
                 let color, borderColor, textColor;
-                if (cat.improvement > 50) {
+                if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
                   color = '#3b82f6'; borderColor = '#3b82f6'; textColor = '#1e40af';
@@ -2017,17 +2229,31 @@ export default function SiteOverview() {
             }}>
               🏭 SITE-V
             </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '16px' }}>
               {[
                 { title: 'OOS', key: 'Out of Specifications', improvement: 59 },
                 { title: 'PA', key: 'PA', improvement: 54 },
                 { title: 'CA', key: 'CA', improvement: 52 },
+                { title: 'Deviation', key: 'Deviations', improvement: 42 },
                 { title: 'IR', key: 'Incidents', improvement: 28 },
                 { title: 'CC', key: 'Change Controls', improvement: 23 },
-                { title: 'Deviation', key: 'Deviations', improvement: 42 }
-              ].sort((a, b) => b.improvement - a.improvement).map(cat => {
+                { title: 'Mastering', key: 'Mastering', improvement: -40.7, isSpecial: true }
+              ].sort((a, b) => {
+                // Keep Mastering at the end
+                if (a.isSpecial) return 1;
+                if (b.isSpecial) return -1;
+                // Sort by improvement descending (highest first)
+                return b.improvement - a.improvement;
+              }).map(cat => {
                 let color, borderColor, textColor;
-                if (cat.improvement > 50) {
+                if (cat.isSpecial) {
+                  // Mastering card: green if positive, red if negative
+                  if (cat.improvement >= 0) {
+                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
+                  } else {
+                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
+                  }
+                } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
                   color = '#3b82f6'; borderColor = '#3b82f6'; textColor = '#1e40af';
@@ -2044,6 +2270,7 @@ export default function SiteOverview() {
                     color={color}
                     borderColor={borderColor}
                     textColor={textColor}
+                    isSpecial={cat.isSpecial}
                     onClick={() => handleCategoryClick(cat.key, 'SITE-V')}
                   />
                 );
@@ -2068,6 +2295,7 @@ export default function SiteOverview() {
             {selectedSite === 'SITE-I' && selectedCategory === 'PA' && <SiteIPreventiveActions />}
             {selectedSite === 'SITE-I' && selectedCategory === 'Out of Specifications' && <SiteIOutOfSpecifications />}
             {selectedSite === 'SITE-I' && selectedCategory === 'Change Controls' && <SiteIChangeControls />}
+            {selectedSite === 'SITE-I' && selectedCategory === 'Deviations' && <SiteIDeviations />}
             {selectedSite === 'SITE-III' && selectedCategory === 'Incidents' && <SiteIIIIncidents />}
             {selectedSite === 'SITE-III' && selectedCategory === 'CA' && <SiteIIICorrectiveActions />}
             {selectedSite === 'SITE-III' && selectedCategory === 'PA' && <SiteIIIPreventiveActions />}
@@ -2080,16 +2308,37 @@ export default function SiteOverview() {
             {selectedSite === 'SITE-V' && selectedCategory === 'Out of Specifications' && <SiteVOutOfSpecifications />}
             {selectedSite === 'SITE-V' && selectedCategory === 'Change Controls' && <SiteVChangeControls />}
             {selectedSite === 'SITE-V' && selectedCategory === 'Deviations' && <SiteVDeviations />}
+            {selectedSite === 'SITE-IV' && selectedCategory === 'Incidents' && <SiteIVIncidents />}
+            {selectedSite === 'SITE-IV' && selectedCategory === 'CA' && <SiteIVCorrectiveActions />}
+            {selectedSite === 'SITE-IV' && selectedCategory === 'PA' && <SiteIVPreventiveActions />}
+            {selectedSite === 'SITE-IV' && selectedCategory === 'Out of Specifications' && <SiteIVOutOfSpecifications />}
             {selectedSite === 'SITE-IV' && selectedCategory === 'Change Controls' && <SiteIVChangeControls />}
+            {selectedSite === 'SITE-IV' && selectedCategory === 'Deviations' && <SiteIVDeviations />}
+            
+            {/* Mastering Detail Views */}
+            {selectedSite === 'SITE-I' && selectedCategory === 'Mastering' && <MasteringDetail site="SITE-I" siteLabel="Site I" />}
+            {selectedSite === 'SITE-III' && selectedCategory === 'Mastering' && <MasteringDetail site="SITE-III" siteLabel="Site III" />}
+            {selectedSite === 'SITE-V' && selectedCategory === 'Mastering' && <MasteringDetail site="SITE-V" siteLabel="Site V" />}
 
             {!(selectedSite === 'SITE-I' && (
               selectedCategory === 'Incidents' ||
               selectedCategory === 'CA' ||
               selectedCategory === 'PA' ||
               selectedCategory === 'Out of Specifications' ||
-              selectedCategory === 'Change Controls'
+              selectedCategory === 'Change Controls' ||
+              selectedCategory === 'Mastering'
             )) && !(
               selectedSite === 'SITE-III' && (
+                selectedCategory === 'Incidents' ||
+                selectedCategory === 'CA' ||
+                selectedCategory === 'PA' ||
+                selectedCategory === 'Out of Specifications' ||
+                selectedCategory === 'Change Controls' ||
+                selectedCategory === 'Deviations' ||
+                selectedCategory === 'Mastering'
+              )
+            ) && !(
+              selectedSite === 'SITE-IV' && (
                 selectedCategory === 'Incidents' ||
                 selectedCategory === 'CA' ||
                 selectedCategory === 'PA' ||
@@ -2104,7 +2353,8 @@ export default function SiteOverview() {
                 selectedCategory === 'PA' ||
                 selectedCategory === 'Out of Specifications' ||
                 selectedCategory === 'Change Controls' ||
-                selectedCategory === 'Deviations'
+                selectedCategory === 'Deviations' ||
+                selectedCategory === 'Mastering'
               )
             ) && (
               <div style={{ padding: '48px 28px', textAlign: 'center' }}>

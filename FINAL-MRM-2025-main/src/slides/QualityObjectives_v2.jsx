@@ -725,7 +725,7 @@ const QualityObjectives_v2 = () => {
     const labelLineHeight = isObj06 ? '1.3' : '1.2';
     
     const baseWidth = 280;
-    const baseHeight = 120;
+    const baseHeight = 80;
     const clipPathValue = 'polygon(0 0, calc(100% - 40px) 0, 100% 50%, calc(100% - 40px) 100%, 0 100%, 35px 50%)';
     
     return (
@@ -748,13 +748,13 @@ const QualityObjectives_v2 = () => {
           transform: isActive ? 'scale(1.1)' : 'scale(1)',
           zIndex: isActive ? 10 : 5 - index,
           animation: `slideIn 0.4s ease-out ${0.4 + (index * 0.15)}s both`,
-          padding: '12px 18px',
-          gap: '8px',
+          padding: '8px 12px',
+          gap: '4px',
           overflow: 'hidden',
           boxShadow: isActive ? `0 8px 24px ${qiItem.color}40` : 'none'
         }}
       >
-        <div style={{ fontSize: '1.9rem', fontWeight: 800, letterSpacing: '0.5px', minWidth: '55px', textAlign: 'center', marginBottom: '6px' }}>
+        <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '0.3px', minWidth: '45px', textAlign: 'center', marginBottom: '2px' }}>
           QI {index + 1}
         </div>
         <div style={{ fontSize: labelFontSize, fontWeight: 600, textAlign: 'center', lineHeight: labelLineHeight, flex: 1, wordBreak: 'break-word' }}>
@@ -790,7 +790,7 @@ const QualityObjectives_v2 = () => {
               }}
           >
             <div style={{
-              padding: '28px 32px',
+              padding: '16px 20px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -802,10 +802,10 @@ const QualityObjectives_v2 = () => {
               zIndex: 10
             }}>
               <div>
-                <div style={{ fontSize: '1.2rem', color: '#64748b', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '4px' }}>
+                <div style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>
                   Objective 07 • QI 3
                 </div>
-                <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#0f172a' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0f172a' }}>
                   {obj07Qi3InfoModal.site} QA Staff Involved in QMS, IPQA, Lab QA
                 </div>
               </div>
@@ -833,39 +833,40 @@ const QualityObjectives_v2 = () => {
               </button>
             </div>
 
-            <div style={{ padding: '24px 32px', flex: 1 }}>
+            <div style={{ padding: '16px 20px', flex: 1 }}>
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-                gap: '16px',
-                marginBottom: '24px'
+                gap: '12px',
+                marginBottom: '16px'
               }}>
-                <div style={{ padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #ef4444 0%, #fca5a5 100%)', color: '#fff', boxShadow: '0 10px 30px rgba(239,68,68,0.25)' }}>
-                  <div style={{ fontSize: '1rem', opacity: 0.9, fontWeight: 700, marginBottom: '6px' }}>Before %</div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 900 }}>{obj07Qi3InfoModal?.stats?.totalBeforePercent ?? 0}%</div>
+                <div style={{ padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #ef4444 0%, #fca5a5 100%)', color: '#fff', boxShadow: '0 4px 12px rgba(239,68,68,0.2)' }}>
+                  <div style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Before %</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 900 }}>{obj07Qi3InfoModal?.stats?.totalBeforePercent ?? 0}%</div>
                 </div>
-                <div style={{ padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #10b981 0%, #6ee7b7 100%)', color: '#065f46', boxShadow: '0 10px 30px rgba(16,185,129,0.25)' }}>
-                  <div style={{ fontSize: '1rem', opacity: 0.9, fontWeight: 700, marginBottom: '6px' }}>After %</div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 900 }}>{obj07Qi3InfoModal?.stats?.totalAfterPercent ?? 0}%</div>
+                <div style={{ padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #10b981 0%, #6ee7b7 100%)', color: '#065f46', boxShadow: '0 4px 12px rgba(16,185,129,0.2)' }}>
+                  <div style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>After %</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 900 }}>{obj07Qi3InfoModal?.stats?.totalAfterPercent ?? 0}%</div>
                 </div>
-                <div style={{ padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)', color: '#0f172a', boxShadow: '0 10px 30px rgba(59,130,246,0.25)' }}>
-                  <div style={{ fontSize: '1rem', opacity: 0.9, fontWeight: 700, marginBottom: '6px' }}>Total Employees</div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 900, color: '#0f172a' }}>{obj07Qi3InfoModal?.stats?.totalEmployees || 0}</div>
+                <div style={{ padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)', color: '#0f172a', boxShadow: '0 4px 12px rgba(59,130,246,0.2)' }}>
+                  <div style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Total Employees</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#0f172a' }}>{obj07Qi3InfoModal?.stats?.totalEmployees || 0}</div>
                 </div>
-                <div style={{ padding: '18px', borderRadius: '14px', background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', color: '#0f172a', boxShadow: '0 10px 30px rgba(139,92,246,0.25)' }}>
-                  <div style={{ fontSize: '1rem', opacity: 0.9, fontWeight: 700, marginBottom: '6px' }}>QA Sub-Departments</div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 900, color: '#0f172a' }}>{obj07Qi3InfoModal?.stats?.totalDepartments || 0}</div>
+                <div style={{ padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', color: '#0f172a', boxShadow: '0 4px 12px rgba(139,92,246,0.2)' }}>
+                  <div style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>QA Sub-Departments</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#0f172a' }}>{obj07Qi3InfoModal?.stats?.totalDepartments || 0}</div>
                 </div>
               </div>
 
               <div style={{
-                marginBottom: '20px',
-                padding: '14px 16px',
-                borderRadius: '12px',
+                marginBottom: '12px',
+                padding: '10px 12px',
+                borderRadius: '8px',
                 background: '#0f172a',
                 color: '#e2e8f0',
                 display: 'grid',
-                gridTemplateColumns: '1.2fr 1fr 1fr 1fr 1fr'
+                gridTemplateColumns: '1.2fr 1fr 1fr 1fr 1fr',
+                fontSize: '0.85rem'
               }}>
                 <div style={{ fontWeight: 800 }}>Department</div>
                 <div style={{ textAlign: 'center', fontWeight: 800 }}>Before (Members)</div>
@@ -874,13 +875,13 @@ const QualityObjectives_v2 = () => {
                 <div style={{ textAlign: 'center', fontWeight: 800 }}>After (%)</div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px' }}>
                 {obj07Qi3InfoModal.rows.map((row, idx) => (
                   <div
                     key={idx}
                     style={{
-                      padding: '14px 16px',
-                      borderRadius: '12px',
+                      padding: '10px 12px',
+                      borderRadius: '8px',
                       background: idx % 2 === 0 ? '#f8fafc' : '#e2e8f0',
                       display: 'grid',
                       gridTemplateColumns: '1.2fr 1fr 1fr 1fr 1fr',
@@ -888,28 +889,28 @@ const QualityObjectives_v2 = () => {
                       border: '1px solid #cbd5e1'
                     }}
                   >
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>{row.department}</div>
-                    <div style={{ textAlign: 'center', fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>{row.beforeMembers}</div>
-                    <div style={{ textAlign: 'center', fontSize: '1.1rem', fontWeight: 700, color: '#ef4444' }}>{row.beforePercent}%</div>
-                    <div style={{ textAlign: 'center', fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>{row.afterMembers}</div>
-                    <div style={{ textAlign: 'center', fontSize: '1.1rem', fontWeight: 700, color: '#16a34a' }}>{row.afterPercent}%</div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0f172a' }}>{row.department}</div>
+                    <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>{row.beforeMembers}</div>
+                    <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: '#ef4444' }}>{row.beforePercent}%</div>
+                    <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>{row.afterMembers}</div>
+                    <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 700, color: '#16a34a' }}>{row.afterPercent}%</div>
                   </div>
                 ))}
               </div>
 
               <div style={{
-                padding: '16px',
-                borderRadius: '14px',
+                padding: '12px',
+                borderRadius: '10px',
                 background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
                 border: '1px solid #cbd5e1',
                 display: 'grid',
                 gridTemplateColumns: '1.2fr 1fr 1fr',
-                gap: '12px',
+                gap: '10px',
                 alignItems: 'center'
               }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>Totals</div>
-                <div style={{ textAlign: 'center', fontSize: '1.2rem', fontWeight: 800, color: '#ef4444' }}>Before: {obj07Qi3InfoModal?.stats?.totalBeforePercent ?? 0}%</div>
-                <div style={{ textAlign: 'center', fontSize: '1.2rem', fontWeight: 800, color: '#16a34a' }}>After: {obj07Qi3InfoModal?.stats?.totalAfterPercent ?? 0}%</div>
+                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a' }}>Totals</div>
+                <div style={{ textAlign: 'center', fontSize: '0.95rem', fontWeight: 800, color: '#ef4444' }}>Before: {obj07Qi3InfoModal?.stats?.totalBeforePercent ?? 0}%</div>
+                <div style={{ textAlign: 'center', fontSize: '0.95rem', fontWeight: 800, color: '#16a34a' }}>After: {obj07Qi3InfoModal?.stats?.totalAfterPercent ?? 0}%</div>
               </div>
             </div>
           </div>
@@ -943,7 +944,7 @@ const QualityObjectives_v2 = () => {
             }}
           >
             <div style={{
-              padding: '28px 32px',
+              padding: '16px 20px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -955,19 +956,19 @@ const QualityObjectives_v2 = () => {
               zIndex: 10
             }}>
               <div>
-                <div style={{ fontSize: '1.2rem', color: '#64748b', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '4px' }}>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
                   Objective 07 • QI 3
                 </div>
-                <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#0f172a' }}>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
                   📉 Decrease in QA Process Errors
                 </div>
               </div>
             </div>
 
-            <div style={{ padding: '24px 32px' }}>
+            <div style={{ padding: '16px 20px' }}>
               {/* QA Errors Table */}
-              <div style={{ marginBottom: '32px' }}>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a', marginBottom: '16px' }}>1st IQA vs 2nd IQA - Error Categories</h3>
+              <div style={{ marginBottom: '20px' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 900, color: '#0f172a', marginBottom: '10px' }}>1st IQA vs 2nd IQA - Error Categories</h3>
                 <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #cbd5e1' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', background: '#ffffff' }}>
                     <thead>
@@ -1067,7 +1068,7 @@ const QualityObjectives_v2 = () => {
 
             {/* Header */}
             <div style={{
-              padding: '32px 40px',
+              padding: '16px 20px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -1078,40 +1079,40 @@ const QualityObjectives_v2 = () => {
               top: 0,
               zIndex: 10
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{
-                  width: '70px',
-                  height: '70px',
-                  borderRadius: '18px',
+                  width: '45px',
+                  height: '45px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '2rem',
-                  boxShadow: '0 10px 30px rgba(245,158,11,0.35), 0 0 0 3px rgba(245,158,11,0.1)',
+                  fontSize: '1.3rem',
+                  boxShadow: '0 4px 12px rgba(245,158,11,0.3), 0 0 0 2px rgba(245,158,11,0.1)',
                   animation: 'pulse 2s ease-in-out infinite'
                 }}>
                   🎓
                 </div>
                 <div>
                   <div style={{ 
-                    fontSize: '1.3rem', 
+                    fontSize: '0.85rem', 
                     color: '#64748b', 
                     fontWeight: 700, 
-                    letterSpacing: '1.5px',
+                    letterSpacing: '1px',
                     textTransform: 'uppercase',
-                    marginBottom: '4px'
+                    marginBottom: '2px'
                   }}>
                     Objective 07 • QI 1
                   </div>
                   <div style={{ 
-                    fontSize: '2.5rem', 
+                    fontSize: '1.6rem', 
                     fontWeight: 900, 
                     background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    letterSpacing: '0.5px'
+                    letterSpacing: '0.3px'
                   }}>
                     {obj07Qi1InfoModal.site} Training Details
                   </div>
@@ -1163,57 +1164,57 @@ const QualityObjectives_v2 = () => {
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '20px',
-                marginBottom: '36px',
+                gap: '12px',
+                marginBottom: '20px',
                 animation: 'slideUp 0.5s ease-out'
               }}>
                 <div style={{
-                  padding: '24px',
-                  borderRadius: '18px',
+                  padding: '12px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  boxShadow: '0 10px 30px rgba(16,185,129,0.3)',
+                  boxShadow: '0 4px 12px rgba(16,185,129,0.25)',
                   color: '#ffffff'
                 }}>
-                  <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Total Sessions</div>
-                  <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.length}</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Total Sessions</div>
+                  <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.length}</div>
                 </div>
                 <div style={{
-                  padding: '24px',
-                  borderRadius: '18px',
+                  padding: '12px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                  boxShadow: '0 10px 30px rgba(59,130,246,0.3)',
+                  boxShadow: '0 4px 12px rgba(59,130,246,0.25)',
                   color: '#ffffff'
                 }}>
-                  <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Completed</div>
-                  <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Completed</div>
+                  <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
                 </div>
                 <div style={{
-                  padding: '24px',
-                  borderRadius: '18px',
+                  padding: '12px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                  boxShadow: '0 10px 30px rgba(245,158,11,0.3)',
+                  boxShadow: '0 4px 12px rgba(245,158,11,0.25)',
                   color: '#ffffff'
                 }}>
-                  <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Pending</div>
-                  <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'Pending').length}</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Pending</div>
+                  <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'Pending').length}</div>
                 </div>
                 <div style={{
-                  padding: '24px',
-                  borderRadius: '18px',
+                  padding: '12px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-                  boxShadow: '0 10px 30px rgba(139,92,246,0.3)',
+                  boxShadow: '0 4px 12px rgba(139,92,246,0.25)',
                   color: '#ffffff'
                 }}>
-                  <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>In Progress / Scheduled</div>
-                  <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'In Progress' || r.status === 'Scheduled').length + 7}</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>In Progress / Scheduled</div>
+                  <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi1InfoModal.rows.filter(r => r.status === 'In Progress' || r.status === 'Scheduled').length + 7}</div>
                 </div>
               </div>
 
               {/* Training Cards */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))',
-                gap: '20px'
+                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                gap: '12px'
               }}>
                 {obj07Qi1InfoModal.rows.map((row, idx) => {
                   const statusColors = {
@@ -1228,57 +1229,57 @@ const QualityObjectives_v2 = () => {
                     <div
                       key={idx}
                       style={{
-                        padding: '24px',
-                        borderRadius: '16px',
+                        padding: '14px',
+                        borderRadius: '10px',
                         background: scheme.bg,
-                        border: `3px solid ${scheme.border}`,
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                        border: `2px solid ${scheme.border}`,
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
                         transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                         cursor: 'pointer',
                         position: 'relative',
                         animation: `slideUp 0.5s ease-out ${idx * 0.05}s both`
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)';
-                        e.currentTarget.style.boxShadow = `0 12px 30px ${scheme.border}30`;
+                        e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+                        e.currentTarget.style.boxShadow = `0 8px 18px ${scheme.border}30`;
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+                        e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.08)';
                       }}
                     >
                       {/* Status Badge */}
                       <div style={{
                         position: 'absolute',
-                        top: '16px',
-                        right: '16px',
-                        padding: '8px 14px',
-                        borderRadius: '10px',
+                        top: '10px',
+                        right: '10px',
+                        padding: '4px 8px',
+                        borderRadius: '6px',
                         background: scheme.badge,
                         color: '#ffffff',
-                        fontSize: '1.1rem',
+                        fontSize: '0.7rem',
                         fontWeight: 800,
-                        boxShadow: `0 4px 10px ${scheme.badge}40`
+                        boxShadow: `0 2px 6px ${scheme.badge}40`
                       }}>
                         {row.status}
                       </div>
 
                       <div style={{
-                        fontSize: '1.9rem',
+                        fontSize: '1.2rem',
                         fontWeight: 900,
                         color: scheme.text,
-                        marginBottom: '16px',
-                        lineHeight: '1.3',
-                        paddingRight: '120px'
+                        marginBottom: '10px',
+                        lineHeight: '1.2',
+                        paddingRight: '80px'
                       }}>
                         {row.srNo ? `${row.srNo}. ${row.sopName}` : row.sopName}
                       </div>
 
                       <div style={{
-                        fontSize: '1.2rem',
+                        fontSize: '0.8rem',
                         fontWeight: 700,
                         color: scheme.text,
-                        marginBottom: '10px'
+                        marginBottom: '8px'
                       }}>
                         SOP Number: {row.sopNumber}
                       </div>
@@ -1286,56 +1287,56 @@ const QualityObjectives_v2 = () => {
                       <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '12px',
-                        marginTop: '8px'
+                        gap: '6px',
+                        marginTop: '6px'
                       }}>
                         <div style={{
-                          padding: '12px 16px',
-                          borderRadius: '10px',
+                          padding: '6px 8px',
+                          borderRadius: '6px',
                           background: '#ffffff',
-                          border: `2px solid ${scheme.border}30`
+                          border: `1px solid ${scheme.border}30`
                         }}>
-                          <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Revision</div>
-                          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>🌀 {row.revisionNumber}</div>
+                          <div style={{ fontSize: '0.7rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Revision</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>🌀 {row.revisionNumber}</div>
                         </div>
                         <div style={{
-                          padding: '12px 16px',
-                          borderRadius: '10px',
+                          padding: '6px 8px',
+                          borderRadius: '6px',
                           background: '#ffffff',
-                          border: `2px solid ${scheme.border}30`
+                          border: `1px solid ${scheme.border}30`
                         }}>
-                          <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Trainer</div>
-                          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>👤 {row.trainerName}</div>
+                          <div style={{ fontSize: '0.7rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Trainer</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>👤 {row.trainerName}</div>
                         </div>
                         <div style={{
-                          padding: '12px 16px',
-                          borderRadius: '10px',
+                          padding: '6px 8px',
+                          borderRadius: '6px',
                           background: '#ffffff',
-                          border: `2px solid ${scheme.border}30`
+                          border: `1px solid ${scheme.border}30`
                         }}>
-                          <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Date</div>
-                          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>📅 {row.date}</div>
+                          <div style={{ fontSize: '0.7rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Date</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>📅 {row.date}</div>
                         </div>
                         <div style={{
-                          padding: '12px 16px',
-                          borderRadius: '10px',
+                          padding: '6px 8px',
+                          borderRadius: '6px',
                           background: '#ffffff',
-                          border: `2px solid ${scheme.border}30`
+                          border: `1px solid ${scheme.border}30`
                         }}>
-                          <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Time</div>
-                          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>⏰ {row.time}</div>
+                          <div style={{ fontSize: '0.7rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Time</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>⏰ {row.time}</div>
                         </div>
                       </div>
 
                       <div style={{
-                        marginTop: '12px',
-                        padding: '12px 16px',
-                        borderRadius: '10px',
+                        marginTop: '6px',
+                        padding: '6px 8px',
+                        borderRadius: '6px',
                         background: '#ffffff',
-                        border: `2px solid ${scheme.border}30`
+                        border: `1px solid ${scheme.border}30`
                       }}>
-                        <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Remarks</div>
-                        <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>📝 {row.remarks}</div>
+                        <div style={{ fontSize: '0.7rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Remarks</div>
+                        <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>📝 {row.remarks}</div>
                       </div>
                     </div>
                   );
@@ -1432,14 +1433,14 @@ const QualityObjectives_v2 = () => {
                 {/* Site Header Badge */}
                 <div style={{ 
                   display: 'inline-block',
-                  padding: '12px 24px',
+                  padding: '8px 16px',
                   background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
-                  borderRadius: '12px',
-                  marginBottom: '20px',
-                  boxShadow: `0 4px 12px ${gradient.from}40`
+                  borderRadius: '8px',
+                  marginBottom: '14px',
+                  boxShadow: `0 2px 8px ${gradient.from}40`
                 }}>
                   <span style={{
-                    fontSize: '1.8rem',
+                    fontSize: '1.2rem',
                     fontWeight: 900,
                     color: '#ffffff',
                     letterSpacing: '0.5px'
@@ -1450,17 +1451,17 @@ const QualityObjectives_v2 = () => {
 
                 {/* Total Employees Card */}
                 <div style={{ 
-                  padding: '16px 20px',
+                  padding: '10px 14px',
                   background: '#ffffff',
-                  borderRadius: '14px',
-                  marginBottom: '24px',
+                  borderRadius: '8px',
+                  marginBottom: '14px',
                   border: `2px solid ${gradient.from}20`,
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '1.6rem', color: '#475569', fontWeight: 600 }}>Total Employees</span>
+                    <span style={{ fontSize: '1.05rem', color: '#475569', fontWeight: 600 }}>Total Employees</span>
                     <span style={{ 
-                      fontSize: '2.2rem', 
+                      fontSize: '1.5rem', 
                       fontWeight: 900, 
                       background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                       WebkitBackgroundClip: 'text',
@@ -1474,22 +1475,22 @@ const QualityObjectives_v2 = () => {
 
                 {/* No Training Status Card */}
                 <div style={{
-                  padding: '20px',
+                  padding: '12px',
                   background: `linear-gradient(135deg, #fef2f2 0%, #ffffff 100%)`,
-                  borderRadius: '14px',
+                  borderRadius: '8px',
                   border: '2px solid #fee2e2',
-                  marginBottom: '24px',
-                  boxShadow: '0 2px 8px rgba(239, 68, 68, 0.1)'
+                  marginBottom: '14px',
+                  boxShadow: '0 1px 4px rgba(239, 68, 68, 0.1)'
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                    <span style={{ fontSize: '1.7rem', fontWeight: 800, color: '#dc2626' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#dc2626' }}>
                       No Training
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                      <span style={{ fontSize: '2.4rem', fontWeight: 900, color: '#ef4444' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                      <span style={{ fontSize: '1.6rem', fontWeight: 900, color: '#ef4444' }}>
                         {item.noTraining}
                       </span>
-                      <span style={{ fontSize: '1.7rem', color: '#64748b', fontWeight: 700 }}>
+                      <span style={{ fontSize: '1.1rem', color: '#64748b', fontWeight: 700 }}>
                         ({noTrainingPercentage}%)
                       </span>
                     </div>
@@ -1530,34 +1531,34 @@ const QualityObjectives_v2 = () => {
                 {/* Top 3 Errors Section */}
                 {item.topErrors && (
                   <div style={{ 
-                    padding: '20px',
+                    padding: '12px',
                     background: '#ffffff',
-                    borderRadius: '14px',
+                    borderRadius: '8px',
                     border: `2px solid ${gradient.from}20`,
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
                   }}>
                     <div style={{ 
-                      fontSize: '1.7rem', 
+                      fontSize: '1.1rem', 
                       fontWeight: 800, 
                       background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
-                      marginBottom: '16px',
+                      marginBottom: '10px',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '8px'
+                      gap: '6px'
                     }}>
                       <span style={{ 
                         display: 'inline-block',
-                        width: '8px',
-                        height: '8px',
+                        width: '6px',
+                        height: '6px',
                         background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                         borderRadius: '50%'
                       }} />
                       Top 3 Errors:
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {item.topErrors.map((errorItem, errIdx) => (
                         <div 
                           key={errIdx} 
@@ -1565,9 +1566,9 @@ const QualityObjectives_v2 = () => {
                             display: 'flex', 
                             justifyContent: 'space-between', 
                             alignItems: 'center',
-                            padding: '12px 16px',
+                            padding: '8px 12px',
                             background: `linear-gradient(135deg, ${gradient.bg} 0%, #ffffff 100%)`,
-                            borderRadius: '10px',
+                            borderRadius: '6px',
                             border: `1px solid ${gradient.from}20`,
                             transition: 'all 0.2s ease',
                             cursor: 'pointer'
@@ -1582,7 +1583,7 @@ const QualityObjectives_v2 = () => {
                           }}
                         >
                           <span style={{ 
-                            fontSize: '1.5rem', 
+                            fontSize: '0.95rem', 
                             fontWeight: 600, 
                             color: '#1e293b',
                             flex: 1
@@ -1590,13 +1591,13 @@ const QualityObjectives_v2 = () => {
                             {errorItem.error}
                           </span>
                           <span style={{ 
-                            fontSize: '1.8rem', 
+                            fontSize: '1.2rem', 
                             fontWeight: 900, 
                             background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
-                            minWidth: '60px',
+                            minWidth: '50px',
                             textAlign: 'right'
                           }}>
                             {errorItem.percentage}%
@@ -1652,14 +1653,14 @@ const QualityObjectives_v2 = () => {
                 {/* Site Header with Badge Style */}
                 <div style={{ 
                   display: 'inline-block',
-                  fontSize: '1.8rem', 
+                  fontSize: '1.2rem', 
                   fontWeight: 900, 
                   color: '#ffffff',
                   background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
-                  padding: '12px 28px',
-                  borderRadius: '12px',
-                  marginBottom: '24px',
-                  boxShadow: `0 6px 20px ${colors.primary}40`,
+                  padding: '8px 18px',
+                  borderRadius: '8px',
+                  marginBottom: '14px',
+                  boxShadow: `0 4px 12px ${colors.primary}40`,
                   position: 'relative',
                   zIndex: 1
                 }}>
@@ -1667,29 +1668,29 @@ const QualityObjectives_v2 = () => {
                 </div>
 
                 {/* Implementation Flow with Modern Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '24px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' }}>
                   {implementationStages.map((stage, stageIdx) => (
                     <div key={stageIdx} style={{
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      padding: '18px 14px',
+                      padding: '10px 8px',
                       background: stage.gradient,
-                      borderRadius: '14px',
+                      borderRadius: '8px',
                       border: `2px solid ${stage.color}`,
-                      boxShadow: `0 8px 20px ${stage.color}30`,
+                      boxShadow: `0 4px 12px ${stage.color}30`,
                       transition: 'all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)',
                       cursor: 'pointer',
                       position: 'relative',
                       overflow: 'hidden'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                      e.currentTarget.style.boxShadow = `0 12px 28px ${stage.color}45`;
+                      e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = `0 8px 18px ${stage.color}45`;
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                      e.currentTarget.style.boxShadow = `0 8px 20px ${stage.color}30`;
+                      e.currentTarget.style.boxShadow = `0 4px 12px ${stage.color}30`;
                     }}
                     >
                       {/* Shine effect */}
@@ -1700,33 +1701,33 @@ const QualityObjectives_v2 = () => {
                         right: '-2px',
                         height: '50%',
                         background: 'linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 100%)',
-                        borderRadius: '12px 12px 0 0',
+                        borderRadius: '6px 6px 0 0',
                         pointerEvents: 'none'
                       }}></div>
 
                       <div style={{ 
-                        fontSize: '2.2rem', 
-                        marginBottom: '8px',
-                        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+                        fontSize: '1.5rem', 
+                        marginBottom: '4px',
+                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))'
                       }}>
                         {stage.icon}
                       </div>
                       <div style={{ 
-                        fontSize: '1.3rem', 
+                        fontSize: '0.85rem', 
                         color: '#ffffff', 
                         fontWeight: 700, 
-                        marginBottom: '8px',
+                        marginBottom: '4px',
                         textAlign: 'center',
-                        lineHeight: '1.3',
-                        textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                        lineHeight: '1.2',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                       }}>
                         {stage.label}
                       </div>
                       <div style={{ 
-                        fontSize: '2.4rem', 
+                        fontSize: '1.6rem', 
                         fontWeight: 900, 
                         color: '#ffffff',
-                        textShadow: '0 3px 8px rgba(0,0,0,0.3)'
+                        textShadow: '0 2px 4px rgba(0,0,0,0.3)'
                       }}>
                         {stage.value}
                       </div>
@@ -1736,12 +1737,12 @@ const QualityObjectives_v2 = () => {
 
                 {/* Success Rate - Large Prominent Display */}
                 <div style={{ 
-                  padding: '20px',
+                  padding: '12px',
                   background: `linear-gradient(135deg, #10b981 0%, #059669 100%)`,
-                  borderRadius: '16px',
-                  border: `3px solid #10b981`,
+                  borderRadius: '10px',
+                  border: `2px solid #10b981`,
                   textAlign: 'center',
-                  boxShadow: '0 8px 24px rgba(16, 185, 129, 0.4)',
+                  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
                   position: 'relative',
                   overflow: 'hidden'
                 }}>
@@ -1753,27 +1754,27 @@ const QualityObjectives_v2 = () => {
                     right: '-2px',
                     height: '50%',
                     background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)',
-                    borderRadius: '14px 14px 0 0',
+                    borderRadius: '8px 8px 0 0',
                     pointerEvents: 'none'
                   }}></div>
 
                   <div style={{ 
-                    fontSize: '1.4rem', 
+                    fontSize: '0.9rem', 
                     color: 'rgba(255,255,255,0.95)', 
                     fontWeight: 700, 
-                    marginBottom: '8px',
-                    letterSpacing: '0.5px',
+                    marginBottom: '4px',
+                    letterSpacing: '0.3px',
                     textTransform: 'uppercase',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                    textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                   }}>
                     Implementation Success Rate
                   </div>
                   <div style={{ 
-                    fontSize: '3.5rem', 
+                    fontSize: '2.2rem', 
                     fontWeight: 900, 
                     color: '#ffffff',
-                    textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                    letterSpacing: '-1px'
+                    textShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                    letterSpacing: '-0.5px'
                   }}>
                     {successRate}%
                   </div>
@@ -1811,32 +1812,32 @@ const QualityObjectives_v2 = () => {
               <div 
                 key={idx} 
                 style={{
-                  padding: '28px',
+                  padding: '16px',
                   background: `linear-gradient(135deg, ${gradient.bg} 0%, #ffffff 100%)`,
-                  borderRadius: '20px',
-                  border: `3px solid ${gradient.from}30`,
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08)',
+                  borderRadius: '12px',
+                  border: `2px solid ${gradient.from}30`,
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)',
                   position: 'relative',
                   overflow: 'hidden',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.12)';
+                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.01)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)';
                 }}
               >
                 {/* Corner Decorative Element */}
                 <div style={{
                   position: 'absolute',
-                  top: '-30px',
-                  right: '-30px',
-                  width: '100px',
-                  height: '100px',
+                  top: '-20px',
+                  right: '-20px',
+                  width: '60px',
+                  height: '60px',
                   background: `radial-gradient(circle, ${gradient.accent}40 0%, transparent 70%)`,
                   borderRadius: '50%'
                 }} />
@@ -1856,17 +1857,17 @@ const QualityObjectives_v2 = () => {
                 {/* Site Header Badge */}
                 <div style={{ 
                   display: 'inline-block',
-                  padding: '12px 24px',
+                  padding: '4px 10px',
                   background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
-                  borderRadius: '12px',
-                  marginBottom: '20px',
-                  boxShadow: `0 4px 12px ${gradient.from}40`
+                  borderRadius: '6px',
+                  marginBottom: '8px',
+                  boxShadow: `0 1px 4px ${gradient.from}40`
                 }}>
                   <span style={{
-                    fontSize: '1.8rem',
+                    fontSize: '0.8rem',
                     fontWeight: 900,
                     color: '#ffffff',
-                    letterSpacing: '0.5px'
+                    letterSpacing: '0.3px'
                   }}>
                     {item.site}
                   </span>
@@ -1876,17 +1877,17 @@ const QualityObjectives_v2 = () => {
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '24px',
-                  padding: '16px',
+                  gap: '6px',
+                  marginBottom: '10px',
+                  padding: '6px',
                   background: '#ffffff',
-                  borderRadius: '14px',
-                  border: `2px solid ${gradient.from}20`,
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                  borderRadius: '6px',
+                  border: `1px solid ${gradient.from}20`,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
                 }}>
-                  <span style={{ fontSize: '2rem' }}>📅</span>
+                  <span style={{ fontSize: '0.85rem' }}>📅</span>
                   <div style={{
-                    fontSize: '1.65rem',
+                    fontSize: '0.7rem',
                     fontWeight: 800,
                     background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                     WebkitBackgroundClip: 'text',
@@ -1901,17 +1902,17 @@ const QualityObjectives_v2 = () => {
                 {hasBiweeklyData ? (
                   <>
                     {/* Timeline of Checks */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '24px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
                       {item.biweeklyChecks.map((check, checkIdx) => (
                         <div 
                           key={checkIdx} 
                           style={{
                             position: 'relative',
-                            paddingLeft: '36px',
+                            paddingLeft: '24px',
                             transition: 'all 0.2s ease'
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateX(4px)';
+                            e.currentTarget.style.transform = 'translateX(2px)';
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'translateX(0)';
@@ -1920,14 +1921,14 @@ const QualityObjectives_v2 = () => {
                           {/* Timeline Dot */}
                           <div style={{
                             position: 'absolute',
-                            left: '8px',
-                            top: '6px',
-                            width: '14px',
-                            height: '14px',
+                            left: '6px',
+                            top: '4px',
+                            width: '10px',
+                            height: '10px',
                             borderRadius: '50%',
                             background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
-                            border: '3px solid #ffffff',
-                            boxShadow: `0 0 0 3px ${gradient.from}40`,
+                            border: '2px solid #ffffff',
+                            boxShadow: `0 0 0 2px ${gradient.from}40`,
                             transition: 'all 0.2s ease'
                           }} />
                           
@@ -1935,46 +1936,47 @@ const QualityObjectives_v2 = () => {
                           {checkIdx < item.biweeklyChecks.length - 1 && (
                             <div style={{
                               position: 'absolute',
-                              left: '14px',
-                              top: '24px',
-                              width: '2px',
-                              height: 'calc(100% + 10px)',
+                              left: '10px',
+                              top: '16px',
+                              width: '1px',
+                              height: 'calc(100% + 6px)',
                               background: `linear-gradient(180deg, ${gradient.from}60 0%, ${gradient.from}10 100%)`
                             }}/>
                           )}
 
                           {/* Check Content */}
                           <div style={{
-                            padding: '14px 16px',
+                            padding: '5px 7px',
                             background: `linear-gradient(135deg, ${gradient.bg} 0%, #ffffff 100%)`,
-                            borderRadius: '12px',
-                            border: `2px solid ${gradient.from}30`,
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+                            borderRadius: '6px',
+                            border: `1px solid ${gradient.from}30`,
+                            boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
                           }}>
                             <div style={{ 
-                              fontSize: '1.6rem', 
+                              fontSize: '0.68rem', 
                               fontWeight: 800, 
                               background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                               WebkitBackgroundClip: 'text',
                               WebkitTextFillColor: 'transparent',
                               backgroundClip: 'text',
-                              marginBottom: '6px'
+                              marginBottom: '2px'
                             }}>
                               {check.date}
                             </div>
                             <div style={{ 
-                              fontSize: '1.5rem', 
+                              fontSize: '0.62rem', 
                               color: '#1e293b',
-                              lineHeight: '1.5',
+                              lineHeight: '1.2',
                               fontWeight: 600,
                               display: 'flex',
                               alignItems: 'flex-start',
-                              gap: '8px'
+                              gap: '4px'
                             }}>
                               <span style={{ 
                                 color: gradient.from,
                                 fontWeight: 900,
-                                marginTop: '2px'
+                                marginTop: '1px',
+                                fontSize: '0.65rem'
                               }}>✓</span>
                               <span>{check.status}</span>
                             </div>
@@ -1985,26 +1987,26 @@ const QualityObjectives_v2 = () => {
 
                     {/* Verification Status Badge */}
                     <div style={{
-                      padding: '18px 22px',
+                      padding: '6px 10px',
                       background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
-                      borderRadius: '14px',
+                      borderRadius: '6px',
                       textAlign: 'center',
                       color: '#ffffff',
-                      boxShadow: `0 6px 16px ${gradient.from}40`,
+                      boxShadow: `0 2px 6px ${gradient.from}40`,
                       transition: 'all 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      e.currentTarget.style.boxShadow = `0 8px 24px ${gradient.from}60`;
+                      e.currentTarget.style.transform = 'scale(1.03)';
+                      e.currentTarget.style.boxShadow = `0 4px 10px ${gradient.from}60`;
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = `0 6px 16px ${gradient.from}40`;
+                      e.currentTarget.style.boxShadow = `0 2px 6px ${gradient.from}40`;
                     }}>
-                      <div style={{ fontSize: '1.4rem', marginBottom: '6px', opacity: 0.95, fontWeight: 600 }}>
+                      <div style={{ fontSize: '0.6rem', marginBottom: '2px', opacity: 0.95, fontWeight: 600 }}>
                         Verification Status
                       </div>
-                      <div style={{ fontSize: '1.75rem', fontWeight: 900, letterSpacing: '0.3px' }}>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '0.1px' }}>
                         {item.site === 'Site V' ? (
                           <>🔴 Initiated 11 incidents</>
                         ) : item.site === 'Site III' ? (
@@ -2017,18 +2019,18 @@ const QualityObjectives_v2 = () => {
                   </>
                 ) : (
                   <div style={{
-                    padding: '32px 24px',
+                    padding: '12px 10px',
                     background: `linear-gradient(135deg, ${gradient.bg} 0%, #ffffff 100%)`,
-                    borderRadius: '14px',
-                    border: `2px dashed ${gradient.from}40`,
+                    borderRadius: '6px',
+                    border: `1px dashed ${gradient.from}40`,
                     textAlign: 'center'
                   }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '12px' }}>📊</div>
+                    <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>📊</div>
                     <div style={{
                       color: '#475569',
-                      fontSize: '1.7rem',
+                      fontSize: '0.7rem',
                       fontWeight: 700,
-                      lineHeight: '1.6'
+                      lineHeight: '1.3'
                     }}>
                       Data not available yet.
                     </div>
@@ -2112,14 +2114,14 @@ const QualityObjectives_v2 = () => {
                 {/* Site Header Badge */}
                 <div style={{ 
                   display: 'inline-block',
-                  padding: '12px 24px',
+                  padding: '8px 16px',
                   background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
-                  borderRadius: '12px',
-                  marginBottom: '20px',
-                  boxShadow: `0 4px 12px ${gradient.from}40`
+                  borderRadius: '8px',
+                  marginBottom: '12px',
+                  boxShadow: `0 2px 8px ${gradient.from}40`
                 }}>
                   <span style={{
-                    fontSize: '1.8rem',
+                    fontSize: '1.2rem',
                     fontWeight: 900,
                     color: '#ffffff',
                     letterSpacing: '0.5px'
@@ -2131,14 +2133,14 @@ const QualityObjectives_v2 = () => {
                 {/* Status Badge */}
                 <div style={{
                   display: 'inline-block',
-                  padding: '10px 18px',
+                  padding: '6px 12px',
                   background: hasMetrics ? `linear-gradient(135deg, #10b98120 0%, #10b98108 100%)` : `linear-gradient(135deg, #f5956020 0%, #f5956008 100%)`,
-                  borderRadius: '10px',
-                  marginBottom: '22px',
+                  borderRadius: '6px',
+                  marginBottom: '14px',
                   border: `2px solid ${hasMetrics ? '#10b98140' : '#f5956040'}`
                 }}>
                   <span style={{ 
-                    fontSize: '1.6rem', 
+                    fontSize: '1.05rem', 
                     fontWeight: 800, 
                     background: `linear-gradient(135deg, ${hasMetrics ? '#10b981' : '#f59e0b'} 0%, ${hasMetrics ? '#047857' : '#d97706'} 100%)`,
                     WebkitBackgroundClip: 'text',
@@ -2151,41 +2153,41 @@ const QualityObjectives_v2 = () => {
 
                 {/* Metrics Section */}
                 {hasMetrics ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {item.metrics.map((metric, metricIdx) => (
                       <div 
                         key={metricIdx}
                         style={{
-                          padding: '16px',
+                          padding: '10px',
                           background: '#ffffff',
-                          borderRadius: '12px',
+                          borderRadius: '8px',
                           border: `2px solid ${metric.color}40`,
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                          boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
                           transition: 'all 0.2s ease'
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateX(4px)';
-                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.12)';
+                          e.currentTarget.style.transform = 'translateX(3px)';
+                          e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.12)';
                           e.currentTarget.style.borderColor = metric.color;
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = 'translateX(0)';
-                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+                          e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.06)';
                           e.currentTarget.style.borderColor = `${metric.color}40`;
                         }}
                       >
                         <div style={{
                           display: 'flex',
                           alignItems: 'flex-start',
-                          gap: '12px',
-                          marginBottom: '12px'
+                          gap: '8px',
+                          marginBottom: '8px'
                         }}>
-                          <span style={{ fontSize: '2rem' }}>{metric.icon}</span>
+                          <span style={{ fontSize: '1.3rem' }}>{metric.icon}</span>
                           <div style={{
-                            fontSize: '1.4rem',
+                            fontSize: '0.9rem',
                             fontWeight: 700,
                             color: '#1e293b',
-                            lineHeight: '1.5',
+                            lineHeight: '1.3',
                             flex: 1
                           }}>
                             {metric.label}
@@ -2195,13 +2197,13 @@ const QualityObjectives_v2 = () => {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          gap: '8px',
-                          padding: '10px',
+                          gap: '6px',
+                          padding: '6px',
                           background: `${metric.color}15`,
-                          borderRadius: '8px'
+                          borderRadius: '6px'
                         }}>
                           <span style={{
-                            fontSize: '2.2rem',
+                            fontSize: '1.5rem',
                             fontWeight: 900,
                             color: metric.color
                           }}>
@@ -2213,18 +2215,18 @@ const QualityObjectives_v2 = () => {
                   </div>
                 ) : (
                   <div style={{
-                    padding: '32px 24px',
+                    padding: '20px 16px',
                     background: `linear-gradient(135deg, ${gradient.bg} 0%, #ffffff 100%)`,
-                    borderRadius: '14px',
+                    borderRadius: '8px',
                     border: `2px dashed ${gradient.from}40`,
                     textAlign: 'center'
                   }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>📋</div>
+                    <div style={{ fontSize: '1.6rem', marginBottom: '8px' }}>📋</div>
                     <div style={{
                       color: '#475569',
-                      fontSize: '1.6rem',
+                      fontSize: '1.05rem',
                       fontWeight: 700,
-                      lineHeight: '1.6'
+                      lineHeight: '1.4'
                     }}>
                       Data need to add
                     </div>
@@ -2285,67 +2287,67 @@ const QualityObjectives_v2 = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: '2fr 1fr',
-            gap: '24px',
-            marginBottom: '32px',
-            paddingBottom: '24px',
+            gap: '16px',
+            marginBottom: '20px',
+            paddingBottom: '16px',
             borderBottom: `2px solid ${colors.primary}20`
           }}>
             <div>
-              <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '4px' }}>
+              <div style={{ fontSize: '1rem', color: '#0f172a', fontWeight: 600, marginBottom: '2px' }}>
                 {qiIcon} Implementation Phase
               </div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>
+              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
                 {qiLabel}
               </div>
 
               {/* Summary Stats - Inline */}
               <div style={{
-                padding: '16px',
+                padding: '10px',
                 background: '#ffffff',
-                borderRadius: '14px',
+                borderRadius: '8px',
                 border: `2px solid #e2e8f0`,
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '16px',
+                gap: '8px',
                 textAlign: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
               }}>
                 <div style={{
-                  padding: '14px',
+                  padding: '8px',
                   background: 'linear-gradient(135deg, #10b98120 0%, #059669 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '6px',
                   border: '2px solid #10b981'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#065f46', fontWeight: 700, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#065f46', fontWeight: 700, marginBottom: '3px' }}>
                     ✓ Completed
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: '#047857' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#047857' }}>
                     {completedSteps}/{steps.length}
                   </div>
                 </div>
                 <div style={{
-                  padding: '14px',
+                  padding: '8px',
                   background: 'linear-gradient(135deg, #3b82f620 0%, #2563eb 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '6px',
                   border: '2px solid #3b82f6'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#0c2d6b', fontWeight: 700, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#0c2d6b', fontWeight: 700, marginBottom: '3px' }}>
                     📍 Scope
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: '#1e40af' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#1e40af' }}>
                     I, III, IV, V
                   </div>
                 </div>
                 <div style={{
-                  padding: '14px',
+                  padding: '8px',
                   background: 'linear-gradient(135deg, #f59e0b20 0%, #d97706 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '6px',
                   border: '2px solid #f59e0b'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '3px' }}>
                     ⏳ Status
                   </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#b45309' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#b45309' }}>
                     In Process
                   </div>
                 </div>
@@ -2359,40 +2361,40 @@ const QualityObjectives_v2 = () => {
               alignItems: 'center',
               justifyContent: 'center',
               background: `${colors.primary}08`,
-              borderRadius: '14px',
-              padding: '18px'
+              borderRadius: '8px',
+              padding: '10px'
             }}>
               <div style={{
                 position: 'relative',
-                width: '150px',
-                height: '150px',
+                width: '100px',
+                height: '100px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: '8px'
+                marginBottom: '4px'
               }}>
-                <svg width="150" height="150" style={{ transform: 'rotate(-90deg)', position: 'absolute' }}>
-                  <circle cx="75" cy="75" r="66" fill="none" stroke="#e2e8f0" strokeWidth="8"/>
+                <svg width="100" height="100" style={{ transform: 'rotate(-90deg)', position: 'absolute' }}>
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="#e2e8f0" strokeWidth="6"/>
                   <circle
-                    cx="75"
-                    cy="75"
-                    r="66"
+                    cx="50"
+                    cy="50"
+                    r="44"
                     fill="none"
                     stroke={colors.primary}
-                    strokeWidth="8"
-                    strokeDasharray={`${(overallProgress / 100) * 2 * 3.14159 * 66} ${2 * 3.14159 * 66}`}
+                    strokeWidth="6"
+                    strokeDasharray={`${(overallProgress / 100) * 2 * 3.14159 * 44} ${2 * 3.14159 * 44}`}
                     strokeDashoffset="var(--dash-total)"
                     style={{
-                      '--dash-total': `${2 * 3.14159 * 66}`,
+                      '--dash-total': `${2 * 3.14159 * 44}`,
                       animation: 'progressFill 1.5s ease-out forwards'
                     }}
                   />
                 </svg>
                 <div style={{ textAlign: 'center', zIndex: 1 }}>
-                  <div style={{ fontSize: '2.2rem', fontWeight: 900, color: colors.primary }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 900, color: colors.primary }}>
                     {overallProgress}%
                   </div>
-                  <div style={{ fontSize: '1.4rem', color: '#0f172a', fontWeight: 600 }}>
+                  <div style={{ fontSize: '0.9rem', color: '#0f172a', fontWeight: 600 }}>
                     Complete
                   </div>
                 </div>
@@ -2401,33 +2403,33 @@ const QualityObjectives_v2 = () => {
           </div>
 
           {/* Phase-grouped Steps */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             {Object.entries(phaseGroups).map(([phase, style]) => {
               const phaseSteps = steps.filter(s => s.phase === phase);
               return (
                 <div key={phase} style={{
-                  padding: '18px',
+                  padding: '10px',
                   background: style.bgColor,
-                  borderRadius: '14px',
-                  border: `3px solid ${style.color}`,
-                  boxShadow: `0 8px 16px ${style.color}20`,
+                  borderRadius: '8px',
+                  border: `2px solid ${style.color}`,
+                  boxShadow: `0 3px 8px ${style.color}20`,
                   transition: 'transform 200ms'
                 }}>
                   <div style={{
-                    fontSize: '1.6rem',
+                    fontSize: '1rem',
                     fontWeight: 800,
                     color: style.color,
-                    marginBottom: '14px',
+                    marginBottom: '8px',
                     textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '0.5px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '6px'
                   }}>
-                    <span style={{ fontSize: '1.8rem' }}>{style.icon}</span>
+                    <span style={{ fontSize: '1.2rem' }}>{style.icon}</span>
                     {phase}
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     {phaseSteps.map((step, idx) => {
                       const value = parseInt(data[0]?.[step.key] || 0);
                       const isComplete = value > 0;
@@ -2435,44 +2437,44 @@ const QualityObjectives_v2 = () => {
                         <div key={idx} style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '12px',
-                          padding: '12px 14px',
+                          gap: '8px',
+                          padding: '6px 8px',
                           background: isComplete ? '#ffffff' : '#f8fafc',
-                          borderRadius: '10px',
-                          border: `2px solid ${isComplete ? style.color + '60' : '#e2e8f0'}`,
-                          boxShadow: isComplete ? `0 4px 8px ${style.color}15` : 'none',
+                          borderRadius: '6px',
+                          border: `1px solid ${isComplete ? style.color + '60' : '#e2e8f0'}`,
+                          boxShadow: isComplete ? `0 2px 4px ${style.color}15` : 'none',
                           transition: 'all 200ms'
                         }}>
                           <div style={{
-                            width: '36px',
-                            height: '36px',
+                            width: '24px',
+                            height: '24px',
                             borderRadius: '50%',
                             background: isComplete ? `${style.color}25` : '#e2e8f0',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontSize: '1.6rem',
+                            fontSize: '1rem',
                             color: style.color,
                             fontWeight: 900,
                             flexShrink: 0,
-                            border: `2px solid ${isComplete ? style.color : '#d1d5db'}`
+                            border: `1px solid ${isComplete ? style.color : '#d1d5db'}`
                           }}>
                             {isComplete ? '✓' : '○'}
                           </div>
                           <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 700 }}>
+                            <div style={{ fontSize: '0.9rem', color: '#0f172a', fontWeight: 700 }}>
                               {step.label}
                             </div>
                           </div>
                           <div style={{
-                            fontSize: '1.8rem',
+                            fontSize: '1.2rem',
                             fontWeight: 900,
                             color: isComplete ? style.color : '#94a3b8',
-                            minWidth: '50px',
+                            minWidth: '40px',
                             textAlign: 'right',
-                            padding: '6px 12px',
+                            padding: '3px 6px',
                             background: isComplete ? `${style.color}12` : 'transparent',
-                            borderRadius: '6px'
+                            borderRadius: '4px'
                           }}>
                             {value}%
                           </div>
@@ -2563,50 +2565,50 @@ const QualityObjectives_v2 = () => {
                 )}
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{
-                  padding: '18px',
+                  padding: '10px',
                   background: `${colors.primary}10`,
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: `1px solid ${colors.primary}30`,
                   textAlign: 'center'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '4px' }}>
                     📋 Training Need Identification
                   </div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 800, color: colors.primary }}>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: colors.primary }}>
                     {item.trainingNeedIdentification}%
                   </div>
                 </div>
 
                 <div style={{
-                  padding: '18px',
+                  padding: '10px',
                   background: `${colors.primary}10`,
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: `1px solid ${colors.primary}30`,
                   textAlign: 'center'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '4px' }}>
                     📅 Training Calendar
                   </div>
-                  <div style={{ fontSize: '2.4rem', fontWeight: 800, color: colors.primary }}>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: colors.primary }}>
                     {item.trainingCalendar}%
                   </div>
                 </div>
               </div>
 
               <div style={{
-                marginTop: '20px',
-                padding: '14px',
+                marginTop: '12px',
+                padding: '8px',
                 background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                borderRadius: '12px',
+                borderRadius: '8px',
                 textAlign: 'center',
                 color: '#ffffff'
               }}>
-                <div style={{ fontSize: '1.5rem', marginBottom: '4px', opacity: 0.9 }}>
+                <div style={{ fontSize: '0.9rem', marginBottom: '2px', opacity: 0.9 }}>
                   Gap Analysis Status
                 </div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>
+                <div style={{ fontSize: '1rem', fontWeight: 800 }}>
                   ✓ Completed
                 </div>
               </div>
@@ -2620,7 +2622,7 @@ const QualityObjectives_v2 = () => {
     if (isObj07QI2) {
       return (
         <>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '16px' }}>
             {data.map((item, idx) => {
               const metrics = [
                 { label: '% Completion of Training', value: item.trainingCompletion, icon: '📚', color: '#3b82f6' },
@@ -2633,19 +2635,19 @@ const QualityObjectives_v2 = () => {
 
               return (
                 <div key={idx} style={{
-                  padding: '24px',
+                  padding: '16px',
                   background: `linear-gradient(135deg, ${colors.primary}08 0%, #ffffff 100%)`,
-                  borderRadius: '16px',
+                  borderRadius: '12px',
                   border: `2px solid ${colors.primary}30`,
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  boxShadow: '0 3px 8px rgba(0,0,0,0.08)',
                   position: 'relative'
                 }}>
                   <div style={{ 
-                    fontSize: '1.5rem', 
+                    fontSize: '1rem', 
                     fontWeight: 800, 
                     color: colors.primary, 
-                    marginBottom: '20px',
-                    paddingBottom: '12px',
+                    marginBottom: '12px',
+                    paddingBottom: '8px',
                     borderBottom: `2px solid ${colors.primary}20`,
                     textAlign: 'center',
                     position: 'relative'
@@ -2660,18 +2662,18 @@ const QualityObjectives_v2 = () => {
                         }}
                         style={{
                           position: 'absolute',
-                          top: '-6px',
-                          right: '-6px',
-                          width: '34px',
-                          height: '34px',
+                          top: '-4px',
+                          right: '-4px',
+                          width: '26px',
+                          height: '26px',
                           borderRadius: '50%',
                           border: `2px solid ${colors.primary}`,
                           background: isInfoOpen ? colors.primary : '#ffffff',
                           color: isInfoOpen ? '#ffffff' : colors.primary,
-                          fontSize: '1.3rem',
+                          fontSize: '1rem',
                           fontWeight: 900,
                           cursor: 'pointer',
-                          boxShadow: isInfoOpen ? `0 4px 12px ${colors.primary}35` : '0 2px 8px rgba(0,0,0,0.1)',
+                          boxShadow: isInfoOpen ? `0 3px 8px ${colors.primary}35` : '0 2px 6px rgba(0,0,0,0.1)',
                           transition: 'all 0.2s ease',
                           display: 'flex',
                           alignItems: 'center',
@@ -2699,24 +2701,24 @@ const QualityObjectives_v2 = () => {
                     )}
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {metrics.map((metric, metricIdx) => (
                       <div key={metricIdx} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        padding: '16px',
+                        padding: '12px',
                         background: `${metric.color}10`,
-                        borderRadius: '10px',
+                        borderRadius: '8px',
                         border: `1px solid ${metric.color}30`
                       }}>
-                        <div style={{ fontSize: '1.8rem', marginRight: '14px' }}>
+                        <div style={{ fontSize: '1.2rem', marginRight: '10px' }}>
                           {metric.icon}
                         </div>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '4px' }}>
+                          <div style={{ fontSize: '1rem', color: '#0f172a', fontWeight: 600, marginBottom: '3px' }}>
                             {metric.label}
                           </div>
-                          <div style={{ fontSize: '1.7rem', fontWeight: 800, color: metric.color }}>
+                          <div style={{ fontSize: '1.15rem', fontWeight: 800, color: metric.color }}>
                             {metric.value}%
                           </div>
                         </div>
@@ -2778,40 +2780,40 @@ const QualityObjectives_v2 = () => {
                   top: 0,
                   zIndex: 10
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
-                      width: '70px',
-                      height: '70px',
-                      borderRadius: '18px',
+                      width: '45px',
+                      height: '45px',
+                      borderRadius: '12px',
                       background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2rem',
-                      boxShadow: '0 10px 30px rgba(59,130,246,0.35), 0 0 0 3px rgba(59,130,246,0.1)',
+                      fontSize: '1.3rem',
+                      boxShadow: '0 6px 18px rgba(59,130,246,0.35), 0 0 0 2px rgba(59,130,246,0.1)',
                       animation: 'pulse 2s ease-in-out infinite'
                     }}>
                       🎓
                     </div>
                     <div>
                       <div style={{ 
-                        fontSize: '1.3rem', 
+                        fontSize: '0.85rem', 
                         color: '#64748b', 
                         fontWeight: 700, 
-                        letterSpacing: '1.5px',
+                        letterSpacing: '1px',
                         textTransform: 'uppercase',
-                        marginBottom: '4px'
+                        marginBottom: '2px'
                       }}>
                         Objective 07 • QI 2
                       </div>
                       <div style={{ 
-                        fontSize: '2.5rem', 
+                        fontSize: '1.6rem', 
                         fontWeight: 900, 
                         background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                        letterSpacing: '0.5px'
+                        letterSpacing: '0.3px'
                       }}>
                         {obj07Qi2InfoModal.site} Training Details
                       </div>
@@ -2829,57 +2831,57 @@ const QualityObjectives_v2 = () => {
                   <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(4, 1fr)',
-                    gap: '20px',
-                    marginBottom: '36px',
+                    gap: '12px',
+                    marginBottom: '20px',
                     animation: 'slideUp 0.5s ease-out'
                   }}>
                     <div style={{
-                      padding: '24px',
-                      borderRadius: '18px',
+                      padding: '14px',
+                      borderRadius: '10px',
                       background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                      boxShadow: '0 10px 30px rgba(16,185,129,0.3)',
+                      boxShadow: '0 6px 18px rgba(16,185,129,0.3)',
                       color: '#ffffff'
                     }}>
-                      <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Total Sessions</div>
-                      <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.length}</div>
+                      <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Total Sessions</div>
+                      <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.length}</div>
                     </div>
                     <div style={{
-                      padding: '24px',
-                      borderRadius: '18px',
+                      padding: '14px',
+                      borderRadius: '10px',
                       background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                      boxShadow: '0 10px 30px rgba(59,130,246,0.3)',
+                      boxShadow: '0 6px 18px rgba(59,130,246,0.3)',
                       color: '#ffffff'
                     }}>
-                      <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Completed</div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
+                      <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Completed</div>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
                     </div>
                     <div style={{
-                      padding: '24px',
-                      borderRadius: '18px',
+                      padding: '14px',
+                      borderRadius: '10px',
                       background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                      boxShadow: '0 10px 30px rgba(245,158,11,0.3)',
+                      boxShadow: '0 6px 18px rgba(245,158,11,0.3)',
                       color: '#ffffff'
                     }}>
-                          <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Pending</div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'Pending').length}</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Pending</div>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'Pending').length}</div>
                     </div>
                     <div style={{
-                      padding: '24px',
-                      borderRadius: '18px',
+                      padding: '14px',
+                      borderRadius: '10px',
                       background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-                      boxShadow: '0 10px 30px rgba(139,92,246,0.3)',
+                      boxShadow: '0 6px 18px rgba(139,92,246,0.3)',
                       color: '#ffffff'
                     }}>
-                          <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>In Progress / Scheduled</div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'In Progress' || r.status === 'Scheduled').length + 7}</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>In Progress / Scheduled</div>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj07Qi2InfoModal.rows.filter(r => r.status === 'In Progress' || r.status === 'Scheduled').length + 7}</div>
                     </div>
                   </div>
 
                   {/* Training Cards */}
                   <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(450px, 1fr))',
-                    gap: '20px'
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                    gap: '12px'
                   }}>
                     {obj07Qi2InfoModal.rows.map((row, idx) => {
                       const statusColors = {
@@ -2916,35 +2918,35 @@ const QualityObjectives_v2 = () => {
                           {/* Status Badge */}
                           <div style={{
                             position: 'absolute',
-                            top: '16px',
-                            right: '16px',
-                            padding: '8px 14px',
-                            borderRadius: '10px',
+                            top: '10px',
+                            right: '10px',
+                            padding: '4px 8px',
+                            borderRadius: '6px',
                             background: scheme.badge,
                             color: '#ffffff',
-                            fontSize: '1.1rem',
+                            fontSize: '0.7rem',
                             fontWeight: 800,
-                            boxShadow: `0 4px 10px ${scheme.badge}40`
+                            boxShadow: `0 2px 6px ${scheme.badge}40`
                           }}>
                             {row.status}
                           </div>
 
                           <div style={{
-                            fontSize: '1.9rem',
+                            fontSize: '1.2rem',
                             fontWeight: 900,
                             color: scheme.text,
-                            marginBottom: '16px',
-                            lineHeight: '1.3',
-                            paddingRight: '120px'
+                            marginBottom: '10px',
+                            lineHeight: '1.2',
+                            paddingRight: '80px'
                           }}>
                             {row.srNo ? `${row.srNo}. ${row.sopName}` : row.sopName}
                           </div>
 
                           <div style={{
-                            fontSize: '1.2rem',
+                            fontSize: '0.8rem',
                             fontWeight: 700,
                             color: scheme.text,
-                            marginBottom: '10px'
+                            marginBottom: '6px'
                           }}>
                             SOP Number: {row.sopNumber}
                           </div>
@@ -2952,54 +2954,54 @@ const QualityObjectives_v2 = () => {
                           <div style={{
                             display: 'grid',
                             gridTemplateColumns: 'repeat(2, 1fr)',
-                            gap: '12px',
-                            marginTop: '8px'
+                            gap: '6px',
+                            marginTop: '4px'
                           }}>
                             <div style={{
-                              padding: '12px 16px',
-                              borderRadius: '10px',
+                              padding: '6px 8px',
+                              borderRadius: '6px',
                               background: '#ffffff',
-                              border: `2px solid ${scheme.border}30`
+                              border: `1px solid ${scheme.border}30`
                             }}>
-                              <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Revision</div>
-                              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>🌀 {row.revisionNumber}</div>
+                              <div style={{ fontSize: '0.65rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Revision</div>
+                              <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>🌀 {row.revisionNumber}</div>
                             </div>
                             <div style={{
-                              padding: '12px 16px',
-                              borderRadius: '10px',
+                              padding: '6px 8px',
+                              borderRadius: '6px',
                               background: '#ffffff',
-                              border: `2px solid ${scheme.border}30`
+                              border: `1px solid ${scheme.border}30`
                             }}>
-                              <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Trainer</div>
-                              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>👤 {row.trainerName}</div>
+                              <div style={{ fontSize: '0.65rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Trainer</div>
+                              <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>👤 {row.trainerName}</div>
                             </div>
                             <div style={{
-                              padding: '12px 16px',
-                              borderRadius: '10px',
+                              padding: '6px 8px',
+                              borderRadius: '6px',
                               background: '#ffffff',
-                              border: `2px solid ${scheme.border}30`
+                              border: `1px solid ${scheme.border}30`
                             }}>
-                              <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Date</div>
-                              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>📅 {row.date}</div>
+                              <div style={{ fontSize: '0.65rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Date</div>
+                              <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>📅 {row.date}</div>
                             </div>
                             <div style={{
-                              padding: '12px 16px',
-                              borderRadius: '10px',
+                              padding: '6px 8px',
+                              borderRadius: '6px',
                               background: '#ffffff',
-                              border: `2px solid ${scheme.border}30`
+                              border: `1px solid ${scheme.border}30`
                             }}>
-                              <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Time</div>
-                              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>⏰ {row.time}</div>
+                              <div style={{ fontSize: '0.65rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Time</div>
+                              <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>⏰ {row.time}</div>
                             </div>
                             <div style={{
-                              padding: '12px 16px',
-                              borderRadius: '10px',
+                              padding: '6px 8px',
+                              borderRadius: '6px',
                               background: '#ffffff',
-                              border: `2px solid ${scheme.border}30`,
+                              border: `1px solid ${scheme.border}30`,
                               gridColumn: 'span 2'
                             }}>
-                              <div style={{ fontSize: '1.05rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '4px' }}>Remarks</div>
-                              <div style={{ fontSize: '1.5rem', fontWeight: 900, color: scheme.text }}>📝 {row.remarks}</div>
+                              <div style={{ fontSize: '0.65rem', color: scheme.text, opacity: 0.7, fontWeight: 700, marginBottom: '2px' }}>Remarks</div>
+                              <div style={{ fontSize: '0.95rem', fontWeight: 900, color: scheme.text }}>📝 {row.remarks}</div>
                             </div>
                           </div>
                         </div>
@@ -3017,37 +3019,37 @@ const QualityObjectives_v2 = () => {
 
     if (isObj07QI3) {
       return (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '16px' }}>
           {data.map((item, idx) => (
             <div key={idx} style={{
-              padding: '24px',
+              padding: '14px',
               background: `linear-gradient(135deg, ${colors.primary}08 0%, #ffffff 100%)`,
-              borderRadius: '16px',
+              borderRadius: '10px',
               border: `2px solid ${colors.primary}30`,
-              boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.08)',
               position: 'relative'
             }}>
               <div style={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '12px',
-                fontSize: '1.5rem', 
+                gap: '8px',
+                fontSize: '1rem', 
                 fontWeight: 800, 
                 color: colors.primary, 
-                marginBottom: '20px',
-                paddingBottom: '12px',
+                marginBottom: '12px',
+                paddingBottom: '8px',
                 borderBottom: `2px solid ${colors.primary}20`
               }}>
                 <span style={{ flex: 1, textAlign: 'center' }}>{item.site}</span>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {/* Error Decrease */}
                 <div style={{
-                  padding: '20px',
+                  padding: '12px',
                   background: 'linear-gradient(135deg, #ef444410 0%, #ffffff 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: '2px solid #ef444420',
                   position: 'relative',
                   cursor: item.site === 'Site III' ? 'pointer' : 'default',
@@ -3056,8 +3058,8 @@ const QualityObjectives_v2 = () => {
                 onClick={() => item.site === 'Site III' && setObj07Qi3ErrorDetailsModal(true)}
                 onMouseEnter={(e) => {
                   if (item.site === 'Site III') {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(239, 68, 68, 0.2)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 14px rgba(239, 68, 68, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -3074,21 +3076,21 @@ const QualityObjectives_v2 = () => {
                       }}
                       style={{
                         position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        width: '28px',
-                        height: '28px',
+                        top: '8px',
+                        right: '8px',
+                        width: '20px',
+                        height: '20px',
                         borderRadius: '50%',
                         background: '#ef4444',
                         color: '#ffffff',
                         border: 'none',
-                        fontSize: '0.9em',
+                        fontSize: '0.65em',
                         cursor: 'pointer',
                         fontWeight: 'bold',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)',
+                        boxShadow: '0 2px 6px rgba(239, 68, 68, 0.3)',
                         transition: 'all 0.2s'
                       }}
                       onMouseEnter={(e) => {
@@ -3103,13 +3105,13 @@ const QualityObjectives_v2 = () => {
                       ⓘ
                     </button>
                   )}
-                  <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 700, marginBottom: '12px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 700, marginBottom: '8px', textAlign: 'center' }}>
                     📉 Decrease in QA Process Errors
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                     <div style={{
-                      width: '90px',
-                      height: '90px',
+                      width: '60px',
+                      height: '60px',
                       borderRadius: '50%',
                       background: `conic-gradient(#ef4444 ${item.errorDecrease * 3.6}deg, #e2e8f0 0deg)`,
                       display: 'flex',
@@ -3117,14 +3119,14 @@ const QualityObjectives_v2 = () => {
                       justifyContent: 'center'
                     }}>
                       <div style={{
-                        width: '72px',
-                        height: '72px',
+                        width: '48px',
+                        height: '48px',
                         borderRadius: '50%',
                         background: '#ffffff',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '1.7rem',
+                        fontSize: '1.1rem',
                         fontWeight: 800,
                         color: '#ef4444'
                       }}>
@@ -3136,9 +3138,9 @@ const QualityObjectives_v2 = () => {
 
                 {/* Staff Involvement */}
                 <div style={{
-                  padding: '20px',
+                  padding: '12px',
                   background: 'linear-gradient(135deg, #10b98110 0%, #ffffff 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: '2px solid #10b98120',
                   cursor: item.site === 'Site III' ? 'pointer' : 'default',
                   transition: 'all 0.2s ease',
@@ -3158,8 +3160,8 @@ const QualityObjectives_v2 = () => {
                 }}
                 onMouseEnter={(e) => {
                   if (item.site === 'Site III') {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(16, 185, 129, 0.2)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 14px rgba(16, 185, 129, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -3185,21 +3187,21 @@ const QualityObjectives_v2 = () => {
                       }}
                       style={{
                         position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        width: '28px',
-                        height: '28px',
+                        top: '8px',
+                        right: '8px',
+                        width: '20px',
+                        height: '20px',
                         borderRadius: '50%',
                         background: '#10b981',
                         color: '#ffffff',
                         border: 'none',
-                        fontSize: '0.9em',
+                        fontSize: '0.65em',
                         cursor: 'pointer',
                         fontWeight: 'bold',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
+                        boxShadow: '0 2px 6px rgba(16, 185, 129, 0.3)',
                         transition: 'all 0.2s'
                       }}
                       onMouseEnter={(e) => {
@@ -3214,13 +3216,13 @@ const QualityObjectives_v2 = () => {
                       ⓘ
                     </button>
                   )}
-                  <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 700, marginBottom: '12px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 700, marginBottom: '8px', textAlign: 'center' }}>
                     👥 QA Staff Involved in QMS, IPQA, Lab QA
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                     <div style={{
-                      width: '90px',
-                      height: '90px',
+                      width: '60px',
+                      height: '60px',
                       borderRadius: '50%',
                       background: `conic-gradient(#10b981 ${item.staffInvolvement * 3.6}deg, #e2e8f0 0deg)`,
                       display: 'flex',
@@ -3228,14 +3230,14 @@ const QualityObjectives_v2 = () => {
                       justifyContent: 'center'
                     }}>
                       <div style={{
-                        width: '72px',
-                        height: '72px',
+                        width: '48px',
+                        height: '48px',
                         borderRadius: '50%',
                         background: '#ffffff',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '1.7rem',
+                        fontSize: '1.1rem',
                         fontWeight: 800,
                         color: '#10b981'
                       }}>
@@ -3383,10 +3385,10 @@ const QualityObjectives_v2 = () => {
                         ⓘ
                       </button>
                     )}
-                    <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
+                    <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
                       Identification of the risk cause more defects
                     </div>
-                    <div style={{ fontSize: '2.4rem', fontWeight: 800, color: colors.primary }}>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.primary }}>
                       {item.identificationOfRiskCauseMoreDefects}%
                     </div>
                   </div>
@@ -3456,10 +3458,10 @@ const QualityObjectives_v2 = () => {
                         ⓘ
                       </button>
                     )}
-                    <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
+                    <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '8px' }}>
                       List of activities based on critical process
                     </div>
-                    <div style={{ fontSize: '2.4rem', fontWeight: 800, color: colors.primary }}>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: colors.primary }}>
                       {item.listOfActivitiesBasedOnCriticalProcess}%
                     </div>
                   </div>
@@ -3473,10 +3475,10 @@ const QualityObjectives_v2 = () => {
                   textAlign: 'center',
                   color: '#ffffff'
                 }}>
-                  <div style={{ fontSize: '1.5rem', marginBottom: '4px', opacity: 0.9 }}>
+                  <div style={{ fontSize: '0.95rem', marginBottom: '4px', opacity: 0.9 }}>
                     Gap Assessment Status
                   </div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800 }}>
                     ✓ Completed
                   </div>
                 </div>
@@ -3693,40 +3695,40 @@ const QualityObjectives_v2 = () => {
                   top: 0,
                   zIndex: 10
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
-                      width: '70px',
-                      height: '70px',
-                      borderRadius: '18px',
+                      width: '45px',
+                      height: '45px',
+                      borderRadius: '12px',
                       background: 'linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2rem',
-                      boxShadow: '0 10px 30px rgba(59,130,246,0.35), 0 0 0 3px rgba(59,130,246,0.1)',
+                      fontSize: '1.3rem',
+                      boxShadow: '0 6px 18px rgba(59,130,246,0.35), 0 0 0 2px rgba(59,130,246,0.1)',
                       animation: 'pulse 2s ease-in-out infinite'
                     }}>
                       🔍
                     </div>
                     <div>
                       <div style={{ 
-                        fontSize: '1.3rem', 
+                        fontSize: '0.85rem', 
                         color: '#64748b', 
                         fontWeight: 700, 
-                        letterSpacing: '1.5px',
+                        letterSpacing: '1px',
                         textTransform: 'uppercase',
-                        marginBottom: '4px'
+                        marginBottom: '2px'
                       }}>
                         Objective 05 • QI 1
                       </div>
                       <div style={{ 
-                        fontSize: '2.5rem', 
+                        fontSize: '1.6rem', 
                         fontWeight: 900, 
                         background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                        letterSpacing: '0.5px'
+                        letterSpacing: '0.3px'
                       }}>
                         {obj05Qi1InfoModal.site} Process Mapping
                       </div>
@@ -3785,14 +3787,14 @@ const QualityObjectives_v2 = () => {
                       boxShadow: '0 8px 24px rgba(0,0,0,0.1)'
                     }}>
                       <div style={{
-                        padding: '20px 28px',
+                        padding: '12px 16px',
                         background: 'linear-gradient(135deg, #dbeafe 0%, #ffffff 100%)',
-                        borderBottom: '2px solid #3b82f6'
+                        borderBottom: '1px solid #3b82f6'
                       }}>
-                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#1e40af' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#1e40af' }}>
                           📋 Gap Assessment & Implementation Details
                         </div>
-                        <div style={{ fontSize: '1rem', color: '#475569', marginTop: '6px', fontWeight: 600 }}>
+                        <div style={{ fontSize: '0.65rem', color: '#475569', marginTop: '2px', fontWeight: 600 }}>
                           {obj05Qi1InfoModal.rows.length} Gap{obj05Qi1InfoModal.rows.length !== 1 ? 's' : ''} Identified
                         </div>
                       </div>
@@ -3801,13 +3803,13 @@ const QualityObjectives_v2 = () => {
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
                             <tr style={{ background: '#f8fafc' }}>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', width: '50px' }}>#</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', minWidth: '120px' }}>Product</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', minWidth: '150px' }}>Process Step</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', minWidth: '220px' }}>Current Gap / Risk</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', minWidth: '220px' }}>Implementation</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', borderRight: '1px solid #e2e8f0', minWidth: '120px' }}>Training</th>
-                              <th style={{ padding: '14px 16px', textAlign: 'left', fontSize: '0.85rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', minWidth: '110px' }}>Status</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', width: '30px' }}>#</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', minWidth: '80px' }}>Product</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', minWidth: '100px' }}>Process Step</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', minWidth: '150px' }}>Current Gap / Risk</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', minWidth: '150px' }}>Implementation</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', borderRight: '1px solid #e2e8f0', minWidth: '80px' }}>Training</th>
+                              <th style={{ padding: '8px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', minWidth: '70px' }}>Status</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -3821,39 +3823,39 @@ const QualityObjectives_v2 = () => {
                                 onMouseEnter={(e) => e.currentTarget.style.background = '#f8fafc'}
                                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                               >
-                                <td style={{ padding: '14px 16px', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', borderRight: '1px solid #e2e8f0' }}>
                                   <div style={{
-                                    width: '32px',
-                                    height: '32px',
-                                    borderRadius: '8px',
+                                    width: '22px',
+                                    height: '22px',
+                                    borderRadius: '6px',
                                     background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
                                     color: '#ffffff',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    fontSize: '0.9rem',
+                                    fontSize: '0.6rem',
                                     fontWeight: 900
                                   }}>
                                     {row.srNo}
                                   </div>
                                 </td>
-                                <td style={{ padding: '14px 16px', fontSize: '1rem', fontWeight: 700, color: '#1e40af', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', fontSize: '0.65rem', fontWeight: 700, color: '#1e40af', borderRight: '1px solid #e2e8f0' }}>
                                   {row.product}
                                 </td>
-                                <td style={{ padding: '14px 16px', fontSize: '0.95rem', fontWeight: 600, color: '#334155', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', fontSize: '0.6rem', fontWeight: 600, color: '#334155', borderRight: '1px solid #e2e8f0' }}>
                                   {row.processStep}
                                 </td>
-                                <td style={{ padding: '14px 16px', fontSize: '0.9rem', color: '#475569', lineHeight: '1.5', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', fontSize: '0.58rem', color: '#475569', lineHeight: '1.3', borderRight: '1px solid #e2e8f0' }}>
                                   {row.gap}
                                 </td>
-                                <td style={{ padding: '14px 16px', fontSize: '0.9rem', color: '#475569', lineHeight: '1.5', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', fontSize: '0.58rem', color: '#475569', lineHeight: '1.3', borderRight: '1px solid #e2e8f0' }}>
                                   {row.implementation}
                                 </td>
-                                <td style={{ padding: '14px 16px', borderRight: '1px solid #e2e8f0' }}>
+                                <td style={{ padding: '8px 10px', borderRight: '1px solid #e2e8f0' }}>
                                   <span style={{
-                                    padding: '6px 12px',
-                                    borderRadius: '6px',
-                                    fontSize: '0.85rem',
+                                    padding: '3px 6px',
+                                    borderRadius: '4px',
+                                    fontSize: '0.55rem',
                                     fontWeight: 700,
                                     background: row.training === 'Completed' ? '#dcfce7' : '#fef3c7',
                                     color: row.training === 'Completed' ? '#065f46' : '#92400e',
@@ -3862,11 +3864,11 @@ const QualityObjectives_v2 = () => {
                                     {row.training}
                                   </span>
                                 </td>
-                                <td style={{ padding: '14px 16px' }}>
+                                <td style={{ padding: '8px 10px' }}>
                                   <span style={{
-                                    padding: '6px 12px',
-                                    borderRadius: '6px',
-                                    fontSize: '0.85rem',
+                                    padding: '3px 6px',
+                                    borderRadius: '4px',
+                                    fontSize: '0.55rem',
                                     fontWeight: 700,
                                     background: row.status === 'Completed' ? '#dcfce7' : '#fef3c7',
                                     color: row.status === 'Completed' ? '#065f46' : '#92400e',
@@ -3893,83 +3895,83 @@ const QualityObjectives_v2 = () => {
                         animation: 'slideUp 0.5s ease-out'
                       }}>
                         <div style={{
-                          padding: '24px',
-                          borderRadius: '18px',
+                          padding: '14px',
+                          borderRadius: '10px',
                           background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                          boxShadow: '0 10px 30px rgba(59,130,246,0.3)',
+                          boxShadow: '0 6px 18px rgba(59,130,246,0.3)',
                           position: 'relative',
                           overflow: 'hidden'
                         }}>
                           <div style={{
                             position: 'absolute',
-                            top: '-20px',
-                            right: '-20px',
-                            width: '100px',
-                            height: '100px',
+                            top: '-15px',
+                            right: '-15px',
+                            width: '60px',
+                            height: '60px',
                             borderRadius: '50%',
                             background: 'rgba(255,255,255,0.15)',
                             pointerEvents: 'none'
                           }}></div>
-                          <div style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '8px' }}>
+                          <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '4px' }}>
                             Total Processes
                           </div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {obj05Qi1InfoModal.rows.length}
-                            <span style={{ fontSize: '2rem', opacity: 0.8 }}>📊</span>
+                            <span style={{ fontSize: '1.3rem', opacity: 0.8 }}>📊</span>
                           </div>
                         </div>
                         
                         <div style={{
-                          padding: '24px',
-                          borderRadius: '18px',
+                          padding: '14px',
+                          borderRadius: '10px',
                           background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                          boxShadow: '0 10px 30px rgba(16,185,129,0.3)',
+                          boxShadow: '0 6px 18px rgba(16,185,129,0.3)',
                           position: 'relative',
                           overflow: 'hidden'
                         }}>
                           <div style={{
                             position: 'absolute',
-                            top: '-20px',
-                            right: '-20px',
-                            width: '100px',
-                            height: '100px',
+                            top: '-15px',
+                            right: '-15px',
+                            width: '60px',
+                            height: '60px',
                             borderRadius: '50%',
                             background: 'rgba(255,255,255,0.15)',
                             pointerEvents: 'none'
                           }}></div>
-                          <div style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '8px' }}>
+                          <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '4px' }}>
                             Unique Products
                           </div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {[...new Set(obj05Qi1InfoModal.rows.map(r => r.product))].length}
-                            <span style={{ fontSize: '2rem', opacity: 0.8 }}>🏭</span>
+                            <span style={{ fontSize: '1.3rem', opacity: 0.8 }}>🏭</span>
                           </div>
                         </div>
                         
                         <div style={{
-                          padding: '24px',
-                          borderRadius: '18px',
+                          padding: '14px',
+                          borderRadius: '10px',
                           background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                          boxShadow: '0 10px 30px rgba(245,158,11,0.3)',
+                          boxShadow: '0 6px 18px rgba(245,158,11,0.3)',
                           position: 'relative',
                           overflow: 'hidden'
                         }}>
                           <div style={{
                             position: 'absolute',
-                            top: '-20px',
-                            right: '-20px',
-                            width: '100px',
-                            height: '100px',
+                            top: '-15px',
+                            right: '-15px',
+                            width: '60px',
+                            height: '60px',
                             borderRadius: '50%',
                             background: 'rgba(255,255,255,0.15)',
                             pointerEvents: 'none'
                           }}></div>
-                          <div style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '8px' }}>
+                          <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: '4px' }}>
                             Production Stages
                           </div>
-                          <div style={{ fontSize: '3.5rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {[...new Set(obj05Qi1InfoModal.rows.map(r => r.stage))].length}
-                            <span style={{ fontSize: '2rem', opacity: 0.8 }}>⚙️</span>
+                            <span style={{ fontSize: '1.3rem', opacity: 0.8 }}>⚙️</span>
                           </div>
                         </div>
                       </div>
@@ -4007,48 +4009,48 @@ const QualityObjectives_v2 = () => {
                         >
                           {/* Compact Header */}
                           <div style={{
-                            padding: '16px 24px',
+                            padding: '10px 14px',
                             background: `linear-gradient(135deg, ${colorScheme.bg} 0%, #ffffff 100%)`,
-                            borderBottom: `2px solid ${colorScheme.border}`,
+                            borderBottom: `1px solid ${colorScheme.border}`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between'
                           }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                               <div style={{
-                                width: '40px',
-                                height: '40px',
-                                borderRadius: '10px',
+                                width: '28px',
+                                height: '28px',
+                                borderRadius: '6px',
                                 background: colorScheme.border,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '1.5rem',
-                                boxShadow: `0 4px 12px ${colorScheme.border}40`
+                                fontSize: '1rem',
+                                boxShadow: `0 2px 6px ${colorScheme.border}40`
                               }}>
                                 {colorScheme.icon}
                               </div>
                               <div>
                                 <div style={{ 
-                                  fontSize: '1.5rem', 
+                                  fontSize: '1rem', 
                                   fontWeight: 900, 
                                   color: colorScheme.text
                                 }}>
                                   {process}
                                 </div>
-                                <div style={{ fontSize: '0.95rem', color: colorScheme.text, opacity: 0.7, fontWeight: 600 }}>
+                                <div style={{ fontSize: '0.6rem', color: colorScheme.text, opacity: 0.7, fontWeight: 600 }}>
                                   {items.length} stage{items.length !== 1 ? 's' : ''} identified
                                 </div>
                               </div>
                             </div>
                             <div style={{
-                              padding: '8px 16px',
-                              borderRadius: '10px',
+                              padding: '4px 10px',
+                              borderRadius: '6px',
                               background: colorScheme.border,
                               color: '#ffffff',
                               fontWeight: 800,
-                              fontSize: '1.1rem',
-                              boxShadow: `0 4px 12px ${colorScheme.border}40`
+                              fontSize: '0.7rem',
+                              boxShadow: `0 2px 6px ${colorScheme.border}40`
                             }}>
                               {items.length} Items
                             </div>
@@ -4059,9 +4061,9 @@ const QualityObjectives_v2 = () => {
                             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                               <thead>
                                 <tr style={{ background: '#f8fafc' }}>
-                                  <th style={{ padding: '12px 20px', textAlign: 'left', fontSize: '0.9rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', width: '60px' }}>#</th>
-                                  <th style={{ padding: '12px 20px', textAlign: 'left', fontSize: '0.9rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Product Line</th>
-                                  <th style={{ padding: '12px 20px', textAlign: 'left', fontSize: '0.9rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Manufacturing Stage</th>
+                                  <th style={{ padding: '6px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px', width: '40px' }}>#</th>
+                                  <th style={{ padding: '6px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Product Line</th>
+                                  <th style={{ padding: '6px 10px', textAlign: 'left', fontSize: '0.6rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Manufacturing Stage</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -4080,19 +4082,19 @@ const QualityObjectives_v2 = () => {
                                       e.currentTarget.style.background = 'transparent';
                                     }}
                                   >
-                                    <td style={{ padding: '14px 20px' }}>
+                                    <td style={{ padding: '8px 10px' }}>
                                       <div style={{
-                                        width: '32px',
-                                        height: '32px',
-                                        borderRadius: '8px',
+                                        width: '22px',
+                                        height: '22px',
+                                        borderRadius: '5px',
                                         background: `linear-gradient(135deg, ${colorScheme.border} 0%, ${colorScheme.text} 100%)`,
                                         color: '#ffffff',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        fontSize: '0.95rem',
+                                        fontSize: '0.6rem',
                                         fontWeight: 900,
-                                        boxShadow: `0 2px 8px ${colorScheme.border}30`
+                                        boxShadow: `0 1px 4px ${colorScheme.border}30`
                                       }}>
                                         {itemIdx + 1}
                                       </div>
@@ -4242,10 +4244,10 @@ const QualityObjectives_v2 = () => {
                         {stage.icon}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '2px' }}>
+                        <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '2px' }}>
                           {stage.label}
                         </div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: stage.color }}>
+                        <div style={{ fontSize: '1.3rem', fontWeight: 900, color: stage.color }}>
                           {stage.value}%
                         </div>
                       </div>
@@ -4261,10 +4263,10 @@ const QualityObjectives_v2 = () => {
                   textAlign: 'center',
                   boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: 600, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 600, marginBottom: '6px' }}>
                     Overall Compliance
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ffffff' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#ffffff' }}>
                     {avgCompliance}%
                   </div>
                 </div>
@@ -4324,40 +4326,40 @@ const QualityObjectives_v2 = () => {
                 top: 0,
                 zIndex: 10
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{
-                    width: '70px',
-                    height: '70px',
-                    borderRadius: '18px',
+                    width: '45px',
+                    height: '45px',
+                    borderRadius: '12px',
                     background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '2rem',
-                    boxShadow: '0 10px 30px rgba(16,185,129,0.35), 0 0 0 3px rgba(16,185,129,0.1)',
+                    fontSize: '1.3rem',
+                    boxShadow: '0 6px 18px rgba(16,185,129,0.35), 0 0 0 2px rgba(16,185,129,0.1)',
                     animation: 'pulse 2s ease-in-out infinite'
                   }}>
                     📚
                   </div>
                   <div>
                     <div style={{ 
-                      fontSize: '1.3rem', 
+                      fontSize: '0.85rem', 
                       color: '#64748b', 
                       fontWeight: 700, 
-                      letterSpacing: '1.5px',
+                      letterSpacing: '1px',
                       textTransform: 'uppercase',
-                      marginBottom: '4px'
+                      marginBottom: '2px'
                     }}>
                       Objective 05 • QI 2
                     </div>
                     <div style={{ 
-                      fontSize: '2.5rem', 
+                      fontSize: '1.6rem', 
                       fontWeight: 900, 
                       background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
-                      letterSpacing: '0.5px'
+                      letterSpacing: '0.3px'
                     }}>
                       {obj05Qi2InfoModal.site} Training Schedule
                     </div>
@@ -4408,39 +4410,39 @@ const QualityObjectives_v2 = () => {
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '20px',
-                  marginBottom: '36px',
+                  gap: '12px',
+                  marginBottom: '20px',
                   animation: 'slideUp 0.5s ease-out'
                 }}>
                   <div style={{
-                    padding: '24px',
-                    borderRadius: '18px',
+                    padding: '14px',
+                    borderRadius: '10px',
                     background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                    boxShadow: '0 10px 30px rgba(16,185,129,0.3)',
+                    boxShadow: '0 6px 18px rgba(16,185,129,0.3)',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Total Trainings</div>
-                    <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.length}</div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Total Trainings</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.length}</div>
                   </div>
                   <div style={{
-                    padding: '24px',
-                    borderRadius: '18px',
+                    padding: '14px',
+                    borderRadius: '10px',
                     background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                    boxShadow: '0 10px 30px rgba(59,130,246,0.3)',
+                    boxShadow: '0 6px 18px rgba(59,130,246,0.3)',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>Completed</div>
-                    <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>Completed</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.filter(r => r.status === 'Completed').length}</div>
                   </div>
                   <div style={{
-                    padding: '24px',
-                    borderRadius: '18px',
+                    padding: '14px',
+                    borderRadius: '10px',
                     background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                    boxShadow: '0 10px 30px rgba(245,158,11,0.3)',
+                    boxShadow: '0 6px 18px rgba(245,158,11,0.3)',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '1.3rem', opacity: 0.9, fontWeight: 700, marginBottom: '8px' }}>In Progress</div>
-                    <div style={{ fontSize: '3.5rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.filter(r => r.status === 'Inprogress').length}</div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9, fontWeight: 700, marginBottom: '4px' }}>In Progress</div>
+                    <div style={{ fontSize: '2.2rem', fontWeight: 900 }}>{obj05Qi2InfoModal.rows.filter(r => r.status === 'Inprogress').length}</div>
                   </div>
                 </div>
 
@@ -4455,16 +4457,16 @@ const QualityObjectives_v2 = () => {
                   <table style={{
                     width: '100%',
                     borderCollapse: 'collapse',
-                    fontSize: '1.1rem'
+                    fontSize: '0.7rem'
                   }}>
                     <thead>
                       <tr style={{ background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
-                        <th style={{ padding: '18px 20px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>#</th>
-                        <th style={{ padding: '18px 20px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>SOP Number</th>
-                        <th style={{ padding: '18px 20px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>SOP Name</th>
-                        <th style={{ padding: '18px 20px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Trainer</th>
-                        <th style={{ padding: '18px 20px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Training Date</th>
-                        <th style={{ padding: '18px 20px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '0.5px' }}>Status</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>#</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>SOP Number</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>SOP Name</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'left', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Trainer</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px', borderRight: '1px solid rgba(255,255,255,0.1)' }}>Training Date</th>
+                        <th style={{ padding: '10px 12px', textAlign: 'center', color: '#ffffff', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.3px' }}>Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -4490,21 +4492,21 @@ const QualityObjectives_v2 = () => {
                               e.currentTarget.style.transform = 'scale(1)';
                             }}
                           >
-                            <td style={{ padding: '16px 20px', textAlign: 'center', fontWeight: 800, color: '#334155', fontSize: '1.15rem', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.slNo}</td>
-                            <td style={{ padding: '16px 20px', textAlign: 'left', fontWeight: 600, color: '#475569', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.sopNumber}</td>
-                            <td style={{ padding: '16px 20px', textAlign: 'left', fontWeight: 700, color: '#1e293b', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.sopName}</td>
-                            <td style={{ padding: '16px 20px', textAlign: 'left', fontWeight: 600, color: '#475569', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.trainer}</td>
-                            <td style={{ padding: '16px 20px', textAlign: 'center', fontWeight: 700, color: '#334155', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.trainingDate}</td>
-                            <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                            <td style={{ padding: '8px 12px', textAlign: 'center', fontWeight: 800, color: '#334155', fontSize: '0.72rem', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.slNo}</td>
+                            <td style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 600, color: '#475569', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.sopNumber}</td>
+                            <td style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: '#1e293b', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.sopName}</td>
+                            <td style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 600, color: '#475569', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.trainer}</td>
+                            <td style={{ padding: '8px 12px', textAlign: 'center', fontWeight: 700, color: '#334155', borderRight: '1px solid rgba(148,163,184,0.1)' }}>{row.trainingDate}</td>
+                            <td style={{ padding: '8px 12px', textAlign: 'center' }}>
                               <span style={{
-                                padding: '8px 16px',
-                                borderRadius: '10px',
+                                padding: '4px 8px',
+                                borderRadius: '6px',
                                 background: statusBg,
                                 color: statusColor,
                                 fontWeight: 800,
-                                fontSize: '1.05rem',
+                                fontSize: '0.65rem',
                                 display: 'inline-block',
-                                border: `2px solid ${statusColor}`
+                                border: `1px solid ${statusColor}`
                               }}>
                                 {row.status}
                               </span>
@@ -4527,7 +4529,7 @@ const QualityObjectives_v2 = () => {
     // Objective 05 QI3 - Implementation
     if (isObj05QI3) {
       return (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '16px' }}>
           {data.map((item, idx) => {
             const implementationSteps = [
               { label: 'Verification frequency increased', value: item.verificationFrequencyIncreased, icon: '📊', color: '#3b82f6' },
@@ -4539,47 +4541,47 @@ const QualityObjectives_v2 = () => {
             
             return (
               <div key={idx} style={{
-                padding: '24px',
+                padding: '16px',
                 background: `linear-gradient(135deg, ${colors.primary}08 0%, #ffffff 100%)`,
-                borderRadius: '16px',
+                borderRadius: '12px',
                 border: `2px solid ${colors.primary}30`,
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                boxShadow: '0 3px 8px rgba(0,0,0,0.08)'
               }}>
                 <div style={{ 
-                  fontSize: '1.5rem', 
+                  fontSize: '1rem', 
                   fontWeight: 800, 
                   color: colors.primary, 
-                  marginBottom: '20px',
-                  paddingBottom: '12px',
+                  marginBottom: '12px',
+                  paddingBottom: '8px',
                   borderBottom: `2px solid ${colors.primary}20`,
                   textAlign: 'center'
                 }}>
                   {item.site}
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
                   {implementationSteps.map((step, stepIdx) => (
                     <div key={stepIdx} style={{
                       display: 'flex',
                       alignItems: 'center',
-                      padding: '14px 16px',
+                      padding: '10px 12px',
                       background: `${step.color}10`,
-                      borderRadius: '10px',
+                      borderRadius: '8px',
                       border: `1px solid ${step.color}30`
                     }}>
                       <div style={{ 
-                        fontSize: '1.5rem', 
-                        marginRight: '12px',
-                        width: '32px',
+                        fontSize: '1rem', 
+                        marginRight: '8px',
+                        width: '24px',
                         textAlign: 'center'
                       }}>
                         {step.icon}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600, marginBottom: '2px' }}>
+                        <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600, marginBottom: '2px' }}>
                           {step.label}
                         </div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: step.color }}>
+                        <div style={{ fontSize: '1.3rem', fontWeight: 900, color: step.color }}>
                           {step.value}%
                         </div>
                       </div>
@@ -4588,17 +4590,17 @@ const QualityObjectives_v2 = () => {
                 </div>
 
                 <div style={{ 
-                  padding: '16px',
+                  padding: '12px',
                   background: `linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)`,
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: `2px solid #3b82f6`,
                   textAlign: 'center',
-                  boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                  boxShadow: '0 3px 8px rgba(59, 130, 246, 0.3)'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: 600, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 600, marginBottom: '4px' }}>
                     Implementation Progress
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ffffff' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#ffffff' }}>
                     {avgImplementation}%
                   </div>
                 </div>
@@ -4612,7 +4614,7 @@ const QualityObjectives_v2 = () => {
     // Objective 05 QI4 - Effectiveness
     if (isObj05QI4) {
       return (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '16px' }}>
           {data.map((item, idx) => {
             const effectivenessMetrics = [
               { label: '% increase in proactive identifcation', value: item.percentageIncreaseInProactiveIdentification, icon: '📈', color: '#3b82f6' },
@@ -4625,47 +4627,47 @@ const QualityObjectives_v2 = () => {
             
             return (
               <div key={idx} style={{
-                padding: '24px',
+                padding: '16px',
                 background: `linear-gradient(135deg, ${colors.primary}08 0%, #ffffff 100%)`,
-                borderRadius: '16px',
+                borderRadius: '12px',
                 border: `2px solid ${colors.primary}30`,
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                boxShadow: '0 3px 8px rgba(0,0,0,0.08)'
               }}>
                 <div style={{ 
-                  fontSize: '1.5rem', 
+                  fontSize: '1rem', 
                   fontWeight: 800, 
                   color: colors.primary, 
-                  marginBottom: '20px',
-                  paddingBottom: '12px',
+                  marginBottom: '12px',
+                  paddingBottom: '8px',
                   borderBottom: `2px solid ${colors.primary}20`,
                   textAlign: 'center'
                 }}>
                   {item.site}
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
                   {effectivenessMetrics.map((metric, metricIdx) => (
                     <div key={metricIdx} style={{
                       display: 'flex',
                       alignItems: 'center',
-                      padding: '12px 14px',
+                      padding: '8px 10px',
                       background: `${metric.color}10`,
-                      borderRadius: '8px',
+                      borderRadius: '6px',
                       border: `1px solid ${metric.color}30`
                     }}>
                       <div style={{ 
-                        fontSize: '1.5rem', 
-                        marginRight: '10px',
-                        width: '28px',
+                        fontSize: '1rem', 
+                        marginRight: '8px',
+                        width: '22px',
                         textAlign: 'center'
                       }}>
                         {metric.icon}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 600 }}>
+                        <div style={{ fontSize: '0.95rem', color: '#0f172a', fontWeight: 600 }}>
                           {metric.label}
                         </div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: metric.color }}>
+                        <div style={{ fontSize: '1.3rem', fontWeight: 900, color: metric.color }}>
                           {metric.value}%
                         </div>
                       </div>
@@ -4674,17 +4676,17 @@ const QualityObjectives_v2 = () => {
                 </div>
 
                 <div style={{ 
-                  padding: '16px',
+                  padding: '12px',
                   background: `linear-gradient(135deg, #f59e0b 0%, #d97706 100%)`,
-                  borderRadius: '12px',
+                  borderRadius: '8px',
                   border: `2px solid #f59e0b`,
                   textAlign: 'center',
-                  boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)'
+                  boxShadow: '0 3px 8px rgba(245, 158, 11, 0.3)'
                 }}>
-                  <div style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: 600, marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 600, marginBottom: '4px' }}>
                     Overall Effectiveness
                   </div>
-                  <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ffffff' }}>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#ffffff' }}>
                     {avgEffectiveness}%
                   </div>
                 </div>
@@ -4901,7 +4903,7 @@ const QualityObjectives_v2 = () => {
 
               {/* Description */}
               <div style={{
-                fontSize: '2.0rem',
+                fontSize: '1.3rem',
                 color: '#0f172a',
                 fontWeight: '600',
                 lineHeight: '1.6',
@@ -4920,10 +4922,10 @@ const QualityObjectives_v2 = () => {
 
         {/* Hint Text */}
         <div style={{ textAlign: 'center', marginTop: '32px', animation: 'slideIn 0.6s ease-out 0.5s both' }}>
-          <div style={{ fontSize: '2.1rem', fontWeight: 600, color: '#94a3b8', marginBottom: '8px' }}>
+          <div style={{ fontSize: '1.35rem', fontWeight: 600, color: '#94a3b8', marginBottom: '8px' }}>
             💡 Click a card to open the data
           </div>
-          <div style={{ fontSize: '1.5rem', color: '#cbd5e1', fontWeight: 500 }}>
+          <div style={{ fontSize: '1rem', color: '#cbd5e1', fontWeight: 500 }}>
             Select an Objective to view detailed QI flow and site-wise metrics
           </div>
         </div>
@@ -4948,8 +4950,8 @@ const QualityObjectives_v2 = () => {
                     marginBottom: '24px',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 04</div>
-                    <div style={{ fontSize: '2.1rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 04</div>
+                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Reduce Good Documentation Practices (GDP) related Nonconformities and incidents by 50%
                     </div>
                   </div>
@@ -4982,8 +4984,8 @@ const QualityObjectives_v2 = () => {
                     marginBottom: '24px',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 05</div>
-                    <div style={{ fontSize: '2.1rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 05</div>
+                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       To reduce the number of In-process and final product defects through stringent IPQA verification and proactive defect prevention.
                     </div>
                   </div>
@@ -5016,8 +5018,8 @@ const QualityObjectives_v2 = () => {
                     marginBottom: '24px',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 06</div>
-                    <div style={{ fontSize: '2.1rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 06</div>
+                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Digitalization of quality management system to improve efficiency, data integrity, traceability, real-time monitoring and compliance with regulatory
                     </div>
                   </div>
@@ -5050,8 +5052,8 @@ const QualityObjectives_v2 = () => {
                     marginBottom: '24px',
                     color: '#ffffff'
                   }}>
-                    <div style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 07</div>
-                    <div style={{ fontSize: '2.1rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 07</div>
+                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Enhance the competency autonomy and engagement of QA staff to improve overall quality system performance and compliance
                     </div>
                   </div>

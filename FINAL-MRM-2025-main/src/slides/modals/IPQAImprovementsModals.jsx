@@ -1,5 +1,6 @@
 // IPQA Improvements Modals - All sites using FullscreenShell
 import { createPortal } from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import { FullscreenShell } from '../../utils/modalHelpers';
 
 /**
@@ -47,7 +48,148 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
  * Site III IPQA Improvements Modal
  */
 export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onParticleCountClick, onShopfloorObservationClick }) {
+  const [showJigDetails, setShowJigDetails] = useState(false);
+  
+  // Scroll to top when JIG details modal opens - using useLayoutEffect for immediate scroll
+  React.useLayoutEffect(() => {
+    if (showJigDetails) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, [showJigDetails]);
+  
   if (!isOpen) return null;
+  
+  // Show JIG Details Modal if requested
+  if (showJigDetails) {
+    return createPortal(
+      <FullscreenShell
+        onClose={() => setShowJigDetails(false)}
+        title="🔧 Batch Mix-Up Detection JIG"
+        accentColor="#3b82f6"
+      >
+        <div style={{padding: '32px', maxWidth: '1200px', margin: '0 auto'}}>
+          
+          {/* Header Card */}
+          <div style={{background: 'linear-gradient(135deg, #3b82f6, #2563eb)', padding: '24px', borderRadius: '16px', marginBottom: '24px', color: 'white', textAlign: 'center'}}>
+            <div style={{fontSize: '1.1em', fontWeight: '700', marginBottom: '8px'}}>Automated QR Scanning JIG</div>
+            <div style={{fontSize: '0.95em', opacity: 0.95}}>Prevents batch & line mix-ups via automatic QR validation</div>
+          </div>
+
+          {/* Status & Key Metrics */}
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '32px'}}>
+            <div style={{background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)', padding: '20px', borderRadius: '12px', textAlign: 'center', border: '2px solid #10b981'}}>
+              <div style={{fontSize: '2em', marginBottom: '8px'}}>✅</div>
+              <div style={{fontSize: '1.8em', fontWeight: '900', color: '#059669'}}>100%</div>
+              <div style={{fontSize: '0.85em', color: '#065f46', fontWeight: '600'}}>Accuracy</div>
+            </div>
+            <div style={{background: 'linear-gradient(135deg, #fef3c7, #fde68a)', padding: '20px', borderRadius: '12px', textAlign: 'center', border: '2px solid #f59e0b'}}>
+              <div style={{fontSize: '2em', marginBottom: '8px'}}>📦</div>
+              <div style={{fontSize: '1.8em', fontWeight: '900', color: '#d97706'}}>300+</div>
+              <div style={{fontSize: '0.85em', color: '#92400e', fontWeight: '600'}}>Cartridges Tested</div>
+            </div>
+            <div style={{background: 'linear-gradient(135deg, #eff6ff, #dbeafe)', padding: '20px', borderRadius: '12px', textAlign: 'center', border: '2px solid #3b82f6'}}>
+              <div style={{fontSize: '2em', marginBottom: '8px'}}>⏱️</div>
+              <div style={{fontSize: '1.8em', fontWeight: '900', color: '#2563eb'}}>3.15s</div>
+              <div style={{fontSize: '0.85em', color: '#1e40af', fontWeight: '600'}}>Cycle Time</div>
+            </div>
+            <div style={{background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', padding: '20px', borderRadius: '12px', textAlign: 'center', border: '2px solid #dc2626'}}>
+              <div style={{fontSize: '2em', marginBottom: '8px'}}>🚫</div>
+              <div style={{fontSize: '1.8em', fontWeight: '900', color: '#dc2626'}}>0</div>
+              <div style={{fontSize: '0.85em', color: '#991b1b', fontWeight: '600'}}>False Rejections</div>
+            </div>
+          </div>
+
+          {/* Current Status */}
+          <div style={{background: '#fef3c7', border: '2px solid #fbbf24', borderRadius: '12px', padding: '20px', marginBottom: '24px'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+              <div style={{fontSize: '1.5em'}}>⚡</div>
+              <div style={{fontSize: '1.1em', fontWeight: '800', color: '#92400e'}}>Current Status</div>
+            </div>
+            <div style={{fontSize: '0.95em', color: '#78350f', lineHeight: '1.6', marginBottom: '12px'}}>
+              <strong>✅ JIG Development Complete:</strong> Prototype validated with 300 cartridges, 100% accuracy achieved
+            </div>
+            <div style={{fontSize: '0.95em', color: '#78350f', lineHeight: '1.6'}}>
+              <strong>⏳ Pending:</strong> System integration with production line (Overall 50% Complete)
+            </div>
+          </div>
+
+          {/* Key Features Grid */}
+          <div style={{marginBottom: '32px'}}>
+            <h3 style={{fontSize: '1.2em', fontWeight: '800', color: '#0f172a', marginBottom: '16px'}}>🎯 Key Features</h3>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px'}}>
+              {[
+                { icon: '🔍', title: '4-Level Validation', desc: 'Format → Line ID → Batch Range → Duplicate Detection' },
+                { icon: '🎛️', title: 'Auto-Routing', desc: 'Automatic PASS/REJECT bin sorting via ACTJ actuators' },
+                { icon: '💡', title: 'Visual Indicators', desc: 'LED lights (Green/Yellow/Red) + buzzer alerts' },
+                { icon: '📊', title: 'Real-time Display', desc: 'Tkinter UI shows counts, batch info, last scanned QR' },
+                { icon: '💾', title: 'Auto-Resume', desc: 'Power-safe: resumes from last scan after interruption' },
+                { icon: '🌐', title: 'Web Dashboard', desc: 'Flask dashboard for remote monitoring & CSV reports' }
+              ].map((feat, idx) => (
+                <div key={idx} style={{background: '#ffffff', border: '2px solid #e5e7eb', borderRadius: '12px', padding: '16px'}}>
+                  <div style={{display: 'flex', gap: '12px', alignItems: 'start'}}>
+                    <div style={{fontSize: '2em', flexShrink: 0}}>{feat.icon}</div>
+                    <div>
+                      <div style={{fontSize: '0.95em', fontWeight: '800', color: '#0f172a', marginBottom: '4px'}}>{feat.title}</div>
+                      <div style={{fontSize: '0.85em', color: '#64748b', lineHeight: '1.5'}}>{feat.desc}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* How It Works */}
+          <div style={{marginBottom: '32px'}}>
+            <h3 style={{fontSize: '1.2em', fontWeight: '800', color: '#0f172a', marginBottom: '16px'}}>⚙️ How It Works</h3>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px'}}>
+              {[
+                { step: '1', title: 'Scan QR', desc: 'GM65 scanner reads 14-char QR code' },
+                { step: '2', title: 'Validate', desc: 'Check Line ID, Batch Range, Format' },
+                { step: '3', title: 'Auto-Route', desc: 'ACTJ actuators sort to bins' },
+                { step: '4', title: 'Track', desc: 'Log all scans with timestamp' }
+              ].map((step, idx) => (
+                <div key={idx} style={{background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', border: '2px solid #cbd5e1', borderRadius: '12px', padding: '16px', textAlign: 'center'}}>
+                  <div style={{width: '36px', height: '36px', borderRadius: '50%', background: '#3b82f6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '1.1em', margin: '0 auto 12px'}}>{step.step}</div>
+                  <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', marginBottom: '6px'}}>{step.title}</div>
+                  <div style={{fontSize: '0.8em', color: '#475569', lineHeight: '1.4'}}>{step.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Benefits */}
+          <div style={{marginBottom: '24px'}}>
+            <h3 style={{fontSize: '1.2em', fontWeight: '800', color: '#0f172a', marginBottom: '16px'}}>✨ Key Benefits</h3>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px'}}>
+              {[
+                { icon: '💯', title: 'Zero Mix-Ups', desc: '100% accurate validation' },
+                { icon: '💰', title: 'No Investment', desc: 'Uses existing infrastructure' },
+                { icon: '📊', title: 'Full Traceability', desc: 'Complete audit trail' }
+              ].map((benefit, idx) => (
+                <div key={idx} style={{background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)', border: '2px solid #86efac', borderRadius: '12px', padding: '16px', textAlign: 'center'}}>
+                  <div style={{fontSize: '2em', marginBottom: '8px'}}>{benefit.icon}</div>
+                  <div style={{fontSize: '0.95em', fontWeight: '800', color: '#065f46', marginBottom: '4px'}}>{benefit.title}</div>
+                  <div style={{fontSize: '0.85em', color: '#047857'}}>{benefit.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Developer Info */}
+          <div style={{background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)', border: '2px solid #cbd5e1', borderRadius: '12px', padding: '20px', textAlign: 'center'}}>
+            <div style={{fontSize: '1em', fontWeight: '800', color: '#0f172a', marginBottom: '8px'}}>👤 Developed By</div>
+            <div style={{fontSize: '1.1em', fontWeight: '700', color: '#3b82f6', marginBottom: '4px'}}>P. Lakshmana Sai Kaushik</div>
+            <div style={{fontSize: '0.9em', color: '#64748b', fontWeight: '600'}}>QA Supervisor | Molbio Diagnostics Limited</div>
+            <div style={{fontSize: '0.85em', color: '#94a3b8', marginTop: '8px'}}>Oct 2025 – Dec 2025 | Champions 2.0 Initiative</div>
+          </div>
+
+        </div>
+      </FullscreenShell>,
+      document.body
+    );
+  }
 
   const completedInitiatives = [
     { icon: '🤝', title: 'Monthly huddles with MG, QC & MN', desc: 'Review rejections/challenges with actions locked each month.', isClickable: true },
@@ -166,9 +308,9 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
           </h3>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px'}}>
             {[
-              { icon: '📊', title: 'Defect Rate Setting', completion: 65, desc: 'Aligning limits to recent defect learnings.' },
-              { icon: '📋', title: 'Limit Sample Register', completion: 45, desc: 'Digital log to tighten sampling traceability.' },
-              { icon: '📱', title: 'QR Scanning Software', completion: 50, desc: 'App build to reduce manual QR errors.' }
+              { icon: '📊', title: 'Defect Rate Setting', completion: 65, desc: 'Aligning limits to recent defect learnings.', showButton: false },
+              { icon: '📋', title: 'Limit Sample Register', completion: 45, desc: 'Digital log to tighten sampling traceability.', showButton: false },
+              { icon: '🔧', title: 'Batch Mix-Up Detection JIG', completion: 50, desc: 'Automated QR validation to prevent batch mix-ups.', showButton: true }
             ].map((item, idx) => (
               <div key={idx} style={{background: '#ffffff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '16px', transition: 'all 0.25s ease'}}
                 onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(59, 130, 246, 0.15)'; e.currentTarget.style.borderColor = '#3b82f6';}}
@@ -185,7 +327,38 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
                     </div>
                   </div>
                   
-                  <div style={{fontSize: '0.85em', fontWeight: '700', color: '#2563eb', background: '#eff6ff', padding: '4px 8px', borderRadius: '6px', display: 'inline-block'}}>{item.completion}% Complete</div>
+                  <div style={{fontSize: '0.85em', fontWeight: '700', color: '#2563eb', background: '#eff6ff', padding: '4px 8px', borderRadius: '6px', display: 'inline-block', marginBottom: item.showButton ? '10px' : '0'}}>{item.completion}% Complete</div>
+                  
+                  {/* View Details Button */}
+                  {item.showButton && (
+                    <button
+                      onClick={() => setShowJigDetails(true)}
+                      style={{
+                        width: '100%',
+                        padding: '8px 16px',
+                        marginTop: '8px',
+                        background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontSize: '0.85em',
+                        fontWeight: '700',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(59, 130, 246, 0.3)';
+                      }}
+                    >
+                      📋 View Details
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
