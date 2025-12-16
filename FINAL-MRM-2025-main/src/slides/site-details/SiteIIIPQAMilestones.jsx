@@ -35,7 +35,21 @@ export default function SiteIIIPQAMilestones({ onClose }) {
       color: '#6366f1',
       bgColor: '#eef2ff',
       icon: '🧪',
-      period: 'Apr-Nov'
+      period: 'Apr-Nov',
+      toColor: '#f59e0b'
+    },
+    {
+      title: '🔧 Missing Defect Rate (VI-01)',
+      value: '20%',
+      unit: 'Current vs Target',
+      from: '35%',
+      to: '20%',
+      target: '≤ 10%',
+      color: '#3b82f6',
+      bgColor: '#eff6ff',
+      icon: '🔧',
+      period: 'Jul-Nov',
+      toColor: '#f59e0b'
     }
   ]
 
@@ -61,6 +75,17 @@ export default function SiteIIIPQAMilestones({ onClose }) {
         outcome: 'Achieved 1.5% from 1.7%',
         outcomeColor: '#f59e0b',
         icon: '🚧'
+      },
+      {
+        title: 'Missing Defect Rate - VI-01 (Welding Inspection)',
+        details: 'Missing defect rate at VI-01 (welding inspection) was 35%. Target is to reduce to ≤ 10%. Presently we achieved 20% for July-Nov, still in process.',
+        status: 'Under Progress',
+        statusColor: '#3b82f6',
+        statusBg: '#eff6ff',
+        target: 'Target ≤ 10% (Current 20%)',
+        outcome: 'Reduced from 35% to 20%',
+        outcomeColor: '#3b82f6',
+        icon: '🔧'
       }
     ],
     deviceManufacturing: [
@@ -290,8 +315,8 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                     borderTop: `1px solid ${metric.color}30`
                   }}>
                     {metric.from && <div>From: <strong style={{ color: '#dc2626' }}>{metric.from}</strong></div>}
-                    {metric.to && <div>To: <strong style={{ color: metric.color }}>{metric.to}</strong></div>}
-                    {metric.target && <div>Target: <strong style={{ color: metric.color }}>{metric.target}</strong></div>}
+                    {metric.to && <div>To: <strong style={{ color: metric.toColor || metric.color }}>{metric.to}</strong></div>}
+                    {metric.target && <div>Target: <strong style={{ color: '#10b981' }}>{metric.target}</strong></div>}
                     {metric.period && <div>Period: <strong>{metric.period}</strong></div>}
                   </div>
                 </div>
