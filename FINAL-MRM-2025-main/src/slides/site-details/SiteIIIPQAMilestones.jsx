@@ -11,7 +11,7 @@ export default function SiteIIIPQAMilestones({ onClose }) {
       color: '#f59e0b',
       bgColor: '#fff7ed',
       icon: '💰',
-      target: 'Sustain via rework + transport discipline'
+      target: 'Rework Procedure + Transport Optimization'
     },
     {
       title: '📉 IN-Process Defect Rate',
