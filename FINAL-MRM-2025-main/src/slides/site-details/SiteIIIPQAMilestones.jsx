@@ -2,136 +2,98 @@ import { createPortal } from 'react-dom'
 import { FullscreenShell } from '../../utils/modalHelpers'
 
 export default function SiteIIIPQAMilestones({ onClose }) {
+  const kpiMetrics = [
+    {
+      title: '💰 Cost Savings',
+      value: '20 Lakhs',
+      unit: 'Annual Savings',
+      period: 'Compared with (Jun24-Jul25)',
+      color: '#f59e0b',
+      bgColor: '#fff7ed',
+      icon: '💰',
+      target: 'Sustain via rework + transport discipline'
+    },
+    {
+      title: '📉 IN-Process Defect Rate',
+      value: '2.5%',
+      unit: 'Achieved vs Target',
+      from: '4.5%',
+      to: '2.5%',
+      target: '≤ 4%',
+      color: '#10b981',
+      bgColor: '#ecfdf3',
+      icon: '📉',
+      period: 'Aug24-Jun25'
+    },
+    {
+      title: '🧪 FQC Defect Rate',
+      value: '1.5%',
+      unit: 'Current vs Target',
+      from: '1.7%',
+      to: '1.5%',
+      target: '≤ 1.0%',
+      color: '#6366f1',
+      bgColor: '#eef2ff',
+      icon: '🧪',
+      period: 'Apr-Nov'
+    }
+  ]
+
   const milestonesData = {
     cartridgeManufacturing: [
       {
-        title: 'Reduced rejection from 4.5% to 2.5%',
+        title: 'Inprocess - Reduced rejection from 4.5% to 2.5%',
+        details: 'Defined defect rates at all levels in cartridge production. Defect rate on (Aug24-Jun25) at Inprocess was 4.5% with Target ≤ 4%. We reduced to 2.5% from 4.5%.',
         status: 'Completed',
         statusColor: '#10b981',
-        statusBg: '#ecfdf5',
-        icon: '✅',
-        details: 'Successfully reduced cartridge rejection rate by 55% through IPQA process improvements and defect prevention'
+        statusBg: '#ecfdf3',
+        target: 'Target ≤ 4% (Achieved 2.5%)',
+        outcome: 'Reduced from 4.5% to 2.5%',
+        icon: '✅'
       },
       {
-        title: 'Defined defect rates at all levels in cartridge production',
-        status: 'Completed',
-        statusColor: '#10b981',
-        statusBg: '#ecfdf5',
-        icon: '✅',
-        details: 'Established baseline defect metrics for Inprocess and FQC stages with clear acceptance criteria'
-      },
-      {
-        title: 'Defect rate (Aug24-Jun25) at Inprocess 4.5%',
-        status: 'In Progress',
-        statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        target: 'Target ≤ 4%',
-        details: 'Currently monitoring inprocess defects with corrective actions underway to meet 4% target'
-      },
-      {
-        title: 'Achieved 2.7% rejection for Jun-Nov',
+        title: 'FQC - Achieved 1.5% rejection for July-Nov',
+        details: 'Defect rate (Apr-July) at FQC was 1.7%. Target is ≤ 1.0%. We achieved 1.5% for July-Nov. Our target is <1.0% but presently we achieved 1.5%, still undergoing process.',
         status: 'Under Progress',
         statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        details: 'FQC stage rejection rate trending below initial target; continued monitoring and optimization in progress'
-      },
-      {
-        title: 'Defect rate (Apr-July) at FQC 1.7%',
-        status: 'Under Progress',
-        statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        target: 'Target ≤ 1.0%',
-        details: 'FQC defects tracking well; efforts focus on achieving ≤1.0% target through enhanced inspection protocols'
-      },
-      {
-        title: 'Achieved 1.5% for July-Nov',
-        status: 'Under Progress',
-        statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        details: 'Recent period shows 1.5% defect rate; continued focus on reaching 1.0% target'
+        statusBg: '#fff7ed',
+        target: 'Target ≤ 1.0% (Current 1.5%)',
+        outcome: 'Achieved 1.5% from 1.7%',
+        outcomeColor: '#f59e0b',
+        icon: '🚧'
       }
     ],
     deviceManufacturing: [
       {
-        title: 'Defined rework procedure for Duo and Quatro casing',
+        title: 'Rework Procedure & Transport Optimization - 20 Lakhs Savings',
+        details: 'For defected units, we implemented a new rework procedure instead of destroying them. Defined rework procedure for Duo and Quatro casing (Completed) and optimized transportation method from warehouse to IST (Completed). Outcome: Saved a cost of 20 lakhs as compared to last year rejections (Jun24-July25).',
         status: 'Completed',
         statusColor: '#10b981',
-        statusBg: '#ecfdf5',
-        icon: '✅',
-        details: 'Standardized rework procedures established for both Duo and Quatro device casings with documented SOP'
-      },
-      {
-        title: 'Optimized transportation method from warehouse to IST',
-        status: 'Completed',
-        statusColor: '#10b981',
-        statusBg: '#ecfdf5',
-        icon: '✅',
-        outcome: 'Saving a cost of 20 lakhs as compared to last year rejections (Jun24-July25)',
-        outcomeColor: '#10b981',
-        details: 'Logistics optimization resulted in significant cost savings and reduced damage-related rejections'
+        statusBg: '#ecfdf3',
+        target: 'Saving 20 Lakhs vs last year',
+        outcome: 'Cost of 20 lakhs saved (Jun24-Jul25)',
+        icon: '💰'
       },
       {
         title: 'Defect rate setting at all levels',
+        details: 'Establishing standardized defect rate measurements across all device manufacturing levels to ensure consistent quality monitoring.',
         status: 'Under Progress',
         statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        details: 'Establishing baseline defect acceptance criteria across all device manufacturing stages'
+        statusBg: '#fff7ed',
+        target: 'Define and implement defect tracking at all levels',
+        icon: '📊'
       },
       {
-        title: 'Critical and non-critical identification of components for RCA of high defect rates',
+        title: 'Critical and non-critical identification of components for RCA',
+        details: 'Identifying critical and non-critical components to conduct Root Cause Analysis (RCA) of high defect rates and prioritize improvement efforts.',
         status: 'Under Progress',
-        statusColor: '#f59e0b',
-        statusBg: '#fffbeb',
-        icon: '⏳',
-        details: 'Root cause analysis framework being developed to identify critical components driving defect rates'
+        statusColor: '#3b82f6',
+        statusBg: '#eff6ff',
+        target: 'Complete component classification for RCA',
+        icon: '🔍'
       }
     ]
   }
-
-  const kpiMetrics = [
-    {
-      title: 'Cartridge Rejection Reduction',
-      value: '55%',
-      unit: 'Improvement',
-      from: '4.5%',
-      to: '2.5%',
-      color: '#10b981',
-      bgColor: '#ecfdf5',
-      icon: '📉'
-    },
-    {
-      title: 'FQC Defect Achievement',
-      value: '1.5%',
-      unit: 'Current Rate',
-      target: '1.0%',
-      color: '#3b82f6',
-      bgColor: '#eff6ff',
-      icon: '🎯'
-    },
-    {
-      title: 'Cost Savings',
-      value: '20 Lakhs',
-      unit: 'Annual Savings',
-      period: 'Jun24-Jul25',
-      color: '#f59e0b',
-      bgColor: '#fffbeb',
-      icon: '💰'
-    },
-    {
-      title: 'Inprocess Target',
-      value: '4.5%',
-      unit: 'Current Rate',
-      target: '≤ 4%',
-      color: '#8b5cf6',
-      bgColor: '#faf5ff',
-      icon: '📊'
-    }
-  ]
 
   const MilestoneCard = ({ milestone, index }) => (
     <div style={{
@@ -145,12 +107,10 @@ export default function SiteIIIPQAMilestones({ onClose }) {
       display: 'grid',
       gridTemplateColumns: '60px 1fr',
       gap: '20px',
-      alignItems: 'start',
-      ':hover': { transform: 'translateY(-4px)', boxShadow: '0 12px 32px rgba(15, 23, 42, 0.12)' }
+      alignItems: 'start'
     }}
     onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(15, 23, 42, 0.12)'; }}
     onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(15, 23, 42, 0.08)'; }}>
-      
       {/* Left: Icon + Status */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
         <div style={{
@@ -283,9 +243,12 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                 }}>
                   <div style={{ display: 'flex', alignItems: 'start', justifyContent: 'space-between' }}>
                     <div style={{
-                      fontSize: '2.2em'
+                      fontSize: '1.05em',
+                      fontWeight: '800',
+                      color: '#0f172a',
+                      lineHeight: '1.3'
                     }}>
-                      {metric.icon}
+                      {metric.title}
                     </div>
                     <div style={{
                       fontSize: '0.7em',
@@ -295,7 +258,8 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                       border: `1px solid ${metric.color}50`,
                       padding: '4px 10px',
                       borderRadius: '8px',
-                      textTransform: 'uppercase'
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap'
                     }}>
                       KPI
                     </div>
@@ -356,80 +320,6 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                 <MilestoneCard key={idx} milestone={milestone} index={idx} />
               ))}
             </div>
-
-            {/* Cartridge Progress Indicators */}
-            <div style={{
-              marginTop: '24px',
-              background: '#ffffff',
-              borderRadius: '16px',
-              padding: '24px',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 8px 20px rgba(15, 23, 42, 0.08)'
-            }}>
-              <div style={{
-                fontSize: '1em',
-                fontWeight: '800',
-                color: '#0f172a',
-                marginBottom: '20px'
-              }}>
-                📈 Defect Rate Progress
-              </div>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '16px'
-              }}>
-                {[
-                  { stage: 'Inprocess (Aug24-Jun25)', current: '4.5%', target: '≤ 4%', progress: 89 },
-                  { stage: 'FQC (Apr-Jul)', current: '1.7%', target: '≤ 1.0%', progress: 59 },
-                  { stage: 'FQC (Jul-Nov)', current: '1.5%', target: '≤ 1.0%', progress: 67 }
-                ].map((item, idx) => (
-                  <div key={idx} style={{
-                    padding: '16px',
-                    background: '#f8fafc',
-                    borderRadius: '12px',
-                    border: '1px solid #e2e8f0'
-                  }}>
-                    <div style={{
-                      fontSize: '0.85em',
-                      fontWeight: '800',
-                      color: '#0f172a',
-                      marginBottom: '8px'
-                    }}>
-                      {item.stage}
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: '12px'
-                    }}>
-                      <span style={{ fontSize: '0.9em', fontWeight: '700', color: '#3b82f6' }}>
-                        Current: {item.current}
-                      </span>
-                      <span style={{ fontSize: '0.9em', fontWeight: '700', color: '#10b981' }}>
-                        Target: {item.target}
-                      </span>
-                    </div>
-                    <div style={{
-                      width: '100%',
-                      height: '8px',
-                      background: '#e2e8f0',
-                      borderRadius: '8px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{
-                        height: '100%',
-                        width: `${item.progress}%`,
-                        background: `linear-gradient(90deg, #3b82f6, #0ea5e9)`,
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-                        transition: 'width 0.3s ease'
-                      }}></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Device Manufacturing Section */}
@@ -483,36 +373,10 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                     color: '#92400e',
                     lineHeight: '1.6'
                   }}>
-                    Transportation optimization from warehouse to IST reduced rejection costs compared to previous year (Jun24-Jul25). This efficiency gain demonstrates the value of standardized procedures and optimized logistics.
+                    Rework instead of scrap plus optimized transport from warehouse to IST cut rejection costs vs last year (Jun24-Jul25), delivering 20 lakhs savings and proving the impact of standardized procedures and logistics discipline.
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Footer Summary */}
-          <div style={{
-            marginTop: '48px',
-            padding: '24px',
-            background: 'linear-gradient(135deg, #eef2ff, #e0e7ff)',
-            borderRadius: '16px',
-            border: '2px solid #6366f1',
-            textAlign: 'center'
-          }}>
-            <div style={{
-              fontSize: '1.1em',
-              fontWeight: '900',
-              color: '#4338ca',
-              marginBottom: '12px'
-            }}>
-              🎯 Continuous Excellence
-            </div>
-            <div style={{
-              fontSize: '0.95em',
-              color: '#4338ca',
-              lineHeight: '1.6'
-            }}>
-              Through structured IPQA processes, monthly management huddles, and continuous defect analysis, SITE-III is driving measurable improvements across both cartridge and device manufacturing with clear targets and documented outcomes.
             </div>
           </div>
         </div>
