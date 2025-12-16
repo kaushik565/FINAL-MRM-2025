@@ -46,12 +46,12 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
 /**
  * Site III IPQA Improvements Modal
  */
-export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onParticleCountClick }) {
+export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onParticleCountClick, onShopfloorObservationClick }) {
   if (!isOpen) return null;
 
   const completedInitiatives = [
     { icon: '🤝', title: 'Monthly huddles with MG, QC & MN', desc: 'Review rejections/challenges with actions locked each month.', isClickable: true },
-    { icon: '👀', title: 'Shopfloor observation loop', desc: 'Every 15 days: on-floor walks to surface issues early.', highlight: 'Reduced Process incidents from 34 to 21 (Nos).' },
+    { icon: '👀', title: 'Shopfloor observation loop', desc: 'Every 15 days: on-floor walks to surface issues early.', highlight: 'Reduced Process incidents from 34 to 21 (Nos).', isClickable: true, clickType: 'shopfloorObservation' },
     { icon: '📄', title: 'On-floor work instructions', desc: 'Live, visual SOPs at point-of-use to reduce ambiguity.' },
     { icon: '♻️', title: 'Line-wise rework bays', desc: 'Dedicated rework space to contain and correct defects.' },
     { icon: '🧪', title: 'Particle count checks', desc: 'Routine counts to keep contamination tightly controlled.', isClickable: true, clickType: 'particleCount' },
@@ -94,6 +94,8 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
                   if (item.isClickable) {
                     if (item.clickType === 'particleCount' && onParticleCountClick) {
                       onParticleCountClick();
+                    } else if (item.clickType === 'shopfloorObservation' && onShopfloorObservationClick) {
+                      onShopfloorObservationClick();
                     } else if (onMilestonesClick) {
                       onMilestonesClick();
                     }

@@ -19,6 +19,7 @@ import { DeptChartModal, CartridgeChartModal, ManufacturingChartModal } from './
 import { SiteIImprovementsModal, Site3ImprovementsModal, SiteVImprovementsModal } from './modals/IPQAImprovementsModals';
 import SiteIIIPQAMilestones from './site-details/SiteIIIPQAMilestones';
 import SiteIIIParticleCount from './site-details/SiteIIIParticleCount';
+import SiteIIIShopfloorObservation from './site-details/SiteIIIShopfloorObservation';
 
 export default function IPQAOverview() {
   const [selectedDetail, setSelectedDetail] = useState(null);
@@ -35,10 +36,11 @@ export default function IPQAOverview() {
   const [showSiteVImprovements, setShowSiteVImprovements] = useState(false);
   const [showIPQAMilestones, setShowIPQAMilestones] = useState(false);
   const [showParticleCount, setShowParticleCount] = useState(false);
+  const [showShopfloorObservation, setShowShopfloorObservation] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Lock background scroll while any overlay/modal is open to avoid slide jump
-  const hasOverlayOpen = selectedDetail || selectedDeptChart || selectedCartridgeChart || selectedManufacturingChart || selectedSite3Chart || selectedSiteIChart || showSiteIImprovements || showSite3Improvements || showSiteVImprovements || showIPQAMilestones || showParticleCount;
+  const hasOverlayOpen = selectedDetail || selectedDeptChart || selectedCartridgeChart || selectedManufacturingChart || selectedSite3Chart || selectedSiteIChart || showSiteIImprovements || showSite3Improvements || showSiteVImprovements || showIPQAMilestones || showParticleCount || showShopfloorObservation;
 
   // Close all modals when slide changes
   useEffect(() => {
@@ -3180,6 +3182,10 @@ export default function IPQAOverview() {
           setShowSite3Improvements(false);
           setShowParticleCount(true);
         }}
+        onShopfloorObservationClick={() => {
+          setShowSite3Improvements(false);
+          setShowShopfloorObservation(true);
+        }}
       />
 
       {/* IPQA Milestones Modal */}
@@ -3190,6 +3196,11 @@ export default function IPQAOverview() {
       {/* Particle Count Modal */}
       {showParticleCount && (
         <SiteIIIParticleCount onClose={() => setShowParticleCount(false)} />
+      )}
+
+      {/* Shopfloor Observation Modal */}
+      {showShopfloorObservation && (
+        <SiteIIIShopfloorObservation onClose={() => setShowShopfloorObservation(false)} />
       )}
 
       {/* SITE-V Improvements Modal */}
