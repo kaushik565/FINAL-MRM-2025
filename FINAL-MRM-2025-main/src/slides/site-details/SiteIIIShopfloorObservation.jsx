@@ -1,25 +1,12 @@
 import { createPortal } from 'react-dom'
 import { FullscreenShell } from '../../utils/modalHelpers'
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts'
 
 export default function SiteIIIShopfloorObservation({ onClose }) {
-  // Data showing the reduction from 34 to 21 over the observation period
+  // Data showing the reduction from 34 to 21 - comparing first half and second half of year
   const incidentData = [
-    { period: 'Start', incidents: 34, target: 25 },
-    { period: '15 Days', incidents: 31, target: 25 },
-    { period: '30 Days', incidents: 28, target: 25 },
-    { period: '45 Days', incidents: 26, target: 25 },
-    { period: '60 Days', incidents: 24, target: 25 },
-    { period: '75 Days', incidents: 22, target: 25 },
-    { period: 'Current', incidents: 21, target: 25 }
-  ]
-
-  const categoryData = [
-    { category: 'Documentation', before: 12, after: 6, reduction: 50 },
-    { category: 'Equipment Setup', before: 8, after: 5, reduction: 37.5 },
-    { category: 'Material Handling', before: 7, after: 4, reduction: 42.9 },
-    { category: 'Process Deviation', before: 5, after: 4, reduction: 20 },
-    { category: 'Others', before: 2, after: 2, reduction: 0 }
+    { period: 'JAN-JUN', incidents: 34, fill: '#ef4444' },
+    { period: 'JULY-NOV', incidents: 21, fill: '#10b981' }
   ]
 
   const totalReduction = ((34 - 21) / 34 * 100).toFixed(1)
@@ -142,7 +129,7 @@ export default function SiteIIIShopfloorObservation({ onClose }) {
               <span>📉</span> Process Incidents Trend
             </div>
             <ResponsiveContainer width="100%" height={350}>
-              <LineChart data={incidentData}>
+              <BarChart data={incidentData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis 
                   dataKey="period" 
@@ -165,18 +152,18 @@ export default function SiteIIIShopfloorObservation({ onClose }) {
                 />
                 <Legend 
                   wrapperStyle={{ paddingTop: '20px' }}
-                  iconType="line"
                 />
-                <Line 
-                  type="monotone" 
+                <Bar 
                   dataKey="incidents" 
-                  stroke="#ef4444" 
-                  strokeWidth={3}
-                  name="Actual Incidents"
-                  dot={{ fill: '#ef4444', r: 6 }}
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
+                  name="Incidents"
+                  radius={[8, 8, 0, 0]}
+                  label={{ position: 'top', fill: '#0f172a', fontWeight: 700, fontSize: 16 }}
+                >
+                  {incidentData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
 
