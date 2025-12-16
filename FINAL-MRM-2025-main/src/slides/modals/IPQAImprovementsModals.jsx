@@ -46,7 +46,7 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
 /**
  * Site III IPQA Improvements Modal
  */
-export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick }) {
+export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onParticleCountClick }) {
   if (!isOpen) return null;
 
   const completedInitiatives = [
@@ -54,7 +54,7 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick }) {
     { icon: '👀', title: 'Shopfloor observation loop', desc: 'Every 15 days: on-floor walks to surface issues early.', highlight: 'Reduced Process incidents from 34 to 21 (Nos).' },
     { icon: '📄', title: 'On-floor work instructions', desc: 'Live, visual SOPs at point-of-use to reduce ambiguity.' },
     { icon: '♻️', title: 'Line-wise rework bays', desc: 'Dedicated rework space to contain and correct defects.' },
-    { icon: '🧪', title: 'Particle count checks', desc: 'Routine counts to keep contamination tightly controlled.' },
+    { icon: '🧪', title: 'Particle count checks', desc: 'Routine counts to keep contamination tightly controlled.', isClickable: true, clickType: 'particleCount' },
     { icon: '🏷️', title: 'QR pasting segregation', desc: 'Separated QR activities to prevent label mix-ups.' },
     { icon: '🖼️', title: 'Pictorial job aids', desc: 'Step visuals at stations for faster, error-proof execution.' }
   ];
@@ -90,7 +90,15 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick }) {
             {completedInitiatives.map((item, idx) => (
               <div 
                 key={idx} 
-                onClick={() => item.isClickable && onMilestonesClick && onMilestonesClick()}
+                onClick={() => {
+                  if (item.isClickable) {
+                    if (item.clickType === 'particleCount' && onParticleCountClick) {
+                      onParticleCountClick();
+                    } else if (onMilestonesClick) {
+                      onMilestonesClick();
+                    }
+                  }
+                }}
                 style={{
                   background: '#ffffff', 
                   border: item.isClickable ? '2px solid #8b5cf6' : '2px solid #d1fae5', 

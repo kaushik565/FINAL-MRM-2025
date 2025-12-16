@@ -18,6 +18,7 @@ import { Site3KPIInfoModal, QualityScoreInfoModal } from './modals/IPQAOverviewM
 import { DeptChartModal, CartridgeChartModal, ManufacturingChartModal } from './modals/IPQAChartModalsNew';
 import { SiteIImprovementsModal, Site3ImprovementsModal, SiteVImprovementsModal } from './modals/IPQAImprovementsModals';
 import SiteIIIPQAMilestones from './site-details/SiteIIIPQAMilestones';
+import SiteIIIParticleCount from './site-details/SiteIIIParticleCount';
 
 export default function IPQAOverview() {
   const [selectedDetail, setSelectedDetail] = useState(null);
@@ -33,10 +34,11 @@ export default function IPQAOverview() {
   const [showSite3Improvements, setShowSite3Improvements] = useState(false);
   const [showSiteVImprovements, setShowSiteVImprovements] = useState(false);
   const [showIPQAMilestones, setShowIPQAMilestones] = useState(false);
+  const [showParticleCount, setShowParticleCount] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Lock background scroll while any overlay/modal is open to avoid slide jump
-  const hasOverlayOpen = selectedDetail || selectedDeptChart || selectedCartridgeChart || selectedManufacturingChart || selectedSite3Chart || selectedSiteIChart || showSiteIImprovements || showSite3Improvements || showSiteVImprovements || showIPQAMilestones;
+  const hasOverlayOpen = selectedDetail || selectedDeptChart || selectedCartridgeChart || selectedManufacturingChart || selectedSite3Chart || selectedSiteIChart || showSiteIImprovements || showSite3Improvements || showSiteVImprovements || showIPQAMilestones || showParticleCount;
 
   // Close all modals when slide changes
   useEffect(() => {
@@ -3174,11 +3176,20 @@ export default function IPQAOverview() {
           setShowSite3Improvements(false);
           setShowIPQAMilestones(true);
         }}
+        onParticleCountClick={() => {
+          setShowSite3Improvements(false);
+          setShowParticleCount(true);
+        }}
       />
 
       {/* IPQA Milestones Modal */}
       {showIPQAMilestones && (
         <SiteIIIPQAMilestones onClose={() => setShowIPQAMilestones(false)} />
+      )}
+
+      {/* Particle Count Modal */}
+      {showParticleCount && (
+        <SiteIIIParticleCount onClose={() => setShowParticleCount(false)} />
       )}
 
       {/* SITE-V Improvements Modal */}
