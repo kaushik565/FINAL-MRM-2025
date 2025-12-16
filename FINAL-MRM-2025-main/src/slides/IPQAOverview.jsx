@@ -3190,17 +3190,26 @@ export default function IPQAOverview() {
 
       {/* IPQA Milestones Modal */}
       {showIPQAMilestones && (
-        <SiteIIIPQAMilestones onClose={() => setShowIPQAMilestones(false)} />
+        <SiteIIIPQAMilestones onClose={() => {
+          setShowIPQAMilestones(false);
+          setShowSite3Improvements(true);
+        }} />
       )}
 
       {/* Particle Count Modal */}
       {showParticleCount && (
-        <SiteIIIParticleCount onClose={() => setShowParticleCount(false)} />
+        <SiteIIIParticleCount onClose={() => {
+          setShowParticleCount(false);
+          setShowSite3Improvements(true);
+        }} />
       )}
 
       {/* Shopfloor Observation Modal */}
       {showShopfloorObservation && (
-        <SiteIIIShopfloorObservation onClose={() => setShowShopfloorObservation(false)} />
+        <SiteIIIShopfloorObservation onClose={() => {
+          setShowShopfloorObservation(false);
+          setShowSite3Improvements(true);
+        }} />
       )}
 
       {/* SITE-V Improvements Modal */}
