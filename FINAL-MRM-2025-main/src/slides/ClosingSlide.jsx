@@ -9,7 +9,7 @@ export default function ClosingSlide({ onHomeClick }) {
       alignItems: 'center',
       height: '100%',
       textAlign: 'center',
-      backgroundColor: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)'
+      background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)'
     }}>
       {/* Company Logo */}
       <img 

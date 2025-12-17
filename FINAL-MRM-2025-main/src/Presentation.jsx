@@ -14,7 +14,6 @@ import ClosingSlide from './slides/ClosingSlide'
 import QualityWeekPlaceholder from './slides/QualityWeekPlaceholder'
 import RATitleSlide from './slides/RA/RATitleSlide'
 import RAContents from './slides/RA/RAContents'
-import RAProductLicense from './slides/RA/RAProductLicense'
 import RAClosingSlide from './slides/RA/RAClosingSlide'
 const primaryLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
 const fallbackLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
@@ -182,7 +181,6 @@ export default function Presentation() {
         <>
           <ErrorBoundary><RATitleSlide /></ErrorBoundary>
           <ErrorBoundary><RAContents /></ErrorBoundary>
-            <ErrorBoundary><RAProductLicense /></ErrorBoundary>
           <ErrorBoundary><RAClosingSlide onHomeClick={() => setSelectedDepartment(null)} /></ErrorBoundary>
         </>
       )}

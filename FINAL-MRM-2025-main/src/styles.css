@@ -32,6 +32,19 @@ body {
 }
 
 
+/* CRITICAL: Reveal.js requires fixed height on section and first child */
+
+.reveal section {
+    height: 100%;
+}
+
+.reveal section>.slide-content {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
 /* Top-align content slides using specific data-states (prevents flicker) */
 
 .reveal .slides>section[data-state="site-overview"],
@@ -41,6 +54,19 @@ body {
 .reveal .slides>section[data-state="closing-slide"],
 .reveal .slides>section[data-state="quality-week-placeholder"],
 .reveal .slides>section[data-state="qms-overview"] {
+    top: 0;
+    transform: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+
+/* Ensure RA Product License slide is top-aligned like other content slides */
+
+.reveal .slides>section[data-state="ra-product-license"] {
     top: 0;
     transform: none;
     margin: 0;
@@ -1813,6 +1839,7 @@ body.state-title-slide .corner-logo {
 /* Closing Slide */
 
 .closing-slide {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2689,5 +2716,59 @@ body.state-title-slide .corner-logo {
     50% {
         opacity: 0.6;
         transform: translateY(4px);
+    }
+}
+
+
+/* Modern animations for Product License slide */
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
     }
 }
