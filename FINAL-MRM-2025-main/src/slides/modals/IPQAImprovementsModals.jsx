@@ -377,13 +377,13 @@ export function SiteVImprovementsModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const improvements = [
-    { icon: '🧪', title: 'QA-controlled primer probe sampling', desc: 'Sampling moved fully under QA oversight to tighten control.' },
-    { icon: '🛡️', title: 'Stronger incoming gate', desc: 'Stringent incoming sampling now catches non-conformance at chip entry.' },
-    { icon: '⚡', title: 'Flashwriting device learnings', desc: 'Repeated incidents surfaced weak pogo pins; verification now flags them early.' },
-    { icon: '📦', title: 'Pouching mix-up prevention', desc: 'Tighter IPQA verification reduced pouch/chip mixups during pouching.' },
-    { icon: '🏷️', title: 'Label verification at sleeves', desc: 'Checks added at chip insertion to stop misprints and mixed labels from user dept.' },
-    { icon: '🛡️', title: 'Foil protection on trays', desc: 'Aluminium foil now shields trays from activated filter tip contamination.' },
-    { icon: '✅', title: 'Broader in-process checks', desc: 'Covers arrangement, washing, volume checks (BSA/secondary coat), tube sorting, and MM filling.' }
+    { icon: '🧪', title: 'QA-controlled primer probe sampling', desc: 'Sampling of primer probe is taken under QA.' },
+    { icon: '🛡️', title: 'Stronger incoming gate', desc: 'Stringent sampling during incoming stage has helped to rule out non conformance at initial stage of chip.' },
+    { icon: '⚡', title: 'Flashwriting device learnings', desc: 'Repitittive incident on flashwriting device during flashed chip verification has highlighted the inefficiency of some pogo pins in device.' },
+    { icon: '📦', title: 'Pouching mix-up prevention', desc: 'Stringent IPQA verification has reduced mixing of pouches and chips during pouching activity.'},
+    { icon: '🏷️', title: 'Label verification at sleeves', desc: 'IPQA label verification is introduced during chip insertion in sleeves becouse the labels were printed wrong by user department, and hence observed mixed up of chips.'},
+    { icon: '🛡️', title: 'Foil protection on trays', desc: 'Introduction of aluminim foil on tray has reduced the risk of contamination with activated filter tips during pouching activity.'},
+    { icon: '✅', title: 'Broader in-process checks', desc: 'Implementation of inprocess checks during activities like chip arrangement, chip washing,volume verification during  BSA/secondary  Coat filling, tube sorting, MM filing.'}
   ];
 
   return createPortal(

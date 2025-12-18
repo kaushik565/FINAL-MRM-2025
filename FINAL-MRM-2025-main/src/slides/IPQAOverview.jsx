@@ -174,7 +174,7 @@ export default function IPQAOverview() {
     {
       icon: '🧪',
       title: 'QA-controlled primer probe sampling',
-      detail: 'Sampling moved fully under QA oversight to tighten control.'
+      detail: 'Sampling of primer probes now runs under QA oversight.'
     },
     {
       icon: '🛡️',
