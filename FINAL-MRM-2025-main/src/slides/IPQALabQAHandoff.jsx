@@ -55,9 +55,6 @@ export default function IPQALabQAHandoff() {
             From incoming sampling to final packing verification with reverification signals for Lab QA.
           </div>
         </div>
-        <span style={{ padding: '8px 12px', borderRadius: '10px', background: '#e0f2fe', border: '1px solid #bae6fd', fontWeight: 800, color: '#0369a1' }}>
-          IPQA → Lab QA
-        </span>
       </div>
 
       {/* Key Metrics */}

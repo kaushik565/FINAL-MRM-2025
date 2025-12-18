@@ -122,7 +122,7 @@ export default function CustomerComplaintsOverview() {
       {/* Header Section */}
       <div style={{ marginBottom: '28px', position: 'relative', paddingX: '30px' }}>
         <h2 style={{
-          fontSize: '2.8em',
+          fontSize: '3.2em',
           fontWeight: 900,
           color: '#111827',
           marginBottom: '8px',
@@ -156,10 +156,10 @@ export default function CustomerComplaintsOverview() {
             textAlign: 'center',
             boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
           }}>
-            <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#64748b', marginBottom: 8 }}>
+            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#64748b', marginBottom: 8 }}>
               {card.label}
             </div>
-            <div style={{ fontSize: '2.8rem', fontWeight: 950, color: card.color, lineHeight: 1 }}>
+            <div style={{ fontSize: '3.2rem', fontWeight: 950, color: card.color, lineHeight: 1 }}>
               {card.value}
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function CustomerComplaintsOverview() {
           padding: '22px',
           boxShadow: '0 6px 16px rgba(239,68,68,0.1)'
         }}>
-          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#991b1b', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#991b1b', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             🔴 Top Issues (Most Frequent)
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -190,10 +190,10 @@ export default function CustomerComplaintsOverview() {
                 justifyContent: 'space-between',
                 alignItems: 'center'
               }}>
-                <div style={{ fontSize: '1.05rem', color: '#111827', fontWeight: 700, flex: 1 }}>
+                <div style={{ fontSize: '1.2rem', color: '#111827', fontWeight: 700, flex: 1 }}>
                   {issue[0]}
                 </div>
-                <div style={{ fontSize: '1.6rem', fontWeight: 950, color: '#ef4444', minWidth: '50px', textAlign: 'right' }}>
+                <div style={{ fontSize: '2.0rem', fontWeight: 950, color: '#ef4444', minWidth: '50px', textAlign: 'right' }}>
                   {issue[1]}
                 </div>
               </div>
@@ -209,7 +209,7 @@ export default function CustomerComplaintsOverview() {
           padding: '22px',
           boxShadow: '0 6px 16px rgba(245,158,11,0.1)'
         }}>
-          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#92400e', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#92400e', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             🎯 Root Cause Categories
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -225,10 +225,10 @@ export default function CustomerComplaintsOverview() {
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <div style={{ fontSize: '1.05rem', color: '#111827', fontWeight: 700, flex: 1 }}>
+                  <div style={{ fontSize: '1.2rem', color: '#111827', fontWeight: 700, flex: 1 }}>
                     {cause[0]}
                   </div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 950, color: '#f59e0b', minWidth: '50px', textAlign: 'right' }}>
+                  <div style={{ fontSize: '2.0rem', fontWeight: 950, color: '#f59e0b', minWidth: '50px', textAlign: 'right' }}>
                     {cause[1]}
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function CustomerComplaintsOverview() {
         marginX: '30px',
         boxShadow: '0 6px 16px rgba(14,165,233,0.1)'
       }}>
-        <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0369a1', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0369a1', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           🔧 Components/Parts Most Affected
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
@@ -261,10 +261,10 @@ export default function CustomerComplaintsOverview() {
                 border: '2px solid #7dd3fc',
                 textAlign: 'center'
               }}>
-                <div style={{ fontSize: '1.1rem', color: '#111827', fontWeight: 800, marginBottom: 6 }}>
+                <div style={{ fontSize: '1.3rem', color: '#111827', fontWeight: 800, marginBottom: 6 }}>
                   {comp[0]}
                 </div>
-                <div style={{ fontSize: '2.2rem', fontWeight: 950, color: '#0ea5e9' }}>
+                <div style={{ fontSize: '2.6rem', fontWeight: 950, color: '#0ea5e9' }}>
                   {comp[1]}
                 </div>
               </div>
@@ -282,7 +282,7 @@ export default function CustomerComplaintsOverview() {
         marginX: '30px',
         boxShadow: '0 6px 16px rgba(139,92,246,0.1)'
       }}>
-        <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#6b21a8', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#6b21a8', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           📊 Complaints by ID (Source)
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
@@ -296,13 +296,13 @@ export default function CustomerComplaintsOverview() {
                 border: '2px solid #d8b4fe',
                 textAlign: 'center'
               }}>
-                <div style={{ fontSize: '1.1rem', color: '#111827', fontWeight: 800, marginBottom: 6, fontFamily: 'monospace' }}>
+                <div style={{ fontSize: '1.3rem', color: '#111827', fontWeight: 800, marginBottom: 6, fontFamily: 'monospace' }}>
                   {id[0]}
                 </div>
-                <div style={{ fontSize: '2.2rem', fontWeight: 950, color: '#8b5cf6' }}>
+                <div style={{ fontSize: '2.6rem', fontWeight: 950, color: '#8b5cf6' }}>
                   {id[1]}
                 </div>
-                <div style={{ fontSize: '0.95rem', color: '#64748b', marginTop: 4, fontWeight: 600 }}>
+                <div style={{ fontSize: '1.1rem', color: '#64748b', marginTop: 4, fontWeight: 600 }}>
                   {((id[1] / metrics.total) * 100).toFixed(0)}%
                 </div>
               </div>
@@ -320,17 +320,17 @@ export default function CustomerComplaintsOverview() {
         marginX: '30px',
         boxShadow: '0 8px 24px rgba(14, 165, 233, 0.15)'
       }}>
-        <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0369a1', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+        <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#0369a1', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           📋 Complete Complaint Details
         </div>
         <div style={{ overflowX: 'auto', maxHeight: '550px', overflowY: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1.05rem' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1.15rem' }}>
             <thead>
               <tr style={{ background: '#0ea5e9', color: '#fff', position: 'sticky', top: 0 }}>
-                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.1rem' }}>Complaint ID</th>
-                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.1rem' }}>Device Serial</th>
-                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.1rem' }}>Issue</th>
-                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, fontSize: '1.1rem' }}>Root Cause</th>
+                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.25rem' }}>Complaint ID</th>
+                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.25rem' }}>Device Serial</th>
+                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, borderRight: '2px solid #0369a1', fontSize: '1.25rem' }}>Issue</th>
+                <th style={{ padding: '14px', textAlign: 'left', fontWeight: 900, fontSize: '1.25rem' }}>Root Cause</th>
               </tr>
             </thead>
             <tbody>
@@ -342,16 +342,16 @@ export default function CustomerComplaintsOverview() {
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#dbeafe' }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = idx % 2 === 0 ? '#ffffff' : '#f0f9ff' }}>
-                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', fontWeight: 800, color: '#0369a1', fontSize: '1.05rem' }}>
+                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', fontWeight: 800, color: '#0369a1', fontSize: '1.15rem' }}>
                     {complaint.id}
                   </td>
-                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', color: '#111827', fontWeight: 700, fontSize: '1.05rem' }}>
+                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', color: '#111827', fontWeight: 700, fontSize: '1.15rem' }}>
                     {complaint.serial}
                   </td>
-                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', color: '#111827', fontSize: '1.05rem' }}>
+                  <td style={{ padding: '12px', borderRight: '1px solid #bae6fd', color: '#111827', fontSize: '1.15rem' }}>
                     {complaint.issue}
                   </td>
-                  <td style={{ padding: '12px', color: '#475569', fontSize: '1rem' }}>
+                  <td style={{ padding: '12px', color: '#475569', fontSize: '1.1rem' }}>
                     {complaint.rootCause}
                   </td>
                 </tr>

@@ -39,15 +39,6 @@ export default function PresentationSelector({ onSelect }) {
         Management Review Meeting
       </h1>
 
-      <div style={{
-        fontSize: '1.4em',
-        color: '#cbd5e1',
-        marginBottom: '64px',
-        fontWeight: '600'
-      }}>
-        December 15-16, 2025
-      </div>
-
       {/* Department Selection */}
       <h2 style={{
         fontSize: '1.6em',
@@ -66,37 +57,6 @@ export default function PresentationSelector({ onSelect }) {
         gap: '32px',
         alignItems: 'center'
       }}>
-        {/* QA Button */}
-        <button
-          onClick={() => onSelect('QA')}
-          style={{
-            padding: '24px 48px',
-            fontSize: '1.8em',
-            fontWeight: '800',
-            color: '#ffffff',
-            background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
-            border: '3px solid #ffffff',
-            borderRadius: '16px',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 10px 30px rgba(220, 38, 38, 0.4)',
-            minWidth: '280px',
-            letterSpacing: '0.05em'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
-            e.currentTarget.style.boxShadow = '0 20px 40px rgba(220, 38, 38, 0.6)';
-            e.currentTarget.style.background = 'linear-gradient(135deg, #b91c1c, #991b1b)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 10px 30px rgba(220, 38, 38, 0.4)';
-            e.currentTarget.style.background = 'linear-gradient(135deg, #dc2626, #b91c1c)';
-          }}
-        >
-          🔬 Quality Assurance
-        </button>
-
         {/* RA Button */}
         <button
           onClick={() => { window.location.href = 'https://ra-presentation.vercel.app/' }}
@@ -126,6 +86,37 @@ export default function PresentationSelector({ onSelect }) {
           }}
         >
           📋 Regulatory Affairs
+        </button>
+
+        {/* QA Button */}
+        <button
+          onClick={() => onSelect('QA')}
+          style={{
+            padding: '24px 48px',
+            fontSize: '1.8em',
+            fontWeight: '800',
+            color: '#ffffff',
+            background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+            border: '3px solid #ffffff',
+            borderRadius: '16px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 10px 30px rgba(220, 38, 38, 0.4)',
+            minWidth: '280px',
+            letterSpacing: '0.05em'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 20px 40px rgba(220, 38, 38, 0.6)';
+            e.currentTarget.style.background = 'linear-gradient(135deg, #b91c1c, #991b1b)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = '0 10px 30px rgba(220, 38, 38, 0.4)';
+            e.currentTarget.style.background = 'linear-gradient(135deg, #dc2626, #b91c1c)';
+          }}
+        >
+          🔬 Quality Assurance
         </button>
       </div>
 

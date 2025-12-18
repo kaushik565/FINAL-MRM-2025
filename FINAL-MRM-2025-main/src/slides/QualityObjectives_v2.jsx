@@ -4903,7 +4903,7 @@ const QualityObjectives_v2 = () => {
 
               {/* Description */}
               <div style={{
-                fontSize: '1.3rem',
+                fontSize: '2.0rem',
                 color: '#0f172a',
                 fontWeight: '600',
                 lineHeight: '1.6',
@@ -4951,7 +4951,7 @@ const QualityObjectives_v2 = () => {
                     color: '#ffffff'
                   }}>
                     <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 04</div>
-                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Reduce Good Documentation Practices (GDP) related Nonconformities and incidents by 50%
                     </div>
                   </div>
@@ -4985,7 +4985,7 @@ const QualityObjectives_v2 = () => {
                     color: '#ffffff'
                   }}>
                     <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 05</div>
-                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       To reduce the number of In-process and final product defects through stringent IPQA verification and proactive defect prevention.
                     </div>
                   </div>
@@ -5019,7 +5019,7 @@ const QualityObjectives_v2 = () => {
                     color: '#ffffff'
                   }}>
                     <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 06</div>
-                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Digitalization of quality management system to improve efficiency, data integrity, traceability, real-time monitoring and compliance with regulatory
                     </div>
                   </div>
@@ -5053,7 +5053,7 @@ const QualityObjectives_v2 = () => {
                     color: '#ffffff'
                   }}>
                     <div style={{ fontSize: '1.8rem', fontWeight: 900, lineHeight: 1.25 }}>Objective 07</div>
-                    <div style={{ fontSize: '1.35rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: '12px', lineHeight: 1.55 }}>
                       Enhance the competency autonomy and engagement of QA staff to improve overall quality system performance and compliance
                     </div>
                   </div>
