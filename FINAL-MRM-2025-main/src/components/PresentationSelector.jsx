@@ -99,7 +99,7 @@ export default function PresentationSelector({ onSelect }) {
 
         {/* RA Button */}
         <button
-          onClick={() => onSelect('RA')}
+          onClick={() => { window.location.href = 'https://ra-presentation.vercel.app/' }}
           style={{
             padding: '24px 48px',
             fontSize: '1.8em',

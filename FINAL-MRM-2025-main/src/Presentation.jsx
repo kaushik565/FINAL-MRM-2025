@@ -12,9 +12,6 @@ import QualityObjectivesV2 from './slides/QualityObjectives_v2'
 import CustomerComplaintsOverview from './slides/CustomerComplaintsOverview'
 import ClosingSlide from './slides/ClosingSlide'
 import QualityWeekPlaceholder from './slides/QualityWeekPlaceholder'
-import RATitleSlide from './slides/RA/RATitleSlide'
-import RAContents from './slides/RA/RAContents'
-import RAClosingSlide from './slides/RA/RAClosingSlide'
 const primaryLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
 const fallbackLogo = 'https://raw.githubusercontent.com/kaushik565/KAushikMRMNEW/master/public/logo.png'
 
@@ -176,14 +173,6 @@ export default function Presentation() {
         </>
       )}
 
-      {/* RA Presentation */}
-      {selectedDepartment === 'RA' && (
-        <>
-          <ErrorBoundary><RATitleSlide /></ErrorBoundary>
-          <ErrorBoundary><RAContents /></ErrorBoundary>
-          <ErrorBoundary><RAClosingSlide onHomeClick={() => setSelectedDepartment(null)} /></ErrorBoundary>
-        </>
-      )}
     </>
   )
 }
