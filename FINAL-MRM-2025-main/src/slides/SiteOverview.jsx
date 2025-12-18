@@ -559,7 +559,7 @@ function SiteComparisonGrid({ onSiteClick }) {
 
   const KeyImprovementsModal = ({ site, onClose }) => {
     // Check if data is available for this site
-    if (site !== 'SITE-III') {
+    if (site !== 'SITE-III' && site !== 'SITE-I') {
       return createPortal(
         <FullscreenShell onClose={onClose} title={`${site} - Key Improvements`} accentColor={siteColors[site]}>
           <div style={{padding: '48px 28px', textAlign: 'center', background: '#f8fafc'}}>
@@ -586,7 +586,14 @@ function SiteComparisonGrid({ onSiteClick }) {
       { name: 'Investigation Time', ...data.Investigation }
     ];
 
-    const collaborationMeetings = [
+    const collaborationMeetings = site === 'SITE-I' ? [
+      { month: 'January', meetings: 1, departments: ['MG'] },
+      { month: 'June', meetings: 1, departments: ['MG', 'DI'] },
+      { month: 'July', meetings: 1, departments: ['MG', 'QC', 'PU'] },
+      { month: 'August', meetings: 2, departments: ['MG', 'PK', 'QC', 'PU'] },
+      { month: 'October', meetings: 2, departments: ['MG', 'DI', 'BD', 'PU', 'QC', 'PK', 'QA'] },
+      { month: 'Other', meetings: 1, departments: ['DP', 'IN', 'QA'] }
+    ] : [
       { month: 'July', meetings: 7, departments: ['QC', 'CA', 'MD', 'PU', 'HR', 'ST', 'DP', 'IT', 'MN', 'DI'] },
       { month: 'August', meetings: 7, departments: ['QC', 'CA', 'MD', 'PU', 'HR', 'ST', 'IT', 'MN', 'DI'] },
       { month: 'September', meetings: 7, departments: ['QC', 'CA', 'MD', 'PU', 'HR', 'ST', 'IT', 'MN', 'DI'] },
@@ -594,7 +601,46 @@ function SiteComparisonGrid({ onSiteClick }) {
       { month: 'November', meetings: 25, departments: ['QC', 'CA', 'MD', 'PU', 'HR', 'ST', 'DP', 'IT', 'MN', 'DI'] }
     ];
 
-    const collaborationAgenda = [
+    const collaborationAgenda = site === 'SITE-I' ? [
+      {
+        month: 'January',
+        items: [
+          { title: 'Machine ID label error incident', count: 1 }
+        ]
+      },
+      {
+        month: 'June',
+        items: [
+          { title: 'Hold time study discrepancy incident (Truenat LTS)', count: 1 }
+        ]
+      },
+      {
+        month: 'July',
+        items: [
+          { title: 'MAL144 leakage discussion', count: 1 }
+        ]
+      },
+      {
+        month: 'August',
+        items: [
+          { title: 'Production review: CCs, Incidents, OOS, CAPA, Deviation', count: 1 },
+          { title: 'OOS discussion - primers and probes rejection', count: 1 }
+        ]
+      },
+      {
+        month: 'October',
+        items: [
+          { title: 'Quality objective timeline discussion', count: 1 },
+          { title: 'Artwork process meeting', count: 1 }
+        ]
+      },
+      {
+        month: 'Other',
+        items: [
+          { title: 'Device powered ON during custom screening incident', count: 1 }
+        ]
+      }
+    ] : [
       {
         month: 'July',
         items: [
@@ -646,9 +692,48 @@ function SiteComparisonGrid({ onSiteClick }) {
       }
     ];
 
-    const departmentsList = ['CA', 'MD', 'QC', 'PU', 'HR', 'DI', 'MN', 'IT', 'ST', 'DP'];
+    const departmentsList = site === 'SITE-I' ? ['MG', 'PK', 'QC', 'PU', 'DI', 'DP', 'IN', 'QA', 'BD'] : ['CA', 'MD', 'QC', 'PU', 'HR', 'DI', 'MN', 'IT', 'ST', 'DP'];
 
-    const departmentParticipation = [
+    const departmentParticipation = site === 'SITE-I' ? [
+      {
+        month: 'January',
+        agendas: [
+          { title: 'Machine ID label error incident', count: 1, attendees: ['MG'] }
+        ]
+      },
+      {
+        month: 'June',
+        agendas: [
+          { title: 'Hold time study discrepancy incident (Truenat LTS)', count: 1, attendees: ['MG', 'DI'] }
+        ]
+      },
+      {
+        month: 'July',
+        agendas: [
+          { title: 'MAL144 leakage discussion', count: 1, attendees: ['MG', 'QC', 'PU'] }
+        ]
+      },
+      {
+        month: 'August',
+        agendas: [
+          { title: 'Production review: CCs, Incidents, OOS, CAPA, Deviation', count: 1, attendees: ['MG', 'PK'] },
+          { title: 'OOS discussion - primers and probes rejection', count: 1, attendees: ['QC', 'MG', 'PU'] }
+        ]
+      },
+      {
+        month: 'October',
+        agendas: [
+          { title: 'Quality objective timeline discussion', count: 1, attendees: ['MG', 'DI'] },
+          { title: 'Artwork process meeting', count: 1, attendees: ['BD', 'PU', 'QC', 'PK', 'QA'] }
+        ]
+      },
+      {
+        month: 'Other',
+        agendas: [
+          { title: 'Device powered ON during custom screening incident', count: 1, attendees: ['DP', 'IN', 'QA'] }
+        ]
+      }
+    ] : [
       {
         month: 'July',
         agendas: [
@@ -705,7 +790,7 @@ function SiteComparisonGrid({ onSiteClick }) {
       .sort((a, b) => b.improvement - a.improvement);
 
     // Calculate composite improvement score
-    const compositeImprovement = Math.round(positiveGains.reduce((sum, m) => sum + m.improvement, 0) / positiveGains.length);
+    const compositeImprovement = site === 'SITE-I' ? 30 : Math.round(positiveGains.reduce((sum, m) => sum + m.improvement, 0) / positiveGains.length);
     const totalMeetings = collaborationMeetings.reduce((sum, m) => sum + m.meetings, 0);
     const totalAgendaItems = collaborationAgenda.reduce((sum, m) => sum + m.items.length, 0);
     const totalDepartmentsInvolved = new Set(departmentParticipation.flatMap((m) => m.agendas.flatMap((a) => a.attendees))).size;
@@ -751,8 +836,45 @@ function SiteComparisonGrid({ onSiteClick }) {
     const maxMeetings = Math.max(...collaborationMeetings.map((m) => m.meetings));
     const avgMeetings = Math.round(totalMeetings / collaborationMeetings.length);
 
-    // Key achievements
-    const achievements = [
+    // Key achievements - Site-specific data
+    const achievements = site === 'SITE-I' ? [
+      { 
+        icon: '🤝', 
+        title: 'Collaboration Meetings', 
+        metric: '8',
+        unit: 'sessions',
+        desc: 'QA-led discussions',
+        color: '#0ea5e9',
+        bgColor: '#e0f2fe'
+      },
+      { 
+        icon: '📊', 
+        title: 'Training on Decision making & RCA tools', 
+        metric: '100%',
+        unit: 'implemented',
+        desc: '5x Why Analysis, Fishbone Diagram, 80/20 Rule',
+        color: '#8b5cf6',
+        bgColor: '#faf5ff'
+      },
+      { 
+        icon: '📋', 
+        title: 'Change Control Tracking', 
+        metric: 'Complete',
+        unit: 'system',
+        desc: 'Implemented tracking sheet',
+        color: '#f59e0b',
+        bgColor: '#fffbeb'
+      },
+      { 
+        icon: '⏱️', 
+        title: 'Investigation Time Line', 
+        metric: '',
+        unit: 'reduction',
+        desc: 'Faster incident resolution',
+        color: '#10b981',
+        bgColor: '#ecfdf5'
+      }
+    ] : [
       { 
         icon: '🤝', 
         title: 'Collaboration Meetings', 
@@ -828,7 +950,7 @@ function SiteComparisonGrid({ onSiteClick }) {
             <div style={{background: `linear-gradient(135deg, ${siteColors[site]}dd, ${siteColors[site]})`, padding: '28px 32px', textAlign: 'center', color: '#fff', position: 'relative', overflow: 'hidden'}}>
               <div style={{position: 'absolute', top: '-40px', right: '-40px', fontSize: '180px', opacity: 0.12}}>🎯</div>
               <div style={{position: 'relative', zIndex: 1}}>
-                <div style={{fontSize: '0.8em', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.95, marginBottom: '8px'}}>How SITE-III Achieved</div>
+                <div style={{fontSize: '0.8em', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.95, marginBottom: '8px'}}>How {site} Achieved</div>
                 <div style={{fontSize: '2.8em', fontWeight: '900'}}>{compositeImprovement}%</div>
               </div>
             </div>
@@ -1040,39 +1162,63 @@ function SiteComparisonGrid({ onSiteClick }) {
                 <div style={{marginTop: '18px', padding: '14px', borderRadius: '12px', background: '#fff', border: '1px solid #e2e8f0'}}>
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a'}}>Deviation Details</div>
-                    <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '4px 8px', borderRadius: '8px'}}>SITE-III</div>
+                    <div style={{fontSize: '0.8em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '4px 8px', borderRadius: '8px'}}>{site}</div>
                   </div>
-                  <div style={{marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px'}}>
-                    <div style={{background: '#faf5ff', border: '1px solid #e9d5ff', borderRadius: '10px', padding: '12px'}}>
-                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#6b21a8', textTransform: 'uppercase'}}>Improvement</div>
-                      <div style={{fontSize: '1.8em', fontWeight: '900', color: '#8b5cf6'}}>12%</div>
-                      <div style={{fontSize: '0.85em', color: '#374151'}}>Avg closure days reduced</div>
-                    </div>
-                    <div style={{background: '#ecfeff', border: '1px solid #cffafe', borderRadius: '10px', padding: '12px'}}>
-                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0369a1', textTransform: 'uppercase'}}>Before → After</div>
-                      <div style={{fontSize: '1em', fontWeight: '800', color: '#0f172a'}}>73 days → 64 days</div>
-                      <div style={{fontSize: '0.85em', color: '#374151'}}>Average closure</div>
-                    </div>
-                    <div style={{background: '#fff7ed', border: '1px solid #fde68a', borderRadius: '10px', padding: '12px'}}>
-                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#9a3412', textTransform: 'uppercase'}}>Total</div>
-                      <div style={{fontSize: '1.8em', fontWeight: '900', color: '#f59e0b'}}>17</div>
-                      <div style={{fontSize: '0.85em', color: '#374151'}}>Deviations (Jan–Nov)</div>
-                    </div>
-                  </div>
-                  <div style={{marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px'}}>
-                    <div style={{background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '12px'}}>
-                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase'}}>Jan–Jun</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Count: 12</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Avg closure: 73 days</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Open: 1</div>
-                    </div>
-                    <div style={{background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '12px'}}>
-                      <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase'}}>Jul–Nov</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Count: 5</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Avg closure: 64 days</div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a'}}>Open: 4</div>
-                    </div>
-                  </div>
+                  {site === 'SITE-I' ? (
+                    <>
+                      <div style={{marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px'}}>
+                        <div style={{background: '#faf5ff', border: '1px solid #e9d5ff', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#6b21a8', textTransform: 'uppercase'}}>Improvement</div>
+                          <div style={{fontSize: '1.8em', fontWeight: '900', color: '#8b5cf6'}}>31%</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Avg closure days reduced</div>
+                        </div>
+                        <div style={{background: '#ecfeff', border: '1px solid #cffafe', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0369a1', textTransform: 'uppercase'}}>Before → After</div>
+                          <div style={{fontSize: '1em', fontWeight: '800', color: '#0f172a'}}>87 days → 60 days</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Average closure</div>
+                        </div>
+                        <div style={{background: '#fff7ed', border: '1px solid #fde68a', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#9a3412', textTransform: 'uppercase'}}>Total</div>
+                          <div style={{fontSize: '1.8em', fontWeight: '900', color: '#f59e0b'}}>30</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Deviations (Jan–Nov)</div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div style={{marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px'}}>
+                        <div style={{background: '#faf5ff', border: '1px solid #e9d5ff', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#6b21a8', textTransform: 'uppercase'}}>Improvement</div>
+                          <div style={{fontSize: '1.8em', fontWeight: '900', color: '#8b5cf6'}}>12%</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Avg closure days reduced</div>
+                        </div>
+                        <div style={{background: '#ecfeff', border: '1px solid #cffafe', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0369a1', textTransform: 'uppercase'}}>Before → After</div>
+                          <div style={{fontSize: '1em', fontWeight: '800', color: '#0f172a'}}>73 days → 64 days</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Average closure</div>
+                        </div>
+                        <div style={{background: '#fff7ed', border: '1px solid #fde68a', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#9a3412', textTransform: 'uppercase'}}>Total</div>
+                          <div style={{fontSize: '1.8em', fontWeight: '900', color: '#f59e0b'}}>17</div>
+                          <div style={{fontSize: '0.85em', color: '#374151'}}>Deviations (Jan–Nov)</div>
+                        </div>
+                      </div>
+                      <div style={{marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px'}}>
+                        <div style={{background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase'}}>Jan–Jun</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Count: 12</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Avg closure: 73 days</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Open: 1</div>
+                        </div>
+                        <div style={{background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '12px'}}>
+                          <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase'}}>Jul–Nov</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Count: 5</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Avg closure: 64 days</div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a'}}>Open: 4</div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
