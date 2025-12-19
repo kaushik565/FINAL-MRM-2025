@@ -13,8 +13,15 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
     { icon: '🔬', title: 'MG Coat Dispensing', desc: 'Added inprocess checks while MG coat dispensing to ensure quality and consistency.' },
     { icon: '🧪', title: 'Mastermix Dispensing', desc: 'Added inprocess checks while Mastermix dispensing to validate accuracy and reduce errors.' },
     { icon: '📋', title: 'Material Checklist Verification', desc: 'Added more checkpoints in Checklist and calculation sheet of incoming/new material to ensure completeness.' },
-    { icon: '⚙️', title: 'Chip Processing', desc: 'Added inprocess checks for Chip arrangement and chip washing to maintain proper configuration and cleanliness.' }
+    { icon: '⚙️', title: 'Chip Processing', desc: 'Added inprocess checks for Chip arrangement and chip washing to maintain proper configuration and cleanliness.' },
+    { icon: '🧬', title: 'UNG Testing & Standard Curve', desc: 'UNG testing, standard curve testing samples are sampled by IPQA, previously done by Production.' },
+    { icon: '🤝', title: 'MG Personnel Support', desc: 'Supported MG personnel in effective investigation and proper CA\'s.' },
+    { icon: '🎯', title: 'Quality Objective Revision', desc: 'Revised quality objective of MG and added DTF related point.' }
   ];
+
+  // Summary counts
+  const completedCount = improvements.length; // 7
+  const inProgressCount = 1; // Pending item shown below
 
   return createPortal(
     <FullscreenShell
@@ -23,6 +30,32 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
       accentColor="#dc2626"
     >
       <div style={{padding: '32px'}}>
+        {/* Summary Cards */}
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px', marginBottom: '16px'}}>
+          {/* Completed */}
+          <div style={{background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)', border: '2px solid #10b981', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+              <div style={{fontSize: '2.4em'}}>✅</div>
+              <div>
+                <div style={{fontSize: '1.2em', color: '#065f46', fontWeight: 800}}>Completed</div>
+                <div style={{fontSize: '1em', color: '#065f46', opacity: 0.9}}>Successfully Implemented</div>
+              </div>
+            </div>
+            <div style={{fontSize: '3em', fontWeight: 900, color: '#059669'}}>{completedCount}</div>
+          </div>
+          {/* In Progress */}
+          <div style={{background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #f59e0b', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+              <div style={{fontSize: '2.4em'}}>⏳</div>
+              <div>
+                <div style={{fontSize: '1.2em', color: '#92400e', fontWeight: 800}}>In Progress</div>
+                <div style={{fontSize: '1em', color: '#92400e', opacity: 0.9}}>Ongoing</div>
+              </div>
+            </div>
+            <div style={{fontSize: '3em', fontWeight: 900, color: '#d97706'}}>{inProgressCount}</div>
+          </div>
+        </div>
+
         <div style={{display: 'grid', gridTemplateColumns: '1fr', gap: '16px'}}>
           {improvements.map((item, idx) => (
             <div key={idx} style={{background: '#ffffff', border: '2px solid #fee2e2', borderRadius: '14px', padding: '20px', transition: 'all 0.25s ease', cursor: 'default'}}
@@ -37,6 +70,17 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Pending Section */}
+        <div style={{marginTop: '32px', padding: '20px', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #fbbf24', borderRadius: '14px'}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+            <div style={{fontSize: '1.8em'}}>⏳</div>
+            <div style={{fontSize: '1.15em', fontWeight: '800', color: '#92400e'}}>Pending Implementation</div>
+          </div>
+          <div style={{fontSize: '0.95em', color: '#0f172a', lineHeight: '1.6', fontWeight: '500', paddingLeft: '50px'}}>
+            <strong>SOP/QA/003</strong> Change control is under revision for implementation of Artwork mastering process
+          </div>
         </div>
       </div>
     </FullscreenShell>,

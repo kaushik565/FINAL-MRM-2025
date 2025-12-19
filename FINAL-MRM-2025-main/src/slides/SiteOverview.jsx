@@ -905,30 +905,35 @@ function SiteComparisonGrid({ onSiteClick }) {
       },
       { 
         icon: '📊', 
-        title: 'Training on Decision making & RCA tools', 
-        metric: '100%',
+        title: 'Taking OOS SOP under ', 
+        metric: 'QA Control',
         unit: 'implemented',
-        desc: '5x Why Analysis, Fishbone Diagram, 80/20 Rule',
+        desc: 'OOS SOP is taken under QA control',
         color: '#8b5cf6',
         bgColor: '#faf5ff'
       },
       { 
         icon: '📋', 
-        title: 'Change Control Tracking', 
-        metric: 'Complete',
-        unit: 'system',
-        desc: 'Implemented tracking sheet',
+        title: 'Daily Meetings with',
+        metric: 'StakeHolders',
+        unit: 'agenda:',
+        desc: 'Discussion on Regular Issues',
         color: '#f59e0b',
         bgColor: '#fffbeb'
       },
       { 
         icon: '⏱️', 
         title: 'Investigation Time Line', 
-        metric: '',
-        unit: 'reduction',
-        desc: 'Faster incident resolution',
+        metric: 'Defined',
+        unit: '',
+        desc: '',
         color: '#10b981',
-        bgColor: '#ecfdf5'
+        bgColor: '#ecfdf5',
+        secondIcon: '📋',
+        secondTitle: 'Change Control Tracking',
+        secondMetric: 'system',
+        secondDesc: 'Implemented tracking sheet',
+        isDual: true
       }
     ] : [
       { 
@@ -1019,20 +1024,48 @@ function SiteComparisonGrid({ onSiteClick }) {
                 <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px'}}>
                   {achievements.map((ach, idx) => (
                     <div key={idx} style={{padding: '18px', borderRadius: '14px', background: ach.bgColor, border: `2px solid ${ach.color}40`, textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 24px rgba(15,23,42,0.08)'}}>
-                      <div style={{position: 'absolute', top: '-10px', right: '-10px', fontSize: '90px', opacity: 0.05}}>{ach.icon}</div>
-                      <div style={{fontSize: '2.6em', marginBottom: '8px', position: 'relative', zIndex: 1}}>{ach.icon}</div>
-                      <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
-                        {ach.title}
-                      </div>
-                      <div style={{fontSize: '2.1em', fontWeight: '900', color: ach.color, marginBottom: '4px'}}>
-                        {ach.metric}
-                      </div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a', fontWeight: '700', marginBottom: '8px'}}>
-                        {ach.unit}
-                      </div>
-                      <div style={{fontSize: '0.9em', color: '#0f172a', lineHeight: '1.35'}}>
-                        {ach.desc}
-                      </div>
+                      {ach.isDual ? (
+                        <>
+                          {/* Top section */}
+                          <div style={{marginBottom: '16px', paddingBottom: '16px', borderBottom: '2px dashed #cbd5e1'}}>
+                            <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
+                              {ach.title}
+                            </div>
+                            <div style={{fontSize: '2.1em', fontWeight: '900', color: ach.color, marginBottom: '4px'}}>
+                              {ach.metric}
+                            </div>
+                          </div>
+                          {/* Bottom section */}
+                          <div>
+                            <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
+                              {ach.secondTitle}
+                            </div>
+                            <div style={{fontSize: '2.1em', fontWeight: '900', color: '#f59e0b', marginBottom: '4px'}}>
+                              {ach.secondMetric}
+                            </div>
+                            <div style={{fontSize: '0.9em', color: '#0f172a', lineHeight: '1.35'}}>
+                              {ach.secondDesc}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div style={{position: 'absolute', top: '-10px', right: '-10px', fontSize: '90px', opacity: 0.05}}>{ach.icon}</div>
+                          <div style={{fontSize: '2.6em', marginBottom: '8px', position: 'relative', zIndex: 1}}>{ach.icon}</div>
+                          <div style={{fontSize: '0.9em', fontWeight: '800', color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px'}}>
+                            {ach.title}
+                          </div>
+                          <div style={{fontSize: '2.1em', fontWeight: '900', color: ach.color, marginBottom: '4px'}}>
+                            {ach.metric}
+                          </div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a', fontWeight: '700', marginBottom: '8px'}}>
+                            {ach.unit}
+                          </div>
+                          <div style={{fontSize: '0.9em', color: '#0f172a', lineHeight: '1.35'}}>
+                            {ach.desc}
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -1049,34 +1082,6 @@ function SiteComparisonGrid({ onSiteClick }) {
                     </div>
                   </div>
                   <div style={{display: 'flex', gap: '8px', alignItems: 'center'}}>
-                    <button
-                      onClick={() => setShowIPQAMilestones(true)}
-                      style={{
-                        background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-                        color: '#ffffff',
-                        border: 'none',
-                        borderRadius: '10px',
-                        padding: '8px 14px',
-                        fontSize: '0.75em',
-                        fontWeight: '800',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        boxShadow: '0 4px 12px rgba(139, 92, 246, 0.35)',
-                        transition: 'all 0.2s'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(139, 92, 246, 0.45)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.35)';
-                      }}
-                    >
-                      <span>📊</span> IPQA Milestones
-                    </button>
                     <div style={{display: 'flex', gap: '8px'}}>
                       <div style={{fontSize: '0.75em', fontWeight: '800', color: '#0ea5e9', background: '#e0f2fe', border: '1px solid #bae6fd', padding: '6px 10px', borderRadius: '10px'}}>Jul–Nov</div>
                       <div style={{fontSize: '0.75em', fontWeight: '800', color: '#15803d', background: '#dcfce7', border: '1px solid #bbf7d0', padding: '6px 10px', borderRadius: '10px'}}>Peak: Oct</div>
