@@ -1215,6 +1215,111 @@ export default function QualityWeekPlaceholder() {
                   ))}
                 </div>
               </div>
+            ) : selectedEvent === 'Quality Tree' ? (
+              /* Quality Tree - Show tree photos */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out'
+              }}>
+                <h2 style={{
+                  fontSize: '2rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  margin: '0 0 8px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  🌳 Quality Tree
+                </h2>
+
+                <div style={{
+                  flex: 1,
+                  position: 'relative',
+                  height: '0',
+                  minHeight: '540px',
+                  maxHeight: '760px',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  border: '2px solid rgba(16, 185, 129, 0.3)',
+                  backgroundColor: '#ffffff'
+                }}>
+                  {(() => {
+                    const allImages = [
+                      '/Tree/WhatsApp Image 2025-12-19 at 10.26.36 AM.jpeg',
+                      '/Tree/WhatsApp Image 2025-12-19 at 10.27.20 AM.jpeg'
+                    ];
+                    const idx = Math.floor(Date.now() / 3000) % allImages.length;
+                    return (
+                      <img
+                        src={allImages[idx]}
+                        alt="Quality Tree"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center',
+                          display: 'block'
+                        }}
+                      />
+                    );
+                  })()}
+                </div>
+              </div>
+            ) : selectedEvent === 'Poster Preparation' ? (
+              /* Poster Preparation - Show only photos */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out'
+              }}>
+                <h2 style={{
+                  fontSize: '2rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  margin: '0 0 8px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  🎨 Poster Preparation
+                </h2>
+                <div style={{
+                  flex: 1,
+                  position: 'relative',
+                  height: '0',
+                  minHeight: '540px',
+                  maxHeight: '760px',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  border: '2px solid rgba(59, 130, 246, 0.25)',
+                  backgroundColor: '#ffffff'
+                }}>
+                  {(() => {
+                    const allImages = [
+                      '/Poster/WhatsApp Image 2025-12-19 at 12.12.02 PM.jpeg',
+                      '/Poster/WhatsApp Image 2025-12-19 at 12.12.03 PM.jpeg'
+                    ];
+                    const idx = Math.floor(Date.now() / 3000) % allImages.length;
+                    return (
+                      <img
+                        src={allImages[idx]}
+                        alt="Poster"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center',
+                          display: 'block'
+                        }}
+                      />
+                    );
+                  })()}
+                </div>
+              </div>
             ) : selectedEvent === 'Slogans' ? (
               /* Slogans Section - Winner & Runner (Site III) */
               <div style={{
