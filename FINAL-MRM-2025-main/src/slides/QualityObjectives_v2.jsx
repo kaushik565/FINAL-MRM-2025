@@ -524,9 +524,12 @@ const QualityObjectives_v2 = () => {
           { type: 'PI', description: 'During the review of the BD controlled copy distribution list logbook, instances of overwriting were observed, which is not in lane with GDP requirements. During the review of the MR controlled-copy  distribution  list logbook, one of the columns was found to have a missing entry.' }
         ],
         summary: {
-          totalNCCount: 1,
-          totalMNCCount: 9,
-          totalPICount: 10,
+          firstNCCount: 0,
+          firstMNCCount: 7,
+          firstPICount: 7,
+          secondNCCount: 1,
+          secondMNCCount: 2,
+          secondPICount: 3,
           status: 'OPEN'
         }
       }
@@ -973,23 +976,47 @@ const QualityObjectives_v2 = () => {
               </div>
 
               <div style={{ padding: '16px 20px' }}>
-                {/* Summary Card - Unified Audit Findings */}
-                <div style={{ background: 'linear-gradient(135deg, #f0f4f8, #e8f0f7)', borderRadius: '12px', padding: '16px', border: '3px solid #3b82f6', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.15)', marginBottom: '20px' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#1e40af', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #3b82f630' }}>
-                    📋 Audit Findings Summary
+                {/* Summary Cards - 2 Main Audit Cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
+                  {/* 1st Audit Card */}
+                  <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
+                      🔴 1st Audit
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
+                      </div>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
+                      </div>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    <div style={{ textAlign: 'center', background: '#fff1f2', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>Non-Conformity</div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.totalNCCount}</div>
+
+                  {/* 2nd Audit Card */}
+                  <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
+                      🟢 2nd Audit
                     </div>
-                    <div style={{ textAlign: 'center', background: '#fffbeb', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>Minor Finding</div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.totalMNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#fefce8', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>Point of Info</div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.totalPICount}</div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
+                      </div>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
+                      </div>
+                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1014,49 +1041,6 @@ const QualityObjectives_v2 = () => {
                         </div>
                       );
                     })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FullscreenShell>,
-          document.body
-        );
-      }
-    }
-
-                {/* 1st IQA Findings */}
-                <div style={{ marginBottom: '20px' }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>🔴 1st IQA Findings</h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {auditData.firstIQA.map((item, idx) => (
-                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
-                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ background: '#ef4444', color: '#ffffff', padding: '4px 8px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '50px', textAlign: 'center' }}>
-                            {item.type}
-                          </div>
-                          <div style={{ background: '#f3f4f6', color: '#374151', padding: '4px 8px', borderRadius: '6px', fontWeight: 700, fontSize: '0.9rem' }}>#{item.count}</div>
-                        </div>
-                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 2nd IQA Findings */}
-                <div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>🟢 2nd IQA Findings</h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {auditData.secondIQA.map((item, idx) => (
-                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
-                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ background: '#16a34a', color: '#ffffff', padding: '4px 8px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '50px', textAlign: 'center' }}>
-                            {item.type}
-                          </div>
-                          <div style={{ background: '#f3f4f6', color: '#374151', padding: '4px 8px', borderRadius: '6px', fontWeight: 700, fontSize: '0.9rem' }}>#{item.count}</div>
-                        </div>
-                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
