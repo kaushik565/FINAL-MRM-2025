@@ -186,7 +186,7 @@ export default function LabQAOverview() {
           fontWeight: '900',
           color: '#0f172a'
         }}>
-          Lab QA Overview
+          Monitoring and Measurement of Product - Lab QA
         </div>
       </div>
       <div style={{

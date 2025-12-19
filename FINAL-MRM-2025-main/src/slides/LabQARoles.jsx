@@ -58,8 +58,8 @@ export default function LabQARoles() {
     >
       {/* Header */}
       <div style={{ marginBottom: '20px', paddingLeft: '20px', paddingRight: '20px', paddingTop: '10px' }}>
-        <h2 style={{ fontSize: '1.9em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0 }}>
-          🔬 Lab QA: Key Roles & Responsibilities
+        <h2 style={{ fontSize: '1.5em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0, whiteSpace: 'nowrap' }}>
+          🔬 Monitoring and Measurement of Product - Lab QA
         </h2>
       </div>
 

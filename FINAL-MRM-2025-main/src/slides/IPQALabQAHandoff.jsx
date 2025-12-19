@@ -50,9 +50,9 @@ export default function IPQALabQAHandoff() {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <div>
-          <div style={{ fontSize: '1.4em', fontWeight: 900 }}>SITE IV – Device Verification</div>
+          <div style={{ fontSize: '1.4em', fontWeight: 900 }}>Monitoring and Measurement of Product - Site IV</div>
           <div style={{ fontSize: '0.95em', color: '#334155', marginTop: '6px' }}>
-            From incoming sampling to final packing verification with reverification signals for Lab QA.
+            From incoming sampling to final packing verification with reverification signals.
           </div>
         </div>
       </div>

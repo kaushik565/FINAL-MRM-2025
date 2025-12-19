@@ -5,7 +5,7 @@ export default function SiteIIIPQAMilestones({ onClose }) {
   const kpiMetrics = [
     {
       title: '💰 Cost Savings',
-      value: '20 Lakhs',
+      value: '11 Lakhs',
       unit: 'Annual Savings',
       period: 'Compared with (Jun24-Jul25)',
       color: '#f59e0b',
@@ -17,13 +17,13 @@ export default function SiteIIIPQAMilestones({ onClose }) {
       title: '📉 IN-Process Defect Rate',
       value: '2.5%',
       unit: 'Achieved vs Target',
-      from: '4.5%',
+      from: '4.5% (Aug24-Jun25)',
       to: '2.5%',
       target: '≤ 4%',
       color: '#10b981',
       bgColor: '#ecfdf3',
       icon: '📉',
-      period: 'Aug24-Jun25'
+      period: 'Apr-Nov-25'
     },
     {
       title: '🧪 FQC Defect Rate',
@@ -42,13 +42,13 @@ export default function SiteIIIPQAMilestones({ onClose }) {
       title: '🔧 Missing Defect Rate (VI-01)',
       value: '20%',
       unit: 'Current vs Target',
-      from: '35%',
+      from: '35% (Aug24-Jun25)',
       to: '20%',
       target: '≤ 10%',
       color: '#3b82f6',
       bgColor: '#eff6ff',
       icon: '🔧',
-      period: 'Jul-Nov',
+      period: 'Apr-Nov-25',
       toColor: '#f59e0b'
     }
   ]
@@ -90,13 +90,13 @@ export default function SiteIIIPQAMilestones({ onClose }) {
     ],
     deviceManufacturing: [
       {
-        title: 'Rework Procedure & Transport Optimization - 20 Lakhs Savings',
-        details: 'For defected units, we implemented a new rework procedure instead of destroying them. Defined rework procedure for Duo and Quatro casing (Completed) and optimized transportation method from warehouse to IST (Completed). Outcome: Saved a cost of 20 lakhs as compared to last year rejections (Jun24-July25).',
+        title: 'Rework Procedure & Transport Optimization - 11 Lakhs Savings',
+        details: 'For defected units, we implemented a new rework procedure instead of destroying them. Defined rework procedure for Duo and Quatro casing (Completed) and optimized transportation method from warehouse to IST (Completed). Outcome: Saved a cost of 11 lakhs as compared to last year rejections (Jun24-July25).',
         status: 'Completed',
         statusColor: '#10b981',
         statusBg: '#ecfdf3',
-        target: 'Saving 20 Lakhs vs last year',
-        outcome: 'Cost of 20 lakhs saved (Jun24-Jul25)',
+        target: 'Saving 11 Lakhs vs last year',
+        outcome: 'Cost of 11 lakhs saved (Jun24-Jul25)',
         icon: '💰'
       },
       {
@@ -391,14 +391,14 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                     color: '#92400e',
                     marginBottom: '8px'
                   }}>
-                    Major Achievement: 20 Lakhs Annual Savings
+                    Major Achievement: 11 Lakhs Annual Savings
                   </div>
                   <div style={{
                     fontSize: '0.95em',
                     color: '#92400e',
                     lineHeight: '1.6'
                   }}>
-                    Rework instead of scrap plus optimized transport from warehouse to IST cut rejection costs vs last year (Jun24-Jul25), delivering 20 lakhs savings and proving the impact of standardized procedures and logistics discipline.
+                    Rework instead of scrap plus optimized transport from warehouse to IST cut rejection costs vs last year (Jun24-Jul25), delivering 11 lakhs savings and proving the impact of standardized procedures and logistics discipline.
                   </div>
                 </div>
               </div>

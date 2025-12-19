@@ -1965,13 +1965,14 @@ export default function IPQAOverview() {
             position: 'relative'
           }}>
             <h2 style={{
-              fontSize: '2em',
+              fontSize: '1.6em',
               fontWeight: '800',
               color: '#111827',
               marginBottom: '4px',
-              marginTop: '0px'
+              marginTop: '0px',
+              whiteSpace: 'nowrap'
             }}>
-              📊 Key Metrics Overview - IPQA
+              📊 Monitoring and Measurement of Process - IPQA
             </h2>
             <div style={{
               height: '4px',

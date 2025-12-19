@@ -109,11 +109,11 @@ export function QualityScoreInfoModal({ site, onClose }) {
       color: '#dc2626',
       currentScore: '99.6%',
       previousScore: '99.2%',
-      calculation: '(Compliant Operations / Total Operations) x 100',
+      calculation: '(Complied Operations / Total Operations) x 100',
       details: [
         'Total Operations Reviewed: 12,850',
-        'Compliant Operations: 12,799',
-        'Non-Compliant: 51',
+        'Complied Operations: 12,799',
+        'Non-Complied: 51',
         'Current Score: (12,799 / 12,850) x 100 = 99.6%',
         'Previous Score: 99.2% (3 months ago)',
         'Improvement: +0.4 percentage points'
@@ -151,11 +151,11 @@ export function QualityScoreInfoModal({ site, onClose }) {
       color: '#0ea5e9',
       currentScore: '98.8%',
       previousScore: '98.3%',
-      calculation: '(Quality-Compliant Lots / Total Lots Processed) x 100',
+      calculation: '(Quality-Complied Lots / Total Lots Processed) x 100',
       details: [
         'Total Lots Processed: 1,450',
-        'Quality-Compliant Lots: 1,433',
-        'Non-Compliant Lots: 17',
+        'Quality-Complied Lots: 1,433',
+        'Non-Complied Lots: 17',
         'Current Score: (1,433 / 1,450) x 100 = 98.8%',
         'Previous Score: 98.3% (3 months ago)',
         'Improvement: +0.5 percentage points'
