@@ -97,6 +97,7 @@ const QualityObjectives_v2 = () => {
   const [obj07Qi3InfoSite, setObj07Qi3InfoSite] = useState(null);
   const [obj07Qi3InfoModal, setObj07Qi3InfoModal] = useState(null);
   const [obj07Qi3ErrorDetailsModal, setObj07Qi3ErrorDetailsModal] = useState(null);
+  const [obj07Qi3SiteIErrorDetailsModal, setObj07Qi3SiteIErrorDetailsModal] = useState(null);
 
   useEffect(() => {
     const closeAll = () => setActiveModals({ card: null, qi04: null, qi05: null, qi06: null, qi07: null });
@@ -512,7 +513,28 @@ const QualityObjectives_v2 = () => {
       value: 50, 
       target: 100,
       errorDecrease: 56,
-      staffInvolvement: 40
+      staffInvolvement: 40,
+      auditData: {
+        firstIQA: [
+          { type: 'NC', count: 0, description: 'Uncontrolled Disposal: The shredding machine was found to contain evidence of the following documents without having any documented evidence of shredding in thr logbook (Flat/QA/195): Released documents (been label), Sample labels, Controlled documents. Document controlled copy distribution list form was verified, wherein it was observed thet document ID :SOP/PK/001 and many other documents entry were made as destroyed but entries of the same were found missing in the Log of shredder machine (FM/QA/195)' },
+          { type: 'NC', count: 1, description: 'Document controlled copy distribution list form was reviewed , wherein it is observed that new controlled copies were issued to the user department without retrieving the obsolete copy.' },
+          { type: 'MNC', count: 1, description: 'Sampling  Log  entry  (FM/QA/178)  was accessed using the QA mail ID, and it was observed that the entire log was editable. The QA department had editing access to all the columns controlled under this format. Th s deviates from point no. 3.4 under SOP/QA/029 that restricts QA from editing the columns controlled by the user department.' },
+          { type: 'PI', count: 1, description: 'Line  clearance  and  Verification  of Manufacturing and Packing do not mandate verificatior of SAP transactions, which is critical in batch manufacturing activity. The checklist of line clearance does not mention verification of Calculation used for batches, making it an optional verification step.' }
+        ],
+        secondIQA: [
+          { type: 'PI', count: 1, description: 'SGP/QA/039 Point no. 1.2 mentions that Along with the URS, user need to fill the GxP Assessment (which shall be dully filled and reviewed by the concerned stakeholders) es per fo mat layout FM/QA/168. In the same SOP it is defined thet URS is a basic document that outlines the User specific recuirement  only,  based on which the Pu chase team arranges for Quotation from the relevant Vendors. The user is not aware cf the Make, brand, software requirements cr any other details of the equipment at thet me of making the URS. However, while making the GxP, it is importart to know all tne details pertaining to the equipment, including the Software requirements, its  criticality, validation requirements, etc. Meking the GxP at the time of URS means tnet the user is assuming the details and filling the GxP without having any technical knowledge about the equipment to be procured. This may lead to having the wrong GxP assessment done, impacting tne decision-making of the DI-VL team. Th s contradiction is ciefined in the SOP/QA/039.' },
+          { type: 'PI', count: 1, description: 'During the review of the BD controlled copy distribution list logbook, instances of overwriting were observed, which is not in lane with GDP requirements. During the review of the MR controlled-copy  distribution  list logbook, one of the columns was found to have a missing entry.' }
+        ],
+        summary: {
+          firstNCCount: 1,
+          firstMNCCount: 1,
+          firstPICount: 1,
+          secondNCCount: 0,
+          secondMNCCount: 0,
+          secondPICount: 2,
+          status: 'OPEN'
+        }
+      }
     },
     { 
       site: 'Site III', 
@@ -917,6 +939,114 @@ const QualityObjectives_v2 = () => {
         </FullscreenShell>,
         document.body
       );
+    }
+
+    if (obj07Qi3SiteIErrorDetailsModal) {
+      const auditData = obj07_qi3Data.find(d => d.site === 'Site I')?.auditData;
+      
+      if (auditData) {
+        return createPortal(
+          <FullscreenShell onClose={() => setObj07Qi3SiteIErrorDetailsModal(false)}>
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                overflow: 'auto',
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #fef2f2 100%)'
+              }}
+            >
+              <div style={{
+                padding: '16px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderBottom: '2px solid rgba(148,163,184,0.2)',
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.85) 100%)',
+                backdropFilter: 'blur(12px)',
+                position: 'sticky',
+                top: 0,
+                zIndex: 10
+              }}>
+                <div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
+                    Objective 07 • QI 3 • Site I
+                  </div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
+                    📉 Decrease in QA Process Errors - Audit Data
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ padding: '16px 20px' }}>
+                {/* Summary Cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px', marginBottom: '20px' }}>
+                  <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '10px', padding: '12px', border: '2px solid #ef444430' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#991b1b', fontWeight: 700, marginBottom: '4px' }}>1st NC</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
+                  </div>
+                  <div style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '10px', padding: '12px', border: '2px solid #f59e0b30' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#92400e', fontWeight: 700, marginBottom: '4px' }}>1st MNC</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
+                  </div>
+                  <div style={{ background: 'linear-gradient(135deg, #fef9e7, #fef3c7)', borderRadius: '10px', padding: '12px', border: '2px solid #eab30830' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#854d0e', fontWeight: 700, marginBottom: '4px' }}>1st PI</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
+                  </div>
+                  <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '10px', padding: '12px', border: '2px solid #0ea5e930' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#0369a1', fontWeight: 700, marginBottom: '4px' }}>2nd NC</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
+                  </div>
+                  <div style={{ background: 'linear-gradient(135deg, #e0f2fe, #bfdbfe)', borderRadius: '10px', padding: '12px', border: '2px solid #0284c730' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '4px' }}>2nd MNC</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
+                  </div>
+                  <div style={{ background: 'linear-gradient(135deg, #dcfce7, #bbf7d0)', borderRadius: '10px', padding: '12px', border: '2px solid #16a34a30' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700, marginBottom: '4px' }}>2nd PI</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
+                  </div>
+                </div>
+
+                {/* 1st IQA Findings */}
+                <div style={{ marginBottom: '20px' }}>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>🔴 1st IQA Findings</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {auditData.firstIQA.map((item, idx) => (
+                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
+                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ background: '#ef4444', color: '#ffffff', padding: '4px 8px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '50px', textAlign: 'center' }}>
+                            {item.type}
+                          </div>
+                          <div style={{ background: '#f3f4f6', color: '#374151', padding: '4px 8px', borderRadius: '6px', fontWeight: 700, fontSize: '0.9rem' }}>#{item.count}</div>
+                        </div>
+                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 2nd IQA Findings */}
+                <div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>🟢 2nd IQA Findings</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {auditData.secondIQA.map((item, idx) => (
+                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
+                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ background: '#16a34a', color: '#ffffff', padding: '4px 8px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '50px', textAlign: 'center' }}>
+                            {item.type}
+                          </div>
+                          <div style={{ background: '#f3f4f6', color: '#374151', padding: '4px 8px', borderRadius: '6px', fontWeight: 700, fontSize: '0.9rem' }}>#{item.count}</div>
+                        </div>
+                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FullscreenShell>,
+          document.body
+        );
+      }
     }
 
     if (obj07Qi3ErrorDetailsModal) {
@@ -3052,27 +3182,31 @@ const QualityObjectives_v2 = () => {
                   borderRadius: '8px',
                   border: '2px solid #ef444420',
                   position: 'relative',
-                  cursor: item.site === 'Site III' ? 'pointer' : 'default',
+                  cursor: (item.site === 'Site III' || item.site === 'Site I') ? 'pointer' : 'default',
                   transition: 'all 0.2s ease'
                 }}
-                onClick={() => item.site === 'Site III' && setObj07Qi3ErrorDetailsModal(true)}
+                onClick={() => {
+                  if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
+                  if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
+                }}
                 onMouseEnter={(e) => {
-                  if (item.site === 'Site III') {
+                  if (item.site === 'Site III' || item.site === 'Site I') {
                     e.currentTarget.style.transform = 'translateY(-3px)';
                     e.currentTarget.style.boxShadow = '0 6px 14px rgba(239, 68, 68, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (item.site === 'Site III') {
+                  if (item.site === 'Site III' || item.site === 'Site I') {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }
                 }}>
-                  {item.site === 'Site III' && (
+                  {(item.site === 'Site III' || (item.site === 'Site I' && item.auditData)) && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        setObj07Qi3ErrorDetailsModal(true);
+                        if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
+                        if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
                       }}
                       style={{
                         position: 'absolute',
