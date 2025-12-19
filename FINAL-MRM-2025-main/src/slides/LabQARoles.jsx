@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+const milestone = 'Successfully implemented LAB QA in all the sub divisions of QC (IQC/IPQC/FQC) across all the sites (I, III, V)'
+
 const labQAResponsibilities = [
   'Responsible for effectively monitoring all the activities carried out in QC department as per SOP/STP',
   'To ensure GLP is followed strictly',
@@ -15,21 +17,27 @@ const labQAResponsibilities = [
   'Shall ensure calibration and validation of all the QC equipment as per schedule'
 ]
 
-const additionalKPIs = [
-  { id: 1, title: 'Monitor Rejection Rates', desc: 'Monitor rejection rates at all levels (IQC/IPQC/FQC)' },
-  { id: 2, title: 'Supplier Process Control', desc: 'Develop additional supplier process control procedures' },
-  { id: 3, title: 'Vendor Selection Support', desc: 'Support the purchase department in vendor selection based on performance' },
-  { id: 4, title: 'Supplier Audits', desc: 'Involve in the supplier audit' },
-  { id: 5, title: 'Audit Checklist', desc: 'Implement product/process audit checklist as a part of supplier audit' },
-  { id: 6, title: 'Auditor Competency', desc: 'Develop in-house auditor competency by 25%' },
-  { id: 7, title: 'OOT Implementation', desc: 'Implement OOT to identify the potential product quality issues' },
-  { id: 8, title: 'Process Improvement', desc: 'Do the process improvement at least one in a month' },
-  { id: 9, title: 'Quality Objectives', desc: 'Support in the fulfillment of quality objectives' },
-  { id: 10, title: 'Potential Issues', desc: 'Implement OOT to identify the potential product quality issues' }
+const siteIIIItems = [
+  'Monitor rejection rates at all levels (IQC/IPQC/FQC).',
+  'Develop additional supplier process control procedures.',
+  'Support the purchase department in vendor selection based on performance.',
+  'Involve in the supplier audit.',
+  'Implement product/process audit checklist as a part of supplier audit.',
+  'Develop inhouse auditor competency by 25%.',
+  'Implement OOT to identify the potential product quality issues.',
+  'Do the process improvement at least one in a month.',
+  'Support in the fulfillment of quality objectives.',
+  'Implement OOT to identify the potential product quality issues.'
+]
+
+const siteKPIs = [
+  { id: 'siteI', label: 'SITE I', color: '#0ea5e9', items: [] },
+  { id: 'siteIII', label: 'SITE III', color: '#f97316', items: siteIIIItems },
+  { id: 'siteV', label: 'SITE V', color: '#22c55e', items: [] }
 ]
 
 export default function LabQARoles() {
-  const [expandedKPI, setExpandedKPI] = useState(null)
+  const [expandedSite, setExpandedSite] = useState(null)
 
   return (
     <section
@@ -41,30 +49,63 @@ export default function LabQARoles() {
         background: '#ffffff',
         color: '#0f172a',
         overflowY: 'auto',
-        height: '100%'
+        height: '100%',
+        width: '100%',
+        margin: 0,
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: '20px', paddingX: '20px' }}>
-        <h2 style={{ fontSize: '2.6em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0 }}>
+      <div style={{ marginBottom: '20px', paddingLeft: '20px', paddingRight: '20px', paddingTop: '10px' }}>
+        <h2 style={{ fontSize: '1.9em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0 }}>
           🔬 Lab QA: Key Roles & Responsibilities
         </h2>
-        <p style={{ fontSize: '1.3rem', color: '#64748b', marginTop: '4px', marginBottom: '0px' }}>
-          QC Department Oversight & Compliance Excellence
-        </p>
+      </div>
+
+      {/* Milestone Banner */}
+      <div style={{
+        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+        padding: '24px 40px',
+        margin: '0px',
+        textAlign: 'center',
+        boxShadow: '0 8px 24px rgba(16,185,129,0.4)',
+        borderBottom: '4px solid #047857'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginBottom: 8 }}>
+          <span style={{ fontSize: '2.8rem' }}>🎯</span>
+          <span style={{ fontSize: '2.1rem', fontWeight: 900, color: '#ffffff' }}>MILESTONE ACHIEVED</span>
+          <span style={{ fontSize: '2.8rem' }}>✨</span>
+        </div>
+        <div style={{
+          fontSize: '1.95rem',
+          fontWeight: 700,
+          color: '#fff7cc',
+          lineHeight: 1.4,
+          maxWidth: 'none',
+          margin: '0 auto',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          letterSpacing: '0.5px'
+        }}>
+          {milestone}
+        </div>
       </div>
 
       {/* Main Grid - Responsibilities Left, KPIs Right */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '12px', paddingX: '20px', marginBottom: '14px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0px', paddingLeft: '0px', paddingRight: '0px', marginBottom: '0px', marginTop: '20px', flex: 1 }}>
         {/* Left: Lab QA Responsibilities */}
         <div style={{
           background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
-          border: '3px solid #0ea5e940',
-          borderRadius: '12px',
+          border: '0px solid #0ea5e940',
+          borderRadius: '0px',
           padding: '20px',
-          boxShadow: '0 2px 8px rgba(14,165,233,0.05)',
+          boxShadow: 'none',
           overflowY: 'auto',
-          maxHeight: '70vh'
+          maxHeight: 'none',
+          height: 'auto',
+          flex: 1
         }}>
           <div style={{ fontSize: '1.9rem', fontWeight: 900, color: '#0369a1', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
             ✅ Lab QA Shall
@@ -114,91 +155,80 @@ export default function LabQARoles() {
           </div>
         </div>
 
-        {/* Right: Additional KPIs - Expandable Cards */}
+        {/* Right: Additional KPIs - Site Cards */}
         <div style={{
           background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-          border: '3px solid #f59e0b40',
-          borderRadius: '12px',
           padding: '20px',
-          boxShadow: '0 2px 8px rgba(245,158,11,0.05)',
           overflowY: 'auto',
-          maxHeight: '70vh'
+          flex: 1
         }}>
           <div style={{ fontSize: '1.9rem', fontWeight: 900, color: '#92400e', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-            🎯 Additional KPIs
+            🎯 Additional KPIs Identified
           </div>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
-            {additionalKPIs.map((kpi) => (
-              <div
-                key={kpi.id}
-                onClick={() => setExpandedKPI(expandedKPI === kpi.id ? null : kpi.id)}
-                style={{
-                  background: '#ffffff',
-                  padding: '16px',
-                  borderRadius: '10px',
-                  border: '3px solid #fcd34d',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                  boxShadow: '0 2px 6px rgba(245,158,11,0.1)',
-                  transform: expandedKPI === kpi.id ? 'scale(1.02)' : 'scale(1)',
-                  minHeight: expandedKPI === kpi.id ? 'auto' : '100px',
-                  position: 'relative'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 6px 12px rgba(245,158,11,0.2)'
-                  e.currentTarget.style.borderColor = '#f59e0b'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 2px 6px rgba(245,158,11,0.1)'
-                  e.currentTarget.style.borderColor = '#fcd34d'
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: expandedKPI === kpi.id ? 12 : 0
-                }}>
-                  <div style={{
-                    fontSize: '1.6rem',
-                    fontWeight: 900,
-                    color: '#92400e',
-                    flex: 1
-                  }}>
-                    {kpi.id}. {kpi.title}
-                  </div>
-                  <div style={{
-                    fontSize: '1.8rem',
-                    fontWeight: 900,
-                    color: '#f59e0b',
-                    transition: 'transform 0.3s',
-                    transform: expandedKPI === kpi.id ? 'rotate(180deg)' : 'rotate(0deg)',
-                    marginLeft: 8
-                  }}>
-                    ▼
-                  </div>
-                </div>
 
-                {expandedKPI === kpi.id && (
-                  <div style={{
-                    fontSize: '1.3rem',
-                    color: '#64748b',
-                    fontWeight: 600,
-                    lineHeight: 1.5,
-                    paddingTop: 12,
-                    borderTop: '2px solid #fecaca',
-                    animation: 'fadeIn 0.3s ease-in'
-                  }}>
-                    {kpi.desc}
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'space-between' }}>
+            {siteKPIs.map((site) => {
+              const isOpen = expandedSite === site.id
+              return (
+                <div key={site.id} style={{
+                  background: '#ffffff',
+                  border: `4px solid ${site.color}55`,
+                  borderRadius: '14px',
+                  padding: '18px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  flex: '1 1 30%',
+                  minWidth: 260,
+                  cursor: 'pointer',
+                  transition: 'all 0.25s',
+                  transform: isOpen ? 'translateY(-2px)' : 'translateY(0)'
+                }}
+                onClick={() => setExpandedSite(isOpen ? null : site.id)}
+                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 8px 18px rgba(0,0,0,0.12)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)' }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isOpen ? 12 : 0 }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 900, color: site.color }}>{site.label}</div>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#475569', transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</div>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {isOpen && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                      {site.items.length === 0 ? (
+                        <div style={{
+                          background: '#f8fafc',
+                          border: `2px dashed ${site.color}55`,
+                          borderRadius: '10px',
+                          padding: '12px 14px',
+                          color: '#475569',
+                          fontWeight: 700,
+                          textAlign: 'center'
+                        }}>
+                          No KPIs added yet for {site.label}.
+                        </div>
+                      ) : (
+                        site.items.map((text, idx) => (
+                          <div key={idx} style={{
+                            background: '#fefce8',
+                            border: `2px solid ${site.color}55`,
+                            borderRadius: '10px',
+                            padding: '12px 14px',
+                            display: 'flex',
+                            gap: 10
+                          }}>
+                            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: site.color, minWidth: 28, textAlign: 'center' }}>{idx + 1}.</div>
+                            <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', lineHeight: 1.4 }}>{text}</div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
           <div style={{ fontSize: '1.2rem', color: '#92400e', fontWeight: 700, marginTop: 12, textAlign: 'center' }}>
-            💡 Click cards to expand details
+            💡 Click a site to expand KPIs
           </div>
         </div>
       </div>
