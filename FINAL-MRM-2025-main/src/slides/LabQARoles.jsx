@@ -114,56 +114,53 @@ export default function LabQARoles() {
           </div>
           
           <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)', 
-            gap: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
             marginBottom: '20px'
           }}>
             {labQAResponsibilities.map((resp, idx) => {
+              const colors = ['#1e40af', '#475569']
+              const borderColors = ['#93c5fd', '#cbd5e1']
               const gradients = [
-                'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)',
-                'linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%)'
+                'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',  // Blue
+                'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)'   // Slate
               ]
-              const colors = ['#0ea5e9', '#6366f1', '#8b5cf6']
-              const borderColors = ['#60a5fa', '#818cf8', '#a78bfa']
               
               return (
                 <div key={idx} style={{
-                  background: gradients[idx % 3],
-                  padding: '16px',
+                  background: gradients[idx % 2],
+                  padding: '16px 24px',
                   borderRadius: '12px',
-                  border: `3px solid ${borderColors[idx % 3]}`,
+                  border: `3px solid ${borderColors[idx % 2]}`,
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   transition: 'all 0.3s',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '20px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)'
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)'
+                  e.currentTarget.style.transform = 'translateX(8px)'
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.12)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                  e.currentTarget.style.transform = 'translateX(0)'
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'
                 }}>
                   {/* Number Badge */}
                   <div style={{
-                    position: 'absolute',
-                    top: '-10px',
-                    right: '-10px',
-                    width: '50px',
-                    height: '50px',
-                    background: colors[idx % 3],
+                    width: '55px',
+                    height: '55px',
+                    background: colors[idx % 2],
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.5rem',
+                    fontSize: '1.7rem',
                     fontWeight: 900,
                     color: '#ffffff',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                    border: '3px solid #ffffff'
+                    flexShrink: 0
                   }}>
                     {idx + 1}
                   </div>
@@ -171,7 +168,7 @@ export default function LabQARoles() {
                   {/* Icon */}
                   <div style={{
                     fontSize: '3rem',
-                    marginBottom: '10px'
+                    flexShrink: 0
                   }}>
                     {['🔍', '🛡️', '📈', '📋', '🚨', '🔧', '📖', '🧪', '🗑️', '📁', '📅', '⚙️'][idx]}
                   </div>
@@ -182,7 +179,7 @@ export default function LabQARoles() {
                     color: '#111827',
                     fontWeight: 700,
                     lineHeight: 1.5,
-                    minHeight: '80px'
+                    flex: 1
                   }}>
                     {resp}
                   </div>
