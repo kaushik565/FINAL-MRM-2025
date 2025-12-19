@@ -19,8 +19,8 @@ export const IPQAOverallPerformance = () => {
     'SITE-I': {
       avgImprovement: 38,
       totalItems: 20624,
-      color: '#dc2626',
-      bgColor: '#fef2f2',
+      color: '#7c3aed',
+      bgColor: '#f5f3ff',
       metrics: [
         { name: 'Line Clearance', value: 15, calculation: '(6578 items with 7 not approved) → 99.89% approval → 15% improvement' },
         { name: 'Line Closure', value: 54, calculation: '(6620 items with 4 not approved) → 99.94% approval → 54% improvement' },
@@ -118,10 +118,10 @@ export const IPQAOverallPerformance = () => {
             <div style={{ fontSize: "0.7em", fontWeight: "600", color: "#0369a1" }}>All Activities</div>
           </div>
 
-          <div style={{ background: "#ffffff", border: "2px solid #ef4444", borderRadius: "12px", padding: "18px", textAlign: "center" }}>
-            <div style={{ fontSize: "0.75em", fontWeight: "700", color: "#b91c1c", marginBottom: "8px", textTransform: "uppercase" }}>Line Operations</div>
-            <div style={{ fontSize: "2.2em", fontWeight: "900", color: "#ef4444", marginBottom: "4px" }}>{lineOperationsRate}%</div>
-            <div style={{ fontSize: "0.7em", fontWeight: "600", color: "#b91c1c" }}>Clearance & Closure</div>
+          <div style={{ background: "#ffffff", border: "2px solid #7c3aed", borderRadius: "12px", padding: "18px", textAlign: "center" }}>
+            <div style={{ fontSize: "0.75em", fontWeight: "700", color: "#6d28d9", marginBottom: "8px", textTransform: "uppercase" }}>Line Operations</div>
+            <div style={{ fontSize: "2.2em", fontWeight: "900", color: "#7c3aed", marginBottom: "4px" }}>{lineOperationsRate}%</div>
+            <div style={{ fontSize: "0.7em", fontWeight: "600", color: "#6d28d9" }}>Clearance & Closure</div>
           </div>
 
           <div style={{ background: "#ffffff", border: "2px solid #f59e0b", borderRadius: "12px", padding: "18px", textAlign: "center" }}>
