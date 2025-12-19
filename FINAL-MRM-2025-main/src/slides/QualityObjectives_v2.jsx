@@ -98,6 +98,7 @@ const QualityObjectives_v2 = () => {
   const [obj07Qi3InfoModal, setObj07Qi3InfoModal] = useState(null);
   const [obj07Qi3ErrorDetailsModal, setObj07Qi3ErrorDetailsModal] = useState(null);
   const [obj07Qi3SiteIErrorDetailsModal, setObj07Qi3SiteIErrorDetailsModal] = useState(null);
+  const [obj07Qi3SiteVErrorDetailsModal, setObj07Qi3SiteVErrorDetailsModal] = useState(null);
 
   useEffect(() => {
     const closeAll = () => setActiveModals({ card: null, qi04: null, qi05: null, qi06: null, qi07: null });
@@ -550,6 +551,22 @@ const QualityObjectives_v2 = () => {
         totalDepartments: 3,
         totalBeforePercent: 55.33,
         totalAfterPercent: 70
+      },
+      auditData: {
+        findings: [
+          { type: 'MNC', description: 'In document and Record Control SOP/QA/007-08 in the procedure section, point number A1.1 company name is mentioned as Molbio Diagnostics Private Limited, and old revision Molbio Logo is present in the procedure section, But in the Ammendment detials section, it is mentioned as company name and logo updated whereever applicable' },
+          { type: 'MNC', description: 'Assembly of Extraction Device Master File ID: DMF/AE/22/07 effective date: 21/07/2025 in List if Bill of materials, instead of part number, part name was mentioned for the following materials motor mounting screw, valve motor plate, battery 7.4V, 9.6Ah to 10.05 Ah. Approved bill of materials document not available for assembly of Extraction Device Master File ID: DMF/AE/22/07' },
+          { type: 'PI', description: 'There is no procedure to control the part drawings. During the audit the part drawings were shown in google drive.' }
+        ],
+        summary: {
+          firstNCCount: 1,
+          firstMNCCount: 2,
+          firstPICount: 6,
+          secondNCCount: 0,
+          secondMNCCount: 2,
+          secondPICount: 1,
+          status: 'OPEN'
+        }
       }
     },
     { 
@@ -557,7 +574,25 @@ const QualityObjectives_v2 = () => {
       value: 50, 
       target: 100,
       errorDecrease: 48,
-      staffInvolvement: 52
+      staffInvolvement: 52,
+      auditData: {
+        findings: [
+          { type: 'MNC', description: 'During the shop-floor IPQA visit, the ZPM _ calendar was checked for calibration status. It was noted that the M/5/0003/TS-01 sealing machine in Assembly Room 2 had calibration due on 16/11/2025. The machine was calibrated, but the corresponding calibration order was not yet closed in SAP at the time of verification.' },
+          { type: 'MNC', description: 'During the shop-floor IPQA visit FMrQA/007-02 (Issuance of Authorized Copy) dated 24/11/25 was verified, wherein it was observed that Format number FM/HR/010, rev. no. 01, copy no. 01 was issued with the evidence of issuance by signature, but on said format issued to entries are missing. Moreover, the concerned person failed to show the format if the same was not issued.' },
+          { type: 'MNC', description: 'A. During shop-floor IPQA visit:-Training attendance sheet, which was issued on 24/11/25 (01 Copy) was found without executing, even-though IPQA team was having additional two copies of same format issued on 18/11/25 and 22/11/25. Need to have proper control on issuance of additional copies and destruction of copies post 7 days of usage limit\nB. During shop-floor IPQA visit:-advice for the material /Product was found initiated by the store department on 05/11/25 without any received by traceability and reason for delay in case of any quality event. Team is advised to incorporate procedural control, for the same is sampling is not ini:iated after a set time frame.\nC. During the shop-floor IPQA visit Two copies of Format no. FM/HR/027-01 was found without any issue by sign and date. However, the stamp was available on the same.\nD. During shop-floor IPQA visit ne copy of Format no. FM/HR/010-01 was found issued on 23/10/25 without any issued by sign.\nE. During shop-floor IPQA visit Format no. FM/QA/207 was verified, wherein following noncompliances were observed. Multiple entries were found wherein the returned by and date traceability is missing; moreover, traceability of the received by is available.\nMany equipment was calibrated and received but returned and received by data was missing' },
+          { type: 'MNC', description: 'A. Calibration labels from a third-party vendor for equipment W/EQID/-00516、 M/EQID/-00517, and W/EQID/-00518 (All three digital hygrometers used in Truenat sections) were found in the rack used by IPQA. The calibration was done on 23/10/2025. The equipment bearing the IDs was verified. It was found that the equipment had the calibration labels from the same 3rd party vendor dated 24/10/2025. It was noted that the vendor made a mistake while writing dates and hence duplicated the labels with correct dates; however, the wrong ones were not retrieved or destroyed by the IPQA and were maintained with them. The incident reports unauthorized duplication of data leading to confusion ir calibration details.\nB. Calibration labels for Weighing balance with serial numbe\'s 14247174、 2102415346A5000416 were found in the rack used by IPQA. The calibration was completed in May 2025; however, labels were not pasted on the equipment. It was noted that the labels arrived late from the vendor, and hence the label was internally made and put on the equipment. There is no defined process/timeline to use/discard these labels, leading to misuse by the unauthorized personnel.' },
+          { type: 'PI', description: 'The format for identification and traceability of labels was verified. The format containing all the labels controlled under the QA department is referred to by IPQA before printing the labels. It is noted that the list does not control the revision nurber of the format or labels, potentially leading to printing an obsolete revision of the label. Further investigation revealed that there is no controlled process to delete the older revisions from all the IPQA PCs once the new revision is mastered.' }
+        ],
+        summary: {
+          firstNCCount: 1,
+          firstMNCCount: 1,
+          firstPICount: 2,
+          secondNCCount: 0,
+          secondMNCCount: 4,
+          secondPICount: 1,
+          status: 'OPEN'
+        }
+      }
     }
   ];
   const obj07_qi4Data = [];
@@ -1051,19 +1086,120 @@ const QualityObjectives_v2 = () => {
       }
     }
 
+    if (obj07Qi3SiteVErrorDetailsModal) {
+      const auditData = obj07_qi3Data.find(d => d.site === 'Site V')?.auditData;
+      if (!auditData) return null;
+
+      return createPortal(
+        <FullscreenShell onClose={() => setObj07Qi3SiteVErrorDetailsModal(false)}>
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              overflow: 'auto',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #fef2f2 100%)'
+            }}
+          >
+            <div style={{
+              padding: '16px 20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              borderBottom: '2px solid rgba(148,163,184,0.2)',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.85) 100%)',
+              backdropFilter: 'blur(12px)',
+              position: 'sticky',
+              top: 0,
+              zIndex: 10
+            }}>
+              <div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
+                  Objective 07 • QI 3 • Site V
+                </div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
+                  📉 Decrease in QA Process Errors - Audit Data
+                </div>
+              </div>
+            </div>
+
+            <div style={{ padding: '16px 20px' }}>
+              {/* Summary Cards - 2 Main Audit Cards */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
+                {/* 1st Audit Card */}
+                <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
+                    🔴 1st Audit
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2nd Audit Card */}
+                <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
+                    🟢 2nd Audit
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Unified Audit Findings */}
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {auditData.findings.map((item, idx) => {
+                    let bgColor = '#ef4444'; // NC - Red
+                    if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
+                    if (item.type === 'PI') bgColor = '#ea8308'; // Orange
+
+                    return (
+                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
+                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
+                            {item.type}
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </FullscreenShell>,
+        document.body
+      );
+    }
+
     if (obj07Qi3ErrorDetailsModal) {
-      const tableData = {
-        qaErrors: [
-          { category: 'NC', first: '1', firstDesc: 'Statements in incident and corrective actions were contradicting each other. Documents categorized as major', second: '0', secondDesc: 'NA' },
-          { category: 'PI', first: '5', firstDesc: '1. Investigation report mentioned a proposed preventive action, however, no corresponding preventive action was documented\n2. DMF, Risk management report, Risk analysis and evaluation\n3. Lack of monitoring of SOP like no evidence', second: '1', secondDesc: 'Controlled of drawings' },
-          { category: 'MNC', first: '2', firstDesc: 'DMF and Improper customer complaint handling', second: '2', secondDesc: 'Updated BOM and SOP/QA/007 molbio logo and name was not changed' },
-          { category: 'Total', first: '8', firstDesc: 'NA', second: '3', secondDesc: 'NA' }
-        ],
-        incidents: [
-          { period: 'Jan - Jun', count: '6', desc: 'Mastered without checking impact assessment, Duo serial numbering, customer complaint sign was not done for last year, hammered sir GDP error, Scan document torn, CA days crossed' },
-          { period: 'Jul - Nov', count: '0', desc: 'NA' }
-        ]
-      };
+      const auditData = obj07_qi3Data.find(d => d.site === 'Site III')?.auditData;
+      if (!auditData) return null;
 
       return createPortal(
         <FullscreenShell onClose={() => setObj07Qi3ErrorDetailsModal(false)}>
@@ -1089,66 +1225,80 @@ const QualityObjectives_v2 = () => {
             }}>
               <div>
                 <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
-                  Objective 07 • QI 3
+                  Objective 07 • QI 3 • Site III
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
-                  📉 Decrease in QA Process Errors
+                  📉 Decrease in QA Process Errors - Audit Data
                 </div>
               </div>
             </div>
 
             <div style={{ padding: '16px 20px' }}>
-              {/* QA Errors Table */}
-              <div style={{ marginBottom: '20px' }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 900, color: '#0f172a', marginBottom: '10px' }}>1st IQA vs 2nd IQA - Error Categories</h3>
-                <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #cbd5e1' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', background: '#ffffff' }}>
-                    <thead>
-                      <tr style={{ background: '#0f172a', color: '#ffffff' }}>
-                        <th style={{ padding: '14px 16px', textAlign: 'left', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>Category</th>
-                        <th style={{ padding: '14px 16px', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>1st IQA Count</th>
-                        <th style={{ padding: '14px 16px', textAlign: 'left', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>Description</th>
-                        <th style={{ padding: '14px 16px', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>2nd IQA Count</th>
-                        <th style={{ padding: '14px 16px', textAlign: 'left', fontWeight: 800 }}>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tableData.qaErrors.map((row, idx) => (
-                        <tr key={idx} style={{ background: idx % 2 === 0 ? '#f8fafc' : '#ffffff', borderBottom: idx < tableData.qaErrors.length - 1 ? '1px solid #e2e8f0' : 'none' }}>
-                          <td style={{ padding: '14px 16px', fontWeight: 800, color: '#0f172a', borderRight: '1px solid #cbd5e1' }}>{row.category}</td>
-                          <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: 700, color: '#ef4444', borderRight: '1px solid #cbd5e1' }}>{row.first}</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', borderRight: '1px solid #cbd5e1', whiteSpace: 'pre-wrap' }}>{row.firstDesc}</td>
-                          <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: 700, color: '#16a34a', borderRight: '1px solid #cbd5e1' }}>{row.second}</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', whiteSpace: 'pre-wrap' }}>{row.secondDesc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+              {/* Summary Cards - 2 Main Audit Cards */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
+                {/* 1st Audit Card */}
+                <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
+                    🔴 1st Audit
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2nd Audit Card */}
+                <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
+                    🟢 2nd Audit
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Incidents Table */}
+              {/* Unified Audit Findings */}
               <div>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a', marginBottom: '16px' }}>Incidents Comparison</h3>
-                <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #cbd5e1' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', background: '#ffffff' }}>
-                    <thead>
-                      <tr style={{ background: '#0f172a', color: '#ffffff' }}>
-                        <th style={{ padding: '14px 16px', textAlign: 'left', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>Period</th>
-                        <th style={{ padding: '14px 16px', fontWeight: 800, borderRight: '1px solid #cbd5e1' }}>Count</th>
-                        <th style={{ padding: '14px 16px', textAlign: 'left', fontWeight: 800 }}>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tableData.incidents.map((row, idx) => (
-                        <tr key={idx} style={{ background: idx % 2 === 0 ? '#f8fafc' : '#ffffff', borderBottom: idx < tableData.incidents.length - 1 ? '1px solid #e2e8f0' : 'none' }}>
-                          <td style={{ padding: '14px 16px', fontWeight: 800, color: '#0f172a', borderRight: '1px solid #cbd5e1' }}>{row.period}</td>
-                          <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: 700, color: row.period === 'Jan - Jun' ? '#ef4444' : '#16a34a', borderRight: '1px solid #cbd5e1' }}>{row.count}</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', whiteSpace: 'pre-wrap' }}>{row.desc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {auditData.findings.map((item, idx) => {
+                    let bgColor = '#ef4444'; // NC - Red
+                    if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
+                    if (item.type === 'PI') bgColor = '#ea8308'; // Orange
+
+                    return (
+                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
+                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
+                            {item.type}
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -3184,31 +3334,33 @@ const QualityObjectives_v2 = () => {
                   borderRadius: '8px',
                   border: '2px solid #ef444420',
                   position: 'relative',
-                  cursor: (item.site === 'Site III' || item.site === 'Site I') ? 'pointer' : 'default',
+                  cursor: (item.site === 'Site III' || item.site === 'Site I' || item.site === 'Site V') ? 'pointer' : 'default',
                   transition: 'all 0.2s ease'
                 }}
                 onClick={() => {
                   if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
                   if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
+                  if (item.site === 'Site V' && item.auditData) setObj07Qi3SiteVErrorDetailsModal(true);
                 }}
                 onMouseEnter={(e) => {
-                  if (item.site === 'Site III' || item.site === 'Site I') {
+                  if (item.site === 'Site III' || item.site === 'Site I' || item.site === 'Site V') {
                     e.currentTarget.style.transform = 'translateY(-3px)';
                     e.currentTarget.style.boxShadow = '0 6px 14px rgba(239, 68, 68, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (item.site === 'Site III' || item.site === 'Site I') {
+                  if (item.site === 'Site III' || item.site === 'Site I' || item.site === 'Site V') {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }
                 }}>
-                  {(item.site === 'Site III' || (item.site === 'Site I' && item.auditData)) && (
+                  {(item.site === 'Site III' || (item.site === 'Site I' && item.auditData) || (item.site === 'Site V' && item.auditData)) && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
                         if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
+                        if (item.site === 'Site V' && item.auditData) setObj07Qi3SiteVErrorDetailsModal(true);
                       }}
                       style={{
                         position: 'absolute',
