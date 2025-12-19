@@ -3,18 +3,18 @@ import React, { useState } from 'react'
 const milestone = 'Successfully implemented LAB QA in all the sub divisions of QC (IQC/IPQC/FQC) across all the sites (I, III, V)'
 
 const labQAResponsibilities = [
-  'Responsible for effectively monitoring all the activities carried out in QC department as per SOP/STP',
-  'To ensure GLP is followed strictly',
-  'Ensure continuous improvement and a risk based approach is implemented in all QC procedures/processes',
-  'Verification of QC documents and stability reports',
   'Responsible to investigate all the incident or failures reported in the QC department (SOP/QA/004). Ensure all appropriate correction shall be taken to avoid re-occurrence of the incidents',
+  'Ensure continuous improvement and a risk based approach is implemented in all QC procedures/processes',
+  'Share the calibration schedule planner and co-ordinate for on-site calibration as well',
+  'Shall ensure calibration and validation of all the QC equipment as per schedule',
+  'Responsible for effectively monitoring all the activities carried out in QC department as per SOP/STP',
+  'Verification of QC documents and stability reports',
+  'To ensure GLP is followed strictly',
   'Assisting in all CA/PA and root cause analysis',
   'Logbook authorization and verification',
   'Assisting in the investigation of OOS',
   'Handling of destruction',
-  'Compliance to document and record control',
-  'Share the calibration schedule planner and co-ordinate for on-site calibration as well',
-  'Shall ensure calibration and validation of all the QC equipment as per schedule'
+  'Compliance to document and record control'
 ]
 
 const siteIIIItems = [
@@ -93,130 +93,263 @@ export default function LabQARoles() {
         </div>
       </div>
 
-      {/* Main Grid - Responsibilities Left, KPIs Right */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0px', paddingLeft: '0px', paddingRight: '0px', marginBottom: '0px', marginTop: '20px', flex: 1 }}>
-        {/* Left: Lab QA Responsibilities */}
-        <div style={{
-          background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
-          border: '0px solid #0ea5e940',
-          borderRadius: '0px',
-          padding: '20px',
-          boxShadow: 'none',
-          overflowY: 'auto',
-          maxHeight: 'none',
-          height: 'auto',
-          flex: 1
-        }}>
-          <div style={{ fontSize: '1.9rem', fontWeight: 900, color: '#0369a1', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-            ✅ Lab QA Shall
+      {/* Main Content - Redesigned as Cards Grid */}
+      <div style={{ padding: '0 20px', flex: 1, overflowY: 'auto' }}>
+        
+        {/* Responsibilities Section with 3-Column Grid */}
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ 
+            fontSize: '2rem', 
+            fontWeight: 900, 
+            background: 'linear-gradient(135deg, #0ea5e9, #06b6d4)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            marginBottom: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10
+          }}>
+            <span style={{ WebkitTextFillColor: '#0ea5e9' }}>✅</span>
+            Lab QA Core Responsibilities
           </div>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {labQAResponsibilities.map((resp, idx) => (
-              <div key={idx} style={{
-                background: '#ffffff',
-                padding: '14px 16px',
-                borderRadius: '8px',
-                border: '2px solid #bae6fd',
-                boxShadow: '0 1px 3px rgba(14,165,233,0.1)',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f0f9ff'
-                e.currentTarget.style.borderColor = '#0ea5e9'
-                e.currentTarget.style.boxShadow = '0 4px 8px rgba(14,165,233,0.15)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#ffffff'
-                e.currentTarget.style.borderColor = '#bae6fd'
-                e.currentTarget.style.boxShadow = '0 1px 3px rgba(14,165,233,0.1)'
-              }}>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '16px',
+            marginBottom: '20px'
+          }}>
+            {labQAResponsibilities.map((resp, idx) => {
+              const gradients = [
+                'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+                'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)',
+                'linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%)'
+              ]
+              const colors = ['#0ea5e9', '#6366f1', '#8b5cf6']
+              const borderColors = ['#60a5fa', '#818cf8', '#a78bfa']
+              
+              return (
+                <div key={idx} style={{
+                  background: gradients[idx % 3],
+                  padding: '16px',
+                  borderRadius: '12px',
+                  border: `3px solid ${borderColors[idx % 3]}`,
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  transition: 'all 0.3s',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)'
+                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'
+                }}>
+                  {/* Number Badge */}
                   <div style={{
-                    fontSize: '1.85rem',
+                    position: 'absolute',
+                    top: '-10px',
+                    right: '-10px',
+                    width: '50px',
+                    height: '50px',
+                    background: colors[idx % 3],
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
                     fontWeight: 900,
-                    color: '#0ea5e9',
-                    minWidth: 32,
-                    textAlign: 'center'
+                    color: '#ffffff',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                    border: '3px solid #ffffff'
                   }}>
-                    {idx + 1}.
+                    {idx + 1}
                   </div>
+                  
+                  {/* Icon */}
                   <div style={{
-                    fontSize: '1.45rem',
+                    fontSize: '3rem',
+                    marginBottom: '10px'
+                  }}>
+                    {['🔍', '🛡️', '📈', '📋', '🚨', '🔧', '📖', '🧪', '🗑️', '📁', '📅', '⚙️'][idx]}
+                  </div>
+                  
+                  {/* Content */}
+                  <div style={{
+                    fontSize: '1.55rem',
                     color: '#111827',
                     fontWeight: 700,
-                    lineHeight: 1.4
+                    lineHeight: 1.5,
+                    minHeight: '80px'
                   }}>
                     {resp}
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
-        {/* Right: Additional KPIs - Site Cards */}
-        <div style={{
-          background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-          padding: '20px',
-          overflowY: 'auto',
-          flex: 1
-        }}>
-          <div style={{ fontSize: '1.9rem', fontWeight: 900, color: '#92400e', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-            🎯 Additional KPIs Identified
+        {/* KPIs Section with Modern Cards */}
+        <div>
+          <div style={{ 
+            fontSize: '2rem', 
+            fontWeight: 900,
+            background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            marginBottom: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10
+          }}>
+            <span style={{ WebkitTextFillColor: '#f59e0b' }}>🎯</span>
+            Site-Specific Additional KPIs
           </div>
 
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', gap: '18px', marginBottom: '16px' }}>
             {siteKPIs.map((site) => {
               const isOpen = expandedSite === site.id
               return (
                 <div key={site.id} style={{
-                  background: '#ffffff',
-                  border: `4px solid ${site.color}55`,
-                  borderRadius: '14px',
-                  padding: '18px',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  flex: '1 1 30%',
-                  minWidth: 260,
+                  flex: 1,
+                  background: `linear-gradient(135deg, ${site.color}15 0%, ${site.color}25 100%)`,
+                  border: `4px solid ${site.color}`,
+                  borderRadius: '16px',
+                  padding: '20px',
                   cursor: 'pointer',
-                  transition: 'all 0.25s',
-                  transform: isOpen ? 'translateY(-2px)' : 'translateY(0)'
+                  transition: 'all 0.3s',
+                  boxShadow: isOpen ? `0 12px 32px ${site.color}40` : `0 4px 12px ${site.color}20`
                 }}
                 onClick={() => setExpandedSite(isOpen ? null : site.id)}
-                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 8px 18px rgba(0,0,0,0.12)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)' }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isOpen ? 12 : 0 }}>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 900, color: site.color }}>{site.label}</div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#475569', transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</div>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)'
+                  e.currentTarget.style.boxShadow = `0 16px 40px ${site.color}50`
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = isOpen ? `0 12px 32px ${site.color}40` : `0 4px 12px ${site.color}20`
+                }}>
+                  {/* Header */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    marginBottom: isOpen ? 16 : 0
+                  }}>
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12
+                    }}>
+                      <div style={{
+                        width: '50px',
+                        height: '50px',
+                        background: site.color,
+                        borderRadius: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '1.8rem',
+                        boxShadow: `0 4px 12px ${site.color}40`
+                      }}>
+                        {site.id === 'siteI' ? '🏭' : site.id === 'siteIII' ? '🏗️' : '🏢'}
+                      </div>
+                      <div>
+                        <div style={{ 
+                          fontSize: '1.8rem', 
+                          fontWeight: 900, 
+                          color: site.color 
+                        }}>
+                          {site.label}
+                        </div>
+                        <div style={{
+                          fontSize: '1.1rem',
+                          color: '#64748b',
+                          fontWeight: 600
+                        }}>
+                          {site.items.length} KPI{site.items.length !== 1 ? 's' : ''}
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ 
+                      fontSize: '2rem', 
+                      fontWeight: 900, 
+                      color: site.color,
+                      transition: 'transform 0.3s',
+                      transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+                    }}>
+                      ▼
+                    </div>
                   </div>
 
+                  {/* Expanded Content */}
                   {isOpen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      gap: 12,
+                      animation: 'slideDown 0.3s ease-out'
+                    }}>
                       {site.items.length === 0 ? (
                         <div style={{
-                          background: '#f8fafc',
-                          border: `2px dashed ${site.color}55`,
-                          borderRadius: '10px',
-                          padding: '12px 14px',
-                          color: '#475569',
+                          background: '#ffffff',
+                          border: `3px dashed ${site.color}60`,
+                          borderRadius: '12px',
+                          padding: '20px',
+                          color: '#64748b',
                           fontWeight: 700,
+                          fontSize: '1.3rem',
                           textAlign: 'center'
                         }}>
-                          No KPIs added yet for {site.label}.
+                          📌 No additional KPIs defined yet for {site.label}
                         </div>
                       ) : (
                         site.items.map((text, idx) => (
                           <div key={idx} style={{
-                            background: '#fefce8',
-                            border: `2px solid ${site.color}55`,
+                            background: '#ffffff',
+                            border: `2px solid ${site.color}60`,
                             borderRadius: '10px',
-                            padding: '12px 14px',
+                            padding: '14px',
                             display: 'flex',
-                            gap: 10
+                            gap: 12,
+                            alignItems: 'flex-start',
+                            boxShadow: `0 2px 8px ${site.color}20`,
+                            transition: 'all 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = `${site.color}10`
+                            e.currentTarget.style.transform = 'translateX(4px)'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#ffffff'
+                            e.currentTarget.style.transform = 'translateX(0)'
                           }}>
-                            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: site.color, minWidth: 28, textAlign: 'center' }}>{idx + 1}.</div>
-                            <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', lineHeight: 1.4 }}>{text}</div>
+                            <div style={{ 
+                              fontSize: '1.4rem', 
+                              fontWeight: 900, 
+                              color: site.color,
+                              minWidth: 30,
+                              height: 30,
+                              borderRadius: '50%',
+                              background: `${site.color}20`,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              {idx + 1}
+                            </div>
+                            <div style={{ 
+                              fontSize: '1.25rem', 
+                              fontWeight: 700, 
+                              color: '#111827', 
+                              lineHeight: 1.5,
+                              flex: 1
+                            }}>
+                              {text}
+                            </div>
                           </div>
                         ))
                       )}
@@ -227,8 +360,17 @@ export default function LabQARoles() {
             })}
           </div>
 
-          <div style={{ fontSize: '1.2rem', color: '#92400e', fontWeight: 700, marginTop: 12, textAlign: 'center' }}>
-            💡 Click a site to expand KPIs
+          <div style={{ 
+            fontSize: '1.3rem', 
+            color: '#64748b', 
+            fontWeight: 700, 
+            textAlign: 'center',
+            padding: '12px',
+            background: '#f8fafc',
+            borderRadius: '10px',
+            border: '2px dashed #cbd5e1'
+          }}>
+            💡 Click on any site card above to view their specific KPIs
           </div>
         </div>
       </div>
@@ -238,6 +380,16 @@ export default function LabQARoles() {
           from {
             opacity: 0;
             transform: translateY(-5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
           }
           to {
             opacity: 1;
