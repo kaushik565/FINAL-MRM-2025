@@ -1215,6 +1215,111 @@ export default function QualityWeekPlaceholder() {
                   ))}
                 </div>
               </div>
+            ) : selectedEvent === 'Slogans' ? (
+              /* Slogans Section - Winner & Runner (Site III) */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out',
+                padding: '20px'
+              }}>
+                <h2 style={{
+                  fontSize: '2.2rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  margin: '0 0 12px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  💡 Slogans
+                </h2>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '18px',
+                  flex: 1,
+                  minHeight: 0
+                }}>
+                  {[{
+                    label: 'Winner - Site III',
+                    color: '#10b981',
+                    text: 'Quality Isn\'t Just Doing Better — It\'s Thinking Better.'
+                  }, {
+                    label: 'Runner - Site III',
+                    color: '#f59e0b',
+                    text: 'Live with purpose, work with passion, Deliver with quality'
+                  }].map((card, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '14px',
+                        padding: '28px',
+                        borderRadius: '14px',
+                        background: `linear-gradient(135deg, ${card.color}15 0%, ${card.color}08 100%)`,
+                        border: `2px solid ${card.color}40`,
+                        transition: 'all 0.3s ease',
+                        animation: 'fadeIn 0.6s ease-in-out',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-6px)';
+                        e.currentTarget.style.boxShadow = `0 10px 22px ${card.color}30`;
+                        e.currentTarget.style.borderColor = card.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = `${card.color}40`;
+                      }}
+                    >
+                      <div style={{
+                        fontSize: '1.1rem',
+                        fontWeight: 800,
+                        letterSpacing: '0.02em',
+                        color: '#0f172a',
+                        textTransform: 'uppercase'
+                      }}>
+                        {card.label}
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', flex: 1 }}>
+                        <div style={{
+                          fontSize: '3rem',
+                          lineHeight: '1',
+                          color: card.color,
+                          transform: 'translateY(-6px)'
+                        }}>
+                          “
+                        </div>
+                        <div style={{
+                          fontSize: '2rem',
+                          lineHeight: '1.4',
+                          color: '#0b1220',
+                          fontWeight: 700,
+                          letterSpacing: '-0.01em',
+                          flex: 1
+                        }}>
+                          {card.text}
+                        </div>
+                        <div style={{
+                          fontSize: '3rem',
+                          lineHeight: '1',
+                          color: card.color,
+                          alignSelf: 'flex-end',
+                          transform: 'translateY(8px)'
+                        }}>
+                          ”
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ) : !showOutcomes ? (
               /* Badge Logo Display */
               <div style={{
