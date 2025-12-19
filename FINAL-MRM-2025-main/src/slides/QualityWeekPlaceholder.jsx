@@ -997,6 +997,224 @@ export default function QualityWeekPlaceholder() {
                   ))}
                 </div>
               </div>
+            ) : selectedEvent === 'Quality Awareness Sessions' ? (
+              /* Quality Awareness Sessions Section */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out'
+              }}>
+                {/* Top Section - Text */}
+                <div style={{
+                  flex: '1 1 50%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  minHeight: 0
+                }}>
+                  <h2 style={{
+                    fontSize: '2.4rem',
+                    fontWeight: 800,
+                    color: '#1e293b',
+                    margin: '0 0 12px 0',
+                    letterSpacing: '-0.01em'
+                  }}>
+                    🎓 Quality Awareness Sessions
+                  </h2>
+                  
+                  <div style={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    paddingRight: '8px',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: 'rgba(102, 126, 234, 0.4) transparent'
+                  }}>
+                    <div style={{
+                      fontSize: '1.55rem',
+                      lineHeight: '2.2',
+                      color: '#000000',
+                      fontWeight: 500
+                    }}>
+                      <div style={{ marginBottom: '18px', fontWeight: 700, color: '#1e293b', fontSize: '1.75rem' }}>Topics Covered:</div>
+                      <div style={{ marginBottom: '16px' }}><strong>Session I:</strong> Quality principles, Quality policy, Quality objectives</div>
+                      <div style={{ marginBottom: '16px' }}><strong>Session II:</strong> MDR 2017 & ISO 13485 Awareness</div>
+                      <div style={{ marginBottom: '16px' }}><strong>Session III:</strong> Significance of Quality Events</div>
+                      <div style={{ marginBottom: '16px' }}><strong>Session IV:</strong> Importance of QC</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Section - Images */}
+                <div style={{
+                  flex: '0 0 50%',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gridTemplateRows: '1fr',
+                  gap: '12px',
+                  height: '0',
+                  minHeight: '200px',
+                  maxHeight: '300px',
+                  borderTop: '2px solid rgba(102, 126, 234, 0.2)',
+                  paddingTop: '12px',
+                  overflow: 'hidden'
+                }}>
+                  {(() => {
+                    const allImages = [
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.35 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.37 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.45 AM (1).jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.52 AM (1).jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.54 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.55 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.59 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.00 AM (1).jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.01 AM.jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.03 AM (1).jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM (1).jpeg',
+                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM.jpeg'
+                    ];
+                    const shuffled = [...allImages].sort(() => Math.random() - 0.5);
+                    const startIdx = Math.floor(Date.now() / 3000) % (shuffled.length - 1);
+                    return shuffled.slice(startIdx, startIdx + 2);
+                  })().map((src, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '100%',
+                        minHeight: '0',
+                        maxHeight: '100%',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        border: '2px solid rgba(102, 126, 234, 0.2)',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        animation: 'fadeIn 0.6s ease-in-out'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.15)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={`Quality Awareness ${idx + 1}`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          display: 'block',
+                          maxHeight: '100%'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : selectedEvent === 'Online Quiz' ? (
+              /* Online Quiz Section - Card Design */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out',
+                padding: '20px'
+              }}>
+                <h2 style={{
+                  fontSize: '2.2rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  margin: '0 0 12px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  🧪 Online Quiz
+                </h2>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '16px',
+                  flex: 1,
+                  minHeight: 0
+                }}>
+                  {[
+                    { title: 'Online Quiz (Day I)', members: 134, color: '#3b82f6' },
+                    { title: 'Online Quiz (Day II)', members: 99, color: '#8b5cf6' },
+                    { title: 'Online Quiz (Day III)', members: 91, color: '#ec4899' }
+                  ].map((quiz, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '16px',
+                        padding: '24px',
+                        borderRadius: '12px',
+                        background: `linear-gradient(135deg, ${quiz.color}15 0%, ${quiz.color}08 100%)`,
+                        border: `2px solid ${quiz.color}40`,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        animation: 'fadeIn 0.6s ease-in-out',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-8px)';
+                        e.currentTarget.style.boxShadow = `0 12px 24px ${quiz.color}30`;
+                        e.currentTarget.style.borderColor = quiz.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = `${quiz.color}40`;
+                      }}
+                    >
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+                        <div style={{
+                          fontSize: '3.2rem',
+                          fontWeight: 700,
+                          color: '#1e293b',
+                          lineHeight: '1.1'
+                        }}>
+                          {quiz.title}
+                        </div>
+                        <div style={{
+                          fontSize: '8rem',
+                          fontWeight: 700,
+                          background: `linear-gradient(135deg, ${quiz.color} 0%, ${quiz.color}dd 100%)`,
+                          backgroundClip: 'text',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          lineHeight: '1'
+                        }}>
+                          {quiz.members}
+                        </div>
+                        <div style={{
+                          fontSize: '2.6rem',
+                          fontWeight: 600,
+                          color: '#64748b',
+                          lineHeight: '1'
+                        }}>
+                          Members Attended
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ) : !showOutcomes ? (
               /* Badge Logo Display */
               <div style={{
