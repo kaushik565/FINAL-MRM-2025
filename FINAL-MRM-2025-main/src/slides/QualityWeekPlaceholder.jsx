@@ -1063,18 +1063,18 @@ export default function QualityWeekPlaceholder() {
                 }}>
                   {(() => {
                     const allImages = [
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.35 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.37 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.45 AM (1).jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.52 AM (1).jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.54 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.55 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.43.59 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.00 AM (1).jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.01 AM.jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.03 AM (1).jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM (1).jpeg',
-                      '/public/awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM.jpeg'
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.35 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.37 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.45 AM (1).jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.52 AM (1).jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.54 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.55 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.43.59 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.44.00 AM (1).jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.44.01 AM.jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.44.03 AM (1).jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM (1).jpeg',
+                      '/Awareness/WhatsApp Image 2025-12-19 at 11.44.04 AM.jpeg'
                     ];
                     const shuffled = [...allImages].sort(() => Math.random() - 0.5);
                     const startIdx = Math.floor(Date.now() / 3000) % (shuffled.length - 1);
