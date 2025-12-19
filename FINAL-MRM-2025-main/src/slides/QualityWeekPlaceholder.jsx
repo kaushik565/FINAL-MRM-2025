@@ -1215,6 +1215,61 @@ export default function QualityWeekPlaceholder() {
                   ))}
                 </div>
               </div>
+            ) : selectedEvent === 'HOD Quiz' ? (
+              /* HOD Quiz - Round details */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out',
+                padding: '20px'
+              }}>
+                <h2 style={{
+                  fontSize: '3.4rem',
+                  fontWeight: 900,
+                  color: '#1e293b',
+                  margin: '0 0 14px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  🏆 HOD Quiz
+                </h2>
+
+                <div style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '14px',
+                  padding: '32px',
+                  borderRadius: '16px',
+                  background: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(139,92,246,0.08) 100%)',
+                  border: '2px solid rgba(79,70,229,0.25)',
+                  boxShadow: '0 10px 24px rgba(0,0,0,0.08)',
+                  animation: 'fadeIn 0.6s ease-in-out'
+                }}>
+                  <div style={{
+                    fontSize: '2.1rem',
+                    fontWeight: 900,
+                    color: '#0f172a',
+                    letterSpacing: '0.01em'
+                  }}>
+                    HOD Quiz
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    fontSize: '1.9rem',
+                    color: '#0b1220',
+                    lineHeight: '1.9'
+                  }}>
+                    <div><strong>Round 1 (16 questions):</strong> QMS Awareness / Company Policy</div>
+                    <div><strong>Round 2 (8 questions):</strong> Generic Riddles</div>
+                    <div><strong>Round 3 (8 questions):</strong> Visual Round (identify logo, tool, or process image)</div>
+                  </div>
+                </div>
+              </div>
             ) : selectedEvent === 'Quality Tree' ? (
               /* Quality Tree - Show tree photos */
               <div style={{
