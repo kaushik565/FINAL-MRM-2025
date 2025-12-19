@@ -4,11 +4,11 @@ export default function ImprovementsSlide() {
     'Engaged in monitoring and measurement of product performance thorugh APQR and LAB QA.',
     'LAB QA implemented across all the sites',
     'OOS ownership was taken by the QA across all the sites',
-    'Implementation of work instructions',
     'Inter deparmental Collaborative meetings',
     'QA collaboration daily meetings across the sites',
     'Improved competencey of all QA personnel',
     'Encouraging a proactive approach to process risk management',
+    'Implementation of work instructions - Under Progress',
     'Introduction of COQ SOP - Under Progress',
     'Weekly QA Team lead meeting across sites - Under Progress'
   ]
@@ -71,7 +71,7 @@ export default function ImprovementsSlide() {
               color: '#10b981',
               marginBottom: '8px'
             }}>
-              9
+              8
             </div>
             <div style={{
               fontSize: '1.5rem',
@@ -106,7 +106,7 @@ export default function ImprovementsSlide() {
               color: '#ea580c',
               marginBottom: '8px'
             }}>
-              2
+              3
             </div>
             <div style={{
               fontSize: '1.5rem',
