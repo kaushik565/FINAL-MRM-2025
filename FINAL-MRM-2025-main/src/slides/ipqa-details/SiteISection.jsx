@@ -17,7 +17,7 @@ export default function SiteISection() {
       september: 1150, septemberNotApproved: 5,
       october: 1036, octoberNotApproved: 2,
       november: 1021, novemberNotApproved: 0,
-      color: '#dc2626',
+      color: '#7c3aed',
       type: 'Not Approved'
     },
     { 
@@ -166,7 +166,7 @@ export default function SiteISection() {
       label: 'November Throughput', 
       value: totalThroughput.toLocaleString(), 
       trend: `${overallImprovement > 0 ? '+' : ''}${overallImprovement}%`, 
-      trendColor: overallImprovement > 0 ? '#16a34a' : '#dc2626',
+      trendColor: overallImprovement > 0 ? '#16a34a' : '#7c3aed',
       unit: 'items', 
       color: '#0ea5e9', 
       bgColor: '#e0f2fe' 
@@ -195,8 +195,8 @@ export default function SiteISection() {
       trend: '-0.8%', 
       trendColor: '#16a34a',
       unit: 'avg', 
-      color: '#dc2626', 
-      bgColor: '#fee2e2' 
+      color: '#7c3aed', 
+      bgColor: '#ede9fe' 
     }
   ];
 
@@ -405,8 +405,8 @@ export default function SiteISection() {
             <ComposedChart data={throughputTrendData} margin={{ top: 5, right: 15, left: -10, bottom: 5 }}>
               <defs>
                 <linearGradient id="colorClearance" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#dc2626" stopOpacity={0.4}/>
-                  <stop offset="95%" stopColor="#dc2626" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.4}/>
+                  <stop offset="95%" stopColor="#7c3aed" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorClosure" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
@@ -421,7 +421,7 @@ export default function SiteISection() {
                 cursor={{ fill: 'rgba(0,0,0,0.05)' }}
               />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-              <Area type="monotone" dataKey="clearance" stroke="#dc2626" strokeWidth={3} fillOpacity={1} fill="url(#colorClearance)" name="Line Clearance" />
+              <Area type="monotone" dataKey="clearance" stroke="#7c3aed" strokeWidth={3} fillOpacity={1} fill="url(#colorClearance)" name="Line Clearance" />
               <Line type="monotone" dataKey="closure" stroke="#0ea5e9" strokeWidth={2.5} name="Line Closure" dot={{ r: 4 }} />
               <Line type="monotone" dataKey="incoming" stroke="#f59e0b" strokeWidth={2.5} name="Incoming Sampling" dot={{ r: 3 }} />
             </ComposedChart>
@@ -474,7 +474,7 @@ export default function SiteISection() {
                 padding: '8px',
                 background: '#f9fafb',
                 borderRadius: '6px',
-                borderLeft: `3px solid ${['#dc2626', '#0ea5e9', '#f59e0b', '#8b5cf6'][idx]}`,
+                borderLeft: `3px solid ${['#7c3aed', '#0ea5e9', '#f59e0b', '#8b5cf6'][idx]}`,
                 fontSize: '0.7em'
               }}>
                 <div style={{ fontWeight: '700', color: '#111827' }}>{metric.count}</div>
@@ -616,7 +616,7 @@ export default function SiteISection() {
                     <div style={{
                       fontSize: '0.85em',
                       fontWeight: '900',
-                      color: isPositive ? '#16a34a' : '#dc2626',
+                      color: isPositive ? '#16a34a' : '#7c3aed',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '2px'
@@ -740,32 +740,32 @@ export default function SiteISection() {
                     padding: '10px',
                     textAlign: 'center',
                     fontWeight: '800',
-                    color: improvement > 0 ? '#16a34a' : '#dc2626',
+                    color: improvement > 0 ? '#16a34a' : '#7c3aed',
                     background: '#e0f2fe'
                   }}>
                     {improvement > 0 ? '↑' : '↓'} {Math.abs(improvement)}%
                   </td>
                 </tr>,
                 <tr key={`${idx}-sub`} style={{ background: idx % 2 === 0 ? '#fafbfc' : '#f5f6f7', borderBottom: '2px solid #e5e7eb' }}>
-                  <td style={{ padding: '8px 10px', fontSize: '0.62em', fontWeight: '600', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', paddingLeft: '24px' }}>
+                  <td style={{ padding: '8px 10px', fontSize: '0.62em', fontWeight: '600', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', paddingLeft: '24px' }}>
                     {row.type === 'Not Approved' ? '❌ Not Approved' : '⚠️ Observations'}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.juneNotApproved !== undefined ? row.juneNotApproved : (row.juneObservations !== undefined ? row.juneObservations : 0)}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.julyNotApproved !== undefined ? row.julyNotApproved : (row.julyObservations !== undefined ? row.julyObservations : 0)}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.augustNotApproved !== undefined ? row.augustNotApproved : (row.augustObservations !== undefined ? row.augustObservations : 0)}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.septemberNotApproved !== undefined ? row.septemberNotApproved : (row.septemberObservations !== undefined ? row.septemberObservations : 0)}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.octoberNotApproved !== undefined ? row.octoberNotApproved : (row.octoberObservations !== undefined ? row.octoberObservations : 0)}
                   </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#dc2626' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
+                  <td style={{ padding: '8px 10px', textAlign: 'center', color: row.type === 'Not Approved' ? '#7c3aed' : '#f59e0b', fontSize: '0.7em', fontWeight: '600' }}>
                     {row.novemberNotApproved !== undefined ? row.novemberNotApproved : (row.novemberObservations !== undefined ? row.novemberObservations : 0)}
                   </td>
                   <td style={{ padding: '8px 10px', textAlign: 'center' }}></td>
