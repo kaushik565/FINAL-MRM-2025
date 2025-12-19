@@ -1270,6 +1270,116 @@ export default function QualityWeekPlaceholder() {
                   </div>
                 </div>
               </div>
+            ) : selectedEvent === 'Prize Distribution' ? (
+              /* Prize Distribution - Quiz winners */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out',
+                padding: '20px'
+              }}>
+                <h2 style={{
+                  fontSize: '3.6rem',
+                  fontWeight: 900,
+                  color: '#1e293b',
+                  margin: '0 0 12px 0',
+                  letterSpacing: '-0.01em'
+                }}>
+                  🎁 Prize Distribution
+                </h2>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                  gap: '16px',
+                  flex: 1,
+                  minHeight: 0
+                }}>
+                  {[{
+                    quiz: 'Quiz 1',
+                    color: '#2563eb',
+                    winners: [
+                      '1st Place  : Ms. Shreya Pai (QA – Site V)',
+                      '2nd Place : Ms. Saishree Kamat (Production – Site V)',
+                      '3rd Place  : Ms. Nidhi Narayan Parab (Business Development – Site I)'
+                    ]
+                  }, {
+                    quiz: 'Quiz 2',
+                    color: '#7c3aed',
+                    winners: [
+                      '1st Place : Ms.Mahima (BD – Site I)',
+                      '2nd Place : Mr.Kamlakar (Production – Site V)',
+                      '3rd Place : Ms.Tanya Shirsat(QA– Site V)'
+                    ]
+                  }, {
+                    quiz: 'Quiz 3',
+                    color: '#db2777',
+                    winners: [
+                      '1st Place : Ms.Vaibhavi Rane (QA – Site V)',
+                      '2nd Place : Ms.Apurva Naik (QA - Site V)',
+                      '3rd Place : Ms.Saishree Kamat (MG– Site V)'
+                    ]
+                  }, {
+                    quiz: 'Quiz 4',
+                    color: '#22c55e',
+                    winners: [
+                      '1st Place : Mr. Chukka Bhanu Paradesi Naidu (QC – Site III)',
+                      '2nd Place : Ms. Sonam Naik (Production - Site V)',
+                      '3rd Place : Ms. Chelsley Kennedy (QA - Site I)'
+                    ]
+                  }].map((item, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px',
+                        padding: '22px',
+                        borderRadius: '14px',
+                        background: `linear-gradient(135deg, ${item.color}15 0%, ${item.color}08 100%)`,
+                        border: `2px solid ${item.color}40`,
+                        boxShadow: '0 10px 22px rgba(0,0,0,0.08)',
+                        transition: 'all 0.3s ease',
+                        animation: 'fadeIn 0.6s ease-in-out'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-6px)';
+                        e.currentTarget.style.boxShadow = `0 12px 26px ${item.color}30`;
+                        e.currentTarget.style.borderColor = item.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.08)';
+                        e.currentTarget.style.borderColor = `${item.color}40`;
+                      }}
+                    >
+                      <div style={{
+                        fontSize: '2.1rem',
+                        fontWeight: 900,
+                        color: '#0f172a',
+                        letterSpacing: '0.01em'
+                      }}>
+                        {item.quiz}
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px',
+                        fontSize: '1.8rem',
+                        color: '#0b1220',
+                        lineHeight: '1.6'
+                      }}>
+                        {item.winners.map((w, wi) => (
+                          <div key={wi}>{w}</div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ) : selectedEvent === 'Quality Tree' ? (
               /* Quality Tree - Show tree photos */
               <div style={{
