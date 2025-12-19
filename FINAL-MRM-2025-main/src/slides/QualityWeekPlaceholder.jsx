@@ -5,6 +5,8 @@ export default function QualityWeekPlaceholder() {
   const [showBadgeModal, setShowBadgeModal] = useState(false)
   const [showCelebration, setShowCelebration] = useState(false)
   const [carouselIdx, setCarouselIdx] = useState(0)
+  const [showOutcomes, setShowOutcomes] = useState(false)
+  const [selectedEvent, setSelectedEvent] = useState(null)
   const slideRef = useRef(null)
   const hasShownRef = useRef(false)
   const carouselTimerRef = useRef(null)
@@ -74,7 +76,8 @@ export default function QualityWeekPlaceholder() {
     { icon: '💡', title: 'Slogans' },
     { icon: '🌳', title: 'Quality Tree' },
     { icon: '🏆', title: 'HOD Quiz' },
-    { icon: '🎁', title: 'Prize Distribution' }
+    { icon: '🎁', title: 'Prize Distribution' },
+    { icon: '🎯', title: 'Outcomes' }
   ]
 
   const outcomeImages = [
@@ -97,6 +100,12 @@ export default function QualityWeekPlaceholder() {
         background: '#ffffff'
       }}
     >
+      <style>{`
+        @keyframes flipBadge {
+          0% { transform: rotateY(0deg); }
+          100% { transform: rotateY(360deg); }
+        }
+      `}</style>
       <div style={{
         width: '100%',
         height: '100%',
@@ -755,7 +764,7 @@ export default function QualityWeekPlaceholder() {
           <div style={{
             background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
             borderRadius: '14px',
-            padding: '14px 12px',
+            padding: '10px 10px',
             boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
             border: '2px solid rgba(102, 126, 234, 0.1)',
             display: 'flex',
@@ -763,13 +772,13 @@ export default function QualityWeekPlaceholder() {
             minHeight: 0
           }}>
             <h2 style={{
-              fontSize: '1.3rem',
+              fontSize: '1.2rem',
               fontWeight: 800,
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              marginBottom: '10px',
+              marginBottom: '6px',
               textAlign: 'center',
               letterSpacing: '-0.02em',
               flex: '0 0 auto'
@@ -780,7 +789,7 @@ export default function QualityWeekPlaceholder() {
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '8px',
+              gap: '5px',
               flex: 1,
               justifyContent: 'space-between',
               minHeight: 0
@@ -793,10 +802,10 @@ export default function QualityWeekPlaceholder() {
                       ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
                       : '#ffffff',
                     borderRadius: '8px',
-                    padding: '10px 12px',
+                    padding: '7px 10px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
+                    gap: '8px',
                     boxShadow: hoveredIdx === idx 
                       ? '0 6px 20px rgba(102, 126, 234, 0.3)' 
                       : '0 2px 8px rgba(0, 0, 0, 0.06)',
@@ -811,9 +820,23 @@ export default function QualityWeekPlaceholder() {
                   }}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
+                  onClick={() => {
+                    if (event.title === 'Outcomes') {
+                      setShowOutcomes(!showOutcomes)
+                      setSelectedEvent(null)
+                    } else {
+                      // Toggle: if already selected, close it; otherwise open it
+                      if (selectedEvent === event.title) {
+                        setSelectedEvent(null)
+                      } else {
+                        setSelectedEvent(event.title)
+                      }
+                      setShowOutcomes(false)
+                    }
+                  }}
                 >
                   <div style={{
-                    fontSize: '3rem',
+                    fontSize: '2.2rem',
                     transition: 'transform 0.3s ease',
                     transform: hoveredIdx === idx ? 'scale(1.15)' : 'scale(1)',
                     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))',
@@ -822,7 +845,7 @@ export default function QualityWeekPlaceholder() {
                     {event.icon}
                   </div>
                   <div style={{
-                    fontSize: '1.5rem',
+                    fontSize: '1.25rem',
                     fontWeight: 700,
                     color: hoveredIdx === idx ? '#ffffff' : '#1e293b',
                     transition: 'color 0.3s ease',
@@ -835,7 +858,7 @@ export default function QualityWeekPlaceholder() {
             </div>
           </div>
 
-          {/* Right Column - Outcomes */}
+          {/* Right Column - Badge or Outcomes */}
           <div style={{
             background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
             borderRadius: '14px',
@@ -851,6 +874,166 @@ export default function QualityWeekPlaceholder() {
             gap: '10px',
             minHeight: 0
           }}>
+            {selectedEvent === 'Quality Pledge' ? (
+              /* Quality Pledge Section */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                minHeight: 0,
+                animation: 'fadeIn 0.6s ease-in-out'
+              }}>
+                {/* Top Section - Text */}
+                <div style={{
+                  flex: '1 1 30%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  minHeight: 0
+                }}>
+                  <h2 style={{
+                    fontSize: '1.8rem',
+                    fontWeight: 800,
+                    color: '#1e293b',
+                    margin: '0 0 8px 0',
+                    letterSpacing: '-0.01em'
+                  }}>
+                    📋 We Pledge to:
+                  </h2>
+                  
+                  <div style={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    paddingRight: '8px',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: 'rgba(102, 126, 234, 0.4) transparent'
+                  }}>
+                    <div style={{
+                      fontSize: '1.4rem',
+                      lineHeight: '1.9',
+                      color: '#000000',
+                      fontWeight: 500
+                    }}>
+                      <div style={{ marginBottom: '12px' }}>1. Uphold the highest standards of Good Manufacturing Practices (GMP) and ISO 13485 compliance and release is accurate, reliable and safe.</div>
+                      <div style={{ marginBottom: '12px' }}>2. Take personal responsibility for all Quality systems, documentation practices and Standard operating procedures.</div>
+                      <div style={{ marginBottom: '12px' }}>3. Commit to continuous improvement, innovation and teamwork to enhance product performance and customer satisfaction.</div>
+                      <div style={{ marginBottom: '12px' }}>4. Foster a culture where Quality is built in and every employee is a guardian of quality.</div>
+                      <div style={{ marginBottom: '12px' }}>5. Together, we dedicate ourselves to delivering trustworthy diagnostics that inspire confidence in every result.</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Section - Images */}
+                <div style={{
+                  flex: '0 0 70%',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gridTemplateRows: '1fr',
+                  gap: '12px',
+                  height: '0',
+                  minHeight: '250px',
+                  maxHeight: '350px',
+                  borderTop: '2px solid rgba(102, 126, 234, 0.2)',
+                  paddingTop: '12px',
+                  overflow: 'hidden'
+                }}>
+                  {(() => {
+                    const allImages = [
+                      '/Pleadge/1000133008.jpeg',
+                      '/Pleadge/1000164251.jpeg',
+                      '/Pleadge/20251111_161158.jpeg',
+                      '/Pleadge/Cartridge production production.jpeg',
+                      '/Pleadge/IMG-20251111-WA0020.jpg',
+                      '/Pleadge/IMG_20251111_152330.jpeg',
+                      '/Pleadge/IMG_20251111_161546.jpg',
+                      '/Pleadge/IMG_2098.jpg',
+                      '/Pleadge/PHOTO-2025-11-12-09-49-37.jpg',
+                      '/Pleadge/Production- Truenat.JPG',
+                      '/Pleadge/Site VI-1.jpeg',
+                      '/Pleadge/Trueprep (2).jpeg'
+                    ];
+                    const shuffled = [...allImages].sort(() => Math.random() - 0.5);
+                    const startIdx = Math.floor(Date.now() / 3000) % (shuffled.length - 1);
+                    return shuffled.slice(startIdx, startIdx + 2);
+                  })().map((src, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '100%',
+                        minHeight: '0',
+                        maxHeight: '100%',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        border: '2px solid rgba(102, 126, 234, 0.2)',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        animation: 'fadeIn 0.6s ease-in-out'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.15)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={`Quality Pledge ${idx + 1}`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          display: 'block',
+                          maxHeight: '100%'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : !showOutcomes ? (
+              /* Badge Logo Display */
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '20px',
+                animation: 'fadeIn 0.6s ease-in-out'
+              }}>
+                <img 
+                  src="/quality-week-badge.png" 
+                  alt="Quality Week Badge"
+                  style={{
+                    maxWidth: '80%',
+                    maxHeight: '70%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15))',
+                    animation: 'flipBadge 2s ease-in-out infinite'
+                  }}
+                />
+                <div style={{
+                  fontSize: '1.8rem',
+                  fontWeight: 700,
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textAlign: 'center',
+                  letterSpacing: '-0.01em'
+                }}>
+                  Click an Event to View the Details
+                </div>
+              </div>
+            ) : (
+              <>
             {/* Decorative Background Pattern */}
             <div style={{
               position: 'absolute',
@@ -1171,6 +1354,8 @@ export default function QualityWeekPlaceholder() {
                 </div>
               </div>
             </div>
+          </>
+            )}
           </div>
         </div>
       </div>
