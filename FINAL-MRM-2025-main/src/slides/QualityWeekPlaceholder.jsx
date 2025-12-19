@@ -893,11 +893,12 @@ export default function QualityWeekPlaceholder() {
                   minHeight: 0
                 }}>
                   <h2 style={{
-                    fontSize: '1.8rem',
+                    fontSize: '2rem',
                     fontWeight: 800,
                     color: '#1e293b',
                     margin: '0 0 8px 0',
-                    letterSpacing: '-0.01em'
+                    letterSpacing: '-0.01em',
+                    fontFamily: 'Arial, sans-serif'
                   }}>
                     📋 We Pledge to:
                   </h2>
@@ -910,10 +911,11 @@ export default function QualityWeekPlaceholder() {
                     scrollbarColor: 'rgba(102, 126, 234, 0.4) transparent'
                   }}>
                     <div style={{
-                      fontSize: '1.4rem',
-                      lineHeight: '1.9',
+                      fontSize: '1.6rem',
+                      lineHeight: '2.1',
                       color: '#000000',
-                      fontWeight: 500
+                      fontWeight: 500,
+                      fontFamily: 'Arial, sans-serif'
                     }}>
                       <div style={{ marginBottom: '12px' }}>1. Uphold the highest standards of Good Manufacturing Practices (GMP) and ISO 13485 compliance and release is accurate, reliable and safe.</div>
                       <div style={{ marginBottom: '12px' }}>2. Take personal responsibility for all Quality systems, documentation practices and Standard operating procedures.</div>
@@ -1036,9 +1038,10 @@ export default function QualityWeekPlaceholder() {
                       fontSize: '1.55rem',
                       lineHeight: '2.2',
                       color: '#000000',
-                      fontWeight: 500
+                      fontWeight: 500,
+                      fontFamily: 'Arial, sans-serif'
                     }}>
-                      <div style={{ marginBottom: '18px', fontWeight: 700, color: '#1e293b', fontSize: '1.75rem' }}>Topics Covered:</div>
+                      <div style={{ marginBottom: '18px', fontWeight: 700, color: '#1e293b', fontSize: '1.75rem', fontFamily: 'Arial, sans-serif' }}>Topics Covered:</div>
                       <div style={{ marginBottom: '16px' }}><strong>Session I:</strong> Quality principles, Quality policy, Quality objectives</div>
                       <div style={{ marginBottom: '16px' }}><strong>Session II:</strong> MDR 2017 & ISO 13485 Awareness</div>
                       <div style={{ marginBottom: '16px' }}><strong>Session III:</strong> Significance of Quality Events</div>
