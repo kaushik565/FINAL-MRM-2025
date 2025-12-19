@@ -108,8 +108,10 @@ export const buildMetrics = (data) => {
     const topIssues = Object.entries(issueTypes).sort((a, b) => b[1] - a[1]).slice(0, 5)
 
     const rootCauseTypes = {}
+    const otherRootCauses = {}
     data.forEach(c => {
-      const cause = c.rootCause.toLowerCase()
+      const causeOriginal = (c.rootCause || '').trim()
+      const cause = causeOriginal.toLowerCase()
       if (cause.includes('awareness') || cause.includes('aware')) {
         rootCauseTypes['Awareness / Training'] = (rootCauseTypes['Awareness / Training'] || 0) + 1
       } else if (cause.includes('pcb') || cause.includes('damage') || cause.includes('defect') || cause.includes('faulty')) {
@@ -120,6 +122,8 @@ export const buildMetrics = (data) => {
         rootCauseTypes['Not Identified'] = (rootCauseTypes['Not Identified'] || 0) + 1
       } else {
         rootCauseTypes['Other'] = (rootCauseTypes['Other'] || 0) + 1
+        const key = causeOriginal || 'Not specified'
+        otherRootCauses[key] = (otherRootCauses[key] || 0) + 1
       }
     })
 
@@ -138,7 +142,7 @@ export const buildMetrics = (data) => {
       else componentIssues['Other'] = (componentIssues['Other'] || 0) + 1
     })
 
-    return { total, uniqueComplaints, uniqueDevices, topIssues, rootCauseTypes, complaintIdDist, componentIssues }
+    return { total, uniqueComplaints, uniqueDevices, topIssues, rootCauseTypes, complaintIdDist, componentIssues, otherRootCauses }
   }
 
 export const palette = ['#0ea5e9', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981', '#6366f1']
@@ -170,6 +174,7 @@ const BarRow = ({ label, value, max, color }) => (
 
 export default function CustomerComplaintsOverview() {
   const [activeTab, setActiveTab] = React.useState('extraction')
+  const [showOtherDetails, setShowOtherDetails] = React.useState(false)
 
   const metricsOverall = useMemo(() => buildMetrics(complaintsData), [])
   const metricsExtraction = useMemo(() => buildMetrics(extractionComplaints), [])
@@ -182,6 +187,7 @@ export default function CustomerComplaintsOverview() {
 
   const rootCauseTotal = Object.values(currentMetrics.rootCauseTypes).reduce((a, b) => a + b, 0)
   const rootCauseEntries = Object.entries(currentMetrics.rootCauseTypes).sort((a, b) => b[1] - a[1])
+  const otherDetails = Object.entries(currentMetrics.otherRootCauses || {}).sort((a, b) => b[1] - a[1])
 
   return (
     <section
@@ -209,9 +215,9 @@ export default function CustomerComplaintsOverview() {
       {/* Key Stats - 3 Large Cards (IPQA Style) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '20px', paddingX: '20px' }}>
         {[
-          { label: '📊 Total Complaints', value: metricsOverall.total, sub: `${metricsOverall.uniqueComplaints} unique IDs`, color: '#ef4444', bg: '#fef2f2', icon: '🔴' },
+          { label: '📊 Total Components Effected', value: metricsOverall.total, sub: `${metricsOverall.uniqueComplaints} unique IDs`, color: '#ef4444', bg: '#fef2f2', icon: '🔴' },
           { label: '🔧 Devices Affected', value: metricsOverall.uniqueDevices, sub: `Unique serial numbers`, color: '#0ea5e9', bg: '#e0f2fe', icon: '⚙️' },
-          { label: '📋 Complaint IDs', value: metricsOverall.uniqueComplaints, sub: `Unique complaint records`, color: '#8b5cf6', bg: '#f3e8ff', icon: '📝' }
+          { label: '📋 Total Complaints', value: 12, sub: `Total complaint records`, color: '#8b5cf6', bg: '#f3e8ff', icon: '📝' }
         ].map((card, idx) => (
           <div key={idx} style={{
             background: card.bg,
@@ -242,8 +248,8 @@ export default function CustomerComplaintsOverview() {
       {/* Segment Tabs */}
       <div style={{ display: 'flex', gap: 8, marginBottom: '14px', paddingX: '20px' }}>
         {[
-          { id: 'extraction', label: '⚙️ Assembly Device', color: '#0ea5e9' },
-          { id: 'pcr', label: '🧬 PCR', color: '#8b5cf6' }
+          { id: 'extraction', label: '⚙️ Assembly of extraction device', color: '#0ea5e9' },
+          { id: 'pcr', label: '🧬 Two Bay and Four Bay PCR Machines', color: '#8b5cf6' }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -380,6 +386,50 @@ export default function CustomerComplaintsOverview() {
                   </div>
                 </div>
               ))}
+
+              {rootCauseEntries.some(([label]) => label === 'Other') && otherDetails.length > 0 && (
+                <div style={{ marginTop: 8 }}>
+                  <button
+                    onClick={() => setShowOtherDetails(!showOtherDetails)}
+                    style={{
+                      padding: '10px 12px',
+                      borderRadius: '10px',
+                      border: '2px solid #0ea5e9',
+                      background: showOtherDetails ? '#e0f2fe' : '#ffffff',
+                      color: '#0ea5e9',
+                      fontWeight: 900,
+                      cursor: 'pointer',
+                      width: '100%',
+                      textAlign: 'center'
+                    }}
+                  >
+                    {showOtherDetails ? 'Hide “Other” details' : 'View “Other” details'}
+                  </button>
+                  {showOtherDetails && (
+                    <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {otherDetails.map((entry, idx) => (
+                        <div key={idx} style={{
+                          background: '#f8fafc',
+                          padding: '10px 12px',
+                          borderRadius: '8px',
+                          border: '2px solid #cbd5e1',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          gap: 10
+                        }}>
+                          <div style={{ fontSize: '1.05rem', color: '#0f172a', fontWeight: 700, lineHeight: 1.3, flex: 1 }}>
+                            {entry[0]}
+                          </div>
+                          <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0ea5e9', minWidth: 40, textAlign: 'right' }}>
+                            {entry[1]}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
