@@ -515,23 +515,18 @@ const QualityObjectives_v2 = () => {
       errorDecrease: 56,
       staffInvolvement: 40,
       auditData: {
-        firstIQA: [
-          { type: 'NC', count: 0, description: 'Uncontrolled Disposal: The shredding machine was found to contain evidence of the following documents without having any documented evidence of shredding in thr logbook (Flat/QA/195): Released documents (been label), Sample labels, Controlled documents. Document controlled copy distribution list form was verified, wherein it was observed thet document ID :SOP/PK/001 and many other documents entry were made as destroyed but entries of the same were found missing in the Log of shredder machine (FM/QA/195)' },
-          { type: 'NC', count: 1, description: 'Document controlled copy distribution list form was reviewed , wherein it is observed that new controlled copies were issued to the user department without retrieving the obsolete copy.' },
-          { type: 'MNC', count: 1, description: 'Sampling  Log  entry  (FM/QA/178)  was accessed using the QA mail ID, and it was observed that the entire log was editable. The QA department had editing access to all the columns controlled under this format. Th s deviates from point no. 3.4 under SOP/QA/029 that restricts QA from editing the columns controlled by the user department.' },
-          { type: 'PI', count: 1, description: 'Line  clearance  and  Verification  of Manufacturing and Packing do not mandate verificatior of SAP transactions, which is critical in batch manufacturing activity. The checklist of line clearance does not mention verification of Calculation used for batches, making it an optional verification step.' }
-        ],
-        secondIQA: [
-          { type: 'PI', count: 1, description: 'SGP/QA/039 Point no. 1.2 mentions that Along with the URS, user need to fill the GxP Assessment (which shall be dully filled and reviewed by the concerned stakeholders) es per fo mat layout FM/QA/168. In the same SOP it is defined thet URS is a basic document that outlines the User specific recuirement  only,  based on which the Pu chase team arranges for Quotation from the relevant Vendors. The user is not aware cf the Make, brand, software requirements cr any other details of the equipment at thet me of making the URS. However, while making the GxP, it is importart to know all tne details pertaining to the equipment, including the Software requirements, its  criticality, validation requirements, etc. Meking the GxP at the time of URS means tnet the user is assuming the details and filling the GxP without having any technical knowledge about the equipment to be procured. This may lead to having the wrong GxP assessment done, impacting tne decision-making of the DI-VL team. Th s contradiction is ciefined in the SOP/QA/039.' },
-          { type: 'PI', count: 1, description: 'During the review of the BD controlled copy distribution list logbook, instances of overwriting were observed, which is not in lane with GDP requirements. During the review of the MR controlled-copy  distribution  list logbook, one of the columns was found to have a missing entry.' }
+        findings: [
+          { type: 'NC', description: 'Uncontrolled Disposal: The shredding machine was found to contain evidence of the following documents without having any documented evidence of shredding in thr logbook (Flat/QA/195): Released documents (been label), Sample labels, Controlled documents. Document controlled copy distribution list form was verified, wherein it was observed thet document ID :SOP/PK/001 and many other documents entry were made as destroyed but entries of the same were found missing in the Log of shredder machine (FM/QA/195)' },
+          { type: 'NC', description: 'Document controlled copy distribution list form was reviewed , wherein it is observed that new controlled copies were issued to the user department without retrieving the obsolete copy.' },
+          { type: 'MNC', description: 'Sampling  Log  entry  (FM/QA/178)  was accessed using the QA mail ID, and it was observed that the entire log was editable. The QA department had editing access to all the columns controlled under this format. Th s deviates from point no. 3.4 under SOP/QA/029 that restricts QA from editing the columns controlled by the user department.' },
+          { type: 'PI', description: 'Line  clearance  and  Verification  of Manufacturing and Packing do not mandate verificatior of SAP transactions, which is critical in batch manufacturing activity. The checklist of line clearance does not mention verification of Calculation used for batches, making it an optional verification step.' },
+          { type: 'PI', description: 'SGP/QA/039 Point no. 1.2 mentions that Along with the URS, user need to fill the GxP Assessment (which shall be dully filled and reviewed by the concerned stakeholders) es per fo mat layout FM/QA/168. In the same SOP it is defined thet URS is a basic document that outlines the User specific recuirement  only,  based on which the Pu chase team arranges for Quotation from the relevant Vendors. The user is not aware cf the Make, brand, software requirements cr any other details of the equipment at thet me of making the URS. However, while making the GxP, it is importart to know all tne details pertaining to the equipment, including the Software requirements, its  criticality, validation requirements, etc. Meking the GxP at the time of URS means tnet the user is assuming the details and filling the GxP without having any technical knowledge about the equipment to be procured. This may lead to having the wrong GxP assessment done, impacting tne decision-making of the DI-VL team. Th s contradiction is ciefined in the SOP/QA/039.' },
+          { type: 'PI', description: 'During the review of the BD controlled copy distribution list logbook, instances of overwriting were observed, which is not in lane with GDP requirements. During the review of the MR controlled-copy  distribution  list logbook, one of the columns was found to have a missing entry.' }
         ],
         summary: {
-          firstNCCount: 1,
-          firstMNCCount: 1,
-          firstPICount: 1,
-          secondNCCount: 0,
-          secondMNCCount: 0,
-          secondPICount: 2,
+          totalNCCount: 1,
+          totalMNCCount: 9,
+          totalPICount: 10,
           status: 'OPEN'
         }
       }
@@ -978,33 +973,56 @@ const QualityObjectives_v2 = () => {
               </div>
 
               <div style={{ padding: '16px 20px' }}>
-                {/* Summary Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px', marginBottom: '20px' }}>
-                  <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '10px', padding: '12px', border: '2px solid #ef444430' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#991b1b', fontWeight: 700, marginBottom: '4px' }}>1st NC</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
+                {/* Summary Card - Unified Audit Findings */}
+                <div style={{ background: 'linear-gradient(135deg, #f0f4f8, #e8f0f7)', borderRadius: '12px', padding: '16px', border: '3px solid #3b82f6', boxShadow: '0 4px 12px rgba(59, 130, 246, 0.15)', marginBottom: '20px' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#1e40af', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #3b82f630' }}>
+                    📋 Audit Findings Summary
                   </div>
-                  <div style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '10px', padding: '12px', border: '2px solid #f59e0b30' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#92400e', fontWeight: 700, marginBottom: '4px' }}>1st MNC</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
-                  </div>
-                  <div style={{ background: 'linear-gradient(135deg, #fef9e7, #fef3c7)', borderRadius: '10px', padding: '12px', border: '2px solid #eab30830' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#854d0e', fontWeight: 700, marginBottom: '4px' }}>1st PI</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
-                  </div>
-                  <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '10px', padding: '12px', border: '2px solid #0ea5e930' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#0369a1', fontWeight: 700, marginBottom: '4px' }}>2nd NC</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
-                  </div>
-                  <div style={{ background: 'linear-gradient(135deg, #e0f2fe, #bfdbfe)', borderRadius: '10px', padding: '12px', border: '2px solid #0284c730' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '4px' }}>2nd MNC</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
-                  </div>
-                  <div style={{ background: 'linear-gradient(135deg, #dcfce7, #bbf7d0)', borderRadius: '10px', padding: '12px', border: '2px solid #16a34a30' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700, marginBottom: '4px' }}>2nd PI</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    <div style={{ textAlign: 'center', background: '#fff1f2', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>Non-Conformity</div>
+                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.totalNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#fffbeb', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>Minor Finding</div>
+                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.totalMNCCount}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', background: '#fefce8', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>Point of Info</div>
+                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.totalPICount}</div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Unified Audit Findings */}
+                <div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {auditData.findings.map((item, idx) => {
+                      let bgColor = '#ef4444'; // NC - Red
+                      if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
+                      if (item.type === 'PI') bgColor = '#ea8308'; // Orange
+
+                      return (
+                        <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
+                          <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                            <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
+                              {item.type}
+                            </div>
+                          </div>
+                          <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FullscreenShell>,
+          document.body
+        );
+      }
+    }
 
                 {/* 1st IQA Findings */}
                 <div style={{ marginBottom: '20px' }}>
