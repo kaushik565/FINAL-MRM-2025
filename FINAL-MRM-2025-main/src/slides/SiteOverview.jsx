@@ -30,46 +30,56 @@ import SiteIVChangeControls from './site-details/SiteIVChangeControls'
 import SiteIVDeviations from './site-details/SiteIVDeviations'
 import SiteIIIPQAMilestones from './site-details/SiteIIIPQAMilestones'
 import QMSOverview from './QMSOverview'
-
-// Master Data Overview dataset for Sites I, III, V
 const masterDataOverview = {
-  categories: ['SOP', 'STP', 'FM', 'SPEC', 'MVP', 'LT'],
+  categories: ['Incidents', 'CA', 'PA', 'Out of Specifications', 'Change Controls', 'Deviations'],
   sites: {
-    'Site III': [
-      { month: 'Jan - June', SOP: 23, STP: 2, FM: 64, SPEC: 3, MVP: 11, LT: 1, Total: 104 },
-      { month: 'July',      SOP: 8,  STP: 2, FM: 43, SPEC: 3, MVP: 14, LT: 2, Total: 74 },
-      { month: 'August',    SOP: 12, STP: 1, FM: 44, SPEC: 0, MVP: 9,  LT: 7, Total: 73 },
-      { month: 'Sept',      SOP: 12, STP: 5, FM: 46, SPEC: 1, MVP: 5,  LT: 11, Total: 80 },
-      { month: 'Oct',       SOP: 18, STP: 0, FM: 42, SPEC: 0, MVP: 12, LT: 4, Total: 78 },
-      { month: 'Nov',       SOP: 12, STP: 1, FM: 46, SPEC: 1, MVP: 15, LT: 6, Total: 82 }
-    ],
     'Site I': [
-      { month: 'Jan - June (Avg)', SOP: 132, STP: 16, FM: 237, SPEC: 67, MVP: 12, LT: 14, Total: 483 },
-      { month: 'July',             SOP: 18,  STP: 10, FM: 58,  SPEC: 2,  MVP: 2,  LT: 1,  Total: 81 },
-      { month: 'August',           SOP: 43,  STP: 1,  FM: 55,  SPEC: 8,  MVP: 2,  LT: 2,  Total: 111 },
-      { month: 'Sept',             SOP: 16,  STP: 5,  FM: 27,  SPEC: 23, MVP: 2,  LT: 3,  Total: 78 },
-      { month: 'Oct',              SOP: 13,  STP: 28, FM: 20,  SPEC: 8,  MVP: 0,  LT: 5,  Total: 74 },
-      { month: 'Nov',              SOP: 8,   STP: 8,  FM: 36,  SPEC: 9,  MVP: 3,  LT: 1,  Total: 66 }
+      { month: 'Jan', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Feb', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Mar', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Apr', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'May', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jun', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jul', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Aug', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Sep', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Oct', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Nov', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 }
+    ],
+    'Site III': [
+      { month: 'Jan', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Feb', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Mar', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Apr', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'May', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jun', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jul', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Aug', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Sep', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Oct', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Nov', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 }
     ],
     'Site V': [
-      { month: 'Jan - June (Avg)', SOP: 92, STP: 37, FM: 443, SPEC: 37, MVP: 53, LT: 7,  Total: 669 },
-      { month: 'July',             SOP: 14, STP: 1,  FM: 63,  SPEC: 5,  MVP: 10, LT: 1,  Total: 94 },
-      { month: 'August',           SOP: 41, STP: 11, FM: 33,  SPEC: 9,  MVP: 8,  LT: 0,  Total: 102 },
-      { month: 'Sept',             SOP: 6,  STP: 4,  FM: 19,  SPEC: 3,  MVP: 2,  LT: 0,  Total: 34 },
-      { month: 'Oct',              SOP: 15, STP: 6,  FM: 45,  SPEC: 10, MVP: 3,  LT: 3,  Total: 82 },
-      { month: 'Nov',              SOP: 17, STP: 3,  FM: 49,  SPEC: 4,  MVP: 8,  LT: 4,  Total: 85 }
+      { month: 'Jan', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Feb', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Mar', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Apr', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'May', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jun', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Jul', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Aug', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Sep', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Oct', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 },
+      { month: 'Nov', Incidents: 0, CA: 0, PA: 0, 'Out of Specifications': 0, 'Change Controls': 0, Deviations: 0 }
     ]
   }
-}
-
-// Key metrics data for each category - showing ONE main improvement metric highlighted
-// Data extracted from actual component calculations
+};
 const metricsData = {
   'SITE-I': {
     'Incidents': { total: 262, period: 'Jan-Nov 2025', improvement: '10%', from: 20, to: 18, label: 'Closure Days Reduced' },
     'CA': { total: 89, period: 'Jan-Nov 2025', improvement: '54%', from: 91, to: 42, label: 'Avg Days to Close Reduced' },
     'PA': { total: 29, period: 'Jan-Nov 2025', improvement: '60%', from: 135, to: 54, label: 'Processing Time Reduced' },
-    'Out of Specifications': { total: 259, period: 'Apr-Nov 2025', improvement: '49%', from: 21, to: 17, label: 'Improvement' },
+    'Out of Specifications': { total: 259, period: 'Apr-Nov 2025', improvement: '49%', from: 21, to: 17, avg: 21, latest: 17, label: 'Improvement' },
     'Change Controls': { total: 492, period: 'Jan-Nov 2025', improvement: '13%', from: 46, to: 40, label: 'Closure Days Reduced' },
     'Deviations': { 
       total: 30, 
@@ -97,7 +107,7 @@ const metricsData = {
     'Incidents': { total: 82, period: 'Jan-Nov 2025', improvement: '36%', from: 25, to: 16, label: 'Closure Days Reduced' },
     'CA': { total: 52, period: 'Jan-Nov 2025', improvement: '16%', from: 56, to: 47, label: 'Avg Days to Close Reduced' },
     'PA': { total: 66, period: 'Jan-Nov 2025', improvement: '6%', from: 36, to: 34, label: 'Processing Time Reduced' },
-    'Out of Specifications': { total: 159, period: 'Apr-Nov 2025', improvement: '49%', from: 14, to: 9, label: 'Improvement' },
+    'Out of Specifications': { total: 159, period: 'Apr-Nov 2025', improvement: '49%', from: 14, to: 9, avg: 14, latest: 9, label: 'Improvement' },
     'Change Controls': { total: 261, period: 'Jan-Nov 2025', improvement: '61%', from: 41, to: 16, label: 'Closure Days Reduced' },
     'Deviations': { total: 17, period: 'Jan-Nov 2025', improvement: '12%', from: 73, to: 64, label: 'Avg Closure Days Reduced', janJune: { count: 12, avgClosure: 73, open: 1 }, julyNov: { count: 5, avgClosure: 64, open: 4 } },
     'Mastering': { 
@@ -116,7 +126,7 @@ const metricsData = {
     'Incidents': { total: 196, period: 'Jan-Nov 2025', improvement: '28%', from: 18, to: 13, label: 'Closure Days Reduced' },
     'CA': { total: 70, period: 'Jan-Nov 2025', improvement: '52%', from: 56, to: 27, label: 'NC Closure Days Reduced' },
     'PA': { total: 37, period: 'Jan-Nov 2025', improvement: '54%', from: 63, to: 29, label: 'Processing Time Reduced' },
-    'Out of Specifications': { total: 89, period: 'Apr-Aug 2025', improvement: '59%', from: 12, to: 7, label: 'Improvement' },
+    'Out of Specifications': { total: 89, period: 'Apr-Aug 2025', improvement: '59%', from: 12, to: 7, avg: 12, latest: 7, label: 'Improvement' },
     'Change Controls': { total: 178, period: 'Jan-Nov 2025', improvement: '23%', from: 50, to: 39, label: 'Closure Days Reduced' },
     'Deviations': {
       total: 12,
@@ -144,7 +154,7 @@ const metricsData = {
     'Incidents': { total: 10, period: 'Jan-Nov 2025', improvement: '26%', from: 27, to: 20, label: 'Closure Days Reduced' },
     'CA': { total: 10, period: 'Jan-Nov 2025', improvement: '20%', from: 95, to: 76, label: 'Avg Days to Close Reduced' },
     'PA': { total: 1, period: 'Jan-June 2025', improvement: '0%', from: 0, to: 0, label: 'Processing Time' },
-    'Out of Specifications': { total: 1, period: 'Apr-June 2025', improvement: '0%', from: 28, to: 0, label: 'Avg Closure Days' },
+    'Out of Specifications': { total: 1, period: 'Apr-June 2025', improvement: '0%', from: 28, to: 0, avg: 28, latest: 0, label: 'Avg Closure Days' },
     'Change Controls': { total: 30, period: 'Jan-Nov 2025', improvement: '17%', from: 23, to: 19, label: 'Avg Closure Days Reduced' },
     'Deviations': { 
       total: 3, 
@@ -157,7 +167,7 @@ const metricsData = {
       julyNov: { count: 2, avgClosure: 60, open: 0 } 
     }
   }
-}
+};
 
 // Executive Summary Data - 3 Sites Data
 const sitesData = {
@@ -351,18 +361,18 @@ function OverallPerformance({ onCompleteOverviewClick }) {
   return (
     <>
     <div style={{
-      padding: '28px',
+      padding: '20px',
       backgroundColor: '#f0f9ff',
       border: '2px solid #0ea5e9',
       borderRadius: '8px',
       marginBottom: '14px'
     }}>
-      <div style={{ marginBottom: '20px' }}>
-        <h3 style={{ fontSize: '1.1em', fontWeight: '700', color: '#0ea5e9', margin: '0' }}>
+      <div style={{ marginBottom: '14px' }}>
+        <h3 style={{ fontSize: '1.05em', fontWeight: '700', color: '#0ea5e9', margin: '0' }}>
           📊 Overall Performance (Average Improvement Across All Sites)
         </h3>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '18px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '16px' }}>
         {categories
           .map((cat, idx) => ({ cat, idx, improvement: improvements[idx] }))
           .sort((a, b) => b.improvement - a.improvement)
@@ -419,9 +429,12 @@ function OverallPerformance({ onCompleteOverviewClick }) {
             >
               ⓘ
             </button>
+            {/* Title at top */}
+            <div style={{ fontSize: '0.8em', fontWeight: '700', color: '#111827', marginBottom: '6px' }}>{cat}</div>
+            {/* Compact bar with percent inside */}
             <div style={{
               width: '100%',
-              height: '150px',
+              height: '75px',
               backgroundColor: improvement < 0 ? '#fee2e2' : 
                 improvement > 50 ? '#dcfce7' : 
                 improvement >= 26 ? '#dbeafe' : 
@@ -430,12 +443,11 @@ function OverallPerformance({ onCompleteOverviewClick }) {
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'center',
-              marginBottom: '14px',
               position: 'relative'
             }}>
               <div style={{
-                width: '60%',
-                height: `${Math.min(Math.abs(improvement), 100) * 1.5}px`,
+                width: '50%',
+                height: `${Math.min(Math.abs(improvement), 100)}px`,
                 backgroundColor: improvement < 0 ? '#ef4444' : 
                   improvement > 50 ? '#10b981' : 
                   improvement >= 26 ? '#3b82f6' : 
@@ -444,18 +456,62 @@ function OverallPerformance({ onCompleteOverviewClick }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#000000',
-                fontWeight: '800',
-                fontSize: '1.2em'
+                color: '#ffffff',
+                fontSize: '1.1em',
+                fontWeight: '800'
               }}>
                 {Math.abs(improvement)}%
               </div>
             </div>
-            <div style={{ fontSize: '0.9em', fontWeight: '700', color: '#111827' }}>
-              {cat}
-            </div>
           </div>
         ))}
+      </div>
+
+      {/* Legend Note - Performance Bands */}
+      <div style={{ marginTop: '14px' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          gap: '10px'
+        }}>
+          {[{
+            label: 'Outstanding',
+            range: '100 - 76%',
+            bg: '#065f46'
+          }, {
+            label: 'Excellent',
+            range: '75 - 51%',
+            bg: '#10b981'
+          }, {
+            label: 'Very Good',
+            range: '50 - 26%',
+            bg: '#3b82f6'
+          }, {
+            label: 'Good',
+            range: '25 - 11%',
+            bg: '#f97316'
+          }, {
+            label: 'Need Improvements',
+            range: '10 - 0%',
+            bg: '#ef4444'
+          }].map((band) => (
+            <div key={band.label} style={{
+              background: band.bg,
+              color: '#ffffff',
+              borderRadius: '8px',
+              padding: '6px 8px',
+              height: '65px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              textAlign: 'center',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.12)'
+            }}>
+              <div style={{ fontWeight: 700, fontSize: '0.6em', letterSpacing: '0.01em', lineHeight: '1.3' }}>{band.label}</div>
+              <div style={{ fontWeight: 800, fontSize: '0.7em', letterSpacing: '0.01em' }}>{band.range}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
     
