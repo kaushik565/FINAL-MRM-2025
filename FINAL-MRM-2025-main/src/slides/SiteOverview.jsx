@@ -220,10 +220,10 @@ const categoryColors = {
 }
 
 const siteColors = {
-  'SITE-I': '#dc2626',
-  'SITE-III': '#8b5cf6',
-  'SITE-V': '#0ea5e9',
-  'SITE-IV': '#f97316'
+  'SITE-I': '#7c3aed',
+  'SITE-III': '#a855f7',
+  'SITE-V': '#0891b2',
+  'SITE-IV': '#ec4899'
 }
 
 // Overall Performance Component
@@ -467,51 +467,56 @@ function OverallPerformance({ onCompleteOverviewClick }) {
         ))}
       </div>
 
+      {/* Divider */}
+      <div style={{ width: '100%', height: '2px', background: 'linear-gradient(to right, #e2e8f0, #cbd5e1, #e2e8f0)', marginTop: '18px', marginBottom: '14px' }}></div>
+
       {/* Legend Note - Performance Bands */}
-      <div style={{ marginTop: '14px' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: '10px'
-        }}>
-          {[{
-            label: 'Outstanding',
-            range: '100 - 76%',
-            bg: '#065f46'
-          }, {
-            label: 'Excellent',
-            range: '75 - 51%',
-            bg: '#10b981'
-          }, {
-            label: 'Very Good',
-            range: '50 - 26%',
-            bg: '#3b82f6'
-          }, {
-            label: 'Good',
-            range: '25 - 11%',
-            bg: '#f97316'
-          }, {
-            label: 'Need Improvements',
-            range: '10 - 0%',
-            bg: '#ef4444'
-          }].map((band) => (
-            <div key={band.label} style={{
-              background: band.bg,
-              color: '#ffffff',
-              borderRadius: '8px',
-              padding: '6px 8px',
-              height: '65px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              textAlign: 'center',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.12)'
-            }}>
-              <div style={{ fontWeight: 700, fontSize: '0.6em', letterSpacing: '0.01em', lineHeight: '1.3' }}>{band.label}</div>
-              <div style={{ fontWeight: 800, fontSize: '0.7em', letterSpacing: '0.01em' }}>{band.range}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+        <div style={{ fontWeight: 800, fontSize: '0.95em', color: '#0f172a', marginRight: '8px' }}>Note:</div>
+        {[{
+          label: 'Outstanding',
+          range: '76 - 100%',
+          bg: '#065f46'
+        }, {
+          label: 'Excellent',
+          range: '51 - 75%',
+          bg: '#10b981'
+        }, {
+          label: 'Very Good',
+          range: '26 - 50%',
+          bg: '#3b82f6'
+        }, {
+          label: 'Good',
+          range: '11 - 25%',
+          bg: '#f97316'
+        }, {
+          label: 'Above Average',
+          range: '0 - 10%',
+          bg: '#ef4444'
+        }].map((band, idx, arr) => (
+          <div key={band.label} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{
+                background: band.bg,
+                color: '#ffffff',
+                borderRadius: '6px',
+                padding: '8px 14px',
+                fontWeight: 700,
+                fontSize: '0.75em',
+                whiteSpace: 'nowrap',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+              }}>
+                {band.label}
+              </div>
+              <div style={{ fontWeight: 800, fontSize: '0.8em', color: '#475569', whiteSpace: 'nowrap' }}>
+                {band.range}
+              </div>
             </div>
-          ))}
-        </div>
+            {idx < arr.length - 1 && (
+              <div style={{ width: '2px', height: '28px', background: '#cbd5e1' }}></div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
     
@@ -2147,7 +2152,7 @@ export default function SiteOverview() {
   return (
     <section className="content-slide" data-state="site-overview" ref={sectionRef} style={{ position: 'absolute', inset: 0, overflow: 'auto', background: '#ffffff', padding: '0', margin: '0' }}>
       <h2 style={{ borderBottom: '4px solid #b91c1c', paddingBottom: '8px', color: '#b91c1c', fontSize: '1.8em', fontWeight: '600', margin: '0', padding: '24px 32px 20px 32px', background: '#ffffff' }}>
-        📊 Key Metrics Overview - QMS
+        📊 Monitoring and Measurement of Process - QMS
       </h2>
       <div style={{ padding: '0 32px 32px 32px' }}>
 
@@ -2274,12 +2279,8 @@ export default function SiteOverview() {
               }).map(cat => {
                 let color, borderColor, textColor;
                 if (cat.isSpecial) {
-                  // Mastering card: green if positive, red if negative
-                  if (cat.improvement >= 0) {
-                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
-                  } else {
-                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
-                  }
+                  // Mastering card: always red for SITE-I
+                  color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
                 } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
@@ -2339,12 +2340,8 @@ export default function SiteOverview() {
               }).map(cat => {
                 let color, borderColor, textColor;
                 if (cat.isSpecial) {
-                  // Mastering card: green if positive, red if negative
-                  if (cat.improvement >= 0) {
-                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
-                  } else {
-                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
-                  }
+                  // Mastering card: always dark green for SITE-III
+                  color = '#065f46'; borderColor = '#065f46'; textColor = '#065f46';
                 } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
@@ -2454,12 +2451,8 @@ export default function SiteOverview() {
               }).map(cat => {
                 let color, borderColor, textColor;
                 if (cat.isSpecial) {
-                  // Mastering card: green if positive, red if negative
-                  if (cat.improvement >= 0) {
-                    color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
-                  } else {
-                    color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
-                  }
+                  // Mastering card: always red for SITE-V
+                  color = '#dc2626'; borderColor = '#dc2626'; textColor = '#991b1b';
                 } else if (cat.improvement >= 51) {
                   color = '#10b981'; borderColor = '#10b981'; textColor = '#047857';
                 } else if (cat.improvement >= 26) {
