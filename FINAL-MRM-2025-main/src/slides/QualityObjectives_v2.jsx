@@ -463,11 +463,11 @@ const QualityObjectives_v2 = () => {
   const obj07_qi2Data = [
     { 
       site: 'Site I', 
-      value: 100, 
+      value: 14, 
       target: 100,
-      trainingCompletion: 95,
-      evaluation100: 92,
-      retrainingEvaluation: 100,
+      trainingCompletion: 14,
+      evaluation100: 14,
+      retrainingEvaluation: 14,
       infoRows: [
         { srNo: 1, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 2, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
@@ -501,11 +501,11 @@ const QualityObjectives_v2 = () => {
     },
     { 
       site: 'Site III', 
-      value: 100, 
+      value: 90, 
       target: 100,
       trainingCompletion: 90,
       evaluation100: 90,
-      retrainingEvaluation: 100,
+      retrainingEvaluation: 90,
       infoRows: [
         { srNo: 1, sopNumber: 'SOP/QA/III/001', sopName: 'Preparation of Device master file', revisionNumber: '03', trainerName: 'Praneet', date: '01/12/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 2, sopNumber: 'SOP/QA/III/002', sopName: 'In Process Quality Assurance Activities', revisionNumber: '03', trainerName: 'L R Naidu', date: '02/12/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
@@ -541,11 +541,11 @@ const QualityObjectives_v2 = () => {
     },
     { 
       site: 'Site V', 
-      value: 100, 
+      value: 14, 
       target: 100,
-      trainingCompletion: 88,
-      evaluation100: 85,
-      retrainingEvaluation: 100,
+      trainingCompletion: 14,
+      evaluation100: 14,
+      retrainingEvaluation: 14,
       infoRows: [
         { srNo: 1, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 2, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
@@ -581,10 +581,10 @@ const QualityObjectives_v2 = () => {
   const obj07_qi3Data = [
     { 
       site: 'Site I', 
-      value: 50, 
+      value: 30, 
       target: 100,
-      errorDecrease: 56,
-      staffInvolvement: 40,
+      errorDecrease: 30,
+      staffInvolvement: 30,
       infoRows: [
         { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 4, afterPercent: 40 }
       ],
@@ -616,10 +616,10 @@ const QualityObjectives_v2 = () => {
     },
     { 
       site: 'Site III', 
-      value: 50, 
+      value: 73, 
       target: 100,
-      errorDecrease: 50,
-      staffInvolvement: 55,
+      errorDecrease: 75,
+      staffInvolvement: 70,
       infoRows: [
         { department: 'QMS', beforeMembers: 4, beforePercent: 44, afterMembers: 6, afterPercent: 66 },
         { department: 'IPQA', beforeMembers: 9, beforePercent: 100, afterMembers: 9, afterPercent: 100 },
@@ -650,10 +650,10 @@ const QualityObjectives_v2 = () => {
     },
     { 
       site: 'Site V', 
-      value: 50, 
+      value: 30, 
       target: 100,
-      errorDecrease: 48,
-      staffInvolvement: 52,
+      errorDecrease: 30,
+      staffInvolvement: 30,
       infoRows: [
         { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 5, afterPercent: 52 }
       ],
@@ -5424,6 +5424,9 @@ const QualityObjectives_v2 = () => {
                           const avgValue = qiData && qiData.length > 0 
                             ? Math.round(qiData.reduce((sum, item) => sum + item.value, 0) / qiData.length)
                             : 0;
+                          let displayValue = avgValue;
+                          if (idx === 0) displayValue = 100;
+                          if (idx === 2) displayValue = 33;
                           
                           return (
                             <div key={idx} style={{
@@ -5456,7 +5459,7 @@ const QualityObjectives_v2 = () => {
                                 color: qi.color,
                                 marginBottom: '4px'
                               }}>
-                                {avgValue}%
+                                {displayValue}%
                               </div>
                               <div style={{
                                 fontSize: '0.8rem',
@@ -5477,65 +5480,7 @@ const QualityObjectives_v2 = () => {
                         padding: '20px',
                         marginTop: '20px'
                       }}>
-                        <div style={{
-                          fontSize: '1.2rem',
-                          fontWeight: 800,
-                          color: '#667eea',
-                          marginBottom: '16px'
-                        }}>
-                          📍 Site-wise Performance
-                        </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
-                          {['Site I', 'Site III', 'Site V'].map((siteName) => {
-                            const siteColors = {
-                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
-                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
-                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
-                            };
-                            
-                            const avgSiteValue = Math.round(
-                              objective4Flow.reduce((sum, _, idx) => {
-                                const siteData = qiDataMap[idx].find(d => d.site === siteName);
-                                return sum + (siteData ? siteData.value : 0);
-                              }, 0) / objective4Flow.length
-                            );
-
-                            return (
-                              <div key={siteName} style={{
-                                background: siteColors[siteName].bg,
-                                border: `2px solid ${siteColors[siteName].color}`,
-                                borderRadius: '12px',
-                                padding: '14px',
-                                textAlign: 'center'
-                              }}>
-                                <div style={{
-                                  fontSize: '1rem',
-                                  fontWeight: 800,
-                                  color: siteColors[siteName].color,
-                                  marginBottom: '6px'
-                                }}>
-                                  {siteName}
-                                </div>
-                                <div style={{
-                                  fontSize: '2rem',
-                                  fontWeight: 900,
-                                  color: siteColors[siteName].color,
-                                  marginBottom: '2px'
-                                }}>
-                                  {avgSiteValue}%
-                                </div>
-                                <div style={{
-                                  fontSize: '0.75rem',
-                                  color: '#64748b',
-                                  fontWeight: 600
-                                }}>
-                                  Avg progress
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
                       </div>
 
                       <div style={{
@@ -5920,68 +5865,7 @@ const QualityObjectives_v2 = () => {
                         padding: '20px',
                         marginBottom: '16px'
                       }}>
-                        <div style={{
-                          fontSize: '1.1rem',
-                          fontWeight: 800,
-                          color: '#047857',
-                          marginBottom: '16px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
-                        }}>
-                          📍 Site-wise Performance
-                        </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
-                          {['Site I', 'Site III', 'Site V'].map((siteName) => {
-                            const siteColors = {
-                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
-                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
-                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
-                            };
-                            
-                            const avgSiteValue = Math.round(
-                              objective5Flow.reduce((sum, _, idx) => {
-                                const siteData = obj05_qiDataMap[idx].find(d => d.site === siteName);
-                                return sum + (siteData ? siteData.value : 0);
-                              }, 0) / objective5Flow.length
-                            );
-
-                            return (
-                              <div key={siteName} style={{
-                                background: siteColors[siteName].bg,
-                                border: `2px solid ${siteColors[siteName].color}`,
-                                borderRadius: '12px',
-                                padding: '14px',
-                                textAlign: 'center'
-                              }}>
-                                <div style={{
-                                  fontSize: '1rem',
-                                  fontWeight: 800,
-                                  color: siteColors[siteName].color,
-                                  marginBottom: '6px'
-                                }}>
-                                  {siteName}
-                                </div>
-                                <div style={{
-                                  fontSize: '2rem',
-                                  fontWeight: 900,
-                                  color: siteColors[siteName].color,
-                                  marginBottom: '2px'
-                                }}>
-                                  {avgSiteValue}%
-                                </div>
-                                <div style={{
-                                  fontSize: '0.75rem',
-                                  color: '#64748b',
-                                  fontWeight: 600
-                                }}>
-                                  Avg progress
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
                       </div>
 
                       <div style={{
@@ -6423,8 +6307,131 @@ const QualityObjectives_v2 = () => {
                     {renderSiteCards(obj07_qiDataMap[activeModals.qi07], { primary: '#f59e0b', accent: '#d97706', light: '#fff7ed' })}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#0f172a', padding: '12px 0', fontSize: '1.4rem', fontWeight: 700 }}>
-                    Select a QI to view site-wise details.
+                  // Overview of all QIs when none selected
+                  <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+                    <div style={{ 
+                      background: 'linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%)',
+                      border: '2px solid #fcd34d',
+                      borderRadius: '16px',
+                      padding: '28px',
+                      marginBottom: '20px',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 800,
+                        color: '#f59e0b',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        justifyContent: 'space-between'
+                      }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          📊 Objective 07 - Overall Progress Across All QIs
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setObj07CalculationModal(true);
+                          }}
+                          style={{
+                            background: '#f59e0b',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '36px',
+                            height: '36px',
+                            fontSize: '1rem',
+                            fontWeight: 'bold',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            boxShadow: '0 2px 8px rgba(245, 158, 11, 0.3)',
+                            flexShrink: 0
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.1)';
+                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(245, 158, 11, 0.5)';
+                            e.currentTarget.style.background = '#d97706';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 2px 8px rgba(245, 158, 11, 0.3)';
+                            e.currentTarget.style.background = '#f59e0b';
+                          }}
+                        >
+                          ⓘ
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                        {objective7Flow.map((qi, idx) => {
+                          const qiData = obj07_qiDataMap[idx];
+                          const avgValue = qiData && qiData.length > 0 
+                            ? Math.round(qiData.reduce((sum, item) => sum + item.value, 0) / qiData.length)
+                            : 0;
+                          
+                          return (
+                            <div key={idx} style={{
+                              background: '#ffffff',
+                              border: `3px solid ${qi.color}`,
+                              borderRadius: '12px',
+                              padding: '16px',
+                              textAlign: 'center',
+                              boxShadow: `0 4px 12px ${qi.color}20`
+                            }}>
+                              <div style={{
+                                fontSize: '1.2rem',
+                                fontWeight: 800,
+                                color: qi.color,
+                                marginBottom: '8px'
+                              }}>
+                                QI {idx + 1}
+                              </div>
+                              <div style={{
+                                fontSize: '0.9rem',
+                                fontWeight: 700,
+                                color: '#64748b',
+                                marginBottom: '12px'
+                              }}>
+                                {qi.label}
+                              </div>
+                              <div style={{
+                                fontSize: '2.4rem',
+                                fontWeight: 900,
+                                color: qi.color,
+                                marginBottom: '4px'
+                              }}>
+                                {avgValue}%
+                              </div>
+                              <div style={{
+                                fontSize: '0.8rem',
+                                color: '#94a3b8',
+                                fontWeight: 600
+                              }}>
+                                Avg across sites
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div style={{
+                      marginTop: '16px',
+                      padding: '12px',
+                      background: '#f8fafc',
+                      borderRadius: '8px',
+                      textAlign: 'center',
+                      fontSize: '0.95rem',
+                      color: '#64748b',
+                      fontWeight: 600
+                    }}>
+                      💡 Click on a QI button above to view detailed site-wise information
+                    </div>
                   </div>
                 )}
               </>
