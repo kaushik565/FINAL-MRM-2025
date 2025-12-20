@@ -220,10 +220,10 @@ const categoryColors = {
 }
 
 const siteColors = {
-  'SITE-I': '#7c3aed',
+  'SITE-I': '#d17921',
   'SITE-III': '#a855f7',
   'SITE-V': '#0891b2',
-  'SITE-IV': '#ec4899'
+  'SITE-IV': '#ff6bd6'
 }
 
 // Overall Performance Component

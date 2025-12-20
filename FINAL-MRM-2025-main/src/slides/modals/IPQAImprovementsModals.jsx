@@ -238,7 +238,6 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
   const completedInitiatives = [
     { icon: '🤝', title: 'Monthly huddles with MG, QC & MN', desc: 'Review rejections/challenges with actions locked each month.', isClickable: true },
     { icon: '👀', title: 'Shopfloor observation loop', desc: 'Every 15 days: on-floor walks to surface issues early.', highlight: 'Reduced Process incidents from 34 to 21 (Nos).', isClickable: true, clickType: 'shopfloorObservation' },
-    { icon: '📄', title: 'On-floor work instructions', desc: 'Live, visual SOPs at point-of-use to reduce ambiguity.' },
     { icon: '♻️', title: 'Line-wise rework bays', desc: 'Dedicated rework space to contain and correct defects.' },
     { icon: '🧪', title: 'Particle count checks', desc: 'Routine counts to keep contamination tightly controlled.', isClickable: true, clickType: 'particleCount' },
     { icon: '🏷️', title: 'QR pasting segregation', desc: 'Separated QR activities to prevent label mix-ups.' },
@@ -255,12 +254,12 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
         {/* Stats Overview */}
         <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px'}}>
           <div style={{background: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)', borderRadius: '16px', padding: '20px', border: '2px solid #10b981'}}>
-            <div style={{fontSize: '3em', fontWeight: '900', color: '#059669', marginBottom: '4px'}}>7</div>
+            <div style={{fontSize: '3em', fontWeight: '900', color: '#059669', marginBottom: '4px'}}>6</div>
             <div style={{fontSize: '0.95em', fontWeight: '700', color: '#047857', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Completed</div>
             <div style={{fontSize: '0.8em', color: '#065f46', marginTop: '4px', fontWeight: '500'}}>Successfully Implemented</div>
           </div>
           <div style={{background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)', borderRadius: '16px', padding: '20px', border: '2px solid #3b82f6'}}>
-            <div style={{fontSize: '3em', fontWeight: '900', color: '#2563eb', marginBottom: '4px'}}>3</div>
+            <div style={{fontSize: '3em', fontWeight: '900', color: '#2563eb', marginBottom: '4px'}}>4</div>
             <div style={{fontSize: '0.95em', fontWeight: '700', color: '#1d4ed8', textTransform: 'uppercase', letterSpacing: '0.5px'}}>In Progress</div>
             <div style={{fontSize: '0.8em', color: '#1e40af', marginTop: '4px', fontWeight: '500'}}>Active Development</div>
           </div>
@@ -354,7 +353,8 @@ export function Site3ImprovementsModal({ isOpen, onClose, onMilestonesClick, onP
             {[
               { icon: '📊', title: 'Defect Rate Setting', completion: 65, desc: 'Aligning limits to recent defect learnings.', showButton: false },
               { icon: '📋', title: 'Limit Sample Register', completion: 45, desc: 'Digital log to tighten sampling traceability.', showButton: false },
-              { icon: '🔧', title: 'Batch Mix-Up Detection JIG', completion: 50, desc: 'Automated QR validation to prevent batch mix-ups.', showButton: true }
+              { icon: '🔧', title: 'Batch Mix-Up Detection JIG', completion: 50, desc: 'Automated QR validation to prevent batch mix-ups.', showButton: true },
+              { icon: '📄', title: 'On-floor work instructions', completion: 20, desc: 'Live, visual SOPs at point-of-use to reduce ambiguity.', showButton: false }
             ].map((item, idx) => (
               <div key={idx} style={{background: '#ffffff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '16px', transition: 'all 0.25s ease'}}
                 onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(59, 130, 246, 0.15)'; e.currentTarget.style.borderColor = '#3b82f6';}}

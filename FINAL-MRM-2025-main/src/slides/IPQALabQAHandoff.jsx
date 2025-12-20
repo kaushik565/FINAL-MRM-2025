@@ -61,7 +61,7 @@ export default function IPQALabQAHandoff() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px', marginBottom: '18px' }}>
         {[{ label: 'Total Verifications', value: '11,402', icon: '✓', color: '#0ea5e9' },
           { label: 'Reverifications', value: '534', icon: '🔄', color: '#ef4444' },
-          { label: 'Device Types', value: '14', icon: '📱', color: '#8b5cf6' },
+          { label: 'Types of Verifications', value: '14', icon: '✅', color: '#8b5cf6' },
           { label: 'Avg Monthly', value: '1,900', icon: '📊', color: '#10b981' }
         ].map((metric, idx) => (
           <div key={idx} style={{

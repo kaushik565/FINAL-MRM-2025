@@ -131,7 +131,7 @@ export default function IPQAOverview() {
   // IPQA Key Metrics Data
   const metricsData = {
     'SITE-I': {
-      color: '#7c3aed',
+      color: '#e4d74c',
       bgColor: '#ede9fe',
       accentColor: '#6d28d9',
       metrics: {
@@ -2014,18 +2014,18 @@ export default function IPQAOverview() {
                   }
                 }}
                 style={{
-                background: 'linear-gradient(135deg, #ffffff, #f5f3ff)',
+                background: 'linear-gradient(135deg, #ffffff, #fefce8)',
                 borderRadius: '14px',
                 padding: '20px',
-                border: '3px solid #7c3aed',
-                boxShadow: '0 6px 20px rgba(124, 58, 237, 0.15)',
+                border: '3px solid #e4d74c',
+                boxShadow: '0 6px 20px rgba(228, 215, 76, 0.15)',
                 position: 'relative',
                 overflow: 'hidden',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(124, 58, 237, 0.25)'}}
-              onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(124, 58, 237, 0.15)'}}>
+              onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(228, 215, 76, 0.25)'}}
+              onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(228, 215, 76, 0.15)'}}>
                 <div style={{position: 'absolute', top: '-30px', right: '-30px', fontSize: '6em', opacity: '0.05'}}>🎯</div>
                 
                 <div style={{
@@ -2034,12 +2034,12 @@ export default function IPQAOverview() {
                   gap: '10px',
                   marginBottom: '14px',
                   paddingBottom: '10px',
-                  borderBottom: '2px solid #ddd6fe'
+                  borderBottom: '2px solid #fef9c3'
                 }}>
                   <div style={{fontSize: '1.5em'}}>🎯</div>
                   <div style={{flex: 1}}>
-                    <div style={{fontSize: '1.2em', fontWeight: '900', color: '#7c3aed'}}>SITE-I</div>
-                    <div style={{fontSize: '0.7em', fontWeight: '600', color: '#6d28d9'}}>Overall Quality Performance</div>
+                    <div style={{fontSize: '1.2em', fontWeight: '900', color: '#e4d74c'}}>SITE-I</div>
+                    <div style={{fontSize: '0.7em', fontWeight: '600', color: '#ca8a04'}}>Overall Quality Performance</div>
                   </div>
                   <button
                     onClick={(e) => {
@@ -2048,7 +2048,7 @@ export default function IPQAOverview() {
                       setSelectedQualityScoreInfo('SITE-I');
                     }}
                     style={{
-                      background: '#7c3aed',
+                      background: '#e4d74c',
                       color: 'white',
                       border: 'none',
                       borderRadius: '50%',
@@ -2061,21 +2061,21 @@ export default function IPQAOverview() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       transition: 'all 0.2s',
-                      boxShadow: '0 2px 8px rgba(124, 58, 237, 0.3)',
+                      boxShadow: '0 2px 8px rgba(228, 215, 76, 0.3)',
                       position: 'relative',
                       zIndex: 10,
                       flexShrink: 0
                     }}
-                    onMouseEnter={(e) => {e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(124, 58, 237, 0.5)';e.currentTarget.style.background = '#6d28d9';}}
-                    onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(124, 58, 237, 0.3)';e.currentTarget.style.background = '#7c3aed';}}
+                    onMouseEnter={(e) => {e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(228, 215, 76, 0.5)';e.currentTarget.style.background = '#ca8a04';}}
+                    onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(228, 215, 76, 0.3)';e.currentTarget.style.background = '#e4d74c';}}
                   >
                     ⓘ
                   </button>
                 </div>
 
                 <div style={{textAlign: 'center', marginBottom: '12px'}}>
-                  <div style={{fontSize: '2.8em', fontWeight: '900', color: '#7c3aed', lineHeight: 1}}>99.6%</div>
-                  <div style={{fontSize: '0.75em', fontWeight: '700', color: '#6d28d9', textTransform: 'uppercase'}}>Quality Score</div>
+                  <div style={{fontSize: '2.8em', fontWeight: '900', color: '#e4d74c', lineHeight: 1}}>99.6%</div>
+                  <div style={{fontSize: '0.75em', fontWeight: '700', color: '#ca8a04', textTransform: 'uppercase'}}>Quality Score</div>
                 </div>
 
                 <div style={{
@@ -2085,16 +2085,16 @@ export default function IPQAOverview() {
                   gap: '12px',
                   marginBottom: '12px',
                   padding: '10px',
-                  background: '#ede9fe',
+                  background: '#fef9c3',
                   borderRadius: '8px'
                 }}>
                   <div style={{textAlign: 'center'}}>
-                    <div style={{fontSize: '0.65em', fontWeight: '700', color: '#5b21b6', marginBottom: '2px'}}>Before</div>
-                    <div style={{fontSize: '1.3em', fontWeight: '900', color: '#7c3aed'}}>99.2%</div>
+                    <div style={{fontSize: '0.65em', fontWeight: '700', color: '#854d0e', marginBottom: '2px'}}>Before</div>
+                    <div style={{fontSize: '1.3em', fontWeight: '900', color: '#e4d74c'}}>99.2%</div>
                   </div>
-                  <div style={{fontSize: '1.2em', color: '#7c3aed'}}>→</div>
+                  <div style={{fontSize: '1.2em', color: '#e4d74c'}}>→</div>
                   <div style={{textAlign: 'center'}}>
-                    <div style={{fontSize: '0.65em', fontWeight: '700', color: '#5b21b6', marginBottom: '2px'}}>Now</div>
+                    <div style={{fontSize: '0.65em', fontWeight: '700', color: '#854d0e', marginBottom: '2px'}}>Now</div>
                     <div style={{fontSize: '1.3em', fontWeight: '900', color: '#16a34a'}}>99.6%</div>
                   </div>
                 </div>
@@ -2121,9 +2121,9 @@ export default function IPQAOverview() {
                   style={{
                     marginTop: '14px',
                     padding: '10px',
-                    background: '#fef2f2',
+                    background: '#fefce8',
                     borderRadius: '8px',
-                    border: '2px solid #fecaca',
+                    border: '2px solid #fef9c3',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -2131,14 +2131,14 @@ export default function IPQAOverview() {
                     transition: 'all 0.2s'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#ede9fe';
-                    e.currentTarget.style.border = '2px solid #c4b5fd';
+                    e.currentTarget.style.background = '#fef9c3';
+                    e.currentTarget.style.border = '2px solid #fde047';
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(124, 58, 237, 0.2)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(228, 215, 76, 0.2)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#f5f3ff';
-                    e.currentTarget.style.border = '2px solid #ddd6fe';
+                    e.currentTarget.style.background = '#fefce8';
+                    e.currentTarget.style.border = '2px solid #fef9c3';
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }}
@@ -2146,14 +2146,14 @@ export default function IPQAOverview() {
                   <div style={{
                     fontSize: '0.8em',
                     fontWeight: '700',
-                    color: '#6d28d9',
+                    color: '#ca8a04',
                     textTransform: 'uppercase',
                     letterSpacing: '0.5px'
                   }}>
                     📈 Key Improvements
                   </div>
                   <div style={{
-                    background: '#7c3aed',
+                    background: '#e4d74c',
                     color: 'white',
                     borderRadius: '50%',
                     width: '24px',
@@ -2163,7 +2163,7 @@ export default function IPQAOverview() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 2px 6px rgba(124, 58, 237, 0.3)',
+                    boxShadow: '0 2px 6px rgba(228, 215, 76, 0.3)',
                     flexShrink: 0
                   }}>
                     ⓘ

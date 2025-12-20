@@ -26,8 +26,7 @@ const siteIIIItems = [
   'Develop inhouse auditor competency by 25%.',
   'Implement OOT to identify the potential product quality issues.',
   'Do the process improvement at least one in a month.',
-  'Support in the fulfillment of quality objectives.',
-  'Implement OOT to identify the potential product quality issues.'
+  'Support in the fulfillment of quality objectives.'
 ]
 
 const siteKPIs = [

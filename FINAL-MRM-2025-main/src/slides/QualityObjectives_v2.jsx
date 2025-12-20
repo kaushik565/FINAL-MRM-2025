@@ -660,12 +660,12 @@ const QualityObjectives_v2 = () => {
   const obj04_qi2Data = [
     { 
       site: 'Site I', 
-      value: 93, 
+      value: 100, 
       target: 100,
       trainedLatestSOP: 176,
       evaluationPassed80: 134,
       retrainingProvided: 31,
-      evaluation100Passed: 163
+      evaluation100Passed: 176
     },
     { 
       site: 'Site III', 
@@ -2167,9 +2167,9 @@ const QualityObjectives_v2 = () => {
                   border: `1px solid ${gradient.from}20`,
                   boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
                 }}>
-                  <span style={{ fontSize: '0.85rem' }}>📅</span>
+                  <span style={{ fontSize: '1.1rem' }}>📅</span>
                   <div style={{
-                    fontSize: '0.7rem',
+                    fontSize: '0.85rem',
                     fontWeight: 800,
                     background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                     WebkitBackgroundClip: 'text',
@@ -2235,7 +2235,7 @@ const QualityObjectives_v2 = () => {
                             boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
                           }}>
                             <div style={{ 
-                              fontSize: '0.68rem', 
+                              fontSize: '0.78rem', 
                               fontWeight: 800, 
                               background: `linear-gradient(135deg, ${gradient.from} 0%, ${gradient.to} 100%)`,
                               WebkitBackgroundClip: 'text',
@@ -2246,7 +2246,7 @@ const QualityObjectives_v2 = () => {
                               {check.date}
                             </div>
                             <div style={{ 
-                              fontSize: '0.62rem', 
+                              fontSize: '0.72rem', 
                               color: '#1e293b',
                               lineHeight: '1.2',
                               fontWeight: 600,
@@ -2258,7 +2258,7 @@ const QualityObjectives_v2 = () => {
                                 color: gradient.from,
                                 fontWeight: 900,
                                 marginTop: '1px',
-                                fontSize: '0.65rem'
+                                fontSize: '0.75rem'
                               }}>✓</span>
                               <span>{check.status}</span>
                             </div>
@@ -2285,10 +2285,10 @@ const QualityObjectives_v2 = () => {
                       e.currentTarget.style.transform = 'scale(1)';
                       e.currentTarget.style.boxShadow = `0 2px 6px ${gradient.from}40`;
                     }}>
-                      <div style={{ fontSize: '0.6rem', marginBottom: '2px', opacity: 0.95, fontWeight: 600 }}>
+                      <div style={{ fontSize: '0.7rem', marginBottom: '2px', opacity: 0.95, fontWeight: 600 }}>
                         Verification Status
                       </div>
-                      <div style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '0.1px' }}>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 900, letterSpacing: '0.1px' }}>
                         {item.site === 'Site V' ? (
                           <>🔴 Initiated 11 incidents</>
                         ) : item.site === 'Site III' ? (

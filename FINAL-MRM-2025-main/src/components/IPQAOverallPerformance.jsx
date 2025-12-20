@@ -19,8 +19,8 @@ export const IPQAOverallPerformance = () => {
     'SITE-I': {
       avgImprovement: 38,
       totalItems: 20624,
-      color: '#7c3aed',
-      bgColor: '#f5f3ff',
+      color: '#e4d74c',
+      bgColor: '#fefce8',
       metrics: [
         { name: 'Line Clearance', value: 15, calculation: '(6578 items with 7 not approved) → 99.89% approval → 15% improvement' },
         { name: 'Line Closure', value: 54, calculation: '(6620 items with 4 not approved) → 99.94% approval → 54% improvement' },
