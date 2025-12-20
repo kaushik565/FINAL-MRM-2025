@@ -85,6 +85,8 @@ const styles = `
 const QualityObjectives_v2 = () => {
   const [activeModals, setActiveModals] = useState({ card: null, qi04: null, qi05: null, qi06: null, qi07: null });
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [obj04CalculationModal, setObj04CalculationModal] = useState(false);
+  const [obj05CalculationModal, setObj05CalculationModal] = useState(false);
   const [obj05Qi1InfoSite, setObj05Qi1InfoSite] = useState(null);
   const [obj05Qi1InfoModal, setObj05Qi1InfoModal] = useState(null);
   const [obj05Qi1ActivitiesModal, setObj05Qi1ActivitiesModal] = useState(null);
@@ -204,12 +206,12 @@ const QualityObjectives_v2 = () => {
   const obj05_qi2Data = [
     {
       site: 'Site I',
-      value: 81,
+      value: 63,
       target: 100,
       trainingPlannerAndExecution: 50,
       trainingOfIPQAOnDefectRecognitionAndRCAnalysis: 100,
-      evaluationOfPostTraining: 100,
-      retrainingOrRefresherTrainingPlanner: 75,
+      evaluationOfPostTraining: 50,
+      retrainingOrRefresherTrainingPlanner: 50,
       infoRows: [
         { slNo: 2, sopNumber: 'NA', sopName: 'Significate of quality events', trainer: 'Hameed CR', trainingDate: '12-11-2025', status: 'Completed' },
         { slNo: 3, sopNumber: 'NA', sopName: 'RCA tools', trainer: 'Hameed CR', trainingDate: '13-11-2025', status: 'Completed' },
@@ -221,11 +223,11 @@ const QualityObjectives_v2 = () => {
     },
     {
       site: 'Site III',
-      value: 75,
+      value: 63,
       target: 100,
       trainingPlannerAndExecution: 50,
       trainingOfIPQAOnDefectRecognitionAndRCAnalysis: 100,
-      evaluationOfPostTraining: 100,
+      evaluationOfPostTraining: 50,
       retrainingOrRefresherTrainingPlanner: 50,
       infoRows: [
         { slNo: 1, sopNumber: 'NA', sopName: 'Significate of quality events', trainer: 'Hameed CR', trainingDate: '12/11/2025', status: 'Completed' },
@@ -247,10 +249,10 @@ const QualityObjectives_v2 = () => {
     },
     {
       site: 'Site V',
-      value: 50,
+      value: 63,
       target: 100,
       trainingPlannerAndExecution: 50,
-      trainingOfIPQAOnDefectRecognitionAndRCAnalysis: 50,
+      trainingOfIPQAOnDefectRecognitionAndRCAnalysis: 100,
       evaluationOfPostTraining: 50,
       retrainingOrRefresherTrainingPlanner: 50,
       infoRows: [
@@ -267,43 +269,43 @@ const QualityObjectives_v2 = () => {
   const obj05_qi3Data = [
     {
       site: 'Site I',
-      value: 100,
+      value: 25,
       target: 100,
-      verificationFrequencyIncreased: 100,
-      stringentMonitoring: 100,
-      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 100
+      verificationFrequencyIncreased: 25,
+      stringentMonitoring: 25,
+      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 25
     },
     {
       site: 'Site III',
-      value: 80,
+      value: 25,
       target: 100,
-      verificationFrequencyIncreased: 80,
-      stringentMonitoring: 75,
-      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 85
+      verificationFrequencyIncreased: 25,
+      stringentMonitoring: 25,
+      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 25
     },
     {
       site: 'Site V',
-      value: 70,
+      value: 25,
       target: 100,
-      verificationFrequencyIncreased: 70,
-      stringentMonitoring: 65,
-      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 75
+      verificationFrequencyIncreased: 25,
+      stringentMonitoring: 25,
+      realtimeContainmentAndRootCauseAnalysisBeforeBatchContinuation: 25
     }
   ];
 
   const obj05_qi4Data = [
     { 
       site: 'Site I', 
-      value: 50, 
+      value: 0, 
       target: 100,
-      percentageIncreaseInProactiveIdentification: 50,
-      percentageReductionInInProcessAndFinishedGoodsDefectRate: 50,
-      percentageReductionInReworkReprocessingRate: 50,
-      percentageReductionInAvgTimeToCloseInvestigationsAndCAPA: 72
+      percentageIncreaseInProactiveIdentification: 0,
+      percentageReductionInInProcessAndFinishedGoodsDefectRate: 0,
+      percentageReductionInReworkReprocessingRate: 0,
+      percentageReductionInAvgTimeToCloseInvestigationsAndCAPA: 0
     },
     { 
       site: 'Site III', 
-      value: 58, 
+      value: 56, 
       target: 100,
       percentageIncreaseInProactiveIdentification: 50,
       percentageReductionInInProcessAndFinishedGoodsDefectRate: 50,
@@ -312,12 +314,12 @@ const QualityObjectives_v2 = () => {
     },
     { 
       site: 'Site V', 
-      value: 50, 
+      value: 0, 
       target: 100,
-      percentageIncreaseInProactiveIdentification: 50,
-      percentageReductionInInProcessAndFinishedGoodsDefectRate: 50,
-      percentageReductionInReworkReprocessingRate: 50,
-      percentageReductionInAvgTimeToCloseInvestigationsAndCAPA: 72
+      percentageIncreaseInProactiveIdentification: 0,
+      percentageReductionInInProcessAndFinishedGoodsDefectRate: 0,
+      percentageReductionInReworkReprocessingRate: 0,
+      percentageReductionInAvgTimeToCloseInvestigationsAndCAPA: 0
     }
   ];
 
@@ -690,9 +692,13 @@ const QualityObjectives_v2 = () => {
   const obj04_qi3Data = [
     { 
       site: 'Site I', 
-      value: 0, 
+      value: 60, 
       target: 100,
-      biweeklyChecks: []
+      biweeklyChecks: [
+        { date: '01/11/2025 - 15/11/2025', status: '7 GDP Incidents reported' },
+        { date: '16/11/2025 - 30/11/2025', status: '6 GDP Incidents reported' },
+        { date: '01/12/2025 - 11/12/2025', status: '4 GDP Incidents reported' }
+      ]
     },
     { 
       site: 'Site III', 
@@ -2293,6 +2299,8 @@ const QualityObjectives_v2 = () => {
                           <>🔴 Initiated 11 incidents</>
                         ) : item.site === 'Site III' ? (
                           <>✓ All Checks Passed</>
+                        ) : item.site === 'Site I' ? (
+                          <>⚠️ Initiated 17 incidents</>
                         ) : (
                           <>⏳ Data not available yet</>
                         )}
@@ -5255,8 +5263,416 @@ const QualityObjectives_v2 = () => {
                     {renderSiteCards(qiDataMap[activeModals.qi04], { primary: '#667eea', accent: '#764ba2', light: '#f3f0ff' })}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#0f172a', padding: '12px 0', fontSize: '1.4rem', fontWeight: 700 }}>
-                    Select a QI to view site-wise details.
+                  // Overview of all QIs when none selected
+                  <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+                    <div style={{ 
+                      background: 'linear-gradient(135deg, #f3f0ff 0%, #f0ebff 100%)',
+                      border: '2px solid #ddd6fe',
+                      borderRadius: '16px',
+                      padding: '28px',
+                      marginBottom: '20px',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 800,
+                        color: '#667eea',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        justifyContent: 'space-between'
+                      }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          📊 Objective 04 - Overall Progress Across All QIs
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setObj04CalculationModal(true);
+                          }}
+                          style={{
+                            background: '#667eea',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '36px',
+                            height: '36px',
+                            fontSize: '1rem',
+                            fontWeight: 'bold',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)',
+                            flexShrink: 0
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.1)';
+                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.5)';
+                            e.currentTarget.style.background = '#764ba2';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.3)';
+                            e.currentTarget.style.background = '#667eea';
+                          }}
+                        >
+                          ⓘ
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                        {objective4Flow.map((qi, idx) => {
+                          const qiData = qiDataMap[idx];
+                          const avgValue = qiData && qiData.length > 0 
+                            ? Math.round(qiData.reduce((sum, item) => sum + item.value, 0) / qiData.length)
+                            : 0;
+                          
+                          return (
+                            <div key={idx} style={{
+                              background: '#ffffff',
+                              border: `3px solid ${qi.color}`,
+                              borderRadius: '12px',
+                              padding: '16px',
+                              textAlign: 'center',
+                              boxShadow: `0 4px 12px ${qi.color}20`
+                            }}>
+                              <div style={{
+                                fontSize: '1.2rem',
+                                fontWeight: 800,
+                                color: qi.color,
+                                marginBottom: '8px'
+                              }}>
+                                QI {idx + 1}
+                              </div>
+                              <div style={{
+                                fontSize: '0.9rem',
+                                fontWeight: 700,
+                                color: '#64748b',
+                                marginBottom: '12px'
+                              }}>
+                                {qi.label}
+                              </div>
+                              <div style={{
+                                fontSize: '2.4rem',
+                                fontWeight: 900,
+                                color: qi.color,
+                                marginBottom: '4px'
+                              }}>
+                                {avgValue}%
+                              </div>
+                              <div style={{
+                                fontSize: '0.8rem',
+                                color: '#94a3b8',
+                                fontWeight: 600
+                              }}>
+                                Avg across sites
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div style={{
+                        background: '#ffffff',
+                        border: '2px solid #e2e8f0',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        marginTop: '20px'
+                      }}>
+                        <div style={{
+                          fontSize: '1.2rem',
+                          fontWeight: 800,
+                          color: '#667eea',
+                          marginBottom: '16px'
+                        }}>
+                          📍 Site-wise Performance
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
+                          {['Site I', 'Site III', 'Site V'].map((siteName) => {
+                            const siteColors = {
+                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
+                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
+                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
+                            };
+                            
+                            const avgSiteValue = Math.round(
+                              objective4Flow.reduce((sum, _, idx) => {
+                                const siteData = qiDataMap[idx].find(d => d.site === siteName);
+                                return sum + (siteData ? siteData.value : 0);
+                              }, 0) / objective4Flow.length
+                            );
+
+                            return (
+                              <div key={siteName} style={{
+                                background: siteColors[siteName].bg,
+                                border: `2px solid ${siteColors[siteName].color}`,
+                                borderRadius: '12px',
+                                padding: '14px',
+                                textAlign: 'center'
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 800,
+                                  color: siteColors[siteName].color,
+                                  marginBottom: '6px'
+                                }}>
+                                  {siteName}
+                                </div>
+                                <div style={{
+                                  fontSize: '2rem',
+                                  fontWeight: 900,
+                                  color: siteColors[siteName].color,
+                                  marginBottom: '2px'
+                                }}>
+                                  {avgSiteValue}%
+                                </div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: '#64748b',
+                                  fontWeight: 600
+                                }}>
+                                  Avg progress
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div style={{
+                        marginTop: '16px',
+                        padding: '12px',
+                        background: '#f8fafc',
+                        borderRadius: '8px',
+                        textAlign: 'center',
+                        fontSize: '0.95rem',
+                        color: '#64748b',
+                        fontWeight: 600
+                      }}>
+                        💡 Click on a QI button above to view detailed site-wise information
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Calculation Details Modal */}
+                {obj04CalculationModal && (
+                  <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 10000,
+                    padding: '20px'
+                  }}
+                  onClick={() => setObj04CalculationModal(false)}>
+                    <div style={{
+                      background: 'white',
+                      borderRadius: '16px',
+                      maxWidth: '900px',
+                      maxHeight: '90vh',
+                      overflow: 'auto',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                    }}
+                    onClick={(e) => e.stopPropagation()}>
+                      {/* Modal Header */}
+                      <div style={{
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        padding: '24px',
+                        borderRadius: '16px 16px 0 0',
+                        color: 'white',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}>
+                        <div>
+                          <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>Calculation Details</div>
+                          <div style={{ fontSize: '0.95rem', marginTop: '4px', opacity: 0.9 }}>
+                            How progress percentages are calculated
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setObj04CalculationModal(false)}
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.2)',
+                            border: 'none',
+                            color: 'white',
+                            fontSize: '1.5rem',
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            fontWeight: 'bold'
+                          }}
+                          onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'}
+                          onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+                        >
+                          ×
+                        </button>
+                      </div>
+
+                      {/* Modal Content */}
+                      <div style={{ padding: '24px' }}>
+                        {/* QI Averages Section */}
+                        <div style={{
+                          marginBottom: '28px'
+                        }}>
+                          <div style={{
+                            fontSize: '1.2rem',
+                            fontWeight: 800,
+                            color: '#1e293b',
+                            marginBottom: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            📊 QI Average Calculations
+                          </div>
+
+                          {[0, 1, 2, 3].map(qiIndex => {
+                            const qiData = qiDataMap[qiIndex];
+                            const qiLabel = objective4Flow[qiIndex].label;
+                            const values = qiData.map(item => item.value);
+                            const sites = qiData.map(item => item.site);
+                            const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+
+                            return (
+                              <div key={qiIndex} style={{
+                                background: '#f8fafc',
+                                padding: '16px',
+                                borderRadius: '10px',
+                                marginBottom: '12px',
+                                border: '2px solid #e2e8f0'
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 700,
+                                  color: '#667eea',
+                                  marginBottom: '10px'
+                                }}>
+                                  QI {qiIndex + 1}: {qiLabel}
+                                </div>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '12px',
+                                  flexWrap: 'wrap',
+                                  fontSize: '0.9rem',
+                                  color: '#475569'
+                                }}>
+                                  <span style={{ fontWeight: 600 }}>Formula:</span>
+                                  <span>({sites.map((site, idx) => `${site}: ${values[idx]}%`).join(' + ')}) / {sites.length}</span>
+                                  <span style={{ 
+                                    fontWeight: 800, 
+                                    color: '#667eea',
+                                    fontSize: '1.1rem'
+                                  }}>
+                                    = {avg}%
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Site Averages Section */}
+                        <div>
+                          <div style={{
+                            fontSize: '1.2rem',
+                            fontWeight: 800,
+                            color: '#1e293b',
+                            marginBottom: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            🏢 Site Average Calculations
+                          </div>
+
+                          {['Site I', 'Site III', 'Site V'].map(siteName => {
+                            // Define site colors
+                            const siteColors = {
+                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
+                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
+                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
+                            };
+                            
+                            // Get values for this site from all QIs
+                            const values = [0, 1, 2, 3].map(qiIndex => {
+                              const qiData = qiDataMap[qiIndex];
+                              const siteData = qiData.find(item => item.site === siteName);
+                              return siteData ? siteData.value : 0;
+                            });
+                            const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+                            const siteColor = siteColors[siteName].color;
+
+                            return (
+                              <div key={siteName} style={{
+                                background: siteColors[siteName].bg,
+                                padding: '16px',
+                                borderRadius: '10px',
+                                marginBottom: '12px',
+                                border: `2px solid ${siteColor}`
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 700,
+                                  color: siteColor,
+                                  marginBottom: '10px'
+                                }}>
+                                  {siteName}
+                                </div>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '12px',
+                                  flexWrap: 'wrap',
+                                  fontSize: '0.9rem',
+                                  color: '#475569'
+                                }}>
+                                  <span style={{ fontWeight: 600 }}>Formula:</span>
+                                  <span>({values.map((val, idx) => `QI ${idx + 1}: ${val}%`).join(' + ')}) / {values.length}</span>
+                                  <span style={{ 
+                                    fontWeight: 800, 
+                                    color: siteColor,
+                                    fontSize: '1.1rem'
+                                  }}>
+                                    = {avg}%
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Info Note */}
+                        <div style={{
+                          marginTop: '20px',
+                          padding: '14px',
+                          background: '#eff6ff',
+                          borderRadius: '8px',
+                          border: '2px solid #3b82f6',
+                          fontSize: '0.85rem',
+                          color: '#1e40af',
+                          lineHeight: 1.6
+                        }}>
+                          <strong>📌 Note:</strong> All percentages are calculated by averaging the progress values across respective sites or QIs. These calculations are dynamically updated based on the actual data.
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </>
@@ -5289,8 +5705,420 @@ const QualityObjectives_v2 = () => {
                     {renderSiteCards(obj05_qiDataMap[activeModals.qi05], { primary: '#059669', accent: '#047857', light: '#ecfdf5' })}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#0f172a', padding: '12px 0', fontSize: '1.4rem', fontWeight: 700 }}>
-                    Select a QI to view site-wise details.
+                  // Overview of all QIs when none selected
+                  <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+                    <div style={{ 
+                      background: 'linear-gradient(135deg, #ecfdf5 0%, #dbeafe 100%)',
+                      border: '2px solid #a7f3d0',
+                      borderRadius: '16px',
+                      padding: '28px',
+                      marginBottom: '24px'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '24px'
+                      }}>
+                        <div style={{
+                          fontSize: '1.3rem',
+                          fontWeight: 800,
+                          color: '#047857',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}>
+                          📊 Objective 05 - Overall Progress Across All QIs
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setObj05CalculationModal(true);
+                          }}
+                          style={{
+                            background: '#059669',
+                            color: 'white',
+                            borderRadius: '50%',
+                            width: '36px',
+                            height: '36px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold',
+                            transition: 'all 0.3s',
+                            boxShadow: '0 4px 12px rgba(5, 150, 105, 0.3)'
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.1)';
+                            e.currentTarget.style.boxShadow = '0 8px 20px rgba(5, 150, 105, 0.4)';
+                            e.currentTarget.style.background = '#047857';
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(5, 150, 105, 0.3)';
+                            e.currentTarget.style.background = '#059669';
+                          }}
+                        >
+                          ⓘ
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                        {objective5Flow.map((qi, idx) => {
+                          const qiData = obj05_qiDataMap[idx];
+                          const avgValue = qiData && qiData.length > 0 
+                            ? Math.round(qiData.reduce((sum, item) => sum + item.value, 0) / qiData.length)
+                            : 0;
+                          
+                          return (
+                            <div key={idx} style={{
+                              background: '#ffffff',
+                              border: `3px solid ${qi.color}`,
+                              borderRadius: '12px',
+                              padding: '16px',
+                              textAlign: 'center',
+                              boxShadow: `0 4px 12px ${qi.color}20`
+                            }}>
+                              <div style={{
+                                fontSize: '1.2rem',
+                                fontWeight: 800,
+                                color: qi.color,
+                                marginBottom: '8px'
+                              }}>
+                                QI {idx + 1}
+                              </div>
+                              <div style={{
+                                fontSize: '0.9rem',
+                                fontWeight: 700,
+                                color: '#64748b',
+                                marginBottom: '12px'
+                              }}>
+                                {qi.label}
+                              </div>
+                              <div style={{
+                                fontSize: '2.4rem',
+                                fontWeight: 900,
+                                color: qi.color,
+                                marginBottom: '4px'
+                              }}>
+                                {avgValue}%
+                              </div>
+                              <div style={{
+                                fontSize: '0.8rem',
+                                color: '#94a3b8',
+                                fontWeight: 600
+                              }}>
+                                Avg across sites
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div style={{
+                        background: '#ffffff',
+                        border: '2px solid #d1fae5',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        marginBottom: '16px'
+                      }}>
+                        <div style={{
+                          fontSize: '1.1rem',
+                          fontWeight: 800,
+                          color: '#047857',
+                          marginBottom: '16px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}>
+                          📍 Site-wise Performance
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
+                          {['Site I', 'Site III', 'Site V'].map((siteName) => {
+                            const siteColors = {
+                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
+                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
+                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
+                            };
+                            
+                            const avgSiteValue = Math.round(
+                              objective5Flow.reduce((sum, _, idx) => {
+                                const siteData = obj05_qiDataMap[idx].find(d => d.site === siteName);
+                                return sum + (siteData ? siteData.value : 0);
+                              }, 0) / objective5Flow.length
+                            );
+
+                            return (
+                              <div key={siteName} style={{
+                                background: siteColors[siteName].bg,
+                                border: `2px solid ${siteColors[siteName].color}`,
+                                borderRadius: '12px',
+                                padding: '14px',
+                                textAlign: 'center'
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 800,
+                                  color: siteColors[siteName].color,
+                                  marginBottom: '6px'
+                                }}>
+                                  {siteName}
+                                </div>
+                                <div style={{
+                                  fontSize: '2rem',
+                                  fontWeight: 900,
+                                  color: siteColors[siteName].color,
+                                  marginBottom: '2px'
+                                }}>
+                                  {avgSiteValue}%
+                                </div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: '#64748b',
+                                  fontWeight: 600
+                                }}>
+                                  Avg progress
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div style={{
+                        marginTop: '16px',
+                        padding: '12px',
+                        background: '#f0fdf4',
+                        borderRadius: '8px',
+                        textAlign: 'center',
+                        fontSize: '0.95rem',
+                        color: '#15803d',
+                        fontWeight: 600
+                      }}>
+                        💡 Click on a QI button above to view detailed site-wise information
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Calculation Details Modal for Objective 05 */}
+                {obj05CalculationModal && (
+                  <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 10000,
+                    padding: '20px'
+                  }}
+                  onClick={() => setObj05CalculationModal(false)}>
+                    <div style={{
+                      background: 'white',
+                      borderRadius: '16px',
+                      maxWidth: '900px',
+                      maxHeight: '90vh',
+                      overflow: 'auto',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                    }}
+                    onClick={(e) => e.stopPropagation()}>
+                      {/* Modal Header */}
+                      <div style={{
+                        background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                        padding: '24px',
+                        borderRadius: '16px 16px 0 0',
+                        color: 'white',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}>
+                        <div>
+                          <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>Calculation Details</div>
+                          <div style={{ fontSize: '0.95rem', marginTop: '4px', opacity: 0.9 }}>
+                            How progress percentages are calculated
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setObj05CalculationModal(false)}
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.2)',
+                            border: 'none',
+                            color: 'white',
+                            fontSize: '1.5rem',
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            fontWeight: 'bold'
+                          }}
+                          onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'}
+                          onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+                        >
+                          ×
+                        </button>
+                      </div>
+
+                      {/* Modal Content */}
+                      <div style={{ padding: '24px' }}>
+                        {/* QI Averages Section */}
+                        <div style={{
+                          marginBottom: '28px'
+                        }}>
+                          <div style={{
+                            fontSize: '1.2rem',
+                            fontWeight: 800,
+                            color: '#1e293b',
+                            marginBottom: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            📊 QI Average Calculations
+                          </div>
+
+                          {[0, 1, 2, 3].map(qiIndex => {
+                            const qiData = obj05_qiDataMap[qiIndex];
+                            const qiLabel = objective5Flow[qiIndex].label;
+                            const values = qiData.map(item => item.value);
+                            const sites = qiData.map(item => item.site);
+                            const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+
+                            return (
+                              <div key={qiIndex} style={{
+                                background: '#f8fafc',
+                                padding: '16px',
+                                borderRadius: '10px',
+                                marginBottom: '12px',
+                                border: '2px solid #e2e8f0'
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 700,
+                                  color: '#059669',
+                                  marginBottom: '10px'
+                                }}>
+                                  QI {qiIndex + 1}: {qiLabel}
+                                </div>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '12px',
+                                  flexWrap: 'wrap',
+                                  fontSize: '0.9rem',
+                                  color: '#475569'
+                                }}>
+                                  <span style={{ fontWeight: 600 }}>Formula:</span>
+                                  <span>({sites.map((site, idx) => `${site}: ${values[idx]}%`).join(' + ')}) / {sites.length}</span>
+                                  <span style={{ 
+                                    fontWeight: 800, 
+                                    color: '#059669',
+                                    fontSize: '1.1rem'
+                                  }}>
+                                    = {avg}%
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Site Averages Section */}
+                        <div>
+                          <div style={{
+                            fontSize: '1.2rem',
+                            fontWeight: 800,
+                            color: '#1e293b',
+                            marginBottom: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            🏢 Site Average Calculations
+                          </div>
+
+                          {['Site I', 'Site III', 'Site V'].map(siteName => {
+                            // Define site colors
+                            const siteColors = {
+                              'Site I': { color: '#e4d74c', bg: '#fefce8' },
+                              'Site III': { color: '#8b5cf6', bg: '#f3e8ff' },
+                              'Site V': { color: '#0ea5e9', bg: '#e0f2fe' }
+                            };
+                            
+                            // Get values for this site from all QIs
+                            const values = [0, 1, 2, 3].map(qiIndex => {
+                              const qiData = obj05_qiDataMap[qiIndex];
+                              const siteData = qiData.find(item => item.site === siteName);
+                              return siteData ? siteData.value : 0;
+                            });
+                            const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+                            const siteColor = siteColors[siteName].color;
+
+                            return (
+                              <div key={siteName} style={{
+                                background: siteColors[siteName].bg,
+                                padding: '16px',
+                                borderRadius: '10px',
+                                marginBottom: '12px',
+                                border: `2px solid ${siteColor}`
+                              }}>
+                                <div style={{
+                                  fontSize: '1rem',
+                                  fontWeight: 700,
+                                  color: siteColor,
+                                  marginBottom: '10px'
+                                }}>
+                                  {siteName}
+                                </div>
+                                <div style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '12px',
+                                  flexWrap: 'wrap',
+                                  fontSize: '0.9rem',
+                                  color: '#475569'
+                                }}>
+                                  <span style={{ fontWeight: 600 }}>Formula:</span>
+                                  <span>({values.map((val, idx) => `QI ${idx + 1}: ${val}%`).join(' + ')}) / {values.length}</span>
+                                  <span style={{ 
+                                    fontWeight: 800, 
+                                    color: siteColor,
+                                    fontSize: '1.1rem'
+                                  }}>
+                                    = {avg}%
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Info Note */}
+                        <div style={{
+                          marginTop: '20px',
+                          padding: '14px',
+                          background: '#ecfdf5',
+                          borderRadius: '8px',
+                          border: '2px solid #10b981',
+                          fontSize: '0.85rem',
+                          color: '#065f46',
+                          lineHeight: 1.6
+                        }}>
+                          <strong>📌 Note:</strong> All percentages are calculated by averaging the progress values across respective sites or QIs. These calculations are dynamically updated based on the actual data.
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </>
