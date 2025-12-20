@@ -5,13 +5,15 @@ export default function SiteIIIPQAMilestones({ onClose }) {
   const kpiMetrics = [
     {
       title: '💰 Cost Savings',
-      value: '11 Lakhs',
-      unit: 'Annual Savings',
+      value: '≈ 11x',
+      displayMode: 'multiplier',
+      unit: 'Savings Multiple vs Rework Cost',
       period: 'Compared with (Jun24-Jul25)',
       color: '#f59e0b',
       bgColor: '#fff7ed',
       icon: '💰',
-      target: 'Rework Procedure + Transport Optimization'
+      target: 'Rework Procedure + Transport Optimization',
+      actualAmount: 'Annual savings achieved through optimized rework & transport'
     },
     {
       title: '📉 IN-Process Defect Rate',
@@ -90,13 +92,13 @@ export default function SiteIIIPQAMilestones({ onClose }) {
     ],
     deviceManufacturing: [
       {
-        title: 'Rework Procedure & Transport Optimization - 11 Lakhs Savings',
-        details: 'For defected units, we implemented a new rework procedure instead of destroying them. Defined rework procedure for Duo and Quatro casing (Completed) and optimized transportation method from warehouse to IST (Completed). Outcome: Saved a cost of 11 lakhs as compared to last year rejections (Jun24-July25).',
+        title: 'Rework Procedure & Transport Optimization - Significant Cost Recovery',
+        details: 'For defected units, we implemented a new rework procedure instead of destroying them. Defined rework procedure for Duo and Quatro casing (Completed) and optimized transportation method from warehouse to IST (Completed). Outcome: Achieved substantial savings compared to previous year rejection costs (Jun24-July25), demonstrating measurable ROI through operational efficiency.',
         status: 'Completed',
         statusColor: '#10b981',
         statusBg: '#ecfdf3',
-        target: 'Saving 11 Lakhs vs last year',
-        outcome: 'Cost of 11 lakhs saved (Jun24-Jul25)',
+        target: 'Maximize cost recovery from rework vs scrap approach',
+        outcome: 'Significant annual savings achieved (Jun24-Jul25)',
         icon: '💰'
       },
       {
@@ -294,9 +296,20 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                       fontSize: '2.8em',
                       fontWeight: '900',
                       color: metric.color,
-                      marginBottom: '4px'
+                      marginBottom: '4px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start',
+                      gap: '2px'
                     }}>
-                      {metric.value}
+                      {metric.displayMode === 'multiplier' ? (
+                        <>
+                          <span style={{ fontSize: '0.5em', fontWeight: '600', color: '#64748b' }}>Approximately</span>
+                          <span>{metric.value}</span>
+                        </>
+                      ) : (
+                        metric.value
+                      )}
                     </div>
                     <div style={{
                       fontSize: '0.9em',
@@ -306,6 +319,17 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                     }}>
                       {metric.unit}
                     </div>
+                    {metric.actualAmount && (
+                      <div style={{
+                        fontSize: '0.85em',
+                        fontWeight: '600',
+                        color: '#64748b',
+                        fontStyle: 'italic',
+                        lineHeight: '1.4'
+                      }}>
+                        📌 {metric.actualAmount}
+                      </div>
+                    )}
                   </div>
                   <div style={{
                     fontSize: '0.85em',
@@ -391,14 +415,14 @@ export default function SiteIIIPQAMilestones({ onClose }) {
                     color: '#92400e',
                     marginBottom: '8px'
                   }}>
-                    Major Achievement: 11 Lakhs Annual Savings
+                    Major Achievement: Substantial Annual Cost Savings
                   </div>
                   <div style={{
                     fontSize: '0.95em',
                     color: '#92400e',
                     lineHeight: '1.6'
                   }}>
-                    Rework instead of scrap plus optimized transport from warehouse to IST cut rejection costs vs last year (Jun24-Jul25), delivering 11 lakhs savings and proving the impact of standardized procedures and logistics discipline.
+                    Rework instead of scrap plus optimized transport from warehouse to IST cut rejection costs vs last year (Jun24-Jul25), delivering measurable financial benefits and proving the impact of standardized procedures and logistics discipline.
                   </div>
                 </div>
               </div>
