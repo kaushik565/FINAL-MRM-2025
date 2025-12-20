@@ -98,9 +98,9 @@ const QualityObjectives_v2 = () => {
   const [obj07Qi2InfoModal, setObj07Qi2InfoModal] = useState(null);
   const [obj07Qi3InfoSite, setObj07Qi3InfoSite] = useState(null);
   const [obj07Qi3InfoModal, setObj07Qi3InfoModal] = useState(null);
-  const [obj07Qi3ErrorDetailsModal, setObj07Qi3ErrorDetailsModal] = useState(null);
-  const [obj07Qi3SiteIErrorDetailsModal, setObj07Qi3SiteIErrorDetailsModal] = useState(null);
-  const [obj07Qi3SiteVErrorDetailsModal, setObj07Qi3SiteVErrorDetailsModal] = useState(null);
+  const [obj07Qi3SiteIErrorDetailsModal, setObj07Qi3SiteIErrorDetailsModal] = useState(false);
+  const [obj07Qi3SiteIIIErrorDetailsModal, setObj07Qi3SiteIIIErrorDetailsModal] = useState(false);
+  const [obj07Qi3SiteVErrorDetailsModal, setObj07Qi3SiteVErrorDetailsModal] = useState(false);
 
   useEffect(() => {
     const closeAll = () => setActiveModals({ card: null, qi04: null, qi05: null, qi06: null, qi07: null });
@@ -344,6 +344,7 @@ const QualityObjectives_v2 = () => {
       sites: 'I, III, IV, V', 
       value: 31, 
       target: 100,
+      projectName: 'Electronic Quality Management system (eQMS)',
       projectInitiation: 100,
       defineScopeAndObjective: 100,
       crossFunctionalCoreTeamFormation: 100,
@@ -354,7 +355,14 @@ const QualityObjectives_v2 = () => {
       trainingAndEvaluation: 0,
       goLive: 0,
       postImplementationReview: 0,
-      verifyTheComplianceThroughUserFeedbackInternalExternalAudit: 0
+      verifyTheComplianceThroughUserFeedbackInternalExternalAudit: 0,
+      implementationCards: [
+        {
+          title: 'MasterControl/Molbio Project Kickoff',
+          status: 'Completed',
+          percentage: 100
+        }
+      ]
     }
   ];
 
@@ -364,6 +372,7 @@ const QualityObjectives_v2 = () => {
       sites: 'I, III, IV, V', 
       value: 29, 
       target: 100,
+      projectName: 'Electronic batch manufacturing records (eBMR)',
       projectInitiation: 100,
       defineScopeAndObjective: 100,
       crossFunctionalCoreTeamFormation: 100,
@@ -374,26 +383,25 @@ const QualityObjectives_v2 = () => {
       trainingAndEvaluation: 0,
       goLive: 0,
       postImplementationReview: 0,
-      verifyTheComplianceThroughUserFeedbackRightAtFirstTimeBatchRecordAccuracyRate: 0
+      verifyTheComplianceThroughUserFeedbackRightAtFirstTimeBatchRecordAccuracyRate: 0,
+      implementationCards: [
+        {
+          title: 'MasterControl/Molbio Project Kickoff',
+          status: 'Completed',
+          percentage: 100
+        }
+      ]
     }
   ];
 
-  const obj06_qi3Data = [];
-
-  const obj06_qi4Data = [];
-
   const obj06_qiDataMap = {
     0: obj06_qi1Data,
-    1: obj06_qi2Data,
-    2: obj06_qi3Data,
-    3: obj06_qi4Data
+    1: obj06_qi2Data
   };
 
   const objective6Flow = [
     { id: 'qi1', label: 'Electronic Quality Management system (eQMS)', color: '#8b5cf6' },
-    { id: 'qi2', label: 'Electronic batch manufacturing records (eBMR)', color: '#06b6d4' },
-    { id: 'qi3', label: 'Need to add', color: '#ec4899' },
-    { id: 'qi4', label: 'Need to add', color: '#eab308' }
+    { id: 'qi2', label: 'Electronic batch manufacturing records (eBMR)', color: '#06b6d4' }
   ];
 
   // QI Data for Objective 07
@@ -431,10 +439,10 @@ const QualityObjectives_v2 = () => {
         { srNo: 17, sopNumber: 'SOP/QA/004', sopName: 'Incident Reporting', revisionNumber: '06', trainerName: 'Praneet', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 18, sopNumber: 'SOP/QA/041', sopName: 'Roles and responsibilities of LAB - QA', revisionNumber: '04', trainerName: 'Praneet', date: '22/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 19, sopNumber: 'SOP/QA/014', sopName: 'Corrective and Preventive action', revisionNumber: '00', trainerName: 'L R Naidu', date: '17/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 20, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Praneet', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 21, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 22, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 23, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 20, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 21, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 22, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 23, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 24, sopNumber: 'SOP/QA/007', sopName: 'Document and Record Control', revisionNumber: '08', trainerName: 'Praneet', date: '12/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
         { srNo: 25, sopNumber: 'SOP/QA/019', sopName: 'Procedure for Mastering documents and Maintaining Master list of documents', revisionNumber: '04', trainerName: 'Praneet', date: '13/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
         { srNo: 26, sopNumber: 'SOP/QA/021', sopName: 'Calibration process in SAP systemline', revisionNumber: '06', trainerName: 'Praneet', date: '15/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
@@ -459,7 +467,37 @@ const QualityObjectives_v2 = () => {
       target: 100,
       trainingCompletion: 95,
       evaluation100: 92,
-      retrainingEvaluation: 100
+      retrainingEvaluation: 100,
+      infoRows: [
+        { srNo: 1, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 2, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 3, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'Hameed', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 4, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'Hameed', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 5, sopNumber: 'SOP/QA/003', sopName: 'Change Control', revisionNumber: '07', trainerName: 'Yet to fix', date: '23/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 6, sopNumber: 'SOP/QA/004', sopName: 'Incident Reporting', revisionNumber: '06', trainerName: 'Yet to fix', date: '24/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 7, sopNumber: 'SOP/QA/005', sopName: 'Deviation Control', revisionNumber: '04', trainerName: 'Yet to fix', date: '26/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 8, sopNumber: 'SOP/QA/006', sopName: 'Handling On-line Rejects', revisionNumber: '06', trainerName: 'Yet to fix', date: '27/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 9, sopNumber: 'SOP/QA/007', sopName: 'Document and Record Control', revisionNumber: '08', trainerName: 'Yet to fix', date: '29/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 10, sopNumber: 'SOP/QA/010', sopName: 'Good Documentation Practices', revisionNumber: '05', trainerName: 'Yet to fix', date: '30/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 11, sopNumber: 'SOP/QA/012', sopName: 'Preparation, Maintenance and Verification of logbooks', revisionNumber: '05', trainerName: 'Yet to fix', date: '02/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 12, sopNumber: 'SOP/QA/013', sopName: 'Line clearance and verification of manufacturing/Packing Process', revisionNumber: '08', trainerName: 'Yet to fix', date: '03/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 13, sopNumber: 'SOP/QA/014', sopName: 'Corrective and Preventive action', revisionNumber: '04', trainerName: 'Yet to fix', date: '05/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 14, sopNumber: 'SOP/QA/017', sopName: 'SOP for investigation of Customer Complaints', revisionNumber: '01', trainerName: 'Yet to fix', date: '06/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 15, sopNumber: 'SOP/QA/019', sopName: 'Procedure for Mastering documents and Maintaining Master list of documents', revisionNumber: '04', trainerName: 'Yet to fix', date: '07/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 16, sopNumber: 'SOP/QA/020', sopName: 'Control of Non-conforming output', revisionNumber: '02', trainerName: 'Yet to fix', date: '08/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 17, sopNumber: 'SOP/QA/021', sopName: 'Calibration process in SAP systemline', revisionNumber: '06', trainerName: 'Yet to fix', date: '09/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 18, sopNumber: 'SOP/QA/023', sopName: 'Procedure for product registration in other countries', revisionNumber: '00', trainerName: 'Yet to fix', date: '10/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 19, sopNumber: 'SOP/QA/024', sopName: 'EC Decleration of non conformity procedure', revisionNumber: '00', trainerName: 'Yet to fix', date: '19/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 20, sopNumber: 'SOP/QA/026', sopName: 'Procedure for CE marking', revisionNumber: '0', trainerName: 'Yet to fix', date: '20/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 21, sopNumber: 'SOP/QA/027', sopName: 'Labeling and control (in-house) status', revisionNumber: '06', trainerName: 'Yet to fix', date: '21/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 22, sopNumber: 'SOP/QA/028', sopName: 'SOP for Record room', revisionNumber: '03', trainerName: 'Yet to fix', date: '22/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 23, sopNumber: 'SOP/QA/030', sopName: 'Roles and responsibilities of Quality Management System (QMS) Team', revisionNumber: '01', trainerName: 'Yet to fix', date: '23/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 24, sopNumber: 'SOP/QA/032', sopName: 'Handling and Destruction of rejected and expired material/product', revisionNumber: '07', trainerName: 'Yet to fix', date: '24/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 25, sopNumber: 'SOP/QA/034', sopName: 'SOP for Extension', revisionNumber: '03', trainerName: 'Yet to fix', date: '26/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 26, sopNumber: 'SOP/QA/038', sopName: 'Feed back from manufacturing unit to design and development post design transfer', revisionNumber: '01', trainerName: 'Yet to fix', date: '27/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 27, sopNumber: 'SOP/QA/039', sopName: 'Procedure for Requirement Specifications, Acceptance Testing and supported GxP Regulated activities.', revisionNumber: '02', trainerName: 'Yet to fix', date: '28/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 28, sopNumber: 'SOP/QA/041', sopName: 'Roles and responsibilities of LAB - QA', revisionNumber: '00', trainerName: 'Yet to fix', date: '29/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' }
+      ]
     },
     { 
       site: 'Site III', 
@@ -488,10 +526,10 @@ const QualityObjectives_v2 = () => {
         { srNo: 17, sopNumber: 'SOP/QA/004', sopName: ' Incident Reporting', revisionNumber: '06', trainerName: 'Praneet', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 18, sopNumber: 'SOP/QA/041', sopName: 'Roles and responsibilities of LAB - QA', revisionNumber: '04', trainerName: 'Praneet', date: '22/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 19, sopNumber: 'SOP/QA/014', sopName: 'Corrective and Preventive action', revisionNumber: '00', trainerName: 'L R Naidu', date: '17/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 20, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Praneet', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 21, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 22, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
-        { srNo: 23, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'L R Naidu', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 20, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 21, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 22, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 23, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'Hameed C R', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
         { srNo: 24, sopNumber: 'SOP/QA/007', sopName: 'Document and Record Control', revisionNumber: '08', trainerName: 'Praneet', date: '12/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
         { srNo: 25, sopNumber: 'SOP/QA/019', sopName: 'Procedure for Mastering documents and Maintaining Master list of documents', revisionNumber: '04', trainerName: 'Praneet', date: '13/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
         { srNo: 26, sopNumber: 'SOP/QA/021', sopName: 'Calibration process in SAP systemline', revisionNumber: '06', trainerName: 'Praneet', date: '15/12/2025', time: 'Still not Started', remarks: 'Pending', status: 'Pending' },
@@ -507,7 +545,37 @@ const QualityObjectives_v2 = () => {
       target: 100,
       trainingCompletion: 88,
       evaluation100: 85,
-      retrainingEvaluation: 100
+      retrainingEvaluation: 100,
+      infoRows: [
+        { srNo: 1, sopNumber: 'NA', sopName: 'Significate of quality event', revisionNumber: 'NA', trainerName: 'Hameed', date: '12/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 2, sopNumber: 'NA', sopName: 'RCA tools', revisionNumber: 'NA', trainerName: 'Hameed', date: '13/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 3, sopNumber: 'NA', sopName: 'Problem sloving Skills', revisionNumber: 'NA', trainerName: 'Hameed', date: '21/11/2025', time: '11:00 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 4, sopNumber: 'NA', sopName: 'Training on effective investigation', revisionNumber: 'NA', trainerName: 'Hameed', date: '21/11/2025', time: '15:30 hrs', remarks: 'Done', status: 'Completed' },
+        { srNo: 5, sopNumber: 'SOP/QA/003', sopName: 'Change Control', revisionNumber: '07', trainerName: 'Yet to fix', date: '23/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 6, sopNumber: 'SOP/QA/004', sopName: 'Incident Reporting', revisionNumber: '06', trainerName: 'Yet to fix', date: '24/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 7, sopNumber: 'SOP/QA/005', sopName: 'Deviation Control', revisionNumber: '04', trainerName: 'Yet to fix', date: '26/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 8, sopNumber: 'SOP/QA/006', sopName: 'Handling On-line Rejects', revisionNumber: '06', trainerName: 'Yet to fix', date: '27/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 9, sopNumber: 'SOP/QA/007', sopName: 'Document and Record Control', revisionNumber: '08', trainerName: 'Yet to fix', date: '29/12/2025', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 10, sopNumber: 'SOP/QA/010', sopName: 'Good Documentation Practices', revisionNumber: '05', trainerName: 'Yet to fix', date: '30/12/2025', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 11, sopNumber: 'SOP/QA/012', sopName: 'Preparation, Maintenance and Verification of logbooks', revisionNumber: '05', trainerName: 'Yet to fix', date: '02/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 12, sopNumber: 'SOP/QA/013', sopName: 'Line clearance and verification of manufacturing/Packing Process', revisionNumber: '08', trainerName: 'Yet to fix', date: '03/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 13, sopNumber: 'SOP/QA/014', sopName: 'Corrective and Preventive action', revisionNumber: '04', trainerName: 'Yet to fix', date: '05/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 14, sopNumber: 'SOP/QA/017', sopName: 'SOP for investigation of Customer Complaints', revisionNumber: '01', trainerName: 'Yet to fix', date: '06/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 15, sopNumber: 'SOP/QA/019', sopName: 'Procedure for Mastering documents and Maintaining Master list of documents', revisionNumber: '04', trainerName: 'Yet to fix', date: '07/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 16, sopNumber: 'SOP/QA/020', sopName: 'Control of Non-conforming output', revisionNumber: '02', trainerName: 'Yet to fix', date: '08/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 17, sopNumber: 'SOP/QA/021', sopName: 'Calibration process in SAP systemline', revisionNumber: '06', trainerName: 'Yet to fix', date: '09/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 18, sopNumber: 'SOP/QA/023', sopName: 'Procedure for product registration in other countries', revisionNumber: '00', trainerName: 'Yet to fix', date: '10/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 19, sopNumber: 'SOP/QA/024', sopName: 'EC Decleration of non conformity procedure', revisionNumber: '00', trainerName: 'Yet to fix', date: '19/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 20, sopNumber: 'SOP/QA/026', sopName: 'Procedure for CE marking', revisionNumber: '0', trainerName: 'Yet to fix', date: '20/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 21, sopNumber: 'SOP/QA/027', sopName: 'Labeling and control (in-house) status', revisionNumber: '06', trainerName: 'Yet to fix', date: '21/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 22, sopNumber: 'SOP/QA/028', sopName: 'SOP for Record room', revisionNumber: '03', trainerName: 'Yet to fix', date: '22/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 23, sopNumber: 'SOP/QA/030', sopName: 'Roles and responsibilities of Quality Management System (QMS) Team', revisionNumber: '01', trainerName: 'Yet to fix', date: '23/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 24, sopNumber: 'SOP/QA/032', sopName: 'Handling and Destruction of rejected and expired material/product', revisionNumber: '07', trainerName: 'Yet to fix', date: '24/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 25, sopNumber: 'SOP/QA/034', sopName: 'SOP for Extension', revisionNumber: '03', trainerName: 'Yet to fix', date: '26/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 26, sopNumber: 'SOP/QA/038', sopName: 'Feed back from manufacturing unit to design and development post design transfer', revisionNumber: '01', trainerName: 'Yet to fix', date: '27/01/2026', time: '15:30 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 27, sopNumber: 'SOP/QA/039', sopName: 'Procedure for Requirement Specifications, Acceptance Testing and supported GxP Regulated activities.', revisionNumber: '02', trainerName: 'Yet to fix', date: '28/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' },
+        { srNo: 28, sopNumber: 'SOP/QA/041', sopName: 'Roles and responsibilities of LAB - QA', revisionNumber: '00', trainerName: 'Yet to fix', date: '29/01/2026', time: '11:00 hrs', remarks: 'Yet to done', status: 'Pending' }
+      ]
     }
   ];
   const obj07_qi3Data = [
@@ -517,6 +585,15 @@ const QualityObjectives_v2 = () => {
       target: 100,
       errorDecrease: 56,
       staffInvolvement: 40,
+      infoRows: [
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 4, afterPercent: 40 }
+      ],
+      infoStats: {
+        totalEmployees: 4,
+        totalDepartments: 1,
+        totalBeforePercent: 0,
+        totalAfterPercent: 40
+      },
       auditData: {
         findings: [
           { type: 'NC', description: 'Uncontrolled Disposal: The shredding machine was found to contain evidence of the following documents without having any documented evidence of shredding in thr logbook (Flat/QA/195): Released documents (been label), Sample labels, Controlled documents. Document controlled copy distribution list form was verified, wherein it was observed thet document ID :SOP/PK/001 and many other documents entry were made as destroyed but entries of the same were found missing in the Log of shredder machine (FM/QA/195)' },
@@ -577,6 +654,15 @@ const QualityObjectives_v2 = () => {
       target: 100,
       errorDecrease: 48,
       staffInvolvement: 52,
+      infoRows: [
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 5, afterPercent: 52 }
+      ],
+      infoStats: {
+        totalEmployees: 5,
+        totalDepartments: 1,
+        totalBeforePercent: 0,
+        totalAfterPercent: 52
+      },
       auditData: {
         findings: [
           { type: 'MNC', description: 'During the shop-floor IPQA visit, the ZPM _ calendar was checked for calibration status. It was noted that the M/5/0003/TS-01 sealing machine in Assembly Room 2 had calibration due on 16/11/2025. The machine was calibrated, but the corresponding calibration order was not yet closed in SAP at the time of verification.' },
@@ -597,13 +683,11 @@ const QualityObjectives_v2 = () => {
       }
     }
   ];
-  const obj07_qi4Data = [];
 
   const obj07_qiDataMap = {
     0: obj07_qi1Data,
     1: obj07_qi2Data,
-    2: obj07_qi3Data,
-    3: obj07_qi4Data
+    2: obj07_qi3Data
   };
 
   const objective4Flow = [
@@ -761,8 +845,7 @@ const QualityObjectives_v2 = () => {
   const objective7Flow = [
     { id: 'qi1', label: 'Gap analysis', color: '#f59e0b' },
     { id: 'qi2', label: 'Implementation', color: '#3b82f6' },
-    { id: 'qi3', label: 'Skill Advancement', color: '#10b981' },
-    { id: 'qi4', label: 'Data need to add', color: '#ec4899' }
+    { id: 'qi3', label: 'Skill Advancement', color: '#10b981' }
   ];
 
   const kpiCards = [
@@ -981,121 +1064,85 @@ const QualityObjectives_v2 = () => {
     }
 
     if (obj07Qi3SiteIErrorDetailsModal) {
-      const auditData = obj07_qi3Data.find(d => d.site === 'Site I')?.auditData;
-      
-      if (auditData) {
-        return createPortal(
-          <FullscreenShell onClose={() => setObj07Qi3SiteIErrorDetailsModal(false)}>
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                overflow: 'auto',
-                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #fef2f2 100%)'
-              }}
-            >
-              <div style={{
-                padding: '16px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                borderBottom: '2px solid rgba(148,163,184,0.2)',
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.85) 100%)',
-                backdropFilter: 'blur(12px)',
-                position: 'sticky',
-                top: 0,
-                zIndex: 10
-              }}>
-                <div>
-                  <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
-                    Objective 07 • QI 3 • Site I
-                  </div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
-                    📉 Decrease in QA Process Errors - Audit Data
-                  </div>
+      return createPortal(
+        <FullscreenShell onClose={() => setObj07Qi3SiteIErrorDetailsModal(false)}>
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              overflow: 'auto',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #fef2f2 100%)'
+            }}
+          >
+            <div style={{
+              padding: '16px 20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              borderBottom: '2px solid rgba(148,163,184,0.2)',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.85) 100%)',
+              backdropFilter: 'blur(12px)',
+              position: 'sticky',
+              top: 0,
+              zIndex: 10
+            }}>
+              <div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
+                  Objective 07 • QI 3 • Site I
+                </div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
+                  📉 Decrease in QA Process Errors
+                </div>
+              </div>
+              <button
+                onClick={() => setObj07Qi3SiteIErrorDetailsModal(false)}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                  color: '#ffffff',
+                  fontSize: '1.6rem',
+                  fontWeight: 900,
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 20px rgba(239,68,68,0.35)',
+                  transition: 'all 0.25s ease'
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ padding: '12px', borderRadius: '10px', background: '#fef2f2', border: '2px solid #fecdd3' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#b91c1c', marginBottom: '10px' }}>Audit data - 1st IQA</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.3fr 0.3fr 0.3fr 1fr', gap: '8px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <div>Sites</div><div>NC</div><div>MNC</div><div>PI</div><div>Status</div>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.3fr 0.3fr 0.3fr 1fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', border: '1px solid #fecdd3', fontWeight: 700, color: '#0f172a' }}>
+                  <div>I</div><div>0</div><div>7</div><div>7</div><div>1-PI Open</div>
                 </div>
               </div>
 
-              <div style={{ padding: '16px 20px' }}>
-                {/* Summary Cards - 2 Main Audit Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
-                  {/* 1st Audit Card */}
-                  <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
-                      🔴 1st Audit
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
-                      </div>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
-                      </div>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 2nd Audit Card */}
-                  <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
-                      🟢 2nd Audit
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
-                      </div>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
-                      </div>
-                      <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
-                      </div>
-                    </div>
-                  </div>
+              <div style={{ padding: '12px', borderRadius: '10px', background: '#e0f2fe', border: '2px solid #bfdbfe' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#1d4ed8', marginBottom: '10px' }}>Audit data - 2nd IQA</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.3fr 0.3fr 0.3fr 1fr', gap: '8px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <div>Sites</div><div>NC</div><div>MNC</div><div>PI</div><div>Status</div>
                 </div>
-
-                {/* Unified Audit Findings */}
-                <div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {auditData.findings.map((item, idx) => {
-                      let bgColor = '#ef4444'; // NC - Red
-                      if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
-                      if (item.type === 'PI') bgColor = '#ea8308'; // Orange
-
-                      return (
-                        <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
-                          <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-                            <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
-                              {item.type}
-                            </div>
-                          </div>
-                          <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.3fr 0.3fr 0.3fr 1fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', border: '1px solid #bfdbfe', fontWeight: 700, color: '#0f172a' }}>
+                  <div>I</div><div>1</div><div>2</div><div>3</div><div>OPEN</div>
                 </div>
               </div>
             </div>
-          </FullscreenShell>,
-          document.body
-        );
-      }
+          </div>
+        </FullscreenShell>,
+        document.body
+      );
     }
 
     if (obj07Qi3SiteVErrorDetailsModal) {
-      const auditData = obj07_qi3Data.find(d => d.site === 'Site V')?.auditData;
-      if (!auditData) return null;
-
       return createPortal(
         <FullscreenShell onClose={() => setObj07Qi3SiteVErrorDetailsModal(false)}>
           <div
@@ -1123,77 +1170,48 @@ const QualityObjectives_v2 = () => {
                   Objective 07 • QI 3 • Site V
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
-                  📉 Decrease in QA Process Errors - Audit Data
+                  📉 Decrease in QA Process Errors
                 </div>
               </div>
+              <button
+                onClick={() => setObj07Qi3SiteVErrorDetailsModal(false)}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                  color: '#ffffff',
+                  fontSize: '1.6rem',
+                  fontWeight: 900,
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 20px rgba(239,68,68,0.35)',
+                  transition: 'all 0.25s ease'
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <div style={{ padding: '16px 20px' }}>
-              {/* Summary Cards - 2 Main Audit Cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
-                {/* 1st Audit Card */}
-                <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
-                    🔴 1st Audit
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
-                    </div>
-                  </div>
+            <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ padding: '12px', borderRadius: '10px', background: '#fef2f2', border: '2px solid #fecdd3' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#b91c1c', marginBottom: '10px' }}>Audit data - 1st IQA</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.3fr 0.3fr 0.3fr 1fr', gap: '8px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <div>NC</div><div>MNC</div><div>PI</div><div>Status</div>
                 </div>
-
-                {/* 2nd Audit Card */}
-                <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
-                    🟢 2nd Audit
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
-                    </div>
-                  </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.3fr 0.3fr 0.3fr 1fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', border: '1px solid #fecdd3', fontWeight: 700, color: '#0f172a' }}>
+                  <div>1</div><div>1</div><div>2</div><div>CLOSED</div>
                 </div>
               </div>
 
-              {/* Unified Audit Findings */}
-              <div>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {auditData.findings.map((item, idx) => {
-                    let bgColor = '#ef4444'; // NC - Red
-                    if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
-                    if (item.type === 'PI') bgColor = '#ea8308'; // Orange
-
-                    return (
-                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
-                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
-                            {item.type}
-                          </div>
-                        </div>
-                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
-                      </div>
-                    );
-                  })}
+              <div style={{ padding: '12px', borderRadius: '10px', background: '#e0f2fe', border: '2px solid #bfdbfe' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#1d4ed8', marginBottom: '10px' }}>Audit data - 2nd IQA</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.3fr 0.3fr 0.3fr 1fr', gap: '8px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <div>NC</div><div>MNC</div><div>PI</div><div>Status</div>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.3fr 0.3fr 0.3fr 1fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', border: '1px solid #bfdbfe', fontWeight: 700, color: '#0f172a' }}>
+                  <div>NA</div><div>4</div><div>1</div><div>Open</div>
                 </div>
               </div>
             </div>
@@ -1203,12 +1221,9 @@ const QualityObjectives_v2 = () => {
       );
     }
 
-    if (obj07Qi3ErrorDetailsModal) {
-      const auditData = obj07_qi3Data.find(d => d.site === 'Site III')?.auditData;
-      if (!auditData) return null;
-
+    if (obj07Qi3SiteIIIErrorDetailsModal) {
       return createPortal(
-        <FullscreenShell onClose={() => setObj07Qi3ErrorDetailsModal(false)}>
+        <FullscreenShell onClose={() => setObj07Qi3SiteIIIErrorDetailsModal(false)}>
           <div
             style={{
               width: '100%',
@@ -1234,77 +1249,101 @@ const QualityObjectives_v2 = () => {
                   Objective 07 • QI 3 • Site III
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a' }}>
-                  📉 Decrease in QA Process Errors - Audit Data
+                  📉 Decrease in QA Process Errors
                 </div>
               </div>
+              <button
+                onClick={() => setObj07Qi3SiteIIIErrorDetailsModal(false)}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                  color: '#ffffff',
+                  fontSize: '1.6rem',
+                  fontWeight: 900,
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 20px rgba(239,68,68,0.35)',
+                  transition: 'all 0.25s ease'
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <div style={{ padding: '16px 20px' }}>
-              {/* Summary Cards - 2 Main Audit Cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
-                {/* 1st Audit Card */}
-                <div style={{ background: 'linear-gradient(135deg, #fef2f2, #fee2e2)', borderRadius: '12px', padding: '16px', border: '3px solid #ef4444', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.15)' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#991b1b', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #ef444430' }}>
-                    🔴 1st Audit
+            <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '12px' }}>
+                <div style={{ padding: '12px', borderRadius: '10px', background: '#fef2f2', border: '2px solid #fecdd3' }}>
+                  <div style={{ fontSize: '1rem', fontWeight: 900, color: '#b91c1c', marginBottom: '8px' }}>1st IQA</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>NC</div><div>1</div>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fecaca' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#991b1b', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ef4444' }}>{auditData.summary.firstNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fcd34d' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#f59e0b' }}>{auditData.summary.firstMNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #fbbf24' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#854d0e', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#ea8308' }}>{auditData.summary.firstPICount}</div>
-                    </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>
+                    Statements in incident and corrective actions were the documents are contradicting each other. For categorized as major
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>PI</div><div>5</div>
+                  </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>
+                    1. Investigation report mentioned a proposed preventive action, however, no corresponding preventive action was documented<br/>
+                    2. DMF , Risk management report, Risk analysis and evaluation<br/>
+                    3. Lack of monitoring of SOP like no evidence
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>MNC</div><div>2</div>
+                  </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>
+                    DMF and Improper customer complaint handling
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', fontWeight: 900, color: '#0f172a' }}>
+                    <div>Total</div><div>8</div>
                   </div>
                 </div>
 
-                {/* 2nd Audit Card */}
-                <div style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: '12px', padding: '16px', border: '3px solid #0ea5e9', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.15)' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0369a1', marginBottom: '14px', paddingBottom: '10px', borderBottom: '2px solid #0ea5e930' }}>
-                    🟢 2nd Audit
+                <div style={{ padding: '12px', borderRadius: '10px', background: '#dbeafe', border: '2px solid #bfdbfe' }}>
+                  <div style={{ fontSize: '1rem', fontWeight: 900, color: '#1d4ed8', marginBottom: '8px' }}>2nd IQA</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>NC</div><div>0</div>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #bae6fd' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#0369a1', fontWeight: 700, marginBottom: '6px' }}>NC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0ea5e9' }}>{auditData.summary.secondNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #93c5fd' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#0c4a6e', fontWeight: 700, marginBottom: '6px' }}>MNC</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0284c7' }}>{auditData.summary.secondMNCCount}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', background: '#ffffff', padding: '10px', borderRadius: '8px', border: '2px solid #86efac' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#166534', fontWeight: 700, marginBottom: '6px' }}>PI</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#16a34a' }}>{auditData.summary.secondPICount}</div>
-                    </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>NA</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>PI</div><div>1</div>
+                  </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>
+                    Controlled of drawings
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', marginBottom: '10px', fontWeight: 800, color: '#0f172a' }}>
+                    <div>MNC</div><div>2</div>
+                  </div>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.45, marginBottom: '12px' }}>
+                    Updated BOM and SOP/QA/007 molbio logo and name was not changed.
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '0.6fr 0.4fr', gap: '8px', fontWeight: 900, color: '#0f172a' }}>
+                    <div>Total</div><div>3</div>
                   </div>
                 </div>
               </div>
 
-              {/* Unified Audit Findings */}
-              <div>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>📋 Audit Findings</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {auditData.findings.map((item, idx) => {
-                    let bgColor = '#ef4444'; // NC - Red
-                    if (item.type === 'MNC') bgColor = '#f59e0b'; // Amber
-                    if (item.type === 'PI') bgColor = '#ea8308'; // Orange
-
-                    return (
-                      <div key={idx} style={{ borderRadius: '10px', border: '2px solid #cbd5e1', padding: '12px', background: idx % 2 === 0 ? '#f8fafc' : '#ffffff' }}>
-                        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ background: bgColor, color: '#ffffff', padding: '4px 12px', borderRadius: '6px', fontWeight: 900, fontSize: '0.85rem', minWidth: '70px', textAlign: 'center' }}>
-                            {item.type}
-                          </div>
-                        </div>
-                        <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>{item.description}</div>
-                      </div>
-                    );
-                  })}
+              <div style={{ padding: '12px', borderRadius: '10px', background: '#f8fafc', border: '2px solid #e2e8f0' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#0f172a', marginBottom: '10px' }}>Incident Timeline</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.4fr 0.2fr 1.4fr', gap: '8px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <div>Period</div>
+                  <div>Count</div>
+                  <div>Description</div>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.4fr 0.2fr 1.4fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', marginBottom: '8px', border: '1px solid #e2e8f0' }}>
+                  <div>Jan - Jun</div>
+                  <div>6</div>
+                  <div style={{ color: '#475569', fontWeight: 600 }}>
+                    Mastered without checking impact assessment, Duo serial numbering, customer complaint sign was not done for last year, hammed sir GDP error, Scan document torn, CA days crossed
+                  </div>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '0.4fr 0.2fr 1.4fr', gap: '8px', padding: '10px', borderRadius: '8px', background: '#fff', border: '1px solid #e2e8f0' }}>
+                  <div>July - Nov</div>
+                  <div>0</div>
+                  <div style={{ color: '#475569', fontWeight: 600 }}>NA</div>
                 </div>
               </div>
             </div>
@@ -2562,14 +2601,20 @@ const QualityObjectives_v2 = () => {
 
       const phaseGroups = {
         'Planning': { color: '#f59e0b', bgColor: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', icon: '📝' },
+        'Implementation': { color: '#10b981', bgColor: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)', icon: '🚀' },
         'Approval': { color: '#3b82f6', bgColor: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)', icon: '✅' },
         'Setup': { color: '#8b5cf6', bgColor: 'linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%)', icon: '⚙️' },
-        'Implementation': { color: '#10b981', bgColor: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)', icon: '🚀' },
         'Verification': { color: '#ec4899', bgColor: 'linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%)', icon: '🔍' }
       };
 
-      const overallProgress = data[0]?.value || 0;
       const completedSteps = steps.filter(s => parseInt(data[0]?.[s.key] || 0) > 0).length;
+      const completedImplementationCards = (data[0]?.implementationCards || []).filter(c => c.percentage === 100).length;
+      const totalImplementationCards = (data[0]?.implementationCards || []).length;
+      const adjustedCompletedSteps = completedSteps + completedImplementationCards;
+      const adjustedTotalSteps = steps.length + totalImplementationCards;
+      const overallProgress = adjustedTotalSteps > 0
+        ? Math.round((adjustedCompletedSteps / adjustedTotalSteps) * 100)
+        : (data[0]?.value || 0);
 
       return (
         <div style={{ padding: '28px', background: '#ffffff', borderRadius: '16px', border: `3px solid ${colors.primary}`, boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }}>
@@ -2612,7 +2657,7 @@ const QualityObjectives_v2 = () => {
                     ✓ Completed
                   </div>
                   <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#047857' }}>
-                    {completedSteps}/{steps.length}
+                    {adjustedCompletedSteps}/{adjustedTotalSteps}
                   </div>
                 </div>
                 <div style={{
@@ -2693,9 +2738,11 @@ const QualityObjectives_v2 = () => {
           </div>
 
           {/* Phase-grouped Steps */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
             {Object.entries(phaseGroups).map(([phase, style]) => {
               const phaseSteps = steps.filter(s => s.phase === phase);
+              const isImplementationPhase = phase === 'Implementation';
+              
               return (
                 <div key={phase} style={{
                   padding: '10px',
@@ -2720,6 +2767,56 @@ const QualityObjectives_v2 = () => {
                     {phase}
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    {/* Implementation Cards - shown at top of Implementation phase */}
+                    {isImplementationPhase && data[0]?.implementationCards && data[0].implementationCards.map((card, cardIdx) => (
+                      <div key={`card-${cardIdx}`} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '6px 8px',
+                        background: '#ffffff',
+                        borderRadius: '6px',
+                        border: `1px solid ${style.color}60`,
+                        boxShadow: `0 2px 4px ${style.color}15`,
+                        transition: 'all 200ms'
+                      }}>
+                        <div style={{
+                          width: '24px',
+                          height: '24px',
+                          borderRadius: '50%',
+                          background: `${style.color}25`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '0.9rem',
+                          fontWeight: 800,
+                          color: style.color,
+                          flexShrink: 0
+                        }}>
+                          ✓
+                        </div>
+                        <div style={{
+                          flex: 1,
+                          fontSize: '0.85rem',
+                          fontWeight: 600,
+                          color: '#0f172a'
+                        }}>
+                          {card.title}
+                        </div>
+                        <div style={{
+                          textAlign: 'right',
+                          padding: '3px 6px',
+                          background: `${style.color}12`,
+                          borderRadius: '4px',
+                          fontSize: '0.8rem',
+                          fontWeight: 700,
+                          color: style.color
+                        }}>
+                          {card.percentage}%
+                        </div>
+                      </div>
+                    ))}
+                    
                     {phaseSteps.map((step, idx) => {
                       const value = parseInt(data[0]?.[step.key] || 0);
                       const isComplete = value > 0;
@@ -2920,8 +3017,8 @@ const QualityObjectives_v2 = () => {
                 { label: 'Retraining & Evaluation', value: item.retrainingEvaluation, icon: '🔄', color: '#059669' }
               ];
 
-              const isInfoOpen = item.site === 'Site III' && obj07Qi2InfoSite === item.site;
-              const hasInfoData = item.site === 'Site III' && item.infoRows;
+              const isInfoOpen = obj07Qi2InfoSite === item.site;
+              const hasInfoData = item.infoRows;
 
               return (
                 <div key={idx} style={{
@@ -3346,9 +3443,9 @@ const QualityObjectives_v2 = () => {
                   transition: 'all 0.2s ease'
                 }}
                 onClick={() => {
-                  if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
-                  if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
-                  if (item.site === 'Site V' && item.auditData) setObj07Qi3SiteVErrorDetailsModal(true);
+                  if (item.site === 'Site III') setObj07Qi3SiteIIIErrorDetailsModal(true);
+                  if (item.site === 'Site I') setObj07Qi3SiteIErrorDetailsModal(true);
+                  if (item.site === 'Site V') setObj07Qi3SiteVErrorDetailsModal(true);
                 }}
                 onMouseEnter={(e) => {
                   if (item.site === 'Site III' || item.site === 'Site I' || item.site === 'Site V') {
@@ -3362,13 +3459,13 @@ const QualityObjectives_v2 = () => {
                     e.currentTarget.style.boxShadow = 'none';
                   }
                 }}>
-                  {(item.site === 'Site III' || (item.site === 'Site I' && item.auditData) || (item.site === 'Site V' && item.auditData)) && (
+                  {(item.site === 'Site III' || item.site === 'Site I' || item.site === 'Site V') && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (item.site === 'Site III') setObj07Qi3ErrorDetailsModal(true);
-                        if (item.site === 'Site I' && item.auditData) setObj07Qi3SiteIErrorDetailsModal(true);
-                        if (item.site === 'Site V' && item.auditData) setObj07Qi3SiteVErrorDetailsModal(true);
+                        if (item.site === 'Site III') setObj07Qi3SiteIIIErrorDetailsModal(true);
+                        if (item.site === 'Site I') setObj07Qi3SiteIErrorDetailsModal(true);
+                        if (item.site === 'Site V') setObj07Qi3SiteVErrorDetailsModal(true);
                       }}
                       style={{
                         position: 'absolute',
@@ -3438,12 +3535,12 @@ const QualityObjectives_v2 = () => {
                   background: 'linear-gradient(135deg, #10b98110 0%, #ffffff 100%)',
                   borderRadius: '8px',
                   border: '2px solid #10b98120',
-                  cursor: item.site === 'Site III' ? 'pointer' : 'default',
+                  cursor: item.infoRows ? 'pointer' : 'default',
                   transition: 'all 0.2s ease',
                   position: 'relative'
                 }}
                 onClick={() => {
-                  if (item.site === 'Site III' && item.infoRows) {
+                  if (item.infoRows) {
                     setObj07Qi3InfoSite(item.site);
                     setObj07Qi3InfoModal({
                       site: item.site,
@@ -3455,31 +3552,29 @@ const QualityObjectives_v2 = () => {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  if (item.site === 'Site III') {
+                  if (item.infoRows) {
                     e.currentTarget.style.transform = 'translateY(-3px)';
                     e.currentTarget.style.boxShadow = '0 6px 14px rgba(16, 185, 129, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (item.site === 'Site III') {
+                  if (item.infoRows) {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }
                 }}>
-                  {item.site === 'Site III' && (
+                  {item.infoRows && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (item.infoRows) {
-                          setObj07Qi3InfoSite(item.site);
-                          setObj07Qi3InfoModal({
-                            site: item.site,
-                            rows: item.infoRows,
-                            errorDecrease: item.errorDecrease,
-                            staffInvolvement: item.staffInvolvement,
-                            stats: item.infoStats
-                          });
-                        }
+                        setObj07Qi3InfoSite(item.site);
+                        setObj07Qi3InfoModal({
+                          site: item.site,
+                          rows: item.infoRows,
+                          errorDecrease: item.errorDecrease,
+                          staffInvolvement: item.staffInvolvement,
+                          stats: item.infoStats
+                        });
                       }}
                       style={{
                         position: 'absolute',
@@ -6151,8 +6246,151 @@ const QualityObjectives_v2 = () => {
                     {renderSiteCards(obj06_qiDataMap[activeModals.qi06], { primary: '#0ea5e9', accent: '#06b6d4', light: '#ecf0ff' })}
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#0f172a', padding: '12px 0', fontSize: '1.4rem', fontWeight: 700 }}>
-                    Select a QI to view details.
+                  // Overview of all QIs when none selected
+                  <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+                    <div style={{ 
+                      background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%)',
+                      border: '2px solid #bae6fd',
+                      borderRadius: '16px',
+                      padding: '28px',
+                      marginBottom: '20px',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 800,
+                        color: '#0ea5e9',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px'
+                      }}>
+                        📊 Objective 06 - Overall Progress Across All QIs
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                        {objective6Flow.map((qi, idx) => {
+                          const qiData = obj06_qiDataMap[idx];
+                          const avgValue = qiData && qiData.length > 0 
+                            ? Math.round(qiData.reduce((sum, item) => sum + item.value, 0) / qiData.length)
+                            : 0;
+                          
+                          return (
+                            <div key={idx} style={{
+                              background: '#ffffff',
+                              border: `3px solid ${qi.color}`,
+                              borderRadius: '12px',
+                              padding: '16px',
+                              textAlign: 'center',
+                              boxShadow: `0 4px 12px ${qi.color}20`
+                            }}>
+                              <div style={{
+                                fontSize: '1.2rem',
+                                fontWeight: 800,
+                                color: qi.color,
+                                marginBottom: '8px'
+                              }}>
+                                QI {idx + 1}
+                              </div>
+                              <div style={{
+                                fontSize: '0.9rem',
+                                fontWeight: 700,
+                                color: '#64748b',
+                                marginBottom: '12px'
+                              }}>
+                                {qi.label}
+                              </div>
+                              <div style={{
+                                fontSize: '2.4rem',
+                                fontWeight: 900,
+                                color: qi.color,
+                                marginBottom: '4px'
+                              }}>
+                                {avgValue}%
+                              </div>
+                              <div style={{
+                                fontSize: '0.8rem',
+                                color: '#94a3b8',
+                                fontWeight: 600
+                              }}>
+                                All Sites
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div style={{
+                        background: '#ffffff',
+                        border: '2px solid #e2e8f0',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        marginTop: '20px'
+                      }}>
+                        <div style={{
+                          fontSize: '1.2rem',
+                          fontWeight: 800,
+                          color: '#0ea5e9',
+                          marginBottom: '16px'
+                        }}>
+                          📍 Implementation Status
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '14px' }}>
+                          <div style={{
+                            background: 'linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%)',
+                            border: '2px solid #0ea5e9',
+                            borderRadius: '10px',
+                            padding: '16px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                          }}>
+                            <div>
+                              <div style={{
+                                fontSize: '1rem',
+                                fontWeight: 800,
+                                color: '#0ea5e9',
+                                marginBottom: '4px'
+                              }}>
+                                All Sites (I, III, IV, V)
+                              </div>
+                              <div style={{
+                                fontSize: '0.85rem',
+                                color: '#64748b',
+                                fontWeight: 600
+                              }}>
+                                Both QI 1 & QI 2 in progress
+                              </div>
+                            </div>
+                            <div style={{
+                              fontSize: '1.8rem',
+                              fontWeight: 900,
+                              color: '#0ea5e9'
+                            }}>
+                              42%
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{
+                        marginTop: '20px',
+                        padding: '16px',
+                        background: '#f0f9ff',
+                        borderRadius: '10px',
+                        border: '1px solid #bae6fd'
+                      }}>
+                        <div style={{
+                          fontSize: '0.95rem',
+                          color: '#0369a1',
+                          fontWeight: 600,
+                          textAlign: 'center'
+                        }}>
+                          💡 Select a QI above to view detailed implementation progress
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </>

@@ -8,6 +8,7 @@ import SiteOverview from './slides/SiteOverview'
 import IPQAOverview from './slides/IPQAOverview'
 import IPQALabQAHandoff from './slides/IPQALabQAHandoff'
 import LabQAOverview from './slides/LabQAOverview'
+import AuditOverview from './slides/AuditOverview'
 import QualityObjectivesV2 from './slides/QualityObjectives_v2'
 import CustomerComplaintsOverview from './slides/CustomerComplaintsOverview'
 import LabQARoles from './slides/LabQARoles'
@@ -170,6 +171,7 @@ export default function Presentation() {
           <ErrorBoundary><CustomerComplaintsOverview /></ErrorBoundary>
           <ErrorBoundary><LabQARoles /></ErrorBoundary>
           <ErrorBoundary><LabQAOverview /></ErrorBoundary>
+          <ErrorBoundary><AuditOverview /></ErrorBoundary>
           <ErrorBoundary><QualityObjectivesV2 /></ErrorBoundary>
           <ErrorBoundary><QualityWeekPlaceholder /></ErrorBoundary>
           <ErrorBoundary><ImprovementsSlide /></ErrorBoundary>
