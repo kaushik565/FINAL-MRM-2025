@@ -212,11 +212,10 @@ export default function CustomerComplaintsOverview() {
         </p>
       </div>
 
-      {/* Key Stats - 3 Large Cards (IPQA Style) */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '20px', paddingX: '20px' }}>
+      {/* Key Stats - 2 Large Cards (IPQA Style) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px', paddingX: '20px' }}>
         {[
-          { label: '📊 Total Components Effected', value: metricsOverall.total, sub: `${metricsOverall.uniqueComplaints} unique IDs`, color: '#ef4444', bg: '#fef2f2', icon: '🔴' },
-          { label: '🔧 Devices Affected', value: metricsOverall.uniqueDevices, sub: `Unique serial numbers`, color: '#0ea5e9', bg: '#e0f2fe', icon: '⚙️' },
+          { label: '🔧 Devices Affected', value: metricsOverall.uniqueDevices, sub: `Unique serial numbers`, color: '#ef4444', bg: '#fef2f2', icon: '⚙️' },
           { label: '📋 Total Complaints', value: 12, sub: `Total complaint records`, color: '#8b5cf6', bg: '#f3e8ff', icon: '📝' }
         ].map((card, idx) => (
           <div key={idx} style={{
