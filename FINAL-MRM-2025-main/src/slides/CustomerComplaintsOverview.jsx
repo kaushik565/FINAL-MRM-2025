@@ -204,12 +204,9 @@ export default function CustomerComplaintsOverview() {
     >
       {/* Header */}
       <div style={{ marginBottom: '20px', paddingX: '20px' }}>
-        <h2 style={{ fontSize: '2.6em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0 }}>
+        <h2 style={{ fontSize: '2em', fontWeight: 900, color: '#111827', marginBottom: '0px', marginTop: 0 }}>
           Customer Complaints Overview
         </h2>
-        <p style={{ fontSize: '1.3rem', color: '#64748b', marginTop: '4px', marginBottom: '8px' }}>
-          Assembly & PCR segment analysis with visual insights
-        </p>
       </div>
 
       {/* Key Stats - 2 Large Cards (IPQA Style) */}

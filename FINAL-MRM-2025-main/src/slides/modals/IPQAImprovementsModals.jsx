@@ -7,6 +7,8 @@ import { FullscreenShell } from '../../utils/modalHelpers';
  * Site I IPQA Improvements Modal
  */
 export function SiteIImprovementsModal({ isOpen, onClose }) {
+  const [selectedCard, setSelectedCard] = useState('improvements');
+  
   if (!isOpen) return null;
 
   const improvements = [
@@ -26,62 +28,233 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
   return createPortal(
     <FullscreenShell
       onClose={onClose}
-      title="Site I IPQA - Process Improvements"
+      title="Site I IPQA"
       accentColor="#dc2626"
     >
       <div style={{padding: '32px'}}>
-        {/* Summary Cards */}
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px', marginBottom: '16px'}}>
-          {/* Completed */}
-          <div style={{background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)', border: '2px solid #10b981', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
-            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-              <div style={{fontSize: '2.4em'}}>✅</div>
-              <div>
-                <div style={{fontSize: '1.2em', color: '#065f46', fontWeight: 800}}>Completed</div>
-                <div style={{fontSize: '1em', color: '#065f46', opacity: 0.9}}>Successfully Implemented</div>
+        {/* Selection Cards */}
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '32px'}}>
+          {/* Process Improvements Card */}
+          <div
+            onClick={() => setSelectedCard('improvements')}
+            style={{
+              background: selectedCard === 'improvements' ? 'linear-gradient(135deg, #dc2626, #b91c1c)' : 'linear-gradient(135deg, #fee2e2, #fecaca)',
+              border: selectedCard === 'improvements' ? '3px solid #991b1b' : '2px solid #fca5a5',
+              borderRadius: '16px',
+              padding: '28px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: selectedCard === 'improvements' ? '0 10px 30px rgba(220, 38, 38, 0.3)' : '0 4px 12px rgba(0,0,0,0.08)',
+              transform: selectedCard === 'improvements' ? 'scale(1.02)' : 'scale(1)'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedCard !== 'improvements') {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(220, 38, 38, 0.2)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedCard !== 'improvements') {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+              }
+            }}
+          >
+            <div style={{textAlign: 'center'}}>
+              <div style={{fontSize: '3em', marginBottom: '12px'}}>🔧</div>
+              <div style={{
+                fontSize: '1.4em',
+                fontWeight: '900',
+                color: selectedCard === 'improvements' ? '#ffffff' : '#991b1b',
+                marginBottom: '8px'
+              }}>
+                Process Improvements
+              </div>
+              <div style={{
+                fontSize: '0.95em',
+                color: selectedCard === 'improvements' ? 'rgba(255,255,255,0.9)' : '#dc2626',
+                fontWeight: '600'
+              }}>
+                View all implemented improvements
               </div>
             </div>
-            <div style={{fontSize: '3em', fontWeight: 900, color: '#059669'}}>{completedCount}</div>
           </div>
-          {/* In Progress */}
-          <div style={{background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #f59e0b', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
-            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-              <div style={{fontSize: '2.4em'}}>⏳</div>
-              <div>
-                <div style={{fontSize: '1.2em', color: '#92400e', fontWeight: 800}}>In Progress</div>
-                <div style={{fontSize: '1em', color: '#92400e', opacity: 0.9}}>Ongoing</div>
+
+          {/* Process Incidents Card */}
+          <div
+            onClick={() => setSelectedCard('incidents')}
+            style={{
+              background: selectedCard === 'incidents' ? 'linear-gradient(135deg, #dc2626, #b91c1c)' : 'linear-gradient(135deg, #fee2e2, #fecaca)',
+              border: selectedCard === 'incidents' ? '3px solid #991b1b' : '2px solid #fca5a5',
+              borderRadius: '16px',
+              padding: '28px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: selectedCard === 'incidents' ? '0 10px 30px rgba(220, 38, 38, 0.3)' : '0 4px 12px rgba(0,0,0,0.08)',
+              transform: selectedCard === 'incidents' ? 'scale(1.02)' : 'scale(1)'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedCard !== 'incidents') {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(220, 38, 38, 0.2)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedCard !== 'incidents') {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+              }
+            }}
+          >
+            <div style={{textAlign: 'center'}}>
+              <div style={{fontSize: '3em', marginBottom: '12px'}}>📊</div>
+              <div style={{
+                fontSize: '1.4em',
+                fontWeight: '900',
+                color: selectedCard === 'incidents' ? '#ffffff' : '#991b1b',
+                marginBottom: '8px'
+              }}>
+                Process Incidents
+              </div>
+              <div style={{
+                fontSize: '0.95em',
+                color: selectedCard === 'incidents' ? 'rgba(255,255,255,0.9)' : '#dc2626',
+                fontWeight: '600'
+              }}>
+                View incident statistics
               </div>
             </div>
-            <div style={{fontSize: '3em', fontWeight: 900, color: '#d97706'}}>{inProgressCount}</div>
           </div>
         </div>
 
-        <div style={{display: 'grid', gridTemplateColumns: '1fr', gap: '16px'}}>
-          {improvements.map((item, idx) => (
-            <div key={idx} style={{background: '#ffffff', border: '2px solid #fee2e2', borderRadius: '14px', padding: '20px', transition: 'all 0.25s ease', cursor: 'default'}}
-              onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(220, 38, 38, 0.15)'; e.currentTarget.style.borderColor = '#dc2626';}}
-              onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#fee2e2';}}>
-              <div style={{display: 'flex', gap: '14px', alignItems: 'start'}}>
-                <div style={{width: '48px', height: '48px', borderRadius: '12px', background: 'linear-gradient(135deg, #fee2e2, #fecaca)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6em', flexShrink: 0}}>{item.icon}</div>
-                <div style={{flex: 1}}>
-                  <div style={{fontSize: '1.1em', fontWeight: '800', color: '#991b1b', marginBottom: '8px'}}>{idx + 1}. {item.title}</div>
-                  <div style={{fontSize: '0.95em', color: '#0f172a', lineHeight: '1.6', fontWeight: '500'}}>{item.desc}</div>
+        {/* Content based on selection */}
+        {selectedCard === 'improvements' ? (
+          <div>
+            {/* Summary Cards */}
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px', marginBottom: '16px'}}>
+              {/* Completed */}
+              <div style={{background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)', border: '2px solid #10b981', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                  <div style={{fontSize: '2.4em'}}>✅</div>
+                  <div>
+                    <div style={{fontSize: '1.2em', color: '#065f46', fontWeight: 800}}>Completed</div>
+                    <div style={{fontSize: '1em', color: '#065f46', opacity: 0.9}}>Successfully Implemented</div>
+                  </div>
+                </div>
+                <div style={{fontSize: '3em', fontWeight: 900, color: '#059669'}}>{completedCount}</div>
+              </div>
+              {/* In Progress */}
+              <div style={{background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #f59e0b', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '140px'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                  <div style={{fontSize: '2.4em'}}>⏳</div>
+                  <div>
+                    <div style={{fontSize: '1.2em', color: '#92400e', fontWeight: 800}}>In Progress</div>
+                    <div style={{fontSize: '1em', color: '#92400e', opacity: 0.9}}>Ongoing</div>
+                  </div>
+                </div>
+                <div style={{fontSize: '3em', fontWeight: 900, color: '#d97706'}}>{inProgressCount}</div>
+              </div>
+            </div>
+
+            <div style={{display: 'grid', gridTemplateColumns: '1fr', gap: '16px'}}>
+              {improvements.map((item, idx) => (
+                <div key={idx} style={{background: '#ffffff', border: '2px solid #fee2e2', borderRadius: '14px', padding: '20px', transition: 'all 0.25s ease', cursor: 'default'}}
+                  onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(220, 38, 38, 0.15)'; e.currentTarget.style.borderColor = '#dc2626';}}
+                  onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#fee2e2';}}>
+                  <div style={{display: 'flex', gap: '14px', alignItems: 'start'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: '12px', background: 'linear-gradient(135deg, #fee2e2, #fecaca)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6em', flexShrink: 0}}>{item.icon}</div>
+                    <div style={{flex: 1}}>
+                      <div style={{fontSize: '1.1em', fontWeight: '800', color: '#991b1b', marginBottom: '8px'}}>{idx + 1}. {item.title}</div>
+                      <div style={{fontSize: '0.95em', color: '#0f172a', lineHeight: '1.6', fontWeight: '500'}}>{item.desc}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pending Section */}
+            <div style={{marginTop: '32px', padding: '20px', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #fbbf24', borderRadius: '14px'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                <div style={{fontSize: '1.8em'}}>⏳</div>
+                <div style={{fontSize: '1.15em', fontWeight: '800', color: '#92400e'}}>Pending Implementation</div>
+              </div>
+              <div style={{fontSize: '0.95em', color: '#0f172a', lineHeight: '1.6', fontWeight: '500', paddingLeft: '50px'}}>
+                <strong>SOP/QA/003</strong> Change control is under revision for implementation of Artwork mastering process
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Process Incidents View */
+          <div style={{padding: '40px'}}>
+            <div style={{maxWidth: '900px', margin: '0 auto'}}>
+              <h2 style={{fontSize: '2em', fontWeight: '900', color: '#991b1b', textAlign: 'center', marginBottom: '40px'}}>Process Incidents - Site I</h2>
+              
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px'}}>
+                {/* Jan-Jun Period */}
+                <div style={{
+                  background: 'linear-gradient(135deg, #fef2f2, #fee2e2)',
+                  border: '3px solid #dc2626',
+                  borderRadius: '20px',
+                  padding: '40px',
+                  textAlign: 'center',
+                  boxShadow: '0 10px 30px rgba(220, 38, 38, 0.15)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(220, 38, 38, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(220, 38, 38, 0.15)';
+                }}>
+                  <div style={{fontSize: '3em', marginBottom: '16px'}}>📅</div>
+                  <div style={{fontSize: '1.3em', fontWeight: '700', color: '#991b1b', marginBottom: '20px'}}>January - June</div>
+                  <div style={{fontSize: '5em', fontWeight: '900', color: '#dc2626', lineHeight: '1', marginBottom: '12px'}}>16</div>
+                  <div style={{fontSize: '1.1em', color: '#7f1d1d', fontWeight: '600'}}>Incidents</div>
+                </div>
+
+                {/* July-Nov Period */}
+                <div style={{
+                  background: 'linear-gradient(135deg, #fef2f2, #fee2e2)',
+                  border: '3px solid #dc2626',
+                  borderRadius: '20px',
+                  padding: '40px',
+                  textAlign: 'center',
+                  boxShadow: '0 10px 30px rgba(220, 38, 38, 0.15)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(220, 38, 38, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(220, 38, 38, 0.15)';
+                }}>
+                  <div style={{fontSize: '3em', marginBottom: '16px'}}>📅</div>
+                  <div style={{fontSize: '1.3em', fontWeight: '700', color: '#991b1b', marginBottom: '20px'}}>July - November</div>
+                  <div style={{fontSize: '5em', fontWeight: '900', color: '#dc2626', lineHeight: '1', marginBottom: '12px'}}>19</div>
+                  <div style={{fontSize: '1.1em', color: '#7f1d1d', fontWeight: '600'}}>Incidents</div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Pending Section */}
-        <div style={{marginTop: '32px', padding: '20px', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', border: '2px solid #fbbf24', borderRadius: '14px'}}>
-          <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
-            <div style={{fontSize: '1.8em'}}>⏳</div>
-            <div style={{fontSize: '1.15em', fontWeight: '800', color: '#92400e'}}>Pending Implementation</div>
+              {/* Total Summary */}
+              <div style={{
+                marginTop: '40px',
+                background: 'linear-gradient(135deg, #991b1b, #7f1d1d)',
+                borderRadius: '20px',
+                padding: '32px',
+                textAlign: 'center',
+                color: '#ffffff',
+                boxShadow: '0 12px 35px rgba(127, 29, 29, 0.4)'
+              }}>
+                <div style={{fontSize: '1.2em', fontWeight: '600', marginBottom: '12px', opacity: 0.95}}>Total Incidents (2025)</div>
+                <div style={{fontSize: '4.5em', fontWeight: '900', lineHeight: '1'}}>35</div>
+              </div>
+            </div>
           </div>
-          <div style={{fontSize: '0.95em', color: '#0f172a', lineHeight: '1.6', fontWeight: '500', paddingLeft: '50px'}}>
-            <strong>SOP/QA/003</strong> Change control is under revision for implementation of Artwork mastering process
-          </div>
-        </div>
+        )}
       </div>
     </FullscreenShell>,
     document.body

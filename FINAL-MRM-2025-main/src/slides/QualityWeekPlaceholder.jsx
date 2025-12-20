@@ -61,7 +61,7 @@ export default function QualityWeekPlaceholder() {
   // Carousel effect for images (change every 2 seconds)
   useEffect(() => {
     carouselTimerRef.current = setInterval(() => {
-      setCarouselIdx((prev) => (prev + 1) % 9)
+      setCarouselIdx((prev) => (prev + 1) % outcomeImages.length)
     }, 2000)
 
     return () => clearInterval(carouselTimerRef.current)
@@ -83,6 +83,7 @@ export default function QualityWeekPlaceholder() {
   const outcomeImages = [
     { src: '/Image 2.JPG', label: 'Image 2' },
     { src: '/Image 3.JPG', label: 'Image 3' },
+    { src: '/sriram.jpeg', label: 'Sriram' },
     { src: '/Image 4.JPG', label: 'Image 4' },
     { src: '/Image 5.jpeg', label: 'Image 5' },
     { src: '/Image 6.jpeg', label: 'Image 6' },
@@ -1756,7 +1757,7 @@ export default function QualityWeekPlaceholder() {
                                 setCarouselIdx(idx)
                                 clearInterval(carouselTimerRef.current)
                                 carouselTimerRef.current = setInterval(() => {
-                                  setCarouselIdx((prev) => (prev + 1) % 9)
+                                  setCarouselIdx((prev) => (prev + 1) % outcomeImages.length)
                                 }, 2000)
                               }}
                             />
@@ -1790,7 +1791,7 @@ export default function QualityWeekPlaceholder() {
                             setCarouselIdx(idx)
                             clearInterval(carouselTimerRef.current)
                             carouselTimerRef.current = setInterval(() => {
-                              setCarouselIdx((prev) => (prev + 1) % 9)
+                              setCarouselIdx((prev) => (prev + 1) % outcomeImages.length)
                             }, 2000)
                           }}
                           style={{

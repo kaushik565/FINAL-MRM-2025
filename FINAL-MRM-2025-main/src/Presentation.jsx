@@ -3,6 +3,7 @@ import Reveal from 'reveal.js'
 import ErrorBoundary from './ErrorBoundary'
 import PresentationSelector from './components/PresentationSelector'
 import TitleSlide from './slides/TitleSlide'
+import ContentsSlide from './slides/ContentsSlide'
 import QMSOverview from './slides/QMSOverview'
 import SiteOverview from './slides/SiteOverview'
 import IPQAOverview from './slides/IPQAOverview'
@@ -62,6 +63,31 @@ export default function Presentation() {
         deck.left()
         // Force layout recalculation after navigation
         setTimeout(() => deck.layout?.(), 50)
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault()
+        // Toggle fullscreen
+        const elem = document.documentElement
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen()
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen()
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen()
+          } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen()
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen()
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen()
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen()
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen()
+          }
+        }
       }
     }
 
@@ -165,6 +191,7 @@ export default function Presentation() {
       {selectedDepartment === 'QA' && (
         <>
           <ErrorBoundary><TitleSlide /></ErrorBoundary>
+          <ErrorBoundary><ContentsSlide /></ErrorBoundary>
           <ErrorBoundary><SiteOverview /></ErrorBoundary>
           <ErrorBoundary><IPQAOverview /></ErrorBoundary>
           <ErrorBoundary><IPQALabQAHandoff /></ErrorBoundary>

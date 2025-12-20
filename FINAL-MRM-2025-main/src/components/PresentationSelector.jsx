@@ -59,7 +59,22 @@ export default function PresentationSelector({ onSelect }) {
       }}>
         {/* RA Button */}
         <button
-          onClick={() => { window.location.href = 'https://ra-presentation.vercel.app/' }}
+          onClick={() => {
+            // Request fullscreen before redirecting
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+              elem.requestFullscreen().catch(() => {
+                // If fullscreen fails, just proceed with redirect
+                window.location.href = 'https://ra-presentation.vercel.app/';
+              }).then(() => {
+                // After fullscreen is granted, redirect
+                window.location.href = 'https://ra-presentation.vercel.app/';
+              });
+            } else {
+              // Fallback if fullscreen not supported
+              window.location.href = 'https://ra-presentation.vercel.app/';
+            }
+          }}
           style={{
             padding: '24px 48px',
             fontSize: '1.8em',
@@ -90,7 +105,16 @@ export default function PresentationSelector({ onSelect }) {
 
         {/* QA Button */}
         <button
-          onClick={() => onSelect('QA')}
+          onClick={() => {
+            onSelect('QA');
+            // Request fullscreen after a short delay to ensure presentation loads
+            setTimeout(() => {
+              const elem = document.documentElement;
+              if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log('Fullscreen request failed:', err));
+              }
+            }, 300);
+          }}
           style={{
             padding: '24px 48px',
             fontSize: '1.8em',
