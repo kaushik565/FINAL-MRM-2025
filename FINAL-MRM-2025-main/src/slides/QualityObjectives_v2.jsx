@@ -2534,64 +2534,70 @@ const QualityObjectives_v2 = () => {
                 {/* Metrics Section */}
                 {hasMetrics ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {item.metrics.map((metric, metricIdx) => (
-                      <div 
-                        key={metricIdx}
-                        style={{
-                          padding: '10px',
-                          background: '#ffffff',
-                          borderRadius: '8px',
-                          border: `2px solid ${metric.color}40`,
-                          boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateX(3px)';
-                          e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.12)';
-                          e.currentTarget.style.borderColor = metric.color;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateX(0)';
-                          e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.06)';
-                          e.currentTarget.style.borderColor = `${metric.color}40`;
-                        }}
-                      >
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '8px',
-                          marginBottom: '8px'
-                        }}>
-                          <span style={{ fontSize: '1.3rem' }}>{metric.icon}</span>
+                    {item.metrics.map((metric, metricIdx) => {
+                      const isNegative = typeof metric.value === 'number' && metric.value < 0;
+                      const displayColor = isNegative ? '#ef4444' : metric.color;
+                      const bgColor = isNegative ? '#fee2e2' : '#ffffff';
+                      
+                      return (
+                        <div 
+                          key={metricIdx}
+                          style={{
+                            padding: '10px',
+                            background: bgColor,
+                            borderRadius: '8px',
+                            border: `2px solid ${displayColor}40`,
+                            boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+                            transition: 'all 0.2s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateX(3px)';
+                            e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.12)';
+                            e.currentTarget.style.borderColor = displayColor;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateX(0)';
+                            e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.06)';
+                            e.currentTarget.style.borderColor = `${displayColor}40`;
+                          }}
+                        >
                           <div style={{
-                            fontSize: '0.9rem',
-                            fontWeight: 700,
-                            color: '#1e293b',
-                            lineHeight: '1.3',
-                            flex: 1
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '8px',
+                            marginBottom: '8px'
                           }}>
-                            {metric.label}
+                            <span style={{ fontSize: '1.3rem' }}>{metric.icon}</span>
+                            <div style={{
+                              fontSize: '0.9rem',
+                              fontWeight: 700,
+                              color: '#1e293b',
+                              lineHeight: '1.3',
+                              flex: 1
+                            }}>
+                              {metric.label}
+                            </div>
+                          </div>
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            padding: '6px',
+                            background: `${displayColor}15`,
+                            borderRadius: '6px'
+                          }}>
+                            <span style={{
+                              fontSize: '1.5rem',
+                              fontWeight: 900,
+                              color: displayColor
+                            }}>
+                              {typeof metric.value === 'number' ? `${metric.value}%` : metric.value}
+                            </span>
                           </div>
                         </div>
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          padding: '6px',
-                          background: `${metric.color}15`,
-                          borderRadius: '6px'
-                        }}>
-                          <span style={{
-                            fontSize: '1.5rem',
-                            fontWeight: 900,
-                            color: metric.color
-                          }}>
-                            {typeof metric.value === 'number' ? `${metric.value}%` : metric.value}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 ) : (
                   <div style={{
