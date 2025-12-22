@@ -98,6 +98,7 @@ const QualityObjectives_v2 = () => {
   const [obj07Qi2InfoModal, setObj07Qi2InfoModal] = useState(null);
   const [obj07Qi3InfoSite, setObj07Qi3InfoSite] = useState(null);
   const [obj07Qi3InfoModal, setObj07Qi3InfoModal] = useState(null);
+  const [obj04GDPModal, setObj04GDPModal] = useState(false);
   const [obj07Qi3SiteIErrorDetailsModal, setObj07Qi3SiteIErrorDetailsModal] = useState(false);
   const [obj07Qi3SiteIIIErrorDetailsModal, setObj07Qi3SiteIIIErrorDetailsModal] = useState(false);
   const [obj07Qi3SiteVErrorDetailsModal, setObj07Qi3SiteVErrorDetailsModal] = useState(false);
@@ -2458,6 +2459,46 @@ const QualityObjectives_v2 = () => {
                     {item.site}
                   </span>
                 </div>
+
+                {/* Info Button for Site III */}
+                {item.site === 'Site III' && hasMetrics && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setObj04GDPModal(true);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                      border: 'none',
+                      color: '#ffffff',
+                      fontSize: '1.2rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 4px 12px rgba(59, 130, 246, 0.4)',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
+                      e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.4)';
+                    }}
+                  >
+                    ℹ️
+                  </button>
+                )}
 
                 {/* Status Badge */}
                 <div style={{
@@ -6443,6 +6484,288 @@ const QualityObjectives_v2 = () => {
         )}
 
       </div>
+
+      {/* GDP Before/After Modal */}
+      {obj04GDPModal && createPortal(
+        <FullscreenShell onClose={() => setObj04GDPModal(false)}>
+          <div style={{ 
+            maxWidth: '1400px', 
+            margin: '0 auto',
+            background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+            borderRadius: '24px',
+            padding: '40px',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.15)'
+          }}>
+            
+            {/* Modal Header */}
+            <div style={{
+              marginBottom: '32px',
+              textAlign: 'center',
+              borderBottom: '3px solid #3b82f6',
+              paddingBottom: '20px'
+            }}>
+              <div style={{
+                fontSize: '2.5rem',
+                fontWeight: 900,
+                background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '8px'
+              }}>
+                📊 GDP Incidents: Before vs After
+              </div>
+              <div style={{
+                fontSize: '1.2rem',
+                color: '#64748b',
+                fontWeight: 600
+              }}>
+                Objective 04 - Good Documentation Practices Analysis
+              </div>
+            </div>
+
+            {/* Charts Section */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '32px',
+              marginBottom: '20px'
+            }}>
+              
+              {/* Period 1: JAN → NOV */}
+              <div style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                border: '2px solid #e2e8f0'
+              }}>
+                <div style={{
+                  fontSize: '1.4rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  marginBottom: '20px',
+                  textAlign: 'center',
+                  borderBottom: '2px solid #cbd5e1',
+                  paddingBottom: '12px'
+                }}>
+                  Period 1: JAN → NOV
+                </div>
+                
+                <div style={{ height: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', gap: '20px', paddingBottom: '20px' }}>
+                  {[
+                    { site: 'Site I', before: 12, after: 13 },
+                    { site: 'Site III', before: 8, after: 0 },
+                    { site: 'Site V', before: 8, after: 8 }
+                  ].map((data, idx) => (
+                    <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ display: 'flex', gap: '8px', width: '100%', alignItems: 'flex-end', justifyContent: 'center', height: '280px' }}>
+                        {/* Before Bar */}
+                        <div style={{ 
+                          position: 'relative',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          flex: 1
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            top: '-30px',
+                            fontSize: '1.1rem',
+                            fontWeight: 900,
+                            color: '#ef4444'
+                          }}>
+                            {data.before}
+                          </div>
+                          <div style={{
+                            width: '100%',
+                            height: `${(data.before / 15) * 280}px`,
+                            background: 'linear-gradient(180deg, #ef4444 0%, #dc2626 100%)',
+                            borderRadius: '8px 8px 0 0',
+                            boxShadow: '0 -4px 12px rgba(239, 68, 68, 0.3)',
+                            transition: 'all 0.3s ease',
+                            border: '2px solid #dc2626'
+                          }} />
+                        </div>
+                        
+                        {/* After Bar */}
+                        <div style={{ 
+                          position: 'relative',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          flex: 1
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            top: '-30px',
+                            fontSize: '1.1rem',
+                            fontWeight: 900,
+                            color: '#10b981'
+                          }}>
+                            {data.after}
+                          </div>
+                          <div style={{
+                            width: '100%',
+                            height: `${(data.after / 15) * 280}px`,
+                            background: 'linear-gradient(180deg, #10b981 0%, #059669 100%)',
+                            borderRadius: '8px 8px 0 0',
+                            boxShadow: '0 -4px 12px rgba(16, 185, 129, 0.3)',
+                            transition: 'all 0.3s ease',
+                            border: '2px solid #059669'
+                          }} />
+                        </div>
+                      </div>
+                      
+                      <div style={{
+                        fontSize: '1.1rem',
+                        fontWeight: 800,
+                        color: '#1e293b',
+                        marginTop: '8px'
+                      }}>
+                        {data.site}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Period 2: FEB → DEC */}
+              <div style={{
+                background: '#ffffff',
+                borderRadius: '16px',
+                padding: '24px',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                border: '2px solid #e2e8f0'
+              }}>
+                <div style={{
+                  fontSize: '1.4rem',
+                  fontWeight: 800,
+                  color: '#1e293b',
+                  marginBottom: '20px',
+                  textAlign: 'center',
+                  borderBottom: '2px solid #cbd5e1',
+                  paddingBottom: '12px'
+                }}>
+                  Period 2: FEB → DEC
+                </div>
+                
+                <div style={{ height: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', gap: '20px', paddingBottom: '20px' }}>
+                  {[
+                    { site: 'Site I', before: 15, after: 4 },
+                    { site: 'Site III', before: 6, after: 0 },
+                    { site: 'Site V', before: 11, after: 3 }
+                  ].map((data, idx) => (
+                    <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ display: 'flex', gap: '8px', width: '100%', alignItems: 'flex-end', justifyContent: 'center', height: '280px' }}>
+                        {/* Before Bar */}
+                        <div style={{ 
+                          position: 'relative',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          flex: 1
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            top: '-30px',
+                            fontSize: '1.1rem',
+                            fontWeight: 900,
+                            color: '#ef4444'
+                          }}>
+                            {data.before}
+                          </div>
+                          <div style={{
+                            width: '100%',
+                            height: `${(data.before / 15) * 280}px`,
+                            background: 'linear-gradient(180deg, #ef4444 0%, #dc2626 100%)',
+                            borderRadius: '8px 8px 0 0',
+                            boxShadow: '0 -4px 12px rgba(239, 68, 68, 0.3)',
+                            transition: 'all 0.3s ease',
+                            border: '2px solid #dc2626'
+                          }} />
+                        </div>
+                        
+                        {/* After Bar */}
+                        <div style={{ 
+                          position: 'relative',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          flex: 1
+                        }}>
+                          <div style={{
+                            position: 'absolute',
+                            top: '-30px',
+                            fontSize: '1.1rem',
+                            fontWeight: 900,
+                            color: '#10b981'
+                          }}>
+                            {data.after}
+                          </div>
+                          <div style={{
+                            width: '100%',
+                            height: `${(data.after / 15) * 280}px`,
+                            background: 'linear-gradient(180deg, #10b981 0%, #059669 100%)',
+                            borderRadius: '8px 8px 0 0',
+                            boxShadow: '0 -4px 12px rgba(16, 185, 129, 0.3)',
+                            transition: 'all 0.3s ease',
+                            border: '2px solid #059669'
+                          }} />
+                        </div>
+                      </div>
+                      
+                      <div style={{
+                        fontSize: '1.1rem',
+                        fontWeight: 800,
+                        color: '#1e293b',
+                        marginTop: '8px'
+                      }}>
+                        {data.site}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Legend */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '32px',
+              marginTop: '24px',
+              padding: '16px',
+              background: '#ffffff',
+              borderRadius: '12px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{
+                  width: '24px',
+                  height: '24px',
+                  background: 'linear-gradient(180deg, #ef4444 0%, #dc2626 100%)',
+                  borderRadius: '4px',
+                  border: '2px solid #dc2626'
+                }} />
+                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e293b' }}>Before</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{
+                  width: '24px',
+                  height: '24px',
+                  background: 'linear-gradient(180deg, #10b981 0%, #059669 100%)',
+                  borderRadius: '4px',
+                  border: '2px solid #059669'
+                }} />
+                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e293b' }}>After</span>
+              </div>
+            </div>
+
+          </div>
+        </FullscreenShell>,
+        document.body
+      )}
     </section>
   );
 };
