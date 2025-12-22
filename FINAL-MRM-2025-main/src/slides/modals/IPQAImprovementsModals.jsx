@@ -17,12 +17,11 @@ export function SiteIImprovementsModal({ isOpen, onClose }) {
     { icon: '📋', title: 'Material Checklist Verification', desc: 'Added more checkpoints in Checklist and calculation sheet of incoming/new material to ensure completeness.' },
     { icon: '⚙️', title: 'Chip Processing', desc: 'Added inprocess checks for Chip arrangement and chip washing to maintain proper configuration and cleanliness.' },
     { icon: '🧬', title: 'UNG Testing & Standard Curve', desc: 'UNG testing, standard curve testing samples are sampled by IPQA, previously done by Production.' },
-    { icon: '🤝', title: 'MG Personnel Support', desc: 'Supported MG personnel in effective investigation and proper CA\'s.' },
-    { icon: '🎯', title: 'Quality Objective Revision', desc: 'Revised quality objective of MG and added DTF related point.' }
+    { icon: '🤝', title: 'MG Personnel Support', desc: 'Supported MG personnel in effective investigation and proper CA\'s.' }
   ];
 
   // Summary counts
-  const completedCount = improvements.length; // 7
+  const completedCount = improvements.length; // 6
   const inProgressCount = 1; // Pending item shown below
 
   return createPortal(
