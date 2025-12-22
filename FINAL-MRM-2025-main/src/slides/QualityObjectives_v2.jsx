@@ -793,7 +793,7 @@ const QualityObjectives_v2 = () => {
         { date: '31/10/2025', status: 'No GDP error found and no incident has been raised' },
         { date: '15/11/2025', status: 'No GDP error found and no incident has been raised' },
         { date: '29/11/2025', status: 'No GDP error found and no incident has been raised' },
-        { date: '15/12/2025', status: 'Need to check' }
+        { date: '15/12/2025', status: 'No GDP error found and no incident has been raised' }
       ]
     },
     { 
