@@ -295,12 +295,16 @@ export default function LabQARoles() {
                           border: `3px dashed ${site.color}60`,
                           borderRadius: '12px',
                           padding: '20px',
-                          color: '#64748b',
-                          fontWeight: 700,
-                          fontSize: '1.3rem',
-                          textAlign: 'center'
+                          color: '#f59e0b',
+                          fontWeight: 800,
+                          fontSize: '1.5rem',
+                          textAlign: 'center',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '10px'
                         }}>
-                          📌 No additional KPIs defined yet for {site.label}
+                          <span style={{ fontSize: '1.8rem' }}>⏳</span> In Process
                         </div>
                       ) : (
                         site.items.map((text, idx) => (
