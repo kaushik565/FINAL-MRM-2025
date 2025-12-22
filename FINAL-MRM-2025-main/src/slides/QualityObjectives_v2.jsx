@@ -810,10 +810,15 @@ const QualityObjectives_v2 = () => {
   const obj04_qi4Data = [
     {
       site: 'Site I',
-      value: 0,
+      value: 75,
       target: 100,
-      status: 'Data not available',
-      metrics: []
+      status: 'In Progress',
+      metrics: [
+        { label: '50% reduction in number of GDP related incidents reported per month', value: -110, icon: '📉', color: '#10b981' },
+        { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
+        { label: '0% Number of GDP related audit findings in internal or external audit', value: 'In Process', icon: '✓', color: '#f59e0b' },
+        { label: 'Average time taken to correct GDP related non-conformity less than 48 working Hrs', value: 100, icon: '⏱️', color: '#10b981' }
+      ]
     },
     {
       site: 'Site III',
@@ -829,10 +834,15 @@ const QualityObjectives_v2 = () => {
     },
     {
       site: 'Site V',
-      value: 0,
+      value: 75,
       target: 100,
-      status: 'Data not available',
-      metrics: []
+      status: 'In Progress',
+      metrics: [
+        { label: '50% reduction in number of GDP related incidents reported per month', value: -100, icon: '📉', color: '#10b981' },
+        { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
+        { label: '0% Number of GDP related audit findings in internal or external audit', value: 'In Process', icon: '✓', color: '#f59e0b' },
+        { label: 'Average time taken to correct GDP related non-conformity less than 48 working Hrs', value: 100, icon: '⏱️', color: '#10b981' }
+      ]
     }
   ];
 
@@ -2577,7 +2587,7 @@ const QualityObjectives_v2 = () => {
                             fontWeight: 900,
                             color: metric.color
                           }}>
-                            {metric.value}%
+                            {typeof metric.value === 'number' ? `${metric.value}%` : metric.value}
                           </span>
                         </div>
                       </div>
