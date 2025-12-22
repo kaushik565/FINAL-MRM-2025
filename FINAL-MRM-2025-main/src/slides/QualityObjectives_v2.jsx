@@ -816,7 +816,7 @@ const QualityObjectives_v2 = () => {
       metrics: [
         { label: '50% reduction in number of GDP related incidents reported per month', value: -110, icon: '📉', color: '#10b981' },
         { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
-        { label: '0% Number of GDP related audit findings in internal or external audit', value: 'In Process', icon: '✓', color: '#f59e0b' },
+        { label: '0% Number of GDP related audit findings in internal or external audit', value: '03 Nos', icon: '✓', color: '#f59e0b' },
         { label: 'Average time taken to correct GDP related non-conformity less than 48 working Hrs', value: 100, icon: '⏱️', color: '#10b981' }
       ]
     },
@@ -828,7 +828,7 @@ const QualityObjectives_v2 = () => {
       metrics: [
         { label: '50% reduction in number of GDP related incidents reported per month', value: 100, icon: '📉', color: '#10b981' },
         { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
-        { label: '0% Number of GDP related audit findings in internal or external audit', value: 100, icon: '✓', color: '#059669' },
+        { label: '0% Number of GDP related audit findings in internal or external audit', value: '09 nos', icon: '✓', color: '#059669' },
         { label: 'Average time taken to correct GDP related non-conformity less than 48 working Hrs', value: 100, icon: '⏱️', color: '#f59e0b' }
       ]
     },
@@ -840,7 +840,7 @@ const QualityObjectives_v2 = () => {
       metrics: [
         { label: '50% reduction in number of GDP related incidents reported per month', value: -100, icon: '📉', color: '#10b981' },
         { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
-        { label: '0% Number of GDP related audit findings in internal or external audit', value: 'In Process', icon: '✓', color: '#f59e0b' },
+        { label: '0% Number of GDP related audit findings in internal or external audit', value: '01 nos', icon: '✓', color: '#f59e0b' },
         { label: 'Average time taken to correct GDP related non-conformity less than 48 working Hrs', value: 100, icon: '⏱️', color: '#10b981' }
       ]
     }
