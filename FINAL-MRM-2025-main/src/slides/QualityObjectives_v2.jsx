@@ -656,12 +656,12 @@ const QualityObjectives_v2 = () => {
       errorDecrease: 30,
       staffInvolvement: 74,
       infoRows: [
-        { department: 'QMS / IPQA / Lab QA', beforeMembers: 20, beforePercent: 74, afterMembers: 20, afterPercent: 74 }
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 4, beforePercent: 15, afterMembers: 20, afterPercent: 74 }
       ],
       infoStats: {
         totalEmployees: 27,
         totalDepartments: 3,
-        totalBeforePercent: 74,
+        totalBeforePercent: 15,
         totalAfterPercent: 74
       },
       auditData: {
@@ -822,9 +822,9 @@ const QualityObjectives_v2 = () => {
     },
     {
       site: 'Site III',
-      value: 100,
+      value: 75,
       target: 100,
-      status: 'Completed ✓',
+      status: 'In Progress',
       metrics: [
         { label: '50% reduction in number of GDP related incidents reported per month', value: 100, icon: '📉', color: '#10b981' },
         { label: '100% staff trained in GDP', value: 100, icon: '👥', color: '#3b82f6' },
