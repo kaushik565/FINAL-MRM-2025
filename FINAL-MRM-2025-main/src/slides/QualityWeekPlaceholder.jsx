@@ -1036,17 +1036,139 @@ export default function QualityWeekPlaceholder() {
                     scrollbarColor: 'rgba(102, 126, 234, 0.4) transparent'
                   }}>
                     <div style={{
-                      fontSize: '1.55rem',
-                      lineHeight: '2.2',
-                      color: '#000000',
-                      fontWeight: 500,
-                      fontFamily: 'Arial, sans-serif'
+                      background: '#ffffff',
+                      borderRadius: '14px',
+                      padding: '12px 16px',
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                      border: '2px solid #e2e8f0'
                     }}>
-                      <div style={{ marginBottom: '18px', fontWeight: 700, color: '#1e293b', fontSize: '1.75rem', fontFamily: 'Arial, sans-serif' }}>Topics Covered:</div>
-                      <div style={{ marginBottom: '16px' }}><strong>Session I:</strong> Quality principles, Quality policy, Quality objectives</div>
-                      <div style={{ marginBottom: '16px' }}><strong>Session II:</strong> MDR 2017 & ISO 13485 Awareness</div>
-                      <div style={{ marginBottom: '16px' }}><strong>Session III:</strong> Significance of Quality Events</div>
-                      <div style={{ marginBottom: '16px' }}><strong>Session IV:</strong> Importance of QC</div>
+                      <div style={{ 
+                        marginBottom: '10px', 
+                        fontWeight: 900, 
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        fontSize: '2.2rem', 
+                        fontFamily: 'system-ui, -apple-system, sans-serif',
+                        letterSpacing: '-0.02em'
+                      }}>
+                        📚 Topics Covered:
+                      </div>
+                      
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px'
+                      }}>
+                        <div style={{ 
+                          padding: '10px 14px',
+                          background: 'linear-gradient(135deg, #667eea08 0%, #764ba208 100%)',
+                          borderRadius: '10px',
+                          border: '2px solid #667eea30',
+                          transition: 'all 0.3s ease'
+                        }}>
+                          <div style={{ 
+                            fontSize: '1.65rem', 
+                            fontWeight: 800, 
+                            color: '#667eea',
+                            marginBottom: '4px',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Session I
+                          </div>
+                          <div style={{ 
+                            fontSize: '1.5rem', 
+                            color: '#1e293b', 
+                            fontWeight: 600,
+                            lineHeight: '1.4',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Quality principles, Quality policy, Quality objectives
+                          </div>
+                        </div>
+
+                        <div style={{ 
+                          padding: '10px 14px',
+                          background: 'linear-gradient(135deg, #f093fb08 0%, #f5576c08 100%)',
+                          borderRadius: '10px',
+                          border: '2px solid #f093fb30',
+                          transition: 'all 0.3s ease'
+                        }}>
+                          <div style={{ 
+                            fontSize: '1.65rem', 
+                            fontWeight: 800, 
+                            color: '#f093fb',
+                            marginBottom: '4px',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Session II
+                          </div>
+                          <div style={{ 
+                            fontSize: '1.5rem', 
+                            color: '#1e293b', 
+                            fontWeight: 600,
+                            lineHeight: '1.4',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            MDR 2017 & ISO 13485 Awareness
+                          </div>
+                        </div>
+
+                        <div style={{ 
+                          padding: '10px 14px',
+                          background: 'linear-gradient(135deg, #4facfe08 0%, #00f2fe08 100%)',
+                          borderRadius: '10px',
+                          border: '2px solid #4facfe30',
+                          transition: 'all 0.3s ease'
+                        }}>
+                          <div style={{ 
+                            fontSize: '1.65rem', 
+                            fontWeight: 800, 
+                            color: '#4facfe',
+                            marginBottom: '4px',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Session III
+                          </div>
+                          <div style={{ 
+                            fontSize: '1.5rem', 
+                            color: '#1e293b', 
+                            fontWeight: 600,
+                            lineHeight: '1.4',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Significance of Quality Events
+                          </div>
+                        </div>
+
+                        <div style={{ 
+                          padding: '10px 14px',
+                          background: 'linear-gradient(135deg, #43e97b08 0%, #38f9d708 100%)',
+                          borderRadius: '10px',
+                          border: '2px solid #43e97b30',
+                          transition: 'all 0.3s ease'
+                        }}>
+                          <div style={{ 
+                            fontSize: '1.65rem', 
+                            fontWeight: 800, 
+                            color: '#43e97b',
+                            marginBottom: '4px',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Session IV
+                          </div>
+                          <div style={{ 
+                            fontSize: '1.5rem', 
+                            color: '#1e293b', 
+                            fontWeight: 600,
+                            lineHeight: '1.4',
+                            fontFamily: 'system-ui, -apple-system, sans-serif'
+                          }}>
+                            Importance of QC
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
