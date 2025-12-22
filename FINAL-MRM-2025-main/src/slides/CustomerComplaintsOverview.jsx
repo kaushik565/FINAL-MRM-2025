@@ -121,7 +121,7 @@ export const buildMetrics = (data) => {
       } else if (cause.includes('not found') || cause.includes('not observed') || cause.includes('not identif') || cause.includes('no rc')) {
         rootCauseTypes['Not Identified'] = (rootCauseTypes['Not Identified'] || 0) + 1
       } else {
-        rootCauseTypes['Other'] = (rootCauseTypes['Other'] || 0) + 1
+        rootCauseTypes['Process Improvements'] = (rootCauseTypes['Process Improvements'] || 0) + 1
         const key = causeOriginal || 'Not specified'
         otherRootCauses[key] = (otherRootCauses[key] || 0) + 1
       }
@@ -383,7 +383,7 @@ export default function CustomerComplaintsOverview() {
                 </div>
               ))}
 
-              {rootCauseEntries.some(([label]) => label === 'Other') && otherDetails.length > 0 && (
+              {rootCauseEntries.some(([label]) => label === 'Process Improvements') && otherDetails.length > 0 && (
                 <div style={{ marginTop: 8 }}>
                   <button
                     onClick={() => setShowOtherDetails(!showOtherDetails)}
@@ -399,7 +399,7 @@ export default function CustomerComplaintsOverview() {
                       textAlign: 'center'
                     }}
                   >
-                    {showOtherDetails ? 'Hide “Other” details' : 'View “Other” details'}
+                    {showOtherDetails ? 'Hide “Process Improvements” details' : 'View “Process Improvements” details'}
                   </button>
                   {showOtherDetails && (
                     <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>

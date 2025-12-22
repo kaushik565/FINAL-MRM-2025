@@ -1,17 +1,20 @@
 export default function ImprovementsSlide() {
   const improvements = [
     'Significant improvements have been successfully implemented across all sub divisions of QA (QMS/IPQA/LABQA)',
-    'Engaged in monitoring and measurement of product performance thorugh APQR and LAB QA.',
+    'Engaged in monitoring and measurement of product performance thorugh APQR and LAB QA. - Under Progress',
     'LAB QA implemented across all the sites',
     'OOS ownership was taken by the QA across all the sites',
     'Inter deparmental Collaborative meetings',
     'QA collaboration daily meetings across the sites',
     'Improved competencey of all QA personnel',
-    'Encouraging a proactive approach to process risk management',
+    'Encouraging a proactive approach to process risk management - Under Progress',
     'Implementation of work instructions - Under Progress',
     'Introduction of COQ SOP - Under Progress',
     'Weekly QA Team lead meeting across sites - Under Progress'
   ]
+
+  const inProgressCount = improvements.filter(i => i.includes('Under Progress')).length
+  const completedCount = improvements.length - inProgressCount
 
   return (
     <section 
@@ -71,7 +74,7 @@ export default function ImprovementsSlide() {
               color: '#10b981',
               marginBottom: '8px'
             }}>
-              8
+              {completedCount}
             </div>
             <div style={{
               fontSize: '1.5rem',
@@ -106,7 +109,7 @@ export default function ImprovementsSlide() {
               color: '#ea580c',
               marginBottom: '8px'
             }}>
-              3
+              {inProgressCount}
             </div>
             <div style={{
               fontSize: '1.5rem',
@@ -141,7 +144,7 @@ export default function ImprovementsSlide() {
               color: '#3b82f6',
               marginBottom: '8px'
             }}>
-              11
+              {improvements.length}
             </div>
             <div style={{
               fontSize: '1.5rem',
@@ -159,7 +162,7 @@ export default function ImprovementsSlide() {
           flexDirection: 'column',
           gap: '14px'
         }}>
-          {improvements.map((improvement, idx) => {
+          {[...improvements.filter(i => !i.includes('Under Progress')), ...improvements.filter(i => i.includes('Under Progress'))].map((improvement, idx) => {
             const isUnderProgress = improvement.includes('Under Progress')
             
             return (

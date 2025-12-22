@@ -23,7 +23,7 @@ const siteIIIItems = [
   'Support the purchase department in vendor selection based on performance.',
   'Involve in the supplier audit.',
   'Implement product/process audit checklist as a part of supplier audit.',
-  'Develop inhouse auditor competency by 25%.',
+  'Develop supplier auditor competency by 25%.',
   'Implement OOT to identify the potential product quality issues.',
   'Do the process improvement at least one in a month.',
   'Support in the fulfillment of quality objectives.'
