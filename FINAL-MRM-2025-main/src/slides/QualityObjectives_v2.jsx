@@ -4003,14 +4003,6 @@ const QualityObjectives_v2 = () => {
                           <td style={{ padding: '14px 16px', fontSize: '0.95rem', fontWeight: 700, color: '#10b981', borderRight: '1px solid #e2e8f0' }}>Completed</td>
                           <td style={{ padding: '14px 16px', fontSize: '0.95rem', fontWeight: 700, color: '#10b981' }}>Ontime</td>
                         </tr>
-                        <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#0f172a', borderRight: '1px solid #e2e8f0' }}>Introduce Work Instruction SOP and format for for better understanding of operators and inspectors</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', borderRight: '1px solid #e2e8f0' }}>QA</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', borderRight: '1px solid #e2e8f0' }}>11/08/2025</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', borderRight: '1px solid #e2e8f0' }}>31/08/2025</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', fontWeight: 700, color: '#10b981', borderRight: '1px solid #e2e8f0' }}>Completed</td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.95rem', fontWeight: 700, color: '#10b981' }}>Ontime</td>
-                        </tr>
                         <tr style={{ background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
                           <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#0f172a', borderRight: '1px solid #e2e8f0' }}>Introduction of 'Inprocess QA verification during the production'.</td>
                           <td style={{ padding: '14px 16px', fontSize: '0.95rem', color: '#475569', borderRight: '1px solid #e2e8f0' }}>QA</td>
