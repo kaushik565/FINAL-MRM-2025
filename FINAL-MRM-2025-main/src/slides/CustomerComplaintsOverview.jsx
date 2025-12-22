@@ -540,7 +540,7 @@ export default function CustomerComplaintsOverview() {
             padding: '16px',
             boxShadow: '0 2px 8px rgba(14,165,233,0.05)'
           }}>
-            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#0369a1', marginBottom: 12, textAlign: 'center' }}>Root Cause Distribution</div>
+            <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0369a1', marginBottom: 12, textAlign: 'center' }}>Root Cause Distribution</div>
             
             {/* Pie Chart */}
             <div style={{
@@ -575,13 +575,13 @@ export default function CustomerComplaintsOverview() {
                       border: '2px solid #334155',
                       flexShrink: 0
                     }} />
-                    <div style={{ fontSize: '1.15rem', color: '#111827', fontWeight: 700, lineHeight: 1.2 }}>
+                    <div style={{ fontSize: '1.5rem', color: '#111827', fontWeight: 700, lineHeight: 1.2 }}>
                       {cause[0]}
                     </div>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
-                    <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0ea5e9', lineHeight: 1 }}>{cause[1]}</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#64748b', lineHeight: 1 }}>{formatPercent(cause[1], rootCauseTotal)}%</div>
+                    <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0ea5e9', lineHeight: 1 }}>{cause[1]}</div>
+                    <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#64748b', lineHeight: 1 }}>{formatPercent(cause[1], rootCauseTotal)}%</div>
                   </div>
                 </div>
               ))}
@@ -599,7 +599,8 @@ export default function CustomerComplaintsOverview() {
                       fontWeight: 900,
                       cursor: 'pointer',
                       width: '100%',
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      fontSize: '1.2rem'
                     }}
                   >
                     {showOtherDetails ? 'Hide “Process Improvements” details' : 'View “Process Improvements” details'}
