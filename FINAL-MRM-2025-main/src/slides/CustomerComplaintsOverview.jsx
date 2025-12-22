@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react'
+import { createPortal } from 'react-dom'
+import { FullscreenShell } from '../utils/modalHelpers'
 
 export const extractionComplaints = [
     { id: 'CU/III/24/001', serial: 'TPV22939B', issue: 'Cartridge error (elution) motor 2 rotates automatically', rootCause: 'ASED controller issue', activity: 'Mechanism' },
@@ -175,6 +177,7 @@ const BarRow = ({ label, value, max, color }) => (
 export default function CustomerComplaintsOverview() {
   const [activeTab, setActiveTab] = React.useState('extraction')
   const [showOtherDetails, setShowOtherDetails] = React.useState(false)
+  const [showComplaintModal, setShowComplaintModal] = React.useState(false)
 
   const metricsOverall = useMemo(() => buildMetrics(complaintsData), [])
   const metricsExtraction = useMemo(() => buildMetrics(extractionComplaints), [])
@@ -189,7 +192,184 @@ export default function CustomerComplaintsOverview() {
   const rootCauseEntries = Object.entries(currentMetrics.rootCauseTypes).sort((a, b) => b[1] - a[1])
   const otherDetails = Object.entries(currentMetrics.otherRootCauses || {}).sort((a, b) => b[1] - a[1])
 
+  // Complaint breakdown data
+  const complaintBreakdown = [
+    { description: 'Laser welded cartridge', count: 2 },
+    { description: 'Assembly of extraction device', count: 4 },
+    { description: 'Assembly of Two Bay PCR machine', count: 3 },
+    { description: 'Assembly of four bay PCR machine', count: 4 },
+    { description: 'Spare (SBC, PMPCB)', count: 1 }
+  ]
+
   return (
+    <>
+      {/* Complaint Modal */}
+      {showComplaintModal && createPortal(
+        <FullscreenShell
+          onClose={() => setShowComplaintModal(false)}
+          title="📋 Complaint Breakdown by Category"
+          accentColor="#8b5cf6"
+        >
+          <div style={{ padding: '32px', maxWidth: '900px', margin: '0 auto' }}>
+            {/* Header */}
+            <div style={{ 
+              background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)', 
+              padding: '24px', 
+              borderRadius: '16px', 
+              marginBottom: '32px', 
+              color: 'white', 
+              textAlign: 'center' 
+            }}>
+              <div style={{ fontSize: '1.3em', fontWeight: '700', marginBottom: '8px' }}>Total Complaints Distribution</div>
+              <div style={{ fontSize: '0.95em', opacity: 0.95 }}>Breakdown by product category</div>
+            </div>
+
+            {/* Complaints Table */}
+            <div style={{
+              background: '#ffffff',
+              border: '2px solid #e5e7eb',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+            }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}>
+                    <th style={{
+                      padding: '16px 24px',
+                      textAlign: 'left',
+                      color: 'white',
+                      fontWeight: '800',
+                      fontSize: '1.1em',
+                      borderBottom: '3px solid #6b21a8'
+                    }}>
+                      Complaint Description
+                    </th>
+                    <th style={{
+                      padding: '16px 24px',
+                      textAlign: 'center',
+                      color: 'white',
+                      fontWeight: '800',
+                      fontSize: '1.1em',
+                      borderBottom: '3px solid #6b21a8',
+                      width: '150px'
+                    }}>
+                      Count
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {complaintBreakdown.map((item, idx) => (
+                    <tr 
+                      key={idx}
+                      style={{
+                        background: idx % 2 === 0 ? '#ffffff' : '#f9fafb',
+                        borderBottom: '1px solid #e5e7eb',
+                        transition: 'all 0.2s'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#f3e8ff'
+                        e.currentTarget.style.transform = 'scale(1.01)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
+                        e.currentTarget.style.transform = 'scale(1)'
+                      }}
+                    >
+                      <td style={{
+                        padding: '16px 24px',
+                        fontSize: '1em',
+                        color: '#0f172a',
+                        fontWeight: '600'
+                      }}>
+                        {item.description}
+                      </td>
+                      <td style={{
+                        padding: '16px 24px',
+                        textAlign: 'center',
+                        fontSize: '1.4em',
+                        fontWeight: '900',
+                        color: '#8b5cf6'
+                      }}>
+                        {item.count}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr style={{ background: 'linear-gradient(135deg, #f3e8ff, #e9d5ff)', borderTop: '3px solid #8b5cf6' }}>
+                    <td style={{
+                      padding: '16px 24px',
+                      fontSize: '1.1em',
+                      fontWeight: '800',
+                      color: '#6b21a8'
+                    }}>
+                      Total
+                    </td>
+                    <td style={{
+                      padding: '16px 24px',
+                      textAlign: 'center',
+                      fontSize: '1.6em',
+                      fontWeight: '900',
+                      color: '#6b21a8'
+                    }}>
+                      {complaintBreakdown.reduce((sum, item) => sum + item.count, 0)}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            {/* Visual Breakdown */}
+            <div style={{ marginTop: '32px' }}>
+              <h3 style={{ fontSize: '1.2em', fontWeight: '800', color: '#0f172a', marginBottom: '16px', textAlign: 'center' }}>
+                Category Distribution
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {complaintBreakdown.map((item, idx) => {
+                  const total = complaintBreakdown.reduce((sum, i) => sum + i.count, 0)
+                  const percentage = ((item.count / total) * 100).toFixed(1)
+                  const colors = ['#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+                  
+                  return (
+                    <div key={idx} style={{
+                      background: '#ffffff',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '10px',
+                      padding: '14px 18px'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                        <span style={{ fontSize: '0.95em', fontWeight: '700', color: '#0f172a' }}>
+                          {item.description}
+                        </span>
+                        <span style={{ fontSize: '0.95em', fontWeight: '800', color: colors[idx % colors.length] }}>
+                          {item.count} ({percentage}%)
+                        </span>
+                      </div>
+                      <div style={{
+                        height: '10px',
+                        background: '#e5e7eb',
+                        borderRadius: '999px',
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{
+                          width: `${percentage}%`,
+                          height: '100%',
+                          background: colors[idx % colors.length],
+                          borderRadius: '999px',
+                          transition: 'width 0.5s ease'
+                        }} />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </FullscreenShell>,
+        document.body
+      )}
+
     <section
       className="content-slide"
       data-state="customer-complaints-overview"
@@ -212,18 +392,21 @@ export default function CustomerComplaintsOverview() {
       {/* Key Stats - 2 Large Cards (IPQA Style) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px', paddingX: '20px' }}>
         {[
-          { label: '🔧 Devices Affected', value: metricsOverall.uniqueDevices, sub: `Unique serial numbers`, color: '#ef4444', bg: '#fef2f2', icon: '⚙️' },
-          { label: '📋 Total Complaints', value: 12, sub: `Total complaint records`, color: '#8b5cf6', bg: '#f3e8ff', icon: '📝' }
+          { label: '🔧 Devices Affected', value: metricsOverall.uniqueDevices, sub: `Unique serial numbers`, color: '#ef4444', bg: '#fef2f2', icon: '⚙️', hasModal: false },
+          { label: '📋 Total Complaints', value: 12, sub: `Total complaint records`, color: '#8b5cf6', bg: '#f3e8ff', icon: '📝', hasModal: true }
         ].map((card, idx) => (
-          <div key={idx} style={{
+          <div key={idx} 
+            onClick={() => card.hasModal && setShowComplaintModal(true)}
+            style={{
             background: card.bg,
             border: `5px solid ${card.color}`,
             borderRadius: '18px',
             padding: '40px 28px',
             textAlign: 'center',
             boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-            cursor: 'pointer',
-            transition: 'transform 0.2s, box-shadow 0.2s'
+            cursor: card.hasModal ? 'pointer' : 'default',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+            position: 'relative'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-4px)'
@@ -233,6 +416,26 @@ export default function CustomerComplaintsOverview() {
             e.currentTarget.style.transform = 'translateY(0)'
             e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'
           }}>
+            {card.hasModal && (
+              <div style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: card.color,
+                color: 'white',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.2em',
+                fontWeight: 'bold',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+              }}>
+                ℹ️
+              </div>
+            )}
             <div style={{ fontSize: '3rem', marginBottom: 16 }}>{card.icon}</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#64748b', marginBottom: 10 }}>{card.label}</div>
             <div style={{ fontSize: '4.6rem', fontWeight: 950, color: card.color, lineHeight: 1, marginBottom: 14 }}>{card.value}</div>
@@ -508,5 +711,6 @@ export default function CustomerComplaintsOverview() {
         }
       `}</style>
     </section>
+    </>
   )
 }
