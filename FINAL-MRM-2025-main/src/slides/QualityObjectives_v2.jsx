@@ -5476,7 +5476,7 @@ const QualityObjectives_v2 = () => {
                           let displayValue = avgValue;
                           if (idx === 0) displayValue = 100;
                           if (idx === 2) displayValue = 33;
-                          if (idx === 3) displayValue = 35;
+                          if (idx === 3) displayValue = 33;
                           
                           return (
                             <div key={idx} style={{
