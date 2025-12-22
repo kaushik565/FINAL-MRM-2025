@@ -1170,7 +1170,6 @@ export default function QualityWeekPlaceholder() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         animation: 'fadeIn 0.6s ease-in-out',
-                        display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         textAlign: 'center'

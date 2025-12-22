@@ -55,15 +55,13 @@ export default function ContentsSlide() {
   }, [])
 
   const slideContents = [
-    "1. Monitoring and Measurement of Process - QMS",
-    "2. Monitoring and Measurement of Process - IPQA",
-    "3. Monitoring and Measurement of Product - Site IV",
-    "4. Customer Complaints Overview",
-    "5. Monitoring and Measurement of Product - Lab QA",
-    "6. Audit Findings",
-    "7. Quality Objectives",
-    "8. Quality Week Celebrations overview & Improvements",
-    "9. Improvements"
+    "1. Monitoring and Measurement of Process - QMS / IPQA",
+    "2. Monitoring and Measurement of Product - Site IV / Lab QA",
+    "3. Customer Complaints Overview",
+    "4. Audit Findings",
+    "5. Quality Objectives",
+    "6. Quality Week Celebrations overview",
+    "7. Improvements"
   ]
 
   return (
