@@ -587,12 +587,12 @@ const QualityObjectives_v2 = () => {
       errorDecrease: 30,
       staffInvolvement: 79,
       infoRows: [
-        { department: 'QMS / IPQA / Lab QA', beforeMembers: 4, beforePercent: 40, afterMembers: 15, afterPercent: 79 }
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 4, beforePercent: 21, afterMembers: 15, afterPercent: 79 }
       ],
       infoStats: {
         totalEmployees: 19,
         totalDepartments: 3,
-        totalBeforePercent: 40,
+        totalBeforePercent: 21,
         totalAfterPercent: 79
       },
       auditData: {
@@ -5476,6 +5476,7 @@ const QualityObjectives_v2 = () => {
                           let displayValue = avgValue;
                           if (idx === 0) displayValue = 100;
                           if (idx === 2) displayValue = 33;
+                          if (idx === 3) displayValue = 35;
                           
                           return (
                             <div key={idx} style={{
