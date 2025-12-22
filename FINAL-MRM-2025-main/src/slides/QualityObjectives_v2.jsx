@@ -585,15 +585,15 @@ const QualityObjectives_v2 = () => {
       value: 30, 
       target: 100,
       errorDecrease: 30,
-      staffInvolvement: 30,
+      staffInvolvement: 79,
       infoRows: [
-        { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 4, afterPercent: 40 }
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 4, beforePercent: 40, afterMembers: 15, afterPercent: 79 }
       ],
       infoStats: {
-        totalEmployees: 4,
-        totalDepartments: 1,
-        totalBeforePercent: 0,
-        totalAfterPercent: 40
+        totalEmployees: 19,
+        totalDepartments: 3,
+        totalBeforePercent: 40,
+        totalAfterPercent: 79
       },
       auditData: {
         findings: [
@@ -654,15 +654,15 @@ const QualityObjectives_v2 = () => {
       value: 30, 
       target: 100,
       errorDecrease: 30,
-      staffInvolvement: 30,
+      staffInvolvement: 74,
       infoRows: [
-        { department: 'QMS / IPQA / Lab QA', beforeMembers: 0, beforePercent: 0, afterMembers: 5, afterPercent: 52 }
+        { department: 'QMS / IPQA / Lab QA', beforeMembers: 20, beforePercent: 74, afterMembers: 20, afterPercent: 74 }
       ],
       infoStats: {
-        totalEmployees: 5,
-        totalDepartments: 1,
-        totalBeforePercent: 0,
-        totalAfterPercent: 52
+        totalEmployees: 27,
+        totalDepartments: 3,
+        totalBeforePercent: 74,
+        totalAfterPercent: 74
       },
       auditData: {
         findings: [
