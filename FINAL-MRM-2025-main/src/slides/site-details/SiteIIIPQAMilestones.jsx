@@ -5,7 +5,7 @@ export default function SiteIIIPQAMilestones({ onClose }) {
   const kpiMetrics = [
     {
       title: '💰 Cost Savings',
-      value: '≈ 11x',
+      value: '≈ XXX',
       displayMode: 'multiplier',
       unit: 'Savings Multiple vs Rework Cost',
       period: 'Compared with (Jun24-Jul25)',
